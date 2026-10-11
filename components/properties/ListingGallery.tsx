@@ -49,6 +49,7 @@ export default function ListingGallery({
             fill
             priority={i === 0}
             sizes={sizes}
+            quality={85}
             className={`object-cover transition-opacity duration-500 ${i === index ? 'opacity-100' : 'opacity-0'}`}
           />
         ))}

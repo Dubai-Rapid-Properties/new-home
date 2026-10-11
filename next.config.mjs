@@ -32,6 +32,8 @@ const nextConfig = {
     };
   },
   images: {
+    /* 85 for the listing gallery's large photos */
+    qualities: [75, 85],
     remotePatterns: [
       /* Listing photos uploaded in the D|R|P admin portal (Supabase Storage, public bucket) */
       {

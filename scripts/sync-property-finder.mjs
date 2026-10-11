@@ -37,6 +37,8 @@ const BASE = (process.env.PF_API_BASE || 'https://atlas.propertyfinder.com').rep
 const KEY = process.env.PF_API_KEY;
 const SECRET = process.env.PF_API_SECRET;
 const OUT = new URL('../data/imported/listings.json', import.meta.url);
+/* Photos with DRP's watermark removed and enhanced, served from public/ (scripts/photos/clean-photos.py) */
+const CLEAN = new URL('../data/imported/clean-photos.json', import.meta.url);
 const PER_PAGE = 50;
 const MAX_PAGES = 40;
 const INSPECT = process.argv.includes('--inspect');
@@ -327,6 +329,7 @@ async function main() {
   }
 
   const previous = JSON.parse(await readFile(OUT, 'utf8').catch(() => '[]'));
+  const clean = JSON.parse(await readFile(CLEAN, 'utf8').catch(() => '{}'));
   const byRef = new Map(previous.map((p) => [p.ref, p]));
 
   const token = await getToken();
@@ -361,7 +364,8 @@ async function main() {
     const title = text(pick(raw, 'title')).replace(/\s+/g, ' ').trim();
     const offering = offeringOf(raw);
     const price = priceOf(raw, offering);
-    const images = imagesOf(raw);
+    /* A cleaned copy replaces Property Finder's photo; new photos show as they are until the next clean */
+    const images = imagesOf(raw).map((u) => clean[u] ?? u);
     if (!ref || !title) { skip('no reference or title'); continue; }
     if (!price) { skip('no price'); continue; }
     if (images.length < 1) { skip('no photos'); continue; }
