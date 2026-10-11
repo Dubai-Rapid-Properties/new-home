@@ -35,7 +35,9 @@ export default function PropertyCard(props: Props) {
             alt={item.alt}
             fill
             loading="lazy"
-            sizes="(max-width: 640px) 80vw, (max-width: 1024px) 45vw, 25vw"
+            /* The 4:5 card crops a landscape photo to its middle, so it needs about twice the card's width to stay sharp */
+            sizes="(max-width: 640px) 180vw, (max-width: 1024px) 90vw, 50vw"
+            quality={85}
             className="object-cover transition-transform duration-[700ms] ease-premium group-hover:scale-[1.06]"
           />
 
