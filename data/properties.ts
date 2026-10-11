@@ -79,6 +79,12 @@ const cleanTitle = (t: string) => t.replace(/\s+l\s+/g, ' | ').replace(/\s*\|\s*
 const dldUrl = (v: unknown) =>
   typeof v === 'string' && /^https:\/\/[^/]*dubailand\.gov\.ae\//i.test(v) ? v : null;
 
+/**
+ * A listing the portal copied from /pf-listings.json carries this site's cleaned
+ * photos as full addresses (any of its domains); serve them as local files again.
+ */
+const localPhoto = (src: string) => src.replace(/^https?:\/\/[^/]+(?=\/media\/listings\/)/, '');
+
 const toListing = (r: ImportedListing): Listing => {
   const title = cleanTitle(r.title);
   return {
@@ -101,7 +107,7 @@ const toListing = (r: ImportedListing): Listing => {
     furnishing: r.furnishing as Furnishing | null,
     listedAt: r.listedAt ?? '2026-01-01',
     agent: r.agent,
-    images: r.images.map((src, i) => ({ src, alt: i === 0 ? title : `${title}, photo ${i + 1}` })),
+    images: r.images.map((src, i) => ({ src: localPhoto(src), alt: i === 0 ? title : `${title}, photo ${i + 1}` })),
     description: r.description,
     features: r.features,
     sourceUrl: r.sourceUrl,
@@ -112,7 +118,15 @@ const toListing = (r: ImportedListing): Listing => {
  * Listings added in the D|R|P admin portal (Website -> Listings), written by
  * scripts/sync-listings.mjs before each build. Same shape as listings.json.
  */
-const portalListings = portal as unknown as ImportedListing[];
+const pfBySlug = new Map(imported.map((r) => [r.slug, r]));
+/*
+ * A copy taken over from Property Finder in the portal keeps Property Finder's
+ * map pin (the portal does not store it) while its building is unchanged.
+ */
+const portalListings = (portal as unknown as ImportedListing[]).map((r) => {
+  const pf = pfBySlug.get(r.slug);
+  return !r.map?.near && pf?.map?.near && pf.building === r.building ? { ...r, map: { ...r.map, near: pf.map.near } } : r;
+});
 const portalSlugs = new Set(portalListings.map((r) => r.slug));
 /* Property Finder listings hidden in the admin portal */
 const hiddenSlugs = new Set<string>(hiddenListings);
