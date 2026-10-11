@@ -39,6 +39,8 @@ const SECRET = process.env.PF_API_SECRET;
 const OUT = new URL('../data/imported/listings.json', import.meta.url);
 /* Photos with DRP's watermark removed and enhanced, served from public/ (scripts/photos/clean-photos.py) */
 const CLEAN = new URL('../data/imported/clean-photos.json', import.meta.url);
+/* Property Finder's own photo URLs by listing, for scripts/photos/clean_photos.py */
+const PF_PHOTOS = new URL('../data/imported/pf-photos.json', import.meta.url);
 const PER_PAGE = 50;
 const MAX_PAGES = 40;
 const INSPECT = process.argv.includes('--inspect');
@@ -330,6 +332,7 @@ async function main() {
 
   const previous = JSON.parse(await readFile(OUT, 'utf8').catch(() => '[]'));
   const clean = JSON.parse(await readFile(CLEAN, 'utf8').catch(() => '{}'));
+  const pfPhotos = {};
   const byRef = new Map(previous.map((p) => [p.ref, p]));
 
   const token = await getToken();
@@ -365,7 +368,9 @@ async function main() {
     const offering = offeringOf(raw);
     const price = priceOf(raw, offering);
     /* A cleaned copy replaces Property Finder's photo; new photos show as they are until the next clean */
-    const images = imagesOf(raw).map((u) => clean[u] ?? u);
+    const pfImages = imagesOf(raw);
+    pfPhotos[ref] = pfImages;
+    const images = pfImages.map((u) => clean[u] ?? u);
     if (!ref || !title) { skip('no reference or title'); continue; }
     if (!price) { skip('no price'); continue; }
     if (images.length < 1) { skip('no photos'); continue; }
@@ -429,6 +434,7 @@ async function main() {
   }
 
   await writeFile(OUT, `${JSON.stringify(rows, null, 1)}\n`);
+  await writeFile(PF_PHOTOS, `${JSON.stringify(pfPhotos, null, 1)}\n`);
   const added = rows.filter((r) => !byRef.has(r.ref)).length;
   const removed = previous.filter((p) => !rows.some((r) => r.ref === p.ref)).length;
   log(`wrote ${rows.length} listings (${added} new, ${removed} gone from Property Finder)`);
