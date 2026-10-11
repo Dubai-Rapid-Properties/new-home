@@ -20,7 +20,8 @@ export default function ListingGallery({
   images,
   title,
   aspectClass = 'aspect-[4/3] sm:aspect-[16/9]',
-  sizes = '(max-width: 1320px) 100vw, 1320px',
+  /* On a phone the 4:3 frame crops landscape photos, so ask for a wider image */
+  sizes = '(max-width: 640px) 140vw, (max-width: 1320px) 100vw, 1320px',
 }: Props) {
   const [index, setIndex] = useState(0);
   const count = images.length;
