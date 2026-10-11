@@ -91,19 +91,22 @@ export default function Header() {
             />
           </SmartLink>
 
-          {/* ---------- Everything else, flush right ---------- */}
-          {/* Gaps stay at 24px on wide screens too: with the phone, the saved-homes heart
-              and the Home link, the row only just fits the 1320px container */}
-          <div className="flex min-w-0 items-center justify-end gap-6">
+          {/* ---------- Phone, centred in the space between the logo and the menu ---------- */}
+          <div className="hidden min-w-0 flex-1 justify-center 2xl:flex">
             <a
               href={contact.phoneHref}
-              className={`hidden whitespace-nowrap text-[15px] font-light tracking-wide text-white transition-opacity duration-300 hover:text-orange 2xl:block ${
+              className={`whitespace-nowrap text-[15px] font-light tracking-wide text-white transition-opacity duration-300 hover:text-orange ${
                 menuOpen ? 'pointer-events-none opacity-0' : 'opacity-100'
               } ${solid ? '' : 'text-shadow-video'}`}
             >
               {contact.phone}
             </a>
+          </div>
 
+          {/* ---------- Everything else, flush right ---------- */}
+          {/* Gaps stay at 24px on wide screens too: with the saved-homes heart and the
+              Home link, the row only just fits the 1320px container */}
+          <div className="flex min-w-0 items-center justify-end gap-6">
             <div
               className={`transition-opacity duration-300 ${
                 menuOpen ? 'pointer-events-none opacity-0' : 'opacity-100'
