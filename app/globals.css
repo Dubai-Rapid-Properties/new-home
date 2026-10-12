@@ -257,6 +257,19 @@
   font-weight: 500;
   box-shadow: 0 2px 8px rgb(0 0 0 / 0.25);
 }
+/* Google Maps: the marker anchors its content at the bottom centre itself */
+.drp-gmap .drp-map-pin {
+  position: relative;
+  transform: none;
+  margin-bottom: 4px;
+}
+.drp-gmap .drp-map-pin:hover {
+  background: #f47b49;
+}
+.drp-gmap-popup {
+  width: min(300px, 70vw);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
 /* Softer, warmer map tiles that sit with the site's palette */
 .drp-map .leaflet-tile-pane {
   filter: grayscale(0.85) contrast(0.95) brightness(1.04);
