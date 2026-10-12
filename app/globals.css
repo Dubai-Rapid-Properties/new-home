@@ -99,6 +99,13 @@
     display: none;
   }
 
+  /* TV browsers (components/TvMode.tsx): endless animations over the hero
+     video make it judder there, so the partner strip and WhatsApp pulse hold still. */
+  html[data-tv] .animate-marquee,
+  html[data-tv] .animate-pulse-ring {
+    animation: none;
+  }
+
   .marquee-mask {
     -webkit-mask-image: linear-gradient(
       to right,
