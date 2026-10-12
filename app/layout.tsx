@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Cormorant_Garamond, Inter } from 'next/font/google';
 import { site } from '@/data/homepage';
+import TvMode from '@/components/TvMode';
 import { Analytics } from '@vercel/analytics/next';
 import JsonLd from '@/components/JsonLd';
 import { organisation } from '@/lib/structuredData';
@@ -56,6 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
+        <TvMode />
         <JsonLd data={organisation()} />
         {/* Vercel Web Analytics: cookieless page views, switched on in the Vercel project */}
         <Analytics />

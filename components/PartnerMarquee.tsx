@@ -16,7 +16,9 @@ export default function PartnerMarquee() {
   const items = [...partners, ...partners];
 
   return (
-    <div className="w-full border-t border-white/10 bg-ink/45 backdrop-blur-sm">
+    /* No backdrop blur: blurring the playing video behind this strip on every
+       frame made the video and the strip judder on TVs. */
+    <div className="w-full border-t border-white/10 bg-ink/60">
       <div className="container-drp flex flex-col gap-2 py-3 sm:flex-row sm:items-center sm:gap-8 sm:py-5">
         <p className="eyebrow shrink-0 text-white/45">{partnersLabel}</p>
 
@@ -25,7 +27,7 @@ export default function PartnerMarquee() {
           role="region"
           aria-label="Our development partners"
         >
-          <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused] motion-reduce:animate-none">
+          <div className="flex w-max will-change-transform animate-marquee group-hover:[animation-play-state:paused] motion-reduce:animate-none">
             {items.map((partner, i) => (
               <div
                 key={`${partner.name}-${i}`}
