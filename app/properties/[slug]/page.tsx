@@ -10,6 +10,7 @@ import PropertyMap from '@/components/properties/PropertyMap';
 import PermitCheck from '@/components/properties/PermitCheck';
 import AgentCard from '@/components/properties/AgentCard';
 import RecentSales from '@/components/market/RecentSales';
+import { ListingMortgage } from '@/components/ecosystem/MortgageCalculator';
 import ArrowLink from '@/components/ui/ArrowLink';
 import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -178,6 +179,12 @@ export default async function Page({ params }: PageProps) {
                 </>
               ) : null}
 
+              {isRent ? null : (
+                <section aria-labelledby="mortgage-heading" className="mt-14">
+                  <ListingMortgage price={listing.price} headingId="mortgage-heading" />
+                </section>
+              )}
+
               <section aria-labelledby="location-heading" className="mt-14">
                 <PropertyMap {...location} headingId="location-heading" />
               </section>
@@ -200,9 +207,6 @@ export default async function Page({ params }: PageProps) {
 
               <div className="mt-8 flex flex-wrap gap-x-10 gap-y-4">
                 {guide ? <ArrowLink href={areaHref(guide.name)} label={`${guide.name} area guide`} /> : null}
-                {isRent ? null : (
-                  <ArrowLink href={`/ecosystem/mortgage?price=${listing.price}`} label="Estimate your mortgage" />
-                )}
               </div>
             </div>
 
