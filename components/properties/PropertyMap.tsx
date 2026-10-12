@@ -1,5 +1,4 @@
 import { ExternalLink, MapPin } from 'lucide-react';
-import PinMap from './PinMap';
 
 type Props = {
   /** What Google Maps searches for, e.g. "Silverene Tower A, Dubai Marina, Dubai, UAE" */
@@ -8,18 +7,19 @@ type Props = {
   label: string;
   /** False when only the community is known, so the pin marks the area, not the building */
   exact: boolean;
-  /** [lat, lng] of the building: the map shows one pin there instead of a Google search */
+  /** [lat, lng] of the building: Google Maps pins exactly there instead of searching for the name */
   near?: [number, number];
   headingId: string;
   tone?: 'light' | 'dark';
 };
 
-const embedSrc = (q: string) => `https://www.google.com/maps?q=${encodeURIComponent(q)}&z=15&output=embed`;
+const embedSrc = (q: string, near?: [number, number]) =>
+  `https://www.google.com/maps?q=${encodeURIComponent(near ? near.join(',') : q)}&z=${near ? 16 : 15}&output=embed`;
 /* With the building's coordinates, Google Maps drops one pin there rather than listing every match for the name */
 const mapsLink = (q: string, near?: [number, number]) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(near ? near.join(',') : q)}`;
 
-/** Location heading, a map with the building pinned (or a Google search for it) and a link out to Google Maps. */
+/** Location heading, a Google map with the building pinned (or a Google search for it) and a link out to Google Maps. */
 export default function PropertyMap({ query, label, exact, near, headingId, tone = 'light' }: Props) {
   const dark = tone === 'dark';
   return (
@@ -38,17 +38,13 @@ export default function PropertyMap({ query, label, exact, near, headingId, tone
         </p>
       )}
       <div className="relative mt-6 aspect-[4/3] overflow-hidden bg-line sm:aspect-[16/9]">
-        {near ? (
-          <PinMap near={near} name={label.split(',')[0]} title={`Map of ${label}`} />
-        ) : (
-          <iframe
-            src={embedSrc(query)}
-            title={`Map of ${label}`}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="absolute inset-0 h-full w-full border-0 grayscale-[30%]"
-          />
-        )}
+        <iframe
+          src={embedSrc(query, near)}
+          title={`Map of ${label}`}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          className="absolute inset-0 h-full w-full border-0 grayscale-[30%]"
+        />
       </div>
       <a
         href={mapsLink(query, near)}
