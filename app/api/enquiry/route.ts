@@ -9,6 +9,14 @@
  *                    own address; once dubairapidproperties.com is verified in
  *                    Resend, use e.g. "DRP Website <website@dubairapidproperties.com>".
  *
+ * Each enquiry is also saved as a lead in the D|R|P portal (Leads), so staff
+ * can assign and follow it up there:
+ *
+ *   PORTAL_API_KEY        the portal's WEBSITE_API_KEY; without it nothing is saved
+ *   PORTAL_ENQUIRIES_URL  optional, default https://admin.dubairapidproperties.com/api/public/enquiries
+ *
+ * The visitor sees success when either the email or the portal got the enquiry.
+ *
  * The body is multipart: `data` (the fields as JSON) and an optional `file` (a CV).
  */
 
@@ -18,6 +26,7 @@ const TO = process.env.ENQUIRY_TO || 'office@dubairapidproperties.com';
 const FROM = process.env.ENQUIRY_FROM || 'DRP Website <onboarding@resend.dev>';
 /* Overridable for local testing against a mock */
 const RESEND_URL = process.env.RESEND_API_URL || 'https://api.resend.com/emails';
+const PORTAL_URL = process.env.PORTAL_ENQUIRIES_URL || 'https://admin.dubairapidproperties.com/api/public/enquiries';
 
 const MAX_DATA = 20_000;
 const MAX_FILE = 4 * 1024 * 1024;
@@ -46,13 +55,26 @@ const show = (v: unknown): string => {
 
 const fail = (status: number, error: string) => Response.json({ ok: false, error }, { status });
 
-export async function POST(req: Request) {
-  const key = process.env.RESEND_API_KEY;
-  if (!key) {
-    console.error('[enquiry] RESEND_API_KEY is not set — enquiry not sent');
-    return fail(503, 'not-configured');
+/** Saves the enquiry as a lead in the portal. True when it is there (or the portal skips this form). */
+async function saveToPortal(data: Record<string, unknown>): Promise<boolean> {
+  const key = process.env.PORTAL_API_KEY;
+  if (!key) return false;
+  try {
+    const res = await fetch(PORTAL_URL, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+      signal: AbortSignal.timeout(10_000),
+    });
+    if (!res.ok) console.error('[enquiry] the portal did not save the lead', res.status, (await res.text()).slice(0, 300));
+    return res.ok;
+  } catch (error) {
+    console.error('[enquiry] the portal could not be reached', error instanceof Error ? error.message : error);
+    return false;
   }
+}
 
+export async function POST(req: Request) {
   let form: FormData;
   try {
     form = await req.formData();
@@ -102,6 +124,14 @@ ${attachments.length ? `<p style="font-size:13px;color:#777">Attached: ${escape(
 </body></html>`;
   const text = rows.map(([k, v]) => `${k}: ${v}`).join('\n');
 
+  const saved = await saveToPortal(data);
+
+  const key = process.env.RESEND_API_KEY;
+  if (!key) {
+    console.error('[enquiry] RESEND_API_KEY is not set — enquiry not emailed');
+    return saved ? Response.json({ ok: true }) : fail(503, 'not-configured');
+  }
+
   const res = await fetch(RESEND_URL, {
     method: 'POST',
     headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
@@ -118,7 +148,7 @@ ${attachments.length ? `<p style="font-size:13px;color:#777">Attached: ${escape(
 
   if (!res.ok) {
     console.error('[enquiry] Resend refused the email', res.status, (await res.text()).slice(0, 300));
-    return fail(502, 'send-failed');
+    if (!saved) return fail(502, 'send-failed');
   }
   return Response.json({ ok: true });
 }
