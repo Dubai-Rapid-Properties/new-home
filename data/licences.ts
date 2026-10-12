@@ -24,3 +24,13 @@ export const agentBrns: Record<string, string> = {
 };
 
 export const brnFor = (name: string | null | undefined) => (name ? agentBrns[name.trim()] : undefined);
+
+/**
+ * Agents' own numbers for the Call and WhatsApp buttons on their listings,
+ * by the same names as agentBrns. Anyone not listed here is reached on the
+ * DRP office line and the DRP WhatsApp (data/homepage.ts → contact).
+ * Format: international, e.g. '+971 50 123 4567'.
+ */
+export const agentContacts: Record<string, { phone?: string; whatsapp?: string }> = {};
+
+export const contactFor = (name: string | null | undefined) => (name ? agentContacts[name.trim()] : undefined);

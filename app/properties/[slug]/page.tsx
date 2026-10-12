@@ -8,6 +8,7 @@ import ListingGallery from '@/components/properties/ListingGallery';
 import ShareLinks from '@/components/news/ShareLinks';
 import PropertyMap from '@/components/properties/PropertyMap';
 import PermitCheck from '@/components/properties/PermitCheck';
+import AgentCard from '@/components/properties/AgentCard';
 import RecentSales from '@/components/market/RecentSales';
 import ArrowLink from '@/components/ui/ArrowLink';
 import Reveal from '@/components/ui/Reveal';
@@ -207,6 +208,9 @@ export default async function Page({ params }: PageProps) {
 
             <div className="lg:col-span-5">
               <div className="lg:sticky lg:top-28">
+                {listing.agent ? (
+                  <AgentCard agent={listing.agent} listingTitle={listing.title} listingSlug={listing.slug} />
+                ) : null}
                 <LeadForm
                   config={enquiryForm}
                   context={{ listingRef: listing.ref, listingTitle: listing.title }}
