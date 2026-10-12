@@ -99,9 +99,19 @@
     display: none;
   }
 
-  /* TV browsers (components/TvMode.tsx): endless animations over the hero
-     video make it judder there, so the partner strip and WhatsApp pulse hold still. */
-  html[data-tv] .animate-marquee,
+  /* TV browsers (components/TvMode.tsx) have weak graphics chips:
+     - backdrop blur (the solid header, overlays) is redrawn on every scroll
+       frame and made scrolling jump; the backgrounds are near-opaque anyway
+     - the partner strip keeps running, but without its edge fade (mask)
+     - the WhatsApp pulse holds still */
+  html[data-tv] * {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  html[data-tv] .marquee-mask {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
   html[data-tv] .animate-pulse-ring {
     animation: none;
   }
