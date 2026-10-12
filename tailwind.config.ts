@@ -48,7 +48,9 @@ const config: Config = {
         widest2: '0.3em',
       },
       maxWidth: {
-        container: '1320px',
+        /* 1320px up to laptop widths; wider screens and TVs use 90% of the
+           window (up to 1760px) instead of leaving wide empty margins. */
+        container: 'clamp(1320px, 90vw, 1760px)',
       },
       transitionTimingFunction: {
         premium: 'cubic-bezier(0.22, 1, 0.36, 1)',

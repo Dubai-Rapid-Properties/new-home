@@ -52,7 +52,7 @@ export default async function Page({ params }: PageProps) {
 
         <div className="container-drp mt-10 sm:mt-14">
           <div className="relative aspect-[16/9] overflow-hidden bg-line">
-            <Image src={article.image} alt={article.alt} fill priority sizes="(max-width: 1320px) 100vw, 1320px" className="object-cover" />
+            <Image src={article.image} alt={article.alt} fill priority sizes="(max-width: 1320px) 100vw, 90vw" className="object-cover" />
           </div>
         </div>
 

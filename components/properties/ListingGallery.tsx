@@ -40,7 +40,7 @@ export default function ListingGallery({
   title,
   aspectClass = 'aspect-[4/3] sm:aspect-[16/9]',
   /* On a phone the 4:3 frame crops landscape photos, so ask for a wider image */
-  sizes = '(max-width: 640px) 140vw, (max-width: 1320px) 100vw, 1320px',
+  sizes = '(max-width: 640px) 140vw, (max-width: 1320px) 100vw, 90vw',
 }: Props) {
   const [index, setIndex] = useState(0);
   const [open, setOpen] = useState(false);
