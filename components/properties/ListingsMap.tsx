@@ -2,11 +2,13 @@
 
 import 'leaflet/dist/leaflet.css';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import { useEffect, useRef } from 'react';
 import type { MarkerClusterGroup, Map as LeafletMap } from 'leaflet';
 import { currencies } from '@/data/currency';
 import { bedsLabel, listingPlace, toPropertyCard, type Listing } from '@/data/properties';
 import { useCurrency } from '@/lib/currency';
+import { englishBasemap } from './englishBasemap';
 
 /** Dubai, for a map with nothing on it */
 const DUBAI: [number, number] = [25.15, 55.25];
@@ -49,8 +51,8 @@ function popupHtml(listings: Listing[], code: string, perUnit: number) {
 
 /**
  * The filtered listings on a map of Dubai, one price pin per building.
- * Leaflet with CARTO's light basemap (OpenStreetMap data), loaded in the
- * browser only.
+ * Leaflet over OpenFreeMap's light basemap with English labels
+ * (englishBasemap.ts), loaded in the browser only.
  */
 export default function ListingsMap({ listings }: { listings: Listing[] }) {
   const el = useRef<HTMLDivElement>(null);
@@ -69,11 +71,9 @@ export default function ListingsMap({ listings }: { listings: Listing[] }) {
       await import('leaflet.markercluster');
       if (cancelled || !el.current) return;
       if (!map.current) {
-        map.current = L.map(el.current, { center: DUBAI, zoom: 11, scrollWheelZoom: false, zoomControl: true });
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-          maxZoom: 19,
-        }).addTo(map.current);
+        /* maxZoom: the cluster plugin needs it, and the basemap layer does not set one */
+        map.current = L.map(el.current, { center: DUBAI, zoom: 11, maxZoom: 19, scrollWheelZoom: false, zoomControl: true });
+        void englishBasemap(L, map.current);
         /* Scroll the page, not the map, until the map is clicked */
         map.current.on('click', () => map.current?.scrollWheelZoom.enable());
         /* Nearby buildings merge into one count until zoomed in */
