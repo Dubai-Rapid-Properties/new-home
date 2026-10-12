@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
@@ -14,6 +14,18 @@ export default function Hero() {
   const [videoReady, setVideoReady] = useState(false);
   /* Mount the iframe after first paint so the poster and copy render first. */
   const [mountVideo, setMountVideo] = useState(false);
+  /* Hidden once scrolled past, so the browser stops drawing the video while
+     the visitor reads the rest of the page (TVs could not scroll smoothly). */
+  const sectionRef = useRef<HTMLElement>(null);
+  const [inView, setInView] = useState(true);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting));
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   useEffect(() => {
     if (reduce) return;
@@ -32,6 +44,7 @@ export default function Hero() {
 
   return (
     <section
+      ref={sectionRef}
       aria-label="Introduction"
       className="relative flex min-h-[100svh] flex-col bg-ink lg:min-h-screen"
     >
@@ -60,7 +73,7 @@ export default function Hero() {
                frame narrower than 16:9 and Vimeo letterboxed it, showing a band at the top. */
             className={`pointer-events-none absolute left-1/2 top-1/2 h-[max(100cqh,56.25cqw)] w-[max(100cqw,177.78cqh)] -translate-x-1/2 -translate-y-1/2 border-0 transition-opacity duration-1000 ${
               videoReady ? 'opacity-100' : 'opacity-0'
-            }`}
+            } ${inView ? '' : 'invisible'}`}
           />
         ) : null}
       </div>
