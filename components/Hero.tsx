@@ -9,6 +9,13 @@ import HeroSearch from './HeroSearch';
 import PartnerMarquee from './PartnerMarquee';
 import SmartLink from './ui/SmartLink';
 
+/**
+ * TV browsers (Samsung Tizen, LG webOS, Android TV, Fire TV, HbbTV …) decode
+ * the background video at about 10 frames a second, so it judders - it looks
+ * like the page is shaking. They get the still poster instead.
+ */
+const TV_BROWSER = /smart-?tv|smarttv|tizen|web0s|webos|netcast|hbbtv|bravia|viera|aquos|philipstv|googletv|android tv|aftb|aftm|afts|aftt|crkey|roku|appletv|vidaa|whaletv|nettv/i;
+
 export default function Hero() {
   const reduce = useReducedMotion();
   const [videoReady, setVideoReady] = useState(false);
@@ -16,7 +23,7 @@ export default function Hero() {
   const [mountVideo, setMountVideo] = useState(false);
 
   useEffect(() => {
-    if (reduce) return;
+    if (reduce || TV_BROWSER.test(navigator.userAgent)) return;
     const id = window.setTimeout(() => setMountVideo(true), 300);
     return () => window.clearTimeout(id);
   }, [reduce]);
