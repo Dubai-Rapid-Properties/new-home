@@ -125,3 +125,36 @@ try {
 } catch (err) {
   console.warn(`[listings] Could not read the hidden listings (${err.message}); keeping the current list.`);
 }
+
+/*
+ * The team staff keep in the portal (Website → Team): the About page and the
+ * agent card on listings. data/company.ts uses it once it has anyone in it,
+ * and its own built-in team until then. A failure keeps the file as it is.
+ */
+const TEAM_FILE = new URL('../data/imported/portal-team.json', import.meta.url);
+const isMember = (m) =>
+  m &&
+  isText(m.slug) &&
+  /^[a-z0-9]+(-[a-z0-9]+)*$/.test(m.slug) &&
+  isText(m.name) &&
+  typeof m.role === 'string' &&
+  isTextList(m.bio) &&
+  isTextList(m.agentNames) &&
+  typeof m.showOnAbout === 'boolean' &&
+  ['line', 'photo', 'brn', 'phone', 'whatsapp', 'email'].every((k) => isTextOrNull(m[k]));
+try {
+  const teamUrl = FEED.replace(/\/$/, '').replace(/\/listings$/, '/team');
+  const team = await download(teamUrl);
+  if (!Array.isArray(team)) throw new Error('not a list');
+  const members = team.filter((m) => {
+    if (isMember(m)) return true;
+    console.warn(`[team] Skipping ${m?.name ?? 'a team member'}: incomplete.`);
+    return false;
+  });
+  const nextTeam = `${JSON.stringify(members, null, 1)}\n`;
+  const currentTeam = await readFile(TEAM_FILE, 'utf8').catch(() => '');
+  if (nextTeam !== currentTeam) await writeFile(TEAM_FILE, nextTeam);
+  console.log(`[team] ${members.length} team members from the portal.`);
+} catch (err) {
+  console.warn(`[team] Could not read the team (${err.message}); keeping data/imported/portal-team.json as it is.`);
+}

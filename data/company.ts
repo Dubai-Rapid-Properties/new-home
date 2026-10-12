@@ -16,6 +16,7 @@ import { drpPhoto, unsplash } from '@/lib/media';
 import { HOLIDAY_HOMES_URL } from './external';
 import { contact } from './homepage';
 import importedTeam from './imported/team.json';
+import portalTeam from './imported/portal-team.json';
 import { toSlug } from '@/lib/slug';
 import { brnFor } from './licences';
 
@@ -83,6 +84,12 @@ export type TeamMember = {
   agentNames?: string[];
   /** RERA Broker Registration Number (data/licences.ts), shown on their profile */
   brn?: string;
+  /** Their own numbers and email, from the portal; the DRP office's otherwise */
+  phone?: string;
+  whatsappNumber?: string;
+  emailAddress?: string;
+  /** False: only shown as the agent on their listings, no About card or profile */
+  showOnAbout?: boolean;
 };
 
 /**
@@ -106,19 +113,80 @@ const teamOrder: {
   { slug: 'delia-cuadrante' },
 ];
 
-export const team: TeamMember[] = teamOrder.flatMap(({ slug, ...extra }) => {
+const builtInTeam: TeamMember[] = teamOrder.flatMap(({ slug, ...extra }) => {
   const person = importedTeam.find((t) => t.slug === slug);
   return person
     ? [{ id: slug, slug: toSlug(person.name), name: person.name, role: person.role, bio: person.bio, photo: person.photo, brn: brnFor(person.name), ...extra }]
     : [];
 });
 
+/** The team as staff keep it in the portal (Website → Team), synced at build time by scripts/sync-listings.mjs */
+type PortalMember = {
+  slug: string;
+  name: string;
+  role: string;
+  line: string | null;
+  bio: string[];
+  photo: string | null;
+  brn: string | null;
+  phone: string | null;
+  whatsapp: string | null;
+  email: string | null;
+  agentNames: string[];
+  showOnAbout: boolean;
+};
+
+const fromPortal: TeamMember[] = (portalTeam as PortalMember[]).map((m) => ({
+  id: m.slug,
+  slug: m.slug,
+  name: m.name,
+  role: m.role,
+  line: m.line ?? undefined,
+  bio: m.bio,
+  photo: m.photo ?? '',
+  brn: m.brn ?? brnFor(m.name),
+  phone: m.phone ?? undefined,
+  whatsappNumber: m.whatsapp ?? undefined,
+  emailAddress: m.email ?? undefined,
+  whatsapp: Boolean(m.whatsapp),
+  email: Boolean(m.email),
+  agentNames: m.agentNames,
+  showOnAbout: m.showOnAbout,
+}));
+
+/** Everyone, including people shown only as listing agents. The portal's team once it has one. */
+export const allTeam: TeamMember[] = fromPortal.length ? fromPortal : builtInTeam;
+
+/** The About page and profile pages */
+export const team: TeamMember[] = allTeam.filter((m) => m.showOnAbout !== false);
+
 export const teamHref = (m: TeamMember) => `/about/team/${m.slug}`;
 export const getTeamMember = (slug: string) => team.find((m) => m.slug === slug);
+/** Whether the person has an About profile page to link to */
+export const hasProfile = (m: TeamMember) => m.showOnAbout !== false;
 
-/** The team member behind a Property Finder agent name, if they are on the team. */
+/** The team member behind a listing's agent name (or one of their Property Finder spellings). */
 export const teamMemberForAgent = (agent: string | null) =>
-  agent ? team.find((m) => m.name === agent || m.agentNames?.includes(agent)) : undefined;
+  agent ? allTeam.find((m) => m.name === agent || m.agentNames?.includes(agent)) : undefined;
+
+const digits = (n: string) => n.replace(/[^\d]/g, '');
+
+/**
+ * How to reach someone: their own phone, WhatsApp and email from the portal,
+ * each falling back to the DRP office's. `personal` says whether WhatsApp
+ * reaches them directly.
+ */
+export function memberContact(m?: TeamMember) {
+  const phone = m?.phone ?? contact.phone;
+  const email = m?.emailAddress ?? contact.email;
+  return {
+    phone,
+    phoneHref: `tel:+${digits(phone)}`,
+    whatsappHref: `https://wa.me/${digits(m?.whatsappNumber ?? contact.whatsapp)}`,
+    emailHref: `mailto:${email}`,
+    personal: Boolean(m?.whatsappNumber && digits(m.whatsappNumber) !== digits(contact.whatsapp)),
+  };
+}
 
 /**
  * REAL – "From the Management" on the current DRP About page, shown on the
