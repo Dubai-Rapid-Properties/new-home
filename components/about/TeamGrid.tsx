@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { ArrowRight, Mail, MessageCircle } from 'lucide-react';
-import { about, team, teamHref } from '@/data/company';
-import { contact } from '@/data/homepage';
+import { about, memberContact, team, teamHref } from '@/data/company';
 import Reveal from '../ui/Reveal';
 import SectionHeading from '../ui/SectionHeading';
 import SmartLink from '../ui/SmartLink';
@@ -49,7 +48,9 @@ export default function TeamGrid() {
                   <div className="flex shrink-0 items-center gap-3 pt-0.5">
                     {m.whatsapp ? (
                       <a
-                        href={`${contact.whatsappHref}?text=${encodeURIComponent(`Hello DRP, I would like to speak to ${m.name}.`)}`}
+                        href={`${memberContact(m).whatsappHref}?text=${encodeURIComponent(
+                          memberContact(m).personal ? `Hello ${m.name.split(' ')[0]},` : `Hello DRP, I would like to speak to ${m.name}.`,
+                        )}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`WhatsApp ${m.name}`}
@@ -60,7 +61,7 @@ export default function TeamGrid() {
                     ) : null}
                     {m.email ? (
                       <a
-                        href={`${contact.emailHref}?subject=${encodeURIComponent(`For the attention of ${m.name}`)}`}
+                        href={`${memberContact(m).emailHref}?subject=${encodeURIComponent(`For the attention of ${m.name}`)}`}
                         aria-label={`Email ${m.name}`}
                         className="text-charcoal transition-colors duration-300 hover:text-orange"
                       >

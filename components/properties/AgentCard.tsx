@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { MessageCircle, Phone } from 'lucide-react';
 import { contact } from '@/data/homepage';
-import { teamHref, teamMemberForAgent } from '@/data/company';
+import { hasProfile, teamHref, teamMemberForAgent } from '@/data/company';
 import { brnFor, contactFor } from '@/data/licences';
 import SmartLink from '@/components/ui/SmartLink';
 import { listingHref } from '@/data/properties';
@@ -34,10 +34,11 @@ export default function AgentCard({
   const member = teamMemberForAgent(agent);
   const name = member?.name ?? agent;
   const role = member?.role ?? 'Property Consultant';
-  const brn = brnFor(agent) ?? member?.brn;
+  const brn = member?.brn ?? brnFor(agent);
   const own = contactFor(agent) ?? contactFor(member?.name);
-  const phone = own?.phone ?? contact.phone;
-  const whatsapp = own?.whatsapp ?? own?.phone ?? contact.whatsapp;
+  /* The portal's numbers (Website → Team) first, then data/licences.ts, then the office */
+  const phone = member?.phone ?? own?.phone ?? contact.phone;
+  const whatsapp = member?.whatsappNumber ?? own?.whatsapp ?? own?.phone ?? contact.whatsapp;
   const message = `Hello ${name.split(' ')[0]}, I'm interested in "${listingTitle}": ${siteUrl}${listingHref(listingSlug)}`;
 
   return (
@@ -72,7 +73,7 @@ export default function AgentCard({
           )}
         </div>
         <div className="min-w-0">
-          {member ? (
+          {member && hasProfile(member) ? (
             <SmartLink href={teamHref(member)} className="font-serif text-xl text-charcoal hover:text-orange">
               {name}
             </SmartLink>

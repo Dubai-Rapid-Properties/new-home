@@ -7,8 +7,7 @@ import FormSection from '@/components/sections/FormSection';
 import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import SmartLink from '@/components/ui/SmartLink';
-import { getTeamMember, managementMessage, team, teamHref, teamMemberForAgent } from '@/data/company';
-import { contact } from '@/data/homepage';
+import { getTeamMember, managementMessage, memberContact, team, teamHref, teamMemberForAgent } from '@/data/company';
 import { contactStep, type LeadFormConfig } from '@/data/leadPages';
 import { listings, toPropertyCard } from '@/data/properties';
 
@@ -37,6 +36,7 @@ export default async function Page({ params }: PageProps) {
   if (!member) notFound();
 
   const firstName = member.name.split(' ')[0];
+  const reach = memberContact(member);
   const theirListings = listings.filter((l) => teamMemberForAgent(l.agent)?.slug === member.slug);
   const message = managementMessage.memberSlug === member.slug ? managementMessage : null;
   const colleagues = team.filter((m) => m.slug !== member.slug);
@@ -110,7 +110,9 @@ export default async function Page({ params }: PageProps) {
 
               <div className="mt-10 flex flex-wrap gap-3">
                 <a
-                  href={`${contact.whatsappHref}?text=${encodeURIComponent(`Hello DRP, I would like to speak to ${member.name}.`)}`}
+                  href={`${reach.whatsappHref}?text=${encodeURIComponent(
+                    reach.personal ? `Hello ${firstName},` : `Hello DRP, I would like to speak to ${member.name}.`,
+                  )}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`${actionClass} border-orange bg-orange text-white hover:bg-orange/90`}
@@ -119,20 +121,22 @@ export default async function Page({ params }: PageProps) {
                   WhatsApp {firstName}
                 </a>
                 <a
-                  href={`${contact.emailHref}?subject=${encodeURIComponent(`For the attention of ${member.name}`)}`}
+                  href={`${reach.emailHref}?subject=${encodeURIComponent(`For the attention of ${member.name}`)}`}
                   className={`${actionClass} border-charcoal/20 text-charcoal hover:border-charcoal`}
                 >
                   <Mail aria-hidden="true" className="h-4 w-4" strokeWidth={1.5} />
                   Email
                 </a>
-                <a href={contact.phoneHref} className={`${actionClass} border-charcoal/20 text-charcoal hover:border-charcoal`}>
+                <a href={reach.phoneHref} className={`${actionClass} border-charcoal/20 text-charcoal hover:border-charcoal`}>
                   <Phone aria-hidden="true" className="h-4 w-4" strokeWidth={1.5} />
-                  {contact.phone}
+                  {reach.phone}
                 </a>
               </div>
-              <p className="mt-4 text-xs font-light text-charcoal-muted">
-                Messages go to the DRP office and are passed straight to {firstName}.
-              </p>
+              {reach.personal ? null : (
+                <p className="mt-4 text-xs font-light text-charcoal-muted">
+                  Messages go to the DRP office and are passed straight to {firstName}.
+                </p>
+              )}
             </div>
           </div>
         </div>
