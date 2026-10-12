@@ -4,6 +4,7 @@ import SiteShell from '@/components/layout/SiteShell';
 import ProjectCard from '@/components/offplan/ProjectCard';
 import ListingGallery from '@/components/properties/ListingGallery';
 import PropertyMap from '@/components/properties/PropertyMap';
+import { ListingMortgage } from '@/components/ecosystem/MortgageCalculator';
 import FormSection from '@/components/sections/FormSection';
 import ArrowLink from '@/components/ui/ArrowLink';
 import Reveal from '@/components/ui/Reveal';
@@ -172,6 +173,17 @@ export default async function Page({ params }: PageProps) {
             <SectionHeading eyebrow="Gallery" heading={`Inside ${project.name}`} headingId="gallery-heading" />
             <div className="mt-12">
               <ListingGallery images={project.gallery} title={project.name} />
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {/* ---------- Mortgage on the starting price ---------- */}
+      {project.fromPrice ? (
+        <section aria-labelledby="mortgage-heading" className="section-y bg-white">
+          <div className="container-drp">
+            <div className="max-w-4xl">
+              <ListingMortgage price={project.fromPrice} headingId="mortgage-heading" />
             </div>
           </div>
         </section>

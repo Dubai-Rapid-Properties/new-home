@@ -171,3 +171,98 @@ export default function MortgageCalculator() {
     </Suspense>
   );
 }
+
+/**
+ * The calculator sized for a listing or project page: starts at its price,
+ * shows the monthly payment, loan and term, and links to a DRP mortgage
+ * specialist (the full calculator, with upfront costs, at /ecosystem/mortgage).
+ */
+export function ListingMortgage({ price: listPrice, headingId }: { price: number; headingId: string }) {
+  const uid = useId();
+  const [price, setPrice] = useState(listPrice);
+  const [downPct, setDownPct] = useState(c.defaultDownPct);
+  const [rate, setRate] = useState(c.defaultRate);
+  const [years, setYears] = useState(c.defaultYears);
+
+  const loan = price - (price * downPct) / 100;
+  const monthly = monthlyPayment(loan, rate, years);
+
+  return (
+    <div>
+      <h2 id={headingId} className="font-serif text-[1.75rem] font-light leading-snug text-charcoal">
+        Calculate mortgage repayments
+      </h2>
+      <div className="mt-6 grid grid-cols-1 border border-line sm:grid-cols-2">
+        <div className="space-y-7 p-6 sm:p-8">
+          <div>
+            <label htmlFor={`${uid}-price`} className="text-[11px] font-medium uppercase tracking-eyebrow text-charcoal-muted">
+              Total price (AED)
+            </label>
+            <input
+              id={`${uid}-price`}
+              type="text"
+              inputMode="numeric"
+              value={price ? price.toLocaleString('en-US') : ''}
+              onChange={(e) => setPrice(Number(e.target.value.replace(/\D/g, '')) || 0)}
+              className="mt-2 w-full border-0 border-b border-line bg-transparent pb-2 font-serif text-2xl text-charcoal outline-none focus:border-orange"
+            />
+          </div>
+          <SliderField
+            id={`${uid}-down`}
+            label="Down payment"
+            value={downPct}
+            onChange={setDownPct}
+            min={c.minDownPct}
+            max={80}
+            step={5}
+            display={`${downPct}%`}
+          />
+          <SliderField
+            id={`${uid}-years`}
+            label="Loan period"
+            value={years}
+            onChange={setYears}
+            min={5}
+            max={25}
+            step={1}
+            display={`${years} years`}
+          />
+          <SliderField
+            id={`${uid}-rate`}
+            label="Interest rate"
+            value={rate}
+            onChange={setRate}
+            min={2}
+            max={9}
+            step={0.05}
+            display={`${rate.toFixed(2)}%`}
+          />
+        </div>
+
+        <div aria-live="polite" className="flex flex-col bg-cream p-6 sm:p-8">
+          <p className="font-serif text-[2.2rem] leading-none text-charcoal">{aed(monthly)}</p>
+          <p className="mt-1.5 text-[11px] uppercase tracking-eyebrow text-charcoal-muted">per month</p>
+          <dl className="mt-7 space-y-4 border-t border-line pt-6 text-sm">
+            <div>
+              <dt className="font-medium text-charcoal">Total loan amount</dt>
+              <dd className="font-light text-charcoal-light">{aed(loan)}</dd>
+            </div>
+            <div>
+              <dt className="font-medium text-charcoal">Duration</dt>
+              <dd className="font-light text-charcoal-light">{years} years</dd>
+            </div>
+          </dl>
+          <a
+            href={`/ecosystem/mortgage?price=${price}`}
+            className="mt-8 inline-flex h-11 items-center justify-center self-start bg-orange px-6 text-[12px] font-medium uppercase tracking-[0.12em] text-white transition-colors duration-300 hover:bg-[#e2612c]"
+          >
+            Get a free consultation
+          </a>
+          <p className="mt-4 text-[11px] font-light leading-relaxed text-charcoal-muted">
+            An estimate. Rates and lending limits vary by lender and buyer.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
