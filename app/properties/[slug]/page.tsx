@@ -10,6 +10,8 @@ import RecentlyViewed, { TrackView } from '@/components/properties/RecentlyViewe
 import ListingGallery from '@/components/properties/ListingGallery';
 import ShareLinks from '@/components/news/ShareLinks';
 import PropertyMap from '@/components/properties/PropertyMap';
+import NearbyPlaces from '@/components/properties/NearbyPlaces';
+import { nearbyFor } from '@/data/nearby';
 import PermitCheck from '@/components/properties/PermitCheck';
 import AgentCard from '@/components/properties/AgentCard';
 import ListingContact, { VIEWING_HASH } from '@/components/properties/ListingContact';
@@ -85,6 +87,7 @@ export default async function Page({ params }: PageProps) {
   /* Only link areas that have a guide */
   const guide = areas.find((a) => a.name === listing.area);
   const location = listingLocation(listing);
+  const nearby = nearbyFor(listing.map.near);
   const agent = teamMemberForAgent(listing.agent);
   const similar = similarListings(listing);
 
@@ -206,6 +209,7 @@ export default async function Page({ params }: PageProps) {
 
               <section aria-labelledby="location-heading" className="mt-14">
                 <PropertyMap {...location} headingId="location-heading" />
+                {nearby ? <NearbyPlaces nearby={nearby} /> : null}
               </section>
 
               <RecentSales listing={listing} headingId="sales-heading" />

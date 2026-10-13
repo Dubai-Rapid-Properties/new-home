@@ -4,14 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/sync-property-finder.mjs && node scripts/sync-listings.mjs && node scripts/sync-dld.mjs",
+    "prebuild": "node scripts/sync-property-finder.mjs && node scripts/sync-listings.mjs && node scripts/sync-dld.mjs && node scripts/sync-nearby.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "import:drp": "node scripts/import-drp-content.mjs",
     "sync:pf": "node scripts/sync-property-finder.mjs",
     "sync:listings": "node scripts/sync-listings.mjs",
-    "sync:dld": "node scripts/sync-dld.mjs"
+    "sync:dld": "node scripts/sync-dld.mjs",
+    "sync:nearby": "node scripts/sync-nearby.mjs"
   },
   "dependencies": {
     "@maplibre/maplibre-gl-leaflet": "^0.1.4",
