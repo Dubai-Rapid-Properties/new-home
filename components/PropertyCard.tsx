@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Flame } from 'lucide-react';
 import type { OffPlanProject, ReadyProperty, RentalProperty } from '@/data/homepage';
 import FavouriteButton from './properties/FavouriteButton';
+import CompareButton from './properties/CompareButton';
 import Price from './ui/Price';
 import SmartLink from './ui/SmartLink';
 
@@ -28,6 +29,7 @@ export default function PropertyCard(props: Props) {
   return (
     <article className="group relative">
       {isProject ? null : <FavouriteButton slug={item.id} title={item.title} />}
+      {isProject ? null : <CompareButton slug={item.id} title={item.title} />}
       <SmartLink href={item.href} document={!isProject && item.document} className="block">
         <div className="relative aspect-[4/5] w-full overflow-hidden bg-cream">
           <Image

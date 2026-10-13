@@ -2,6 +2,8 @@ import SiteShell from '@/components/layout/SiteShell';
 import PageHero from '@/components/PageHero';
 import PropertyAlerts from '@/components/properties/PropertyAlerts';
 import PropertyExplorer from '@/components/properties/PropertyExplorer';
+import RecentlyViewed from '@/components/properties/RecentlyViewed';
+import { listings, toPropertyCard } from '@/data/properties';
 import CtaBand from '@/components/sections/CtaBand';
 import CurrencySwitch from '@/components/ui/CurrencySwitch';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -33,6 +35,9 @@ export default function Page() {
           </div>
         </div>
         <PropertyExplorer />
+        <div className="container-drp">
+          <RecentlyViewed cards={listings.map(toPropertyCard)} className="pt-[var(--section-y)]" />
+        </div>
       </section>
       <PropertyAlerts />
       <CtaBand

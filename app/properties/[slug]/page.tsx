@@ -4,6 +4,8 @@ import JsonLd from '@/components/JsonLd';
 import LeadForm from '@/components/LeadForm';
 import PropertyCard from '@/components/PropertyCard';
 import FavouriteButton from '@/components/properties/FavouriteButton';
+import CompareButton from '@/components/properties/CompareButton';
+import RecentlyViewed, { TrackView } from '@/components/properties/RecentlyViewed';
 import ListingGallery from '@/components/properties/ListingGallery';
 import ShareLinks from '@/components/news/ShareLinks';
 import PropertyMap from '@/components/properties/PropertyMap';
@@ -22,6 +24,7 @@ import {
   bedsLong,
   formatPrice,
   getListing,
+  listings,
   listingLocation,
   similarListings,
   toPropertyCard,
@@ -86,6 +89,7 @@ export default async function Page({ params }: PageProps) {
   return (
     <SiteShell>
       <JsonLd data={listingData(listing)} />
+      <TrackView slug={listing.slug} />
       <section className="bg-white pb-[var(--section-y)] pt-24 lg:pt-28">
         <div className="container-drp">
           <nav aria-label="Breadcrumb" className="py-5 text-[11px] uppercase tracking-eyebrow text-charcoal-muted sm:py-6">
@@ -143,6 +147,7 @@ export default async function Page({ params }: PageProps) {
 
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <FavouriteButton slug={listing.slug} title={listing.title} variant="inline" />
+                <CompareButton slug={listing.slug} title={listing.title} variant="inline" />
                 <ShareLinks title={`${listing.title} — ${formatPrice(listing)}`} />
               </div>
 
@@ -244,6 +249,9 @@ export default async function Page({ params }: PageProps) {
           </div>
         </section>
       ) : null}
+      <div className="container-drp">
+        <RecentlyViewed cards={listings.map(toPropertyCard)} exclude={listing.slug} className="section-y" />
+      </div>
     </SiteShell>
   );
 }
