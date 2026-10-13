@@ -7,6 +7,7 @@ import NewsCarousel from '@/components/NewsCarousel';
 import Solutions from '@/components/Solutions';
 import TrustSection from '@/components/TrustSection';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
+import CompareTray from '@/components/properties/CompareTray';
 
 export default function HomePage() {
   return (
@@ -22,6 +23,7 @@ export default function HomePage() {
       </main>
       <Footer />
       <WhatsAppFloat />
+      <CompareTray />
     </>
   );
 }
