@@ -28,28 +28,20 @@ export default function MegaPanel({ node, ctaHref, onNavigate }: Props) {
       animate={{ opacity: 1, y: 0 }}
       exit={reduce ? { opacity: 1 } : { opacity: 0, y: -6 }}
       transition={{ duration: reduce ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
-      /* py is modest so the panel hugs its content */
-      className="container-drp py-9"
+      /* Sized to its content, not the page: the panel drops from the menu bar */
+      className="px-8 py-7"
     >
-      <div className="flex items-start justify-between gap-16">
-        {/* ---------- Link columns ----------
-             Equal fractions so the columns spread across the container rather
-             than bunching on the left when a panel has no promo. */}
+      <div className="flex items-start gap-12">
+        {/* ---------- Link columns, each as wide as its longest link ---------- */}
         <div
-          className="grid min-w-0 flex-1 gap-x-16"
-          style={{
-            gridTemplateColumns: node.promo
-              ? /* promo fills the right, so columns hug their content */
-                `repeat(${columns.length}, minmax(0, max-content))`
-              : /* no promo — spread evenly so the panel never looks left-heavy */
-                `repeat(${columns.length}, minmax(0, 1fr))`,
-          }}
+          className="grid min-w-0 gap-x-12"
+          style={{ gridTemplateColumns: `repeat(${columns.length}, max-content)` }}
         >
           {columns.map((column) => (
             <div key={column.title} className="min-w-0">
               <p className="eyebrow text-orange">{column.title}</p>
 
-              <ul className="mt-5 space-y-3.5">
+              <ul className="mt-4 space-y-3">
                 {column.links.map((link) => (
                   <li key={link.href}>
                     <SmartLink
@@ -57,7 +49,7 @@ export default function MegaPanel({ node, ctaHref, onNavigate }: Props) {
                       external={link.external}
                       onClick={onNavigate}
                       data-mega-link=""
-                      className={`group inline-flex items-center gap-2 whitespace-nowrap text-[16px] leading-snug transition-colors duration-300 hover:text-orange ${
+                      className={`group inline-flex items-center gap-2 whitespace-nowrap text-[15px] leading-snug transition-colors duration-300 hover:text-orange ${
                         link.accent ? 'font-medium text-orange' : `font-light ${text}`
                       }`}
                     >
@@ -91,22 +83,22 @@ export default function MegaPanel({ node, ctaHref, onNavigate }: Props) {
             href={node.promo.href}
             onClick={onNavigate}
             data-mega-link=""
-            className="group hidden w-[17rem] shrink-0 xl:block"
+            className="group hidden w-52 shrink-0 xl:block"
           >
             <div className="relative aspect-[16/10] w-full overflow-hidden bg-ink">
               <Image
                 src={node.promo.image}
                 alt={node.promo.alt}
                 fill
-                sizes="272px"
+                sizes="208px"
                 className="object-cover transition-transform duration-[700ms] ease-premium group-hover:scale-[1.06]"
               />
             </div>
-            <h3 className={`mt-3.5 font-serif text-lg font-normal leading-snug ${text}`}>
+            <h3 className={`mt-3 font-serif text-base font-normal leading-snug ${text}`}>
               {node.promo.title}
             </h3>
             <span
-              className={`mt-1.5 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-eyebrow transition-colors duration-300 ${muted} group-hover:text-orange`}
+              className={`mt-1.5 inline-flex items-center gap-2 whitespace-nowrap text-[10px] font-medium uppercase tracking-eyebrow transition-colors duration-300 ${muted} group-hover:text-orange`}
             >
               {node.promo.linkLabel}
               <span
@@ -121,7 +113,7 @@ export default function MegaPanel({ node, ctaHref, onNavigate }: Props) {
       </div>
 
       {/* ---------- Closing CTA, bottom-right above a single hairline ---------- */}
-      <div className={`mt-8 flex justify-end border-t pt-5 ${rule}`}>
+      <div className={`mt-6 flex justify-end border-t pt-4 ${rule}`}>
         <SmartLink
           href={ctaHref}
           onClick={onNavigate}
