@@ -138,6 +138,11 @@ export default async function Page({ params }: PageProps) {
                     <span className="ml-2 font-sans text-sm font-light text-charcoal-muted">/ year</span>
                   ) : null}
                 </p>
+                {listing.size > 0 ? (
+                  <p className="text-sm font-light text-charcoal-muted">
+                    <Price aed={Math.round(listing.price / listing.size)} /> per sq ft{isRent ? ' / year' : ''}
+                  </p>
+                ) : null}
                 <CurrencySwitch />
               </div>
 
