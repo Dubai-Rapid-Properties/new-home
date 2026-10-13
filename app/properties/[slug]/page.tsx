@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { CalendarDays } from 'lucide-react';
 import SiteShell from '@/components/layout/SiteShell';
 import JsonLd from '@/components/JsonLd';
 import LeadForm from '@/components/LeadForm';
@@ -9,6 +10,7 @@ import ShareLinks from '@/components/news/ShareLinks';
 import PropertyMap from '@/components/properties/PropertyMap';
 import PermitCheck from '@/components/properties/PermitCheck';
 import AgentCard from '@/components/properties/AgentCard';
+import ListingContact, { VIEWING_HASH } from '@/components/properties/ListingContact';
 import RecentSales from '@/components/market/RecentSales';
 import { ListingMortgage } from '@/components/ecosystem/MortgageCalculator';
 import ArrowLink from '@/components/ui/ArrowLink';
@@ -142,6 +144,13 @@ export default async function Page({ params }: PageProps) {
               </div>
 
               <div className="mt-6 flex flex-wrap items-center gap-3">
+                <a
+                  href={VIEWING_HASH}
+                  className="inline-flex h-10 items-center gap-2 rounded-full border border-orange bg-orange px-4 text-[12px] text-white transition-colors duration-300 hover:bg-orange-600"
+                >
+                  <CalendarDays aria-hidden="true" className="h-4 w-4" strokeWidth={1.6} />
+                  Book a viewing
+                </a>
                 <FavouriteButton slug={listing.slug} title={listing.title} variant="inline" />
                 <ShareLinks title={`${listing.title} — ${formatPrice(listing)}`} />
               </div>
@@ -215,11 +224,16 @@ export default async function Page({ params }: PageProps) {
                 {listing.agent ? (
                   <AgentCard agent={listing.agent} listingTitle={listing.title} listingSlug={listing.slug} />
                 ) : null}
-                <LeadForm
-                  config={enquiryForm}
-                  context={{ listingRef: listing.ref, listingTitle: listing.title }}
-                  density="compact"
-                  className="lg:!px-10 lg:!py-10"
+                <ListingContact
+                  context={{ listingRef: listing.ref, listingTitle: listing.title, lookingTo: isRent ? 'Rent' : 'Buy' }}
+                  enquiry={
+                    <LeadForm
+                      config={enquiryForm}
+                      context={{ listingRef: listing.ref, listingTitle: listing.title }}
+                      density="compact"
+                      className="lg:!px-10 lg:!py-10"
+                    />
+                  }
                 />
               </div>
             </div>
