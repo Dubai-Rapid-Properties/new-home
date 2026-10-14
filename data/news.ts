@@ -35,7 +35,7 @@ export const articles: NewsArticle[] = [
     excerpt:
       'Transaction volumes, prime price movement and where the next wave of demand is forming across the city.',
     date: '2026-09-12',
-    author: 'DRP Research',
+    author: 'D|R|P Research',
     readMinutes: 6,
     image: unsplash('1512453979798-5ea266f8880c', 2000),
     alt: 'An aerial view of the Dubai skyline at dusk',
@@ -73,7 +73,7 @@ export const articles: NewsArticle[] = [
     excerpt:
       'Limited supply, beachfront scarcity and a maturing resale market continue to underpin values on the island.',
     date: '2026-08-28',
-    author: 'DRP Sales Team',
+    author: 'D|R|P Sales Team',
     readMinutes: 5,
     image: '/images/palm.jpg',
     alt: 'The Jumeirah beachfront and Burj Al Arab',
@@ -110,7 +110,7 @@ export const articles: NewsArticle[] = [
     excerpt:
       'Payment plans, yield timing and exit liquidity — how experienced investors are balancing the two.',
     date: '2026-08-15',
-    author: 'DRP Investment Advisory',
+    author: 'D|R|P Investment Advisory',
     readMinutes: 7,
     image: unsplash('1454165804606-c3d57bc86b40', 2000),
     alt: 'Investors reviewing documents around a meeting table',
@@ -147,7 +147,7 @@ export const articles: NewsArticle[] = [
     excerpt:
       'A shortlist of new releases from Emaar, Nakheel and Sobha, and what makes each one worth a second look.',
     date: '2026-08-02',
-    author: 'DRP Off-Plan Team',
+    author: 'D|R|P Off-Plan Team',
     readMinutes: 4,
     image: '/images/como.jpg',
     alt: 'A newly launched residential tower in Dubai',
@@ -178,7 +178,7 @@ export const articles: NewsArticle[] = [
     excerpt:
       'Thresholds, eligibility and the paperwork sequence — what property buyers actually need to prepare.',
     date: '2026-07-19',
-    author: 'DRP Client Services',
+    author: 'D|R|P Client Services',
     readMinutes: 6,
     image: '/images/golden.jpg',
     alt: 'Two people shaking hands after completing a property transaction',
@@ -211,29 +211,29 @@ export const articles: NewsArticle[] = [
   {
     slug: 'drp-arabian-business-feature',
     category: 'Arabian Business',
-    title: 'DRP in Arabian Business: Two Decades on the Island',
+    title: 'D|R|P in Arabian Business: Two Decades on the Island',
     excerpt: 'Our founders on building a Palm Jumeirah agency through three market cycles since 2007.',
     date: '2026-07-04',
-    author: 'DRP',
+    author: 'D|R|P',
     readMinutes: 4,
     image: unsplash('1556761175-5973dc0f32e7', 2000),
     alt: 'A business interview taking place in a Dubai office',
     body: [
       {
         paragraphs: [
-          'Arabian Business sat down with DRP’s founders to talk about opening an agency on Palm Jumeirah in 2007, and what it has taken to grow through three distinct market cycles.',
+          'Arabian Business sat down with D|R|P’s founders to talk about opening an agency on Palm Jumeirah in 2007, and what it has taken to grow through three distinct market cycles.',
         ],
       },
       {
         heading: 'Built on the island',
         paragraphs: [
-          'From the beginning DRP focused on knowing a small number of communities in great depth. That local knowledge became the foundation for every service the company has added since.',
+          'From the beginning D|R|P focused on knowing a small number of communities in great depth. That local knowledge became the foundation for every service the company has added since.',
         ],
       },
       {
         heading: 'From agency to ecosystem',
         paragraphs: [
-          'Today DRP covers sales, leasing, off-plan, holiday homes, furnishing, interiors and property management, so owners can work with one team from purchase to income.',
+          'Today D|R|P covers sales, leasing, off-plan, holiday homes, furnishing, interiors and property management, so owners can work with one team from purchase to income.',
         ],
       },
     ],
@@ -244,7 +244,7 @@ export const articles: NewsArticle[] = [
     title: 'Holiday Home Yields: Reading the 2026 Season',
     excerpt: 'Occupancy, average daily rates and which communities outperformed over the winter season.',
     date: '2026-06-21',
-    author: 'DRP Holiday Homes',
+    author: 'D|R|P Holiday Homes',
     readMinutes: 5,
     image: '/images/homs.webp',
     alt: 'The living room of a furnished Dubai holiday home',
@@ -269,7 +269,7 @@ export const articles: NewsArticle[] = [
       {
         heading: 'Dynamic pricing',
         paragraphs: [
-          'Rates adjusted daily for events, seasonality and booking pace beat fixed seasonal pricing by a clear margin. This is now standard across the DRP portfolio.',
+          'Rates adjusted daily for events, seasonality and booking pace beat fixed seasonal pricing by a clear margin. This is now standard across the D|R|P portfolio.',
         ],
       },
     ],

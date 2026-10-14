@@ -15,7 +15,7 @@ export default function Page() {
   return (
     <SiteShell>
       <PageHero {...page.hero} />
-      <IntroSplit eyebrow="DRP Fit Out" heading="One team, from drawings to keys" paragraphs={page.intro} />
+      <IntroSplit eyebrow="D|R|P Fit Out" heading="One team, from drawings to keys" paragraphs={page.intro} />
       <FeatureGrid eyebrow="Scope" heading="What We Deliver" items={page.scope} tone="cream" />
       <section aria-labelledby="work-heading" className="section-y bg-white">
         <div className="container-drp">

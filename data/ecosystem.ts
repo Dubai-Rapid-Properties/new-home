@@ -18,7 +18,7 @@ import { contactStep, type LeadFormConfig } from './leadPages';
 
 export const ecosystem = {
   hero: {
-    eyebrow: 'DRP Ecosystem',
+    eyebrow: 'D|R|P Ecosystem',
     heading: 'Everything Around Your Property, Under One Roof',
     intro:
       'Buying, financing, furnishing, letting and looking after a home in Dubai — with one team that talks to itself.',
@@ -39,16 +39,16 @@ export const ecosystem = {
     {
       title: 'Sell & Let',
       services: [
-        { name: 'List Your Property', text: 'Sell or let with DRP.', href: '/list-your-property' },
+        { name: 'List Your Property', text: 'Sell or let with D|R|P.', href: '/list-your-property' },
         { name: 'Property Valuation', text: 'An evidence-based view of what it is worth.', href: '/property-valuation' },
         { name: 'Property Management', text: 'Letting, maintenance and reporting handled.', href: '/property-management' },
-        { name: 'Holiday Homes', text: 'Short-stay management, on the DRP Holiday Homes site.', href: HOLIDAY_HOMES_URL },
+        { name: 'Holiday Homes', text: 'Short-stay management, on the D|R|P Holiday Homes site.', href: HOLIDAY_HOMES_URL },
       ],
     },
     {
       title: 'Prepare & Live',
       services: [
-        { name: 'DRP Furnishing', text: 'Furnishing packages, interior design and styling.', href: '/drp-furnishing' },
+        { name: 'D|R|P Furnishing', text: 'Furnishing packages, interior design and styling.', href: '/drp-furnishing' },
         { name: 'Fit Out', text: 'From handover to a finished home.', href: '/fit-out' },
         { name: 'Car Fleet', text: 'Mobility for owners and guests.', href: '/ecosystem/car-fleet' },
       ],
@@ -94,13 +94,13 @@ export const mortgage = {
     { q: 'Can non-residents get a mortgage in Dubai?', a: 'Yes. Several UAE banks lend to non-residents, usually with a larger down payment than residents. We will match you with lenders that suit your situation.' },
     { q: 'How much deposit do I need?', a: 'Typically at least 20% of the price for residents buying their first home, and more for non-residents, higher-value or off-plan purchases. Lender policies vary.' },
     { q: 'What other costs should I budget for?', a: 'The Dubai Land Department transfer fee, mortgage registration, valuation and agency fees. The calculator above estimates these for you.' },
-    { q: 'Does DRP charge for mortgage assistance?', a: 'Our mortgage partners are paid by the lender in most cases.' }, // DEMO PLACEHOLDER — confirm the arrangement
+    { q: 'Does D|R|P charge for mortgage assistance?', a: 'Our mortgage partners are paid by the lender in most cases.' }, // DEMO PLACEHOLDER — confirm the arrangement
   ],
   form: {
     formId: 'mortgage',
     submitLabel: 'Get Pre-Approved',
     successTitle: 'Thank you.',
-    successBody: 'A DRP mortgage specialist will contact you to start your pre-approval.',
+    successBody: 'A D|R|P mortgage specialist will contact you to start your pre-approval.',
     steps: [
       {
         id: 'residency',
@@ -142,7 +142,7 @@ export const companyFormation = {
       'Free-zone, offshore and mainland structures for investors who hold Dubai property through a company — set up alongside your purchase.',
     // REAL – DRP's office on Golden Mile 9, Palm Jumeirah, at night
     image: '/images/office-front.webp',
-    imageAlt: 'The DRP office front at night, with the illuminated D|R|P Dubai Rapid Properties sign',
+    imageAlt: 'The D|R|P office front at night, with the illuminated D|R|P Dubai Rapid Properties sign',
     /* The sign sits in the top third of the photo; keep it clear of the header */
     imagePosition: '50% 8%',
   },
@@ -177,7 +177,7 @@ export const companyFormation = {
     formId: 'company-formation',
     submitLabel: 'Book a Consultation',
     successTitle: 'Thank you.',
-    successBody: 'A DRP specialist will contact you to discuss the right structure.',
+    successBody: 'A D|R|P specialist will contact you to discuss the right structure.',
     steps: [
       {
         id: 'reason',
@@ -215,8 +215,8 @@ export const partnerNetwork = {
     { title: 'Mortgage partners', text: 'Brokers and banks lending to residents and non-residents.' },
     { title: 'Legal & conveyancing', text: 'Law firms and conveyancers for transfers, wills and structures.' },
     { title: 'Corporate services', text: 'Licensed partners for company formation and Golden Visa support.' },
-    { title: 'Contractors', text: 'Fit-out, maintenance and MEP contractors with DRP’s quality standards.' },
-    { title: 'Interiors suppliers', text: 'Furniture, lighting and soft-furnishing suppliers for DRP Interiors.' },
+    { title: 'Contractors', text: 'Fit-out, maintenance and MEP contractors with D|R|P’s quality standards.' },
+    { title: 'Interiors suppliers', text: 'Furniture, lighting and soft-furnishing suppliers for D|R|P Interiors.' },
   ],
   form: {
     formId: 'partner-network',
@@ -258,6 +258,6 @@ export const ownerPortal = {
     { title: 'Tenancy', text: 'Contracts, Ejari, cheque schedule and renewal dates.' },
     { title: 'Maintenance', text: 'Raise requests, approve quotes and see work completed.' },
     { title: 'Documents', text: 'Title deeds, DEWA, service charges and licences in one place.' },
-    { title: 'Messages', text: 'Direct line to your DRP account manager.' },
+    { title: 'Messages', text: 'Direct line to your D|R|P account manager.' },
   ],
 };

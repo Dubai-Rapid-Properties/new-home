@@ -6,7 +6,7 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import { contactPage } from '@/data/company';
 import { contact } from '@/data/homepage';
 
-export const metadata = { title: 'Contact DRP | Dubai Rapid Properties' };
+export const metadata = { title: 'Contact D|R|P | Dubai Rapid Properties' };
 
 export default function Page() {
   const routes = [
@@ -24,7 +24,7 @@ export default function Page() {
       <section aria-labelledby="office-heading" className="section-y bg-cream">
         <div className="container-drp grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
-            <SectionHeading eyebrow="Our Office" heading="Visit DRP" headingId="office-heading" />
+            <SectionHeading eyebrow="Our Office" heading="Visit D|R|P" headingId="office-heading" />
             <address className="mt-8 text-[15px] font-light not-italic leading-relaxed text-charcoal">
               {contact.addressFull}
             </address>
@@ -58,7 +58,7 @@ export default function Page() {
             <div className="relative aspect-[4/3] overflow-hidden bg-line">
               <iframe
                 src={contactPage.mapEmbed}
-                title="Map showing the DRP office on Golden Mile 9, Palm Jumeirah"
+                title="Map showing the D|R|P office on Golden Mile 9, Palm Jumeirah"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="absolute inset-0 h-full w-full border-0 grayscale-[30%]"

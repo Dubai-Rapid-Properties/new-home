@@ -69,7 +69,7 @@ export default async function Page({ params }: PageProps) {
     formId: 'off-plan-interest',
     submitLabel: 'Register Interest',
     successTitle: 'Thank you.',
-    successBody: `A DRP off-plan specialist will send you the ${project.name} brochure, floor plans and current availability.`,
+    successBody: `A D|R|P off-plan specialist will send you the ${project.name} brochure, floor plans and current availability.`,
     steps: [
       {
         id: 'unitType',
@@ -243,7 +243,7 @@ export default async function Page({ params }: PageProps) {
                 <p className="eyebrow text-white/50">Expected handover</p>
                 <p className="mt-3 font-serif text-[clamp(2rem,4vw,3rem)] font-light leading-none">{handoverLabel(project)}</p>
                 <p className="mt-6 max-w-sm text-sm font-light leading-relaxed text-white/60">
-                  {project.fromPrice != null ? `Starting from ${priceLabel(project)}. ` : ''}Ask a DRP specialist for the payment plan and current availability.
+                  {project.fromPrice != null ? `Starting from ${priceLabel(project)}. ` : ''}Ask a D|R|P specialist for the payment plan and current availability.
                 </p>
               </div>
             )}
@@ -254,7 +254,7 @@ export default async function Page({ params }: PageProps) {
       <FormSection
         eyebrow="Register Interest"
         heading={`Receive the ${project.name} brochure`}
-        intro="Floor plans, current availability and the full payment schedule, sent by a DRP off-plan specialist."
+        intro="Floor plans, current availability and the full payment schedule, sent by a D|R|P off-plan specialist."
         config={interestForm}
         context={{ project: project.slug }}
       />

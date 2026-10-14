@@ -24,17 +24,17 @@ const photo = (file: string, alt: string): CarPhoto => ({ src: `/images/car-flee
 export const carFleet = {
   metaTitle: 'Car Fleet | Dubai Rapid Properties',
   hero: {
-    eyebrow: 'DRP Car Fleet',
-    heading: 'Mobility, Part of\nthe DRP Experience',
+    eyebrow: 'D|R|P Car Fleet',
+    heading: 'Mobility, Part of\nthe D|R|P Experience',
     // REAL – DRP's own VGV U70 Pro outside the office
     image: '/images/car2.jpeg',
-    imageAlt: 'The DRP-branded VGV U70 Pro outside the DRP office',
+    imageAlt: 'The D|R|P-branded VGV U70 Pro outside the D|R|P office',
   },
   intro:
-    'Our DRP car fleet is available as an additional service for our property owners, Holiday Homes guests and clients who require convenient mobility during their stay in Dubai. Speak to our team to learn more about available vehicles and arrangements.',
+    'Our D|R|P car fleet is available as an additional service for our property owners, Holiday Homes guests and clients who require convenient mobility during their stay in Dubai. Speak to our team to learn more about available vehicles and arrangements.',
 
   car: {
-    eyebrow: 'The DRP Car',
+    eyebrow: 'The D|R|P Car',
     make: 'VGV',
     model: 'U70 Pro',
     type: 'Mid-size SUV',
@@ -59,7 +59,7 @@ export const carFleet = {
     heading: 'Inside and Out',
     // TEMPORARY – manufacturer press photos; swap for DRP's own shots
     exterior: [
-      { src: '/images/car2.jpeg', alt: 'The DRP-branded VGV U70 Pro outside the DRP office' },
+      { src: '/images/car2.jpeg', alt: 'The D|R|P-branded VGV U70 Pro outside the D|R|P office' },
       photo('exterior-1.webp', 'The VGV U70 Pro from the front three-quarter'),
       photo('exterior-2.webp', 'Front three-quarter view, low angle'),
       photo('exterior-3.webp', 'Side profile'),
@@ -93,13 +93,13 @@ export const carFleet = {
 
   service: {
     eyebrow: 'How It Works',
-    heading: 'Arranged by the DRP Team',
+    heading: 'Arranged by the D|R|P Team',
     steps: [
       { title: 'Ask the team', text: 'Tell us your dates and what you need the car for — a stay, a viewing day or airport transfers.' },
       { title: 'We confirm', text: 'We check availability and set out the arrangement with you directly.' },
       { title: 'Ready when you are', text: 'The car is prepared and handed over where and when it suits you.' },
     ],
-    note: 'Available to DRP property owners, Holiday Homes guests and clients.',
+    note: 'Available to D|R|P property owners, Holiday Homes guests and clients.',
   },
 
   cta: {
@@ -107,6 +107,6 @@ export const carFleet = {
     heading: 'Speak to our team',
     label: 'Contact Us',
     href: '/contact',
-    whatsappText: 'Hello DRP, I would like to ask about the DRP car (VGV U70 Pro).',
+    whatsappText: 'Hello D|R|P, I would like to ask about the D|R|P car (VGV U70 Pro).',
   },
 };

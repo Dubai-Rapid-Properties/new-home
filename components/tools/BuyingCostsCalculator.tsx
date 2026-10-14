@@ -104,7 +104,7 @@ export default function BuyingCostsCalculator() {
           </div>
         </dl>
         <p className="mt-6 text-[11px] font-light leading-relaxed text-white/40">
-          Estimates of the standard fees. Your DRP specialist confirms the exact costs for each purchase.
+          Estimates of the standard fees. Your D|R|P specialist confirms the exact costs for each purchase.
         </p>
       </div>
     </div>

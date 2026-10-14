@@ -5,7 +5,7 @@ import Reveal from '@/components/ui/Reveal';
 import { careers } from '@/data/company';
 import { contact } from '@/data/homepage';
 
-export const metadata = { title: 'Careers at DRP | Dubai Rapid Properties' };
+export const metadata = { title: 'Careers at D|R|P | Dubai Rapid Properties' };
 
 export default function Page() {
   const { starting, join } = careers;
@@ -64,7 +64,7 @@ export default function Page() {
             <p className="mt-10 text-sm font-light text-charcoal-muted">
               Prefer to talk first?{' '}
               <a
-                href={`${contact.whatsappHref}?text=${encodeURIComponent('Hello DRP, I would like to ask about careers at DRP.')}`}
+                href={`${contact.whatsappHref}?text=${encodeURIComponent('Hello D|R|P, I would like to ask about careers at D|R|P.')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-charcoal underline-offset-4 hover:text-orange hover:underline"

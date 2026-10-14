@@ -19,7 +19,7 @@ export default function SavedList({ cards }: { cards: Card[] }) {
         <p className="font-serif text-2xl text-charcoal">No saved properties yet.</p>
         <p className="mt-3 max-w-xl font-light text-charcoal-muted">
           Tap the heart on any property to keep it here. Your shortlist stays in this browser, and you can send it to
-          DRP in one message.
+          D|R|P in one message.
         </p>
         <div className="mt-8">
           <ArrowLink href="/properties" label="Browse properties" />
@@ -29,7 +29,7 @@ export default function SavedList({ cards }: { cards: Card[] }) {
   }
 
   const message = [
-    'Hello DRP, I would like to know more about these properties:',
+    'Hello D|R|P, I would like to know more about these properties:',
     ...items.map((c) => `• ${c.item.title} — ${new URL(c.item.href, window.location.origin).href}`),
   ].join('\n');
 

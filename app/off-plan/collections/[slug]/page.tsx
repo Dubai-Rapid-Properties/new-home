@@ -53,7 +53,7 @@ export default async function Page({ params }: PageProps) {
         heading="Book a free consultation"
         text="Our property experts are here to understand your goals and recommend the perfect opportunities."
         button={{ label: 'Book a Free Consultation', href: '/contact' }}
-        whatsappText={`Hello DRP, I would like advice on the ${c.title}.`}
+        whatsappText={`Hello D|R|P, I would like advice on the ${c.title}.`}
       />
     </SiteShell>
   );

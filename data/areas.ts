@@ -29,10 +29,10 @@ const area = (a: Omit<Area, 'slug'>): Area => ({ ...a, slug: toSlug(a.name) });
 export const areas: Area[] = [
   area({
     name: 'Palm Jumeirah',
-    tagline: 'Dubai’s island address, and DRP’s home since 2007.',
+    tagline: 'Dubai’s island address, and D|R|P’s home since 2007.',
     intro: [
       'Palm Jumeirah remains the benchmark for prime residential property in Dubai. Beachfront villas on the fronds, branded residences on the crescent and apartments along the trunk give the island a depth few communities can match.',
-      'DRP is based on the Golden Mile, so our team knows the island building by building — from frond orientation and plot sizes to which towers lead resale values.',
+      'D|R|P is based on the Golden Mile, so our team knows the island building by building — from frond orientation and plot sizes to which towers lead resale values.',
     ],
     image: '/images/palmjumeirah.webp',
     alt: 'A beachfront villa on Palm Jumeirah',

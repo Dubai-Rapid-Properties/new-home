@@ -105,7 +105,7 @@ export const navigation: NavNode[] = [
       {
         title: 'Sell Your Property',
         links: [
-          { label: 'List With DRP', href: '/list-your-property' },
+          { label: 'List With D|R|P', href: '/list-your-property' },
           { label: 'Request a Property Valuation', href: '/property-valuation' },
           { label: "Seller's Guide", href: '/selling-guide' },
         ],
@@ -122,7 +122,7 @@ export const navigation: NavNode[] = [
       linkLabel: 'Request yours',
       href: '/property-valuation',
       image: '/images/valuation.png',
-      alt: 'A meeting room in the DRP office',
+      alt: 'A meeting room in the D|R|P office',
     },
   },
   {
@@ -167,7 +167,7 @@ export const navigation: NavNode[] = [
     label: 'About',
     columns: [
       {
-        title: 'About DRP',
+        title: 'About D|R|P',
         links: [
           { label: 'Our Story', href: '/about' },
           { label: 'Meet the Team', href: '/about#team' },
@@ -190,12 +190,12 @@ export const fullMenu: NavLink[] = [
   { label: 'Off-Plan', href: '/off-plan' },
   { label: 'Holiday Homes', href: HOLIDAY_HOMES_URL, external: true },
   { label: 'Property Management', href: '/property-management' },
-  { label: 'DRP Furnishing', href: '/drp-furnishing' },
+  { label: 'D|R|P Furnishing', href: '/drp-furnishing' },
   { label: 'Car Fleet', href: '/ecosystem/car-fleet' },
   { label: 'About Us', href: '/about' },
   { label: 'Careers', href: '/careers' },
   { label: 'News & Insights', href: '/news' },
-  { label: 'DRP Ecosystem', href: '/ecosystem', accent: true },
+  { label: 'D|R|P Ecosystem', href: '/ecosystem', accent: true },
   { label: 'Contact', href: '/contact' },
 ];
 

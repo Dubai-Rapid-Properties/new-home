@@ -19,7 +19,7 @@ export type LegalDoc = {
 export const privacy: LegalDoc = {
   title: 'Privacy Policy',
   updated: '1 October 2026',
-  intro: `This policy explains how ${site.name} ("DRP", "we") collects, uses and protects personal information when you use our website or our services.`,
+  intro: `This policy explains how ${site.name} ("D|R|P", "we") collects, uses and protects personal information when you use our website or our services.`,
   sections: [
     {
       id: 'information',
@@ -87,7 +87,7 @@ export const terms: LegalDoc = {
       heading: 'Property information',
       paragraphs: [
         'Listings, prices, payment plans, handover dates and figures on this website are provided for information only, may change without notice and do not form part of any contract.',
-        'Images may be illustrative. Always confirm details with a DRP advisor and through the relevant contracts before making a decision.',
+        'Images may be illustrative. Always confirm details with a D|R|P advisor and through the relevant contracts before making a decision.',
       ],
     },
     {
@@ -108,7 +108,7 @@ export const terms: LegalDoc = {
       id: 'ip',
       heading: 'Intellectual property',
       paragraphs: [
-        'The DRP name, logo, text, photography and design of this website belong to DRP or its licensors and may not be reproduced without permission.',
+        'The D|R|P name, logo, text, photography and design of this website belong to D|R|P or its licensors and may not be reproduced without permission.',
       ],
     },
     {
@@ -122,7 +122,7 @@ export const terms: LegalDoc = {
       id: 'liability',
       heading: 'Liability',
       paragraphs: [
-        'To the extent permitted by law, DRP is not liable for any loss arising from reliance on information on this website.',
+        'To the extent permitted by law, D|R|P is not liable for any loss arising from reliance on information on this website.',
       ],
     },
     {

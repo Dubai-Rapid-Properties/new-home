@@ -33,7 +33,7 @@ export default function Page() {
               />
               <span aria-hidden="true" className="h-6 w-px bg-white/25" />
               <span className="text-[10px] uppercase tracking-eyebrow text-white/60">
-                Part of the DRP Ecosystem
+                Part of the D|R|P Ecosystem
               </span>
             </div>
             <p className="text-[10px] uppercase tracking-eyebrow text-white/45">
@@ -43,7 +43,7 @@ export default function Page() {
         </PageHero>
 
         {/* ---------- Intro ---------- */}
-        <section aria-label="About the DRP car fleet" className="section-y bg-white">
+        <section aria-label="About the D|R|P car fleet" className="section-y bg-white">
           <div className="container-drp">
             <Reveal>
               <p className="max-w-4xl font-serif text-[clamp(1.4rem,2.6vw,2.1rem)] font-light leading-[1.35] text-charcoal">

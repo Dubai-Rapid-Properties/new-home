@@ -31,7 +31,7 @@ export default function Page() {
       <FormSection
         eyebrow="Pre-Approval"
         heading="Start your mortgage"
-        intro="A DRP mortgage specialist will compare lenders for you and handle the paperwork."
+        intro="A D|R|P mortgage specialist will compare lenders for you and handle the paperwork."
         config={page.form}
         tone="white"
       />

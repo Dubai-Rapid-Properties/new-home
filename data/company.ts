@@ -22,10 +22,10 @@ import { brnFor } from './licences';
 
 export const about = {
   hero: {
-    eyebrow: 'About DRP',
+    eyebrow: 'About D|R|P',
     heading: 'Dubai Real Estate. One Team. Since 2007.',
     image: '/images/team.png',
-    imageAlt: 'Inside the DRP office on Palm Jumeirah',
+    imageAlt: 'Inside the D|R|P office on Palm Jumeirah',
   },
   intro: [
     "Dubai Rapid Properties has been part of Dubai\u2019s real estate market since 2007. Over the years, we have grown from a real estate brokerage into a wider property ecosystem, supporting clients across property sales, rentals, off-plan investments, Holiday Homes and complementary services.",
@@ -38,7 +38,7 @@ export const about = {
       value: 'Palm Jumeirah',
       label: 'Our home and headquarters',
       image: drpPhoto(2),
-      imageAlt: 'The DRP office on the Golden Mile, Palm Jumeirah',
+      imageAlt: 'The D|R|P office on the Golden Mile, Palm Jumeirah',
     },
     {
       id: 'ecosystem',
@@ -60,7 +60,7 @@ export const about = {
     ],
   },
   team: {
-    eyebrow: 'Meet the People Behind DRP',
+    eyebrow: 'Meet the People Behind D|R|P',
     heading: 'The Team',
   },
 };
@@ -205,18 +205,18 @@ export const managementMessage = {
 
 export const careers = {
   hero: {
-    eyebrow: 'Careers at DRP',
-    heading: 'Build Your Real Estate Career with DRP',
+    eyebrow: 'Careers at D|R|P',
+    heading: 'Build Your Real Estate Career with D|R|P',
     intro:
       'Dubai Rapid Properties has been operating in Dubai since 2007. We believe successful agents need more than a desk and a phone \u2014 they need market knowledge, guidance and the right environment to grow.',
     // Replace with the real DRP team group photos taken in front of the office
     image: unsplash('1522071820081-009f0129c71c', 2400),
-    imageAlt: 'The DRP team together in the office',
+    imageAlt: 'The D|R|P team together in the office',
   },
   starting: {
-    eyebrow: 'Starting at DRP',
-    heading: 'The DRP Academy',
-    text: 'New agents receive hands-on support, particularly during their first months with the company. Through our internal DRP Academy, agents are introduced to the Dubai real estate market, communities, pricing, developers, sales processes and real situations they will encounter when working with buyers, sellers and investors.',
+    eyebrow: 'Starting at D|R|P',
+    heading: 'The D|R|P Academy',
+    text: 'New agents receive hands-on support, particularly during their first months with the company. Through our internal D|R|P Academy, agents are introduced to the Dubai real estate market, communities, pricing, developers, sales processes and real situations they will encounter when working with buyers, sellers and investors.',
     pillars: [
       'Market & Area Training',
       'Pricing Knowledge',
@@ -227,10 +227,10 @@ export const careers = {
     ],
   },
   join: {
-    eyebrow: 'Want to Join DRP?',
+    eyebrow: 'Want to Join D|R|P?',
     heading: 'Apply to the team',
     text: 'Whether you already have Dubai real estate experience or are looking to build your career in the market, we would like to hear from you.',
-    submitLabel: 'Join the DRP Team',
+    submitLabel: 'Join the D|R|P Team',
     successTitle: 'Thank you for your interest.',
     successBody: 'Our team will review your application and get back to you.',
     experienceYears: ['Less than 1 year', '1 \u2013 3 years', '3 \u2013 5 years', '5 \u2013 10 years', '10+ years'],
@@ -245,11 +245,11 @@ export const careers = {
 export const contactPage = {
   hero: {
     eyebrow: 'Contact',
-    heading: 'Get in Touch With DRP',
-    intro: 'Call, WhatsApp, email or visit us on the Golden Mile. A DRP advisor will reply within one business day.',
+    heading: 'Get in Touch With D|R|P',
+    intro: 'Call, WhatsApp, email or visit us on the Golden Mile. A D|R|P advisor will reply within one business day.',
     // REAL – the DRP team outside the office on Golden Mile 9
     image: '/images/drpteam.jpeg',
-    imageAlt: 'The DRP team outside the office, under the D|R|P Dubai Rapid Properties sign',
+    imageAlt: 'The D|R|P team outside the office, under the D|R|P Dubai Rapid Properties sign',
     /* Tall, and below the header, so the sign and the whole team stay in frame */
     size: 'tall' as const,
     clearHeader: true,

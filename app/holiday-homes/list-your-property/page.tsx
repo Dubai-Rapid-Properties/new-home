@@ -6,7 +6,7 @@ import FormSection from '@/components/sections/FormSection';
 import ProcessSteps from '@/components/sections/ProcessSteps';
 import { holidayHomes, holidayList, holidayListForm } from '@/data/services';
 
-export const metadata = { title: 'List Your Holiday Home | DRP Holiday Homes' };
+export const metadata = { title: 'List Your Holiday Home | D|R|P Holiday Homes' };
 
 export default function Page() {
   return (

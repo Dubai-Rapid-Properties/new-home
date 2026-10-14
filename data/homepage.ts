@@ -26,7 +26,7 @@ const unsplash = (id: string, w = 1600) =>
 
 export const site = {
   name: 'Dubai Rapid Properties',
-  shortName: 'DRP',
+  shortName: 'D|R|P',
   established: 2007,
   tagline:
     'A Dubai real estate agency on Palm Jumeirah, connecting international clients with property, investment and opportunity across the UAE.',
@@ -40,12 +40,12 @@ export const site = {
 
 export const contact = {
   addressLine: 'Golden Mile 9, Palm Jumeirah',
-  addressFull: 'DRP, Golden Mile 9, Palm Jumeirah, Dubai',
+  addressFull: 'D|R|P, Golden Mile 9, Palm Jumeirah, Dubai',
   /** REAL – DRP's own Google Maps listing */
   mapHref: 'https://maps.app.goo.gl/7gaPDDcJJritEb746',
   /** Searches for the DRP listing itself (place 0x3e5f6be4264ce0bd:0x57c31faf4c750f69), not the building */
   mapEmbed:
-    'https://www.google.com/maps?q=DRP+Dubai+Rapid+Properties,+Golden+Mile+9,+Palm+Jumeirah,+Dubai&z=17&output=embed',
+    'https://www.google.com/maps?q=D|R|P+Dubai+Rapid+Properties,+Golden+Mile+9,+Palm+Jumeirah,+Dubai&z=17&output=embed',
   phone: '+971 4 529 4904',
   phoneHref: 'tel:+97145294904',
   whatsapp: '+971 56 777 0272',
@@ -81,11 +81,11 @@ export const hero = {
   posterImage: unsplash('1546412414-e1885259563a', 2000),
   posterAlt: 'The Dubai coastline at dusk',
   quickLinks: [
-    { label: 'About DRP', href: '/about' },
+    { label: 'About D|R|P', href: '/about' },
     { label: 'Find a Ready Property', href: '/properties' },
     { label: 'Explore Off Plan Investments', href: '/off-plan' },
-    { label: 'Sell With DRP', href: '/list-your-property' },
-    { label: 'Manage Your Home With DRP', href: '/property-management' },
+    { label: 'Sell With D|R|P', href: '/list-your-property' },
+    { label: 'Manage Your Home With D|R|P', href: '/property-management' },
   ],
 } as const;
 
@@ -301,17 +301,17 @@ export const solutions = {
     {
       id: 'specialist',
       title: 'Connect With a Specialist',
-      subtitle: 'Speak directly with a DRP advisor',
+      subtitle: 'Speak directly with a D|R|P advisor',
       href: '#contact',
       image: '/images/office-night.webp',
-      alt: 'The DRP office on Golden Mile, Palm Jumeirah, lit up at night',
+      alt: 'The D|R|P office on Golden Mile, Palm Jumeirah, lit up at night',
       imagePosition: '50% 22%',
       span: 'large',
     },
     {
       id: 'list',
       title: 'List Your Property',
-      subtitle: 'Sell or lease with DRP',
+      subtitle: 'Sell or lease with D|R|P',
       href: '/list-your-property',
       image: '/images/listyourproperty.webp',
       alt: 'A contemporary villa with a lit pool at twilight',
@@ -357,7 +357,7 @@ export const solutions = {
     {
       id: 'holiday',
       title: 'Holiday Homes',
-      subtitle: 'Stay with DRP or list your property',
+      subtitle: 'Stay with D|R|P or list your property',
       href: HOLIDAY_HOMES_URL,
       external: true,
       image: '/images/living1.jpeg',
@@ -375,7 +375,7 @@ export const solutions = {
     },
     {
       id: 'fleet',
-      title: 'DRP Car Fleet',
+      title: 'D|R|P Car Fleet',
       subtitle: 'Explore our vehicle services',
       href: '/ecosystem/car-fleet',
       image: '/images/car.jpeg',
@@ -384,8 +384,8 @@ export const solutions = {
     },
     {
       id: 'ecosystem',
-      title: 'DRP Ecosystem',
-      subtitle: 'Discover all DRP services and solutions',
+      title: 'D|R|P Ecosystem',
+      subtitle: 'Discover all D|R|P services and solutions',
       href: '/ecosystem',
       image: '/images/palm3.png',
       alt: 'The Dubai skyline seen across the city',
@@ -660,7 +660,7 @@ export const contactSection = {
     "Whether you're looking to buy, invest, sell or manage a property, our team is ready to assist.",
   // REAL – DRP's own photo of the office reception
   image: '/images/contact-office.webp',
-  imageAlt: 'The DRP reception on Palm Jumeirah, with the D|R|P sign and brochure',
+  imageAlt: 'The D|R|P reception on Palm Jumeirah, with the D|R|P sign and brochure',
   interests: [
     'Buying',
     'Off-Plan Investment',
@@ -671,10 +671,10 @@ export const contactSection = {
     'Furnishings',
     'Other',
   ],
-  submitLabel: 'Connect With DRP',
+  submitLabel: 'Connect With D|R|P',
   successTitle: 'Thank you — your enquiry is with us.',
   successBody:
-    'A DRP specialist will be in touch shortly. For anything urgent, call or WhatsApp us directly.',
+    'A D|R|P specialist will be in touch shortly. For anything urgent, call or WhatsApp us directly.',
 };
 
 /* -------------------------------------------------------------------------- */
@@ -691,7 +691,7 @@ export const footer = {
         { label: 'About', href: '/about' },
         { label: 'Meet the Team', href: '/about#team' },
         { label: 'Careers', href: '/careers' },
-        { label: 'DRP Ecosystem', href: '/ecosystem' },
+        { label: 'D|R|P Ecosystem', href: '/ecosystem' },
         { label: 'News & Blogs', href: '/news' },
         { label: 'Contact Us', href: '/contact' },
       ],
@@ -713,7 +713,7 @@ export const footer = {
       links: [
         { label: 'Holiday Homes', href: HOLIDAY_HOMES_URL },
         { label: 'Fit Out', href: '/fit-out' },
-        { label: 'DRP Furnishing', href: '/drp-furnishing' },
+        { label: 'D|R|P Furnishing', href: '/drp-furnishing' },
         { label: 'Car Fleet', href: '/ecosystem/car-fleet' },
         { label: 'Owner Portal', href: '/owner-portal' },
       ],
@@ -728,7 +728,7 @@ export const footer = {
   ],
   /** Subtle closing line above the legal bar. */
   careersNote: {
-    text: 'Interested in joining DRP?',
+    text: 'Interested in joining D|R|P?',
     linkLabel: 'View open positions',
     href: '/careers',
   },

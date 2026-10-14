@@ -41,7 +41,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section aria-label="Why invest off-plan with DRP" className="bg-white py-14 sm:py-16">
+      <section aria-label="Why invest off-plan with D|R|P" className="bg-white py-14 sm:py-16">
         <ul className="container-drp grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
           {page.benefits.map((b, i) => (
             <Reveal as="li" key={b.title} delay={i * 0.06} className="border-t border-line pt-5">
@@ -57,7 +57,7 @@ export default function Page() {
         heading="Speak to an off-plan specialist"
         text="Tell us your budget and goals, and we will shortlist the projects that fit."
         button={{ label: 'Contact Us', href: '/contact' }}
-        whatsappText="Hello DRP, I would like advice on off-plan projects."
+        whatsappText="Hello D|R|P, I would like advice on off-plan projects."
       />
     </SiteShell>
   );

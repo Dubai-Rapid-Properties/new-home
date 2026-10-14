@@ -21,7 +21,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps) {
   const article = getArticle((await params).slug);
   return {
-    title: article ? `${article.title} | DRP News & Insights` : 'News & Insights | Dubai Rapid Properties',
+    title: article ? `${article.title} | D|R|P News & Insights` : 'News & Insights | Dubai Rapid Properties',
     description: article?.excerpt,
   };
 }
@@ -99,7 +99,7 @@ export default async function Page({ params }: PageProps) {
         eyebrow="Talk It Through"
         heading="Questions about the market?"
         button={{ label: 'Speak With a Specialist', href: '/contact' }}
-        whatsappText={`Hello DRP, I read "${article.title}" and have a question.`}
+        whatsappText={`Hello D|R|P, I read "${article.title}" and have a question.`}
       />
     </SiteShell>
   );

@@ -103,7 +103,7 @@ export default async function Page({ params }: PageProps) {
                   ))
                 ) : (
                   <p className="text-[15px] font-light leading-relaxed text-charcoal-light sm:text-base">
-                    {firstName} is part of the DRP team at our office on Golden Mile 9, Palm Jumeirah.
+                    {firstName} is part of the D|R|P team at our office on Golden Mile 9, Palm Jumeirah.
                   </p>
                 )}
               </div>
@@ -111,7 +111,7 @@ export default async function Page({ params }: PageProps) {
               <div className="mt-10 flex flex-wrap gap-3">
                 <a
                   href={`${reach.whatsappHref}?text=${encodeURIComponent(
-                    reach.personal ? `Hello ${firstName},` : `Hello DRP, I would like to speak to ${member.name}.`,
+                    reach.personal ? `Hello ${firstName},` : `Hello D|R|P, I would like to speak to ${member.name}.`,
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -134,7 +134,7 @@ export default async function Page({ params }: PageProps) {
               </div>
               {reach.personal ? null : (
                 <p className="mt-4 text-xs font-light text-charcoal-muted">
-                  Messages go to the DRP office and are passed straight to {firstName}.
+                  Messages go to the D|R|P office and are passed straight to {firstName}.
                 </p>
               )}
             </div>
@@ -146,7 +146,7 @@ export default async function Page({ params }: PageProps) {
         <section aria-labelledby="message-heading" className="section-y bg-ink text-white">
           <div className="container-drp grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
-              <SectionHeading eyebrow="DRP" heading={message.heading} headingId="message-heading" tone="light" />
+              <SectionHeading eyebrow="D|R|P" heading={message.heading} headingId="message-heading" tone="light" />
               <blockquote className="mt-8 space-y-5 border-l border-orange pl-6 sm:pl-8">
                 {message.paragraphs.map((p, i) => (
                   <p key={i} className="font-serif text-[clamp(1.3rem,2.2vw,1.65rem)] font-light leading-snug text-white/90">
@@ -197,7 +197,7 @@ export default async function Page({ params }: PageProps) {
 
       <section aria-labelledby="colleagues-heading" className={`section-y ${theirListings.length ? 'bg-cream' : 'bg-white'}`}>
         <div className="container-drp">
-          <SectionHeading eyebrow="Meet the Team" heading="The People Behind DRP" headingId="colleagues-heading" />
+          <SectionHeading eyebrow="Meet the Team" heading="The People Behind D|R|P" headingId="colleagues-heading" />
           <ul className="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-6">
             {colleagues.map((m) => (
               <li key={m.slug}>

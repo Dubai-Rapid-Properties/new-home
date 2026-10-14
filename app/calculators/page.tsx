@@ -44,7 +44,7 @@ export default function Page() {
             <RentalYieldCalculator />
           </div>
           <div className="mt-8">
-            <ArrowLink href="/property-management" label="How DRP manages and lets your home" />
+            <ArrowLink href="/property-management" label="How D|R|P manages and lets your home" />
           </div>
         </div>
       </section>

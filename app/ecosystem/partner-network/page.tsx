@@ -35,7 +35,7 @@ export default function Page() {
       <FeatureGrid eyebrow="The Network" heading="Every Specialist You Need" items={page.categories} />
       <FormSection
         eyebrow="Become a Partner"
-        heading="Join the DRP network"
+        heading="Join the D|R|P network"
         intro="We partner with companies that share our standards. Tell us about yours."
         config={page.form}
       />

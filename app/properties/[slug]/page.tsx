@@ -57,7 +57,7 @@ const enquiryForm: LeadFormConfig = {
   formId: 'property-enquiry',
   submitLabel: 'Send Enquiry',
   successTitle: 'Thank you.',
-  successBody: 'A DRP specialist will contact you shortly about this property.',
+  successBody: 'A D|R|P specialist will contact you shortly about this property.',
   steps: [
     contactStep(
       { id: 'viewing', label: 'I would like to arrange a viewing' },

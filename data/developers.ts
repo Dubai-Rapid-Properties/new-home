@@ -79,7 +79,7 @@ export const developerNetwork = {
   hero: {
     eyebrow: 'Off-Plan',
     heading: 'Developer Network',
-    intro: "The developers behind the off-plan projects DRP sells, from Dubai's master developers to boutique names.",
+    intro: "The developers behind the off-plan projects D|R|P sells, from Dubai's master developers to boutique names.",
     image: '/images/newproperty.webp',
     imageAlt: 'A new residential development in Dubai',
   },

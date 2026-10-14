@@ -42,7 +42,7 @@ const areaStep = {
 
 export const holidayHomes = {
   hero: {
-    eyebrow: 'DRP Holiday Homes',
+    eyebrow: 'D|R|P Holiday Homes',
     heading: 'Holiday Homes in Dubai',
     intro:
       'Licensed short-stay rentals across Palm Jumeirah, Dubai Marina and Downtown — for guests looking for a home, and owners looking for returns.',
@@ -71,7 +71,7 @@ export const holidayHomes = {
     heading: 'Stay like a resident',
     paragraphs: [
       'Serviced apartments and villas with hotel-standard housekeeping, self check-in and a local team on call around the clock.',
-      'Add airport transfers or a car from the DRP car fleet for the length of your stay.',
+      'Add airport transfers or a car from the D|R|P car fleet for the length of your stay.',
     ],
     bullets: ['Self check-in', 'Hotel-standard linen', 'Local concierge', 'Car fleet on request'],
     image: unsplash('1564013799919-ab600027ffc6', 1600),
@@ -84,9 +84,9 @@ export const holidayHomes = {
     { title: 'Returns', text: 'Monthly payouts and statements, visible in the owner portal.' },
   ],
   faqs: [
-    { q: 'Do I need a licence to rent short-stay in Dubai?', a: 'Yes. Holiday homes must be registered with Dubai’s Department of Economy and Tourism. DRP handles the registration and renewals for owners.' },
+    { q: 'Do I need a licence to rent short-stay in Dubai?', a: 'Yes. Holiday homes must be registered with Dubai’s Department of Economy and Tourism. D|R|P handles the registration and renewals for owners.' },
     { q: 'Can I still use my home myself?', a: 'Yes. Block dates in the owner portal and we keep them free of bookings.' },
-    { q: 'What does DRP charge?', a: 'A percentage of booking revenue, agreed after we assess the property. There are no listing fees.' }, // DEMO PLACEHOLDER — confirm the fee structure
+    { q: 'What does D|R|P charge?', a: 'A percentage of booking revenue, agreed after we assess the property. There are no listing fees.' }, // DEMO PLACEHOLDER — confirm the fee structure
     { q: 'Who looks after the guests?', a: 'Our guest experience team, 24 hours a day, with housekeeping and maintenance partners on call.' },
   ],
 };
@@ -186,7 +186,7 @@ export const holidayListForm: LeadFormConfig = {
   formId: 'holiday-homes-list',
   submitLabel: 'Get My Estimate',
   successTitle: 'Thank you.',
-  successBody: 'A DRP Holiday Homes specialist will contact you with an earnings estimate for your property.',
+  successBody: 'A D|R|P Holiday Homes specialist will contact you with an earnings estimate for your property.',
   steps: [
     { id: 'propertyType', label: 'Property Type', question: 'What type of property is it?', kind: 'choice', columns: 2, options: typeChoices },
     areaStep,
@@ -210,7 +210,7 @@ export const holidayListForm: LeadFormConfig = {
 export const holidayList = {
   hero: {
     eyebrow: 'Holiday Homes',
-    heading: 'List Your Holiday Home With DRP',
+    heading: 'List Your Holiday Home With D|R|P',
     intro:
       'From licensing and furnishing to guests and statements: tell us about your property and we will estimate what it could earn.',
     image: unsplash('1564013799919-ab600027ffc6', 2000),
@@ -241,7 +241,7 @@ export const propertyManagement = {
   },
   intro: [
     'Most of our management clients live outside the UAE. They need one team they can trust to find the right tenant, collect the rent and look after the property as if it were their own.',
-    'DRP manages apartments, villas and townhouses across Dubai, on annual leases or as holiday homes, with everything visible in the owner portal.',
+    'D|R|P manages apartments, villas and townhouses across Dubai, on annual leases or as holiday homes, with everything visible in the owner portal.',
   ],
   steps: [
     { title: 'Appraisal', text: 'We visit, advise on rent and any work that will help it let faster.' },
@@ -274,7 +274,7 @@ export const propertyManagement = {
     {
       name: 'Holiday Home',
       price: 'Share of booking revenue',
-      description: 'Short-stay management with DRP Holiday Homes.',
+      description: 'Short-stay management with D|R|P Holiday Homes.',
       features: ['Licensing', 'Dynamic pricing', 'Guests and housekeeping', 'Monthly payouts'],
     },
   ] satisfies Package[],
@@ -288,7 +288,7 @@ export const propertyManagement = {
     formId: 'property-management',
     submitLabel: 'Request an Appraisal',
     successTitle: 'Thank you.',
-    successBody: 'A DRP property manager will contact you to arrange an appraisal.',
+    successBody: 'A D|R|P property manager will contact you to arrange an appraisal.',
     steps: [
       {
         id: 'service',
@@ -369,13 +369,13 @@ export const whyItMatters = {
 
 export const interiorDesign = {
   hero: {
-    eyebrow: 'DRP Furnishing',
+    eyebrow: 'D|R|P Furnishing',
     heading: 'Interiors That Work as Hard as They Look',
     intro:
       'Concept, sourcing and styling for owners preparing a home to live in, to let or to sell.',
     // REAL – from the current DRP Interior Design page
     image: '/images/furnishing1.jpeg',
-    imageAlt: 'A living room styled by DRP Interiors',
+    imageAlt: 'A living room styled by D|R|P Interiors',
   },
   /** REAL – the Signature and Essentials package images from the current DRP site */
   /**
@@ -389,7 +389,7 @@ export const interiorDesign = {
       text: 'Complete, durable furnishing for annual lets.',
       // REAL – from the current DRP Interior Design page
       images: [
-        { src: '/media/2026/07/image.jpg', alt: 'A living and dining space from the DRP Essentials package' },
+        { src: '/media/2026/07/image.jpg', alt: 'A living and dining space from the D|R|P Essentials package' },
         // REAL – supplied by DRP
         { src: '/images/furnishing/essentials/essentials-1.webp', alt: 'An Essentials living room in soft neutrals with a city view' },
         { src: '/images/furnishing/essentials/essentials-2.webp', alt: 'An Essentials corner sofa with a marble coffee table and marina view' },
@@ -403,7 +403,7 @@ export const interiorDesign = {
       text: 'Our holiday-home standard, designed to photograph well.',
       // REAL – from the current DRP Interior Design page
       images: [
-        { src: '/media/2026/07/image.webp', alt: 'A living room from the DRP Signature package' },
+        { src: '/media/2026/07/image.webp', alt: 'A living room from the D|R|P Signature package' },
         // REAL – supplied by DRP
         { src: '/images/furnishing/signature/signature-1.webp', alt: 'A Signature living room with a sculptural chandelier and skyline views' },
         { src: '/images/furnishing/signature/signature-2.webp', alt: 'A double-height Signature villa living room with a marble feature wall' },
@@ -414,7 +414,7 @@ export const interiorDesign = {
     },
   ],
   intro: [
-    'DRP Interiors designs homes with a clear purpose. A family villa, a holiday apartment and a property going to market each need something different, and we design for the outcome as much as the look.',
+    'D|R|P Interiors designs homes with a clear purpose. A family villa, a holiday apartment and a property going to market each need something different, and we design for the outcome as much as the look.',
     'Because we also sell, let and manage property, our designers know what buyers, tenants and guests in Dubai respond to, and what lasts.',
   ],
   services: [
@@ -433,7 +433,7 @@ export const interiorDesign = {
     formId: 'drp-furnishing',
     submitLabel: 'Send Enquiry',
     successTitle: 'Thank you.',
-    successBody: 'A DRP interiors specialist will contact you to arrange a survey or consultation.',
+    successBody: 'A D|R|P interiors specialist will contact you to arrange a survey or consultation.',
     steps: [
       {
         id: 'package',
@@ -479,16 +479,16 @@ export const fitOut = {
       'From shell-and-core handover to a finished, rent-ready home: design, approvals and construction managed by one team.',
     // REAL – a DRP bathroom fit-out, from the current DRP Fit Out page
     image: '/media/2023/06/79E2A9DE-11AB-4413-9377-9FD50F843346-scaled.jpeg',
-    imageAlt: 'A marble bathroom finished by the DRP fit-out team',
+    imageAlt: 'A marble bathroom finished by the D|R|P fit-out team',
   },
   /** REAL – one completed DRP bathroom, from the current DRP site */
   gallery: [
-    { src: '/media/2023/06/79E2A9DE-11AB-4413-9377-9FD50F843346-scaled.jpeg', alt: 'A DRP bathroom fit-out, photo 1' },
-    { src: '/media/2023/06/C2891D1F-11A0-4C1C-A205-2460A194A674-scaled.jpeg', alt: 'A DRP bathroom fit-out, photo 2' },
-    { src: '/media/2023/06/4916688E-4CDC-44CC-82C3-E78AE898C8F7-scaled.jpeg', alt: 'A DRP bathroom fit-out, photo 3' },
-    { src: '/media/2023/06/8CEC8744-7500-4A04-B056-47C77699B5C2-scaled.jpeg', alt: 'A DRP bathroom fit-out, photo 4' },
-    { src: '/media/2023/06/BEA1BE7A-DF42-4A27-A0EB-4AC3078D9795-scaled.jpeg', alt: 'A DRP bathroom fit-out, photo 5' },
-    { src: '/media/2023/06/98AA7D81-C180-428D-953E-A1E0FCA2CB65-scaled.jpeg', alt: 'A DRP bathroom fit-out, photo 6' },
+    { src: '/media/2023/06/79E2A9DE-11AB-4413-9377-9FD50F843346-scaled.jpeg', alt: 'A D|R|P bathroom fit-out, photo 1' },
+    { src: '/media/2023/06/C2891D1F-11A0-4C1C-A205-2460A194A674-scaled.jpeg', alt: 'A D|R|P bathroom fit-out, photo 2' },
+    { src: '/media/2023/06/4916688E-4CDC-44CC-82C3-E78AE898C8F7-scaled.jpeg', alt: 'A D|R|P bathroom fit-out, photo 3' },
+    { src: '/media/2023/06/8CEC8744-7500-4A04-B056-47C77699B5C2-scaled.jpeg', alt: 'A D|R|P bathroom fit-out, photo 4' },
+    { src: '/media/2023/06/BEA1BE7A-DF42-4A27-A0EB-4AC3078D9795-scaled.jpeg', alt: 'A D|R|P bathroom fit-out, photo 5' },
+    { src: '/media/2023/06/98AA7D81-C180-428D-953E-A1E0FCA2CB65-scaled.jpeg', alt: 'A D|R|P bathroom fit-out, photo 6' },
   ],
   intro: [
     'Many new villas and penthouses are handed over needing significant work before anyone can move in. Others need upgrading to compete in the rental market. Our fit-out team manages the whole process.',
@@ -517,7 +517,7 @@ export const fitOut = {
     formId: 'fit-out',
     submitLabel: 'Request a Site Survey',
     successTitle: 'Thank you.',
-    successBody: 'A DRP fit-out manager will contact you to arrange a site survey.',
+    successBody: 'A D|R|P fit-out manager will contact you to arrange a site survey.',
     steps: [
       {
         id: 'scope',

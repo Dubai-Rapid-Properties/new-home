@@ -53,7 +53,7 @@ export default function PropertyAlerts() {
             Hear about new homes first
           </h2>
           <p className="mt-5 max-w-md font-light leading-relaxed text-charcoal-muted">
-            Tell us what you are looking for. A DRP specialist sends you matching homes as they come in, often before
+            Tell us what you are looking for. A D|R|P specialist sends you matching homes as they come in, often before
             they reach the portals.
           </p>
         </div>

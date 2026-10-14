@@ -20,9 +20,9 @@ export default function Page() {
       <CtaBand
         eyebrow="Be First"
         heading="Hear about launches first"
-        text="DRP clients get early access to new launches, with priority allocation and launch pricing."
+        text="D|R|P clients get early access to new launches, with priority allocation and launch pricing."
         button={{ label: 'Contact Us', href: '/contact' }}
-        whatsappText="Hello DRP, please keep me updated on new off-plan launches."
+        whatsappText="Hello D|R|P, please keep me updated on new off-plan launches."
       />
     </SiteShell>
   );

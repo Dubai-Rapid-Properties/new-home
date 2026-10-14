@@ -19,7 +19,7 @@ export default function Page() {
             eyebrow="Developers We Work With"
             heading={`${developers.length} Developers, One Team`}
             headingId="developers-heading"
-            intro="Select a developer to see their projects available through DRP."
+            intro="Select a developer to see their projects available through D|R|P."
           />
 
           <ul className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
@@ -66,7 +66,7 @@ export default function Page() {
         heading="Compare developers with a specialist"
         text="Track record, payment plans and handover history, set side by side for the projects you are considering."
         button={{ label: 'Speak with a Specialist', href: '/contact' }}
-        whatsappText="Hello DRP, I would like advice on off-plan developers."
+        whatsappText="Hello D|R|P, I would like advice on off-plan developers."
       />
     </SiteShell>
   );

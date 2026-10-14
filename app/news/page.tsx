@@ -12,7 +12,7 @@ export default function Page() {
       <PageHero
         eyebrow="News & Insights"
         heading="Stay Ahead of the Market"
-        intro="Market reports, launch coverage and investment commentary from the DRP team on Palm Jumeirah."
+        intro="Market reports, launch coverage and investment commentary from the D|R|P team on Palm Jumeirah."
         // DEMO PLACEHOLDER – swap for DRP photography
         image={unsplash('1526495124232-a04e1849168c', 2000)}
         imageAlt="The Downtown Dubai skyline at dusk"

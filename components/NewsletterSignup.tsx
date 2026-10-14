@@ -27,7 +27,7 @@ export default function NewsletterSignup() {
       <h2 className="eyebrow text-white/40">Market Updates</h2>
       {done ? (
         <p role="status" className="mt-5 max-w-sm text-sm font-light text-white/75">
-          Thank you. You will receive DRP&rsquo;s market updates and new listings.
+          Thank you. You will receive D|R|P&rsquo;s market updates and new listings.
         </p>
       ) : (
         <form onSubmit={submit} noValidate className="mt-5 max-w-sm">

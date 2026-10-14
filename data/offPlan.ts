@@ -435,7 +435,7 @@ export const offPlanPages = {
     hero: {
       eyebrow: 'Off-Plan',
       heading: 'All Off-Plan Projects',
-      intro: 'Every off-plan project DRP sells, with filters for area, developer, budget and handover.',
+      intro: 'Every off-plan project D|R|P sells, with filters for area, developer, budget and handover.',
       image: '/images/off-plan/hero.webp',
       imageAlt: 'A penthouse terrace overlooking the Dubai skyline at dusk',
     },

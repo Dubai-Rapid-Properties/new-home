@@ -9,7 +9,7 @@ export default function WhatsAppFloat() {
       href={contact.whatsappHref}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`Chat with DRP on WhatsApp at ${contact.whatsapp}`}
+      aria-label={`Chat with D|R|P on WhatsApp at ${contact.whatsapp}`}
       className="group fixed right-4 z-40 flex h-[52px] w-[52px] items-center justify-center rounded-full bg-orange shadow-[0_8px_30px_rgba(26,26,26,0.25)] transition-transform duration-300 hover:scale-105 sm:right-8 sm:h-14 sm:w-14"
       style={{ bottom: 'calc(env(safe-area-inset-bottom, 0px) + 16px)' }}
     >

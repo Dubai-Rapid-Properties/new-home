@@ -47,7 +47,7 @@ export const buyingGuide: Guide = {
     heading: 'Six Steps to the Keys',
     items: [
       { title: 'Set your budget', text: 'Allow around 7% on top of the price for fees. Buying with a mortgage, get a pre-approval first so you know exactly what you can offer.' },
-      { title: 'View and shortlist', text: 'Your DRP specialist arranges viewings in person or by video, and checks each building’s service charges, history and rental potential.' },
+      { title: 'View and shortlist', text: 'Your D|R|P specialist arranges viewings in person or by video, and checks each building’s service charges, history and rental potential.' },
       { title: 'Agree the price', text: 'We negotiate on your behalf and confirm the terms: price, transfer date, what stays in the home and how vacant possession is handled.' },
       { title: 'Sign the MOU', text: 'Buyer and seller sign the RERA Memorandum of Understanding (Form F). The buyer gives a security deposit, usually 10% of the price, held until transfer.' },
       { title: 'NOC from the developer', text: 'The seller obtains a No Objection Certificate confirming the service charges are paid. Mortgage buyers complete the bank’s valuation and final offer.' },
@@ -67,16 +67,16 @@ export const buyingGuide: Guide = {
   },
   faqs: [
     { q: 'What does it cost to buy on top of the price?', a: 'The main cost is the 4% DLD transfer fee. A resale purchase adds the trustee office fee and usually a 2% agency fee plus VAT; a mortgage adds registration, valuation and bank fees. Altogether, plan for about 7% for a resale purchase.' },
-    { q: 'Can I buy without being in Dubai?', a: 'Yes. Documents can be signed remotely or through a power of attorney, and DRP can attend the transfer on your behalf.' },
+    { q: 'Can I buy without being in Dubai?', a: 'Yes. Documents can be signed remotely or through a power of attorney, and D|R|P can attend the transfer on your behalf.' },
     { q: 'Can non-residents get a mortgage?', a: 'Yes. Non-residents can typically borrow up to 50–60% of the value, residents up to 80% on a first home under AED 5 million. Our mortgage team compares UAE lenders for you.' },
     { q: 'How long does a purchase take?', a: 'A cash resale typically completes in two to four weeks from the MOU; with a mortgage, allow four to eight weeks.' },
   ],
   cta: {
     eyebrow: 'Start Your Search',
-    heading: 'Buy with a DRP specialist',
+    heading: 'Buy with a D|R|P specialist',
     text: 'Tell us what you are looking for and we will shortlist homes, arrange viewings and take you through to the title deed.',
     button: { label: 'Speak With a Specialist', href: '/contact' },
-    whatsappText: 'Hello DRP, I am looking to buy a property in Dubai.',
+    whatsappText: 'Hello D|R|P, I am looking to buy a property in Dubai.',
   },
   related: [
     { label: 'Properties for sale', href: '/properties?offering=buy' },
@@ -102,8 +102,8 @@ export const sellingGuide: Guide = {
     eyebrow: 'Before You List',
     heading: 'Price it right from day one',
     paragraphs: [
-      'The first two weeks on the market bring the most interest, so the asking price matters most at the start. A DRP valuation compares recent DLD transactions in your building or community with what is listed now.',
-      'Before marketing begins, the sale needs a signed listing agreement and a DLD advertising permit, which DRP arranges for you.',
+      'The first two weeks on the market bring the most interest, so the asking price matters most at the start. A D|R|P valuation compares recent DLD transactions in your building or community with what is listed now.',
+      'Before marketing begins, the sale needs a signed listing agreement and a DLD advertising permit, which D|R|P arranges for you.',
     ],
   },
   steps: {
@@ -111,8 +111,8 @@ export const sellingGuide: Guide = {
     heading: 'Seven Steps to Transfer',
     items: [
       { title: 'Valuation', text: 'We value the home against recent transactions and current competition, and agree the asking price with you.' },
-      { title: 'Listing agreement', text: 'You sign the RERA listing agreement (Form A) with DRP, with a copy of the title deed and your passport.' },
-      { title: 'Permit and marketing', text: 'DRP obtains the DLD advertising permit, photographs the home and markets it on our website, the portals and to our buyers.' },
+      { title: 'Listing agreement', text: 'You sign the RERA listing agreement (Form A) with D|R|P, with a copy of the title deed and your passport.' },
+      { title: 'Permit and marketing', text: 'D|R|P obtains the DLD advertising permit, photographs the home and markets it on our website, the portals and to our buyers.' },
       { title: 'Offer and MOU', text: 'We negotiate the best offer and you sign the MOU (Form F) with the buyer, who gives a security deposit.' },
       { title: 'Developer NOC', text: 'You clear any outstanding service charges and apply for the developer’s No Objection Certificate.' },
       { title: 'Mortgage clearance', text: 'If the home is mortgaged, your bank issues a liability letter; the outstanding loan is settled at or before transfer.' },
@@ -128,12 +128,12 @@ export const sellingGuide: Guide = {
   cta: {
     eyebrow: 'Free Valuation',
     heading: 'What is your home worth?',
-    text: 'Request a valuation and a DRP specialist will come back with a price based on real transactions.',
+    text: 'Request a valuation and a D|R|P specialist will come back with a price based on real transactions.',
     button: { label: 'Request a Valuation', href: '/property-valuation' },
-    whatsappText: 'Hello DRP, I would like to sell my property in Dubai.',
+    whatsappText: 'Hello D|R|P, I would like to sell my property in Dubai.',
   },
   related: [
-    { label: 'List your property with DRP', href: '/list-your-property' },
+    { label: 'List your property with D|R|P', href: '/list-your-property' },
     { label: 'Request a valuation', href: '/property-valuation' },
     { label: 'Property management', href: '/property-management' },
   ],
@@ -180,7 +180,7 @@ export const goldenVisa: Guide = {
     ],
   },
   faqs: [
-    { q: 'Does an off-plan property qualify?', a: 'Off-plan properties from developers approved by the Dubai Land Department can qualify. Your DRP specialist confirms the status of a specific project.' },
+    { q: 'Does an off-plan property qualify?', a: 'Off-plan properties from developers approved by the Dubai Land Department can qualify. Your D|R|P specialist confirms the status of a specific project.' },
     { q: 'Can I combine several properties?', a: 'Yes. The AED 2 million can be reached across more than one property you own.' },
     { q: 'What if the property is mortgaged?', a: 'A mortgaged property can qualify with a no-objection letter from the bank. The rules on how much must be paid change from time to time, so we confirm them for your case.' },
     { q: 'Is there an option below AED 2 million?', a: 'Shorter residence visas have been available to property owners at lower values. Ask us about the current options for your budget.' },
@@ -190,7 +190,7 @@ export const goldenVisa: Guide = {
     heading: 'Find a qualifying property',
     text: 'We will shortlist homes and off-plan projects that meet the Golden Visa threshold, and guide you through the application.',
     button: { label: 'Speak With a Specialist', href: '/contact' },
-    whatsappText: 'Hello DRP, I am interested in a Golden Visa through property investment.',
+    whatsappText: 'Hello D|R|P, I am interested in a Golden Visa through property investment.',
   },
   related: [
     { label: 'Properties for sale', href: '/properties?offering=buy&min=2000000' },
