@@ -46,7 +46,7 @@ export const buyingGuide: Guide = {
     eyebrow: 'Ready Property',
     heading: 'Six Steps to the Keys',
     items: [
-      { title: 'Set your budget', text: 'Allow around 7% on top of the price for fees. Buying with a mortgage, get a pre-approval first so you know exactly what you can offer.' },
+      { title: 'Set your budget', text: 'Allow around 6% on top of the price for fees (4% DLD + 2% agency). Buying with a mortgage, get a pre-approval first so you know exactly what you can offer.' },
       { title: 'View and shortlist', text: 'Your D|R|P specialist arranges viewings in person or by video, and checks each building’s service charges, history and rental potential.' },
       { title: 'Agree the price', text: 'We negotiate on your behalf and confirm the terms: price, transfer date, what stays in the home and how vacant possession is handled.' },
       { title: 'Sign the MOU', text: 'Buyer and seller sign the RERA Memorandum of Understanding (Form F). The buyer gives a security deposit, usually 10% of the price, held until transfer.' },
@@ -66,7 +66,7 @@ export const buyingGuide: Guide = {
     ],
   },
   faqs: [
-    { q: 'What does it cost to buy on top of the price?', a: 'The main cost is the 4% DLD transfer fee. A resale purchase adds the trustee office fee and usually a 2% agency fee plus VAT; a mortgage adds registration, valuation and bank fees. Altogether, plan for about 7% for a resale purchase.' },
+    { q: 'What does it cost to buy on top of the price?', a: 'The main cost is the 4% DLD transfer fee. A resale purchase adds the trustee office fee and usually a 2% agency fee plus VAT; a mortgage adds registration, valuation and bank fees. Altogether, plan for about 6% (4% + 2%) for a resale purchase.' },
     { q: 'Can I buy without being in Dubai?', a: 'Yes. Documents can be signed remotely or through a power of attorney, and D|R|P can attend the transfer on your behalf.' },
     { q: 'Can non-residents get a mortgage?', a: 'Yes. Non-residents can typically borrow up to 50–60% of the value, residents up to 80% on a first home under AED 5 million. Our mortgage team compares UAE lenders for you.' },
     { q: 'How long does a purchase take?', a: 'A cash resale typically completes in two to four weeks from the MOU; with a mortgage, allow four to eight weeks.' },
