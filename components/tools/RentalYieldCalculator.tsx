@@ -110,7 +110,7 @@ export default function RentalYieldCalculator() {
           </div>
         </dl>
         <p className="mt-6 text-[11px] font-light leading-relaxed text-white/40">
-          Net yield is measured against the price plus about {c.purchaseCostPct}% purchase costs. Estimates only; DRP
+          Net yield is measured against the price plus about {c.purchaseCostPct}% purchase costs. Estimates only; D|R|P
           confirms achievable rent and service charges for a specific home.
         </p>
       </div>

@@ -14,7 +14,7 @@ export default function Page() {
       <PageHero
         eyebrow="Off-Plan"
         heading="Construction Tracker"
-        intro="Site progress for the off-plan projects DRP follows, updated as developers report each milestone."
+        intro="Site progress for the off-plan projects D|R|P follows, updated as developers report each milestone."
         // DEMO PLACEHOLDER – swap for DRP site photography
         image={unsplash('1504307651254-35680f356dfd', 2000)}
         imageAlt="Construction under way on a new development"
@@ -25,7 +25,7 @@ export default function Page() {
             eyebrow="Site Progress"
             heading="Every Project, One View"
             headingId="tracker-heading"
-            intro={`${constructionUpdates.length} projects, most advanced first. Figures come from DRP's construction status reports.`}
+            intro={`${constructionUpdates.length} projects, most advanced first. Figures come from D|R|P's construction status reports.`}
           />
           <div className="mt-12">
             <ConstructionTracker />
@@ -35,9 +35,9 @@ export default function Page() {
       <CtaBand
         eyebrow="Already Own Off-Plan?"
         heading="We will track it for you"
-        text="DRP clients receive milestone updates, snagging support and handover management for their units."
+        text="D|R|P clients receive milestone updates, snagging support and handover management for their units."
         button={{ label: 'Speak to the Team', href: '/contact' }}
-        whatsappText="Hello DRP, I would like an update on my off-plan purchase."
+        whatsappText="Hello D|R|P, I would like an update on my off-plan purchase."
       />
     </SiteShell>
   );

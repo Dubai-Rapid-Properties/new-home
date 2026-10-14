@@ -6,7 +6,7 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import SmartLink from '@/components/ui/SmartLink';
 import { ecosystem } from '@/data/ecosystem';
 
-export const metadata = { title: 'The DRP Ecosystem | Dubai Rapid Properties' };
+export const metadata = { title: 'The D|R|P Ecosystem | Dubai Rapid Properties' };
 
 export default function Page() {
   return (

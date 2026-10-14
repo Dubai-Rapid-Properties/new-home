@@ -8,7 +8,7 @@ const links = [
   { href: '/properties', label: 'Properties for Sale and Rent' },
   { href: '/off-plan', label: 'Off-Plan Projects' },
   { href: '/areas', label: 'Area Guides' },
-  { href: '/contact', label: 'Contact DRP' },
+  { href: '/contact', label: 'Contact D|R|P' },
 ];
 
 export default function NotFound() {

@@ -17,7 +17,7 @@ export default function Page() {
       <PageHero
         eyebrow="Ready Properties"
         heading="Properties for Sale and Rent"
-        intro="Apartments, villas, townhouses and penthouses available now across Dubai, each one personally viewed by a DRP specialist."
+        intro="Apartments, villas, townhouses and penthouses available now across Dubai, each one personally viewed by a D|R|P specialist."
         // DEMO PLACEHOLDER – swap for DRP photography
         image={'/images/buy.jpeg'}
         imageAlt="A furnished sea-view living room on Palm Jumeirah"
@@ -45,7 +45,7 @@ export default function Page() {
         heading="Not seeing the right home?"
         text="Many of our best properties are shared privately before they are listed. Tell us what you are looking for."
         button={{ label: 'Speak With a Specialist', href: '/contact' }}
-        whatsappText="Hello DRP, I am looking for a property in Dubai."
+        whatsappText="Hello D|R|P, I am looking for a property in Dubai."
       />
     </SiteShell>
   );

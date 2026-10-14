@@ -7,7 +7,7 @@ export default function AboutFacts() {
   const [year, home, ecosystem] = about.facts;
 
   return (
-    <section aria-label="DRP at a glance" className="bg-white pb-[var(--section-y)]">
+    <section aria-label="D|R|P at a glance" className="bg-white pb-[var(--section-y)]">
       <div className="container-drp grid grid-cols-1 gap-3 lg:grid-cols-12">
         {/* 2007 — pure type */}
         <Reveal className="lg:col-span-4">

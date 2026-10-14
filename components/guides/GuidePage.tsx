@@ -35,7 +35,7 @@ export default function GuidePage({ guide }: { guide: Guide }) {
       <section aria-label="Related pages" className="bg-cream pb-[var(--section-y)]">
         <div className="container-drp">
           <p className="text-[11px] font-light leading-relaxed text-charcoal-muted">
-            General guidance only. Rules and fees change, so DRP confirms the details for your own purchase or sale.
+            General guidance only. Rules and fees change, so D|R|P confirms the details for your own purchase or sale.
           </p>
           <ul className="mt-8 flex flex-wrap gap-x-10 gap-y-4">
             {guide.related.map((r) => (

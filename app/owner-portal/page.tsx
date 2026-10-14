@@ -15,9 +15,9 @@ export default function Page() {
       <PageHero
         eyebrow="For Owners"
         heading="Owner Portal"
-        intro="Statements, occupancy, tenancy and maintenance for every property DRP manages for you — in one place."
+        intro="Statements, occupancy, tenancy and maintenance for every property D|R|P manages for you — in one place."
         image={unsplash('1616486338812-3dadae4b4ace', 2000)}
-        imageAlt="A bright living room in a DRP-managed home"
+        imageAlt="A bright living room in a D|R|P-managed home"
       />
       <section aria-labelledby="portal-heading" className="section-y bg-cream">
         <div className="container-drp grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-16">
@@ -40,7 +40,7 @@ export default function Page() {
               <p className="eyebrow text-orange">Owner Portal</p>
               <h2 className="heading-display mt-4 text-[clamp(1.9rem,3.4vw,2.6rem)] text-charcoal">Sign in</h2>
               <p className="mt-5 max-w-md font-light leading-relaxed text-charcoal-muted">
-                Owners who list their property with DRP sign in to the owner portal with the email address registered
+                Owners who list their property with D|R|P sign in to the owner portal with the email address registered
                 with us.
               </p>
               <a
@@ -53,7 +53,7 @@ export default function Page() {
                 <ArrowUpRight aria-hidden="true" className="h-4 w-4" strokeWidth={1.5} />
               </a>
               <p className="mt-8 border-t border-line pt-6 text-sm font-light text-charcoal-muted">
-                No login yet? Your DRP account manager can set one up —{' '}
+                No login yet? Your D|R|P account manager can set one up —{' '}
                 <a href={contact.emailHref} className="link-underline text-charcoal">
                   email us
                 </a>{' '}

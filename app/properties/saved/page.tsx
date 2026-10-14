@@ -17,7 +17,7 @@ export default function Page() {
             eyebrow="Your Shortlist"
             heading="Saved Properties"
             headingId="saved-heading"
-            intro="The homes you have saved with the heart. Send the list to DRP and a specialist will come back to you on each one."
+            intro="The homes you have saved with the heart. Send the list to D|R|P and a specialist will come back to you on each one."
           />
           <SavedList cards={listings.map(toPropertyCard)} />
         </div>

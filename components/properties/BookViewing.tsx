@@ -106,7 +106,7 @@ export default function BookViewing({ context }: { context: Record<string, strin
     return (
       <SuccessState
         title="Viewing requested."
-        body="A DRP specialist will call you to confirm the time. If that slot is taken, they will offer the nearest one."
+        body="A D|R|P specialist will call you to confirm the time. If that slot is taken, they will offer the nearest one."
         headingRef={(el) => el?.focus()}
         onReset={() => {
           setSent(false);

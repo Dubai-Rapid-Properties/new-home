@@ -11,18 +11,18 @@ import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { furnishings, interiorDesign as page, whyItMatters } from '@/data/services';
 
-export const metadata = { title: 'DRP Furnishing | Dubai Rapid Properties' };
+export const metadata = { title: 'D|R|P Furnishing | Dubai Rapid Properties' };
 
 /** Interior design, the furnishing packages and why furnishing matters, on one page. */
 export default function Page() {
   return (
     <SiteShell>
       <PageHero {...page.hero} />
-      <IntroSplit eyebrow="DRP Interiors" heading="Designed for the outcome" paragraphs={page.intro} />
+      <IntroSplit eyebrow="D|R|P Interiors" heading="Designed for the outcome" paragraphs={page.intro} />
       <FeatureGrid eyebrow="Services" heading="What We Design" items={page.services} columns={2} tone="cream" />
       <section aria-labelledby="work-heading" className="section-y bg-white">
         <div className="container-drp">
-          <SectionHeading eyebrow="DRP Interiors" heading="Essentials & Signature" headingId="work-heading" />
+          <SectionHeading eyebrow="D|R|P Interiors" heading="Essentials & Signature" headingId="work-heading" />
           <ul className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-10">
             {page.showcase.map((s, i) => (
               <Reveal as="li" key={s.name} delay={i * 0.08}>
@@ -32,7 +32,7 @@ export default function Page() {
                 <div className="mt-6">
                   <ListingGallery
                     images={s.images}
-                    title={`DRP ${s.name}`}
+                    title={`D|R|P ${s.name}`}
                     aspectClass="aspect-[4/3]"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
@@ -68,7 +68,7 @@ export default function Page() {
         <StatStrip
           items={whyItMatters.stats}
           tone="cream"
-          note="Compared with similar unfurnished or dated homes in the DRP portfolio. Indicative figures."
+          note="Compared with similar unfurnished or dated homes in the D|R|P portfolio. Indicative figures."
         />
         <FeatureGrid eyebrow="Where It Shows" heading="Six Ways Furnishing Pays" items={whyItMatters.reasons} />
       </div>

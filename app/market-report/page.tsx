@@ -29,7 +29,7 @@ const reportForm: LeadFormConfig = {
       ],
     },
     contactStep(
-      { id: 'subscribe', label: 'Send me DRP market insights each month' },
+      { id: 'subscribe', label: 'Send me D|R|P market insights each month' },
       { question: 'Where should we send it?', helper: 'The report arrives by email as a PDF.' },
     ),
   ],

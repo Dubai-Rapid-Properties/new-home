@@ -63,7 +63,7 @@ export const calculatorsPage = {
     },
     {
       q: 'How accurate are these figures?',
-      a: 'They use the standard fees and your own inputs, so they are estimates. Your DRP specialist confirms the exact costs, service charge and achievable rent for any property you are considering.',
+      a: 'They use the standard fees and your own inputs, so they are estimates. Your D|R|P specialist confirms the exact costs, service charge and achievable rent for any property you are considering.',
     },
   ],
 };

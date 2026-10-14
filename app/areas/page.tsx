@@ -69,7 +69,7 @@ export default function Page() {
         eyebrow="Not Sure Where?"
         heading="Let us shortlist the right community"
         button={{ label: 'Speak With a Specialist', href: '/contact' }}
-        whatsappText="Hello DRP, I would like advice on which area of Dubai suits me."
+        whatsappText="Hello D|R|P, I would like advice on which area of Dubai suits me."
       />
     </SiteShell>
   );

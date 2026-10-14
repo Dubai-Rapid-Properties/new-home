@@ -52,7 +52,7 @@ export default async function Page({ params }: PageProps) {
             : { value: area.facts.pricePerSqft, label: 'Avg. price per sq ft' },
           { value: area.facts.rentalYield, label: 'Gross rental yield' },
           { value: area.facts.airport, label: 'To the airport' },
-          { value: String(homes.length + launches.length), label: 'DRP listings & projects' },
+          { value: String(homes.length + launches.length), label: 'D|R|P listings & projects' },
         ]}
         note={`Typical homes: ${area.facts.homes}. Figures are indicative.`}
       />
@@ -103,7 +103,7 @@ export default async function Page({ params }: PageProps) {
         eyebrow={area.name}
         heading={`Buying or selling in ${area.name}?`}
         button={{ label: 'Speak With a Specialist', href: '/contact' }}
-        whatsappText={`Hello DRP, I would like to talk about property in ${area.name}.`}
+        whatsappText={`Hello D|R|P, I would like to talk about property in ${area.name}.`}
       />
     </SiteShell>
   );

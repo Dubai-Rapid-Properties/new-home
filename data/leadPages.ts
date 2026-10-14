@@ -106,7 +106,7 @@ export const contactStep = (
   id: 'contact',
   label: 'Your Details',
   question: extra.question ?? 'How can we reach you?',
-  helper: 'A DRP specialist will contact you personally. We never share your details.',
+  helper: 'A D|R|P specialist will contact you personally. We never share your details.',
   kind: 'contact',
   checkbox,
   message: extra.message,
@@ -118,10 +118,10 @@ export const contactStep = (
 /* -------------------------------------------------------------------------- */
 
 export const listYourProperty = {
-  metaTitle: 'List Your Property with DRP | Dubai Rapid Properties',
+  metaTitle: 'List Your Property with D|R|P | Dubai Rapid Properties',
   hero: {
-    eyebrow: 'List with DRP',
-    heading: 'List Your Property with DRP',
+    eyebrow: 'List with D|R|P',
+    heading: 'List Your Property with D|R|P',
     intro:
       'Whether you are looking to sell or rent your property, our team will help you position it correctly, reach qualified clients and manage the process from listing to completion.',
     subline:
@@ -134,7 +134,7 @@ export const listYourProperty = {
     formId: 'list-your-property',
     submitLabel: 'List My Property',
     successTitle: 'Thank you.',
-    successBody: 'A DRP property specialist will contact you shortly.',
+    successBody: 'A D|R|P property specialist will contact you shortly.',
     steps: [
       {
         id: 'intent',
@@ -177,7 +177,7 @@ export const propertyValuation = {
     imageAlt: 'A contemporary Dubai residential building against a clear sky',
   },
   process: {
-    heading: 'What a DRP specialist does',
+    heading: 'What a D|R|P specialist does',
     points: [
       'Arrange a visit to the property',
       'Assess its condition and characteristics',
@@ -189,7 +189,7 @@ export const propertyValuation = {
     formId: 'property-valuation',
     submitLabel: 'Request a Valuation',
     successTitle: 'Thank you.',
-    successBody: 'A DRP valuation specialist will contact you shortly.',
+    successBody: 'A D|R|P valuation specialist will contact you shortly.',
     steps: [
       areaStep,
       buildingStep,

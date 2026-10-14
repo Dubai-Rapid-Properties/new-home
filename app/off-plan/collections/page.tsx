@@ -22,7 +22,7 @@ export default function Page() {
             eyebrow="Collections"
             heading="Find the Right Investment"
             headingId="collections-heading"
-            intro="Each collection is a shortlist chosen by DRP's off-plan team."
+            intro="Each collection is a shortlist chosen by D|R|P's off-plan team."
           />
           <ul className="mt-12 grid gap-6 sm:mt-16 lg:grid-cols-2 lg:gap-8">
             {offPlanCollections.map((c, i) => (
@@ -47,7 +47,7 @@ export default function Page() {
         <div className="container-drp">
           <SectionHeading
             eyebrow="Signature Projects"
-            heading="Handpicked by DRP"
+            heading="Handpicked by D|R|P"
             headingId="signature-heading"
             intro="Branded and ultra-luxury residences our team recommends right now."
           />
@@ -64,7 +64,7 @@ export default function Page() {
       <CtaBand
         {...page.cta}
         button={{ label: 'Book a Free Consultation', href: '/contact' }}
-        whatsappText="Hello DRP, I would like a free consultation on off-plan investments."
+        whatsappText="Hello D|R|P, I would like a free consultation on off-plan investments."
       />
     </SiteShell>
   );

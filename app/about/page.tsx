@@ -7,7 +7,7 @@ import CtaBand from '@/components/sections/CtaBand';
 import Reveal from '@/components/ui/Reveal';
 import { about } from '@/data/company';
 
-export const metadata = { title: 'About DRP | Dubai Rapid Properties' };
+export const metadata = { title: 'About D|R|P | Dubai Rapid Properties' };
 
 export default function Page() {
   const [lead, second] = about.intro;
@@ -32,9 +32,9 @@ export default function Page() {
       <TeamGrid />
 
       <CtaBand
-        eyebrow="Careers at DRP"
+        eyebrow="Careers at D|R|P"
         heading="Want to join the team?"
-        button={{ label: 'Careers at DRP', href: '/careers' }}
+        button={{ label: 'Careers at D|R|P', href: '/careers' }}
       />
     </SiteShell>
   );

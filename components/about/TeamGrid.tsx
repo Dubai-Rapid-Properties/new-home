@@ -49,7 +49,7 @@ export default function TeamGrid() {
                     {m.whatsapp ? (
                       <a
                         href={`${memberContact(m).whatsappHref}?text=${encodeURIComponent(
-                          memberContact(m).personal ? `Hello ${m.name.split(' ')[0]},` : `Hello DRP, I would like to speak to ${m.name}.`,
+                          memberContact(m).personal ? `Hello ${m.name.split(' ')[0]},` : `Hello D|R|P, I would like to speak to ${m.name}.`,
                         )}`}
                         target="_blank"
                         rel="noopener noreferrer"

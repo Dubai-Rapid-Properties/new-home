@@ -14,7 +14,7 @@ export default function Page() {
     <SiteShell>
       <PageHero {...page.hero} />
       {/* DEMO PLACEHOLDER figures — replace with portfolio data */}
-      <StatStrip items={page.stats} note="Indicative figures across the DRP holiday-home portfolio." />
+      <StatStrip items={page.stats} note="Indicative figures across the D|R|P holiday-home portfolio." />
       <ImageText
         {...page.guests}
         imageAlt={page.guests.imageAlt}
@@ -33,7 +33,7 @@ export default function Page() {
         eyebrow="Holiday Homes"
         heading="Talk to our holiday homes team"
         button={{ label: 'Get an Earnings Estimate', href: '/holiday-homes/list-your-property' }}
-        whatsappText="Hello DRP, I would like to know more about DRP Holiday Homes."
+        whatsappText="Hello D|R|P, I would like to know more about D|R|P Holiday Homes."
       />
     </SiteShell>
   );
