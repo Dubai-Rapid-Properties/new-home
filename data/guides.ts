@@ -182,7 +182,7 @@ export const goldenVisa: Guide = {
   faqs: [
     { q: 'Does an off-plan property qualify?', a: 'Off-plan properties from developers approved by the Dubai Land Department can qualify. Your D|R|P specialist confirms the status of a specific project.' },
     { q: 'Can I combine several properties?', a: 'Yes. The AED 2 million can be reached across more than one property you own.' },
-    { q: 'What if the property is mortgaged?', a: 'A mortgaged property can qualify with a no-objection letter from the bank. The rules on how much must be paid change from time to time, so we confirm them for your case.' },
+    { q: 'What if the property is mortgaged?', a: 'Yes, a mortgaged property qualifies. Since February 2026, eligibility rests on the Dubai Land Department valuation alone: the property must be valued at AED 2 million or more, and the earlier rule that you must have paid at least half the price has been removed. You will need a no-objection certificate (NOC) from your bank confirming the mortgage and that it has no objection to the application. We confirm the current requirements for your case before you apply.' },
     { q: 'Is there an option below AED 2 million?', a: 'Shorter residence visas have been available to property owners at lower values. Ask us about the current options for your budget.' },
   ],
   cta: {
