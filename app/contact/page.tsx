@@ -19,6 +19,9 @@ export default function Page() {
     <SiteShell>
       <PageHero {...contactPage.hero} />
 
+      {/* A white band separates the dark hero from the dark contact section */}
+      <div aria-hidden="true" className="h-2 bg-white lg:h-3" />
+
       <ContactSection />
 
       <section aria-labelledby="office-heading" className="section-y bg-cream">
