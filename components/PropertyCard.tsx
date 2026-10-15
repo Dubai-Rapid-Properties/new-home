@@ -6,6 +6,7 @@ import type { OffPlanProject, ReadyProperty, RentalProperty } from '@/data/homep
 import FavouriteButton from './properties/FavouriteButton';
 import CompareButton from './properties/CompareButton';
 import Price from './ui/Price';
+import Size from './ui/Size';
 import SmartLink from './ui/SmartLink';
 
 type Props =
@@ -104,7 +105,7 @@ export default function PropertyCard(props: Props) {
                     </>
                   ) : null}
                 </span>
-                <span className="shrink-0 whitespace-nowrap">{item.area}</span>
+                <span className="shrink-0 whitespace-nowrap">{'sqft' in item && item.sqft ? <Size sqft={item.sqft} /> : item.area}</span>
               </>
             )}
           </div>

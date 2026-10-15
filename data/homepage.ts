@@ -407,6 +407,8 @@ export type ReadyProperty = {
   beds: string;
   baths?: string;
   area: string;
+  /** Floor area, so the card can show it in the visitor's unit */
+  sqft?: number;
   status?: string;
   /** Hot deal: the badge turns orange */
   hot?: boolean;
@@ -435,6 +437,8 @@ export type RentalProperty = {
   beds: string;
   baths: string;
   area: string;
+  /** Floor area, so the card can show it in the visitor's unit */
+  sqft?: number;
   status: string;
   /** Hot deal: the badge turns orange */
   hot?: boolean;

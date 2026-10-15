@@ -11,10 +11,12 @@ import StatStrip from '@/components/sections/StatStrip';
 import ArrowLink from '@/components/ui/ArrowLink';
 import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
-import { getArea } from '@/data/areas';
+import PricePerArea from '@/components/ui/PricePerArea';
+import { UnitName } from '@/components/ui/Size';
+import { factPsf, getArea } from '@/data/areas';
 import { projects } from '@/data/offPlan';
 import { listings, toPropertyCard } from '@/data/properties';
-import { areaMarket, formatAed } from '@/lib/dld';
+import { areaMarket } from '@/lib/dld';
 import { toSlug } from '@/lib/slug';
 import { staticSlugs } from './slugs';
 
@@ -48,8 +50,8 @@ export default async function Page({ params }: PageProps) {
       <StatStrip
         items={[
           market?.medianPsf
-            ? { value: formatAed(market.medianPsf), label: 'Median price per sq ft (DLD)' }
-            : { value: area.facts.pricePerSqft, label: 'Avg. price per sq ft' },
+            ? { value: <PricePerArea aedPerSqft={market.medianPsf} unit={false} />, label: <>Median price per <UnitName /> (DLD)</> }
+            : { value: <PricePerArea aedPerSqft={factPsf(area)} unit={false} />, label: <>Avg. price per <UnitName /></> },
           { value: area.facts.rentalYield, label: 'Gross rental yield' },
           { value: area.facts.airport, label: 'To the airport' },
           { value: String(homes.length + launches.length), label: 'D|R|P listings & projects' },

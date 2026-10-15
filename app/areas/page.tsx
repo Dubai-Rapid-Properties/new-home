@@ -5,9 +5,12 @@ import CtaBand from '@/components/sections/CtaBand';
 import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import SmartLink from '@/components/ui/SmartLink';
-import { areas } from '@/data/areas';
+import { areas, factPsf } from '@/data/areas';
 import { projects } from '@/data/offPlan';
 import { listings } from '@/data/properties';
+import PricePerArea from '@/components/ui/PricePerArea';
+import UnitSwitch from '@/components/ui/UnitSwitch';
+import { areaMarket } from '@/lib/dld';
 import { unsplash } from '@/lib/media';
 
 export const metadata = { title: 'Dubai Area Guides | Dubai Rapid Properties' };
@@ -25,11 +28,16 @@ export default function Page() {
       />
       <section aria-labelledby="areas-heading" className="section-y bg-white">
         <div className="container-drp">
-          <SectionHeading eyebrow="Area Guides" heading={`${areas.length} Communities`} headingId="areas-heading" />
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <SectionHeading eyebrow="Area Guides" heading={`${areas.length} Communities`} headingId="areas-heading" />
+            <UnitSwitch />
+          </div>
           <ul className="mt-12 grid grid-cols-1 gap-x-6 gap-y-14 sm:mt-16 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
             {areas.map((a, i) => {
               const homes = listings.filter((l) => l.area === a.name).length;
               const launches = projects.filter((p) => p.area === a.name).length;
+              /* The same figure as the area's own page: DLD's median when it has one */
+              const median = areaMarket(a.name)?.medianPsf;
               return (
                 <Reveal as="li" key={a.slug} delay={(i % 3) * 0.08}>
                   <SmartLink href={`/areas/${a.slug}`} className="group block">
@@ -48,7 +56,9 @@ export default function Page() {
                     </h3>
                     <p className="mt-2 text-sm font-light leading-relaxed text-charcoal-muted">{a.tagline}</p>
                     <div className="mt-4 flex items-baseline justify-between gap-4 border-t border-line pt-4 text-[10px] font-light uppercase tracking-wide text-charcoal-muted">
-                      <span>From {a.facts.pricePerSqft} / sq ft</span>
+                      <span>
+                        {median ? 'Median' : 'Avg.'} <PricePerArea aedPerSqft={median ?? factPsf(a)} />
+                      </span>
                       <span>
                         {homes ? `${homes} ready` : ''}
                         {homes && launches ? ' · ' : ''}
@@ -61,7 +71,7 @@ export default function Page() {
             })}
           </ul>
           <p className="mt-14 text-xs font-light text-charcoal-muted/80">
-            Price per sq ft is an indicative average.
+            Median price per area from Dubai Land Department's registered sales this year; an indicative average where DLD has too few sales.
           </p>
         </div>
       </section>

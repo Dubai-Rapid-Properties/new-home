@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
 import { CalendarDays } from 'lucide-react';
 import SiteShell from '@/components/layout/SiteShell';
@@ -21,6 +22,9 @@ import ArrowLink from '@/components/ui/ArrowLink';
 import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import CurrencySwitch from '@/components/ui/CurrencySwitch';
+import UnitSwitch from '@/components/ui/UnitSwitch';
+import Size from '@/components/ui/Size';
+import PricePerArea from '@/components/ui/PricePerArea';
 import Price from '@/components/ui/Price';
 import SmartLink from '@/components/ui/SmartLink';
 import { contactStep, type LeadFormConfig } from '@/data/leadPages';
@@ -76,13 +80,13 @@ export default async function Page({ params }: PageProps) {
 
   const isRent = listing.offering === 'rent';
   const backHref = `/properties?offering=${listing.offering}`;
-  const facts = [
+  const facts: [string, ReactNode][] = [
     ['Bedrooms', bedsLong(listing.beds)],
     ['Bathrooms', String(listing.baths)],
-    ['Size', `${listing.size.toLocaleString('en-US')} sq ft`],
+    ['Size', <Size key="size" sqft={listing.size} />],
     ['Type', listing.type],
     ['Status', listing.completion],
-    ...(listing.furnishing ? [['Furnishing', listing.furnishing]] : []),
+    ...(listing.furnishing ? [['Furnishing', listing.furnishing] as [string, ReactNode]] : []),
   ];
   /* Only link areas that have a guide */
   const guide = areas.find((a) => a.name === listing.area);
@@ -149,10 +153,11 @@ export default async function Page({ params }: PageProps) {
                 </p>
                 {listing.size > 0 ? (
                   <p className="text-sm font-light text-charcoal-muted">
-                    <Price aed={Math.round(listing.price / listing.size)} /> per sq ft{isRent ? ' / year' : ''}
+                    <PricePerArea aedPerSqft={listing.price / listing.size} />{isRent ? ' / year' : ''}
                   </p>
                 ) : null}
                 <CurrencySwitch />
+                <UnitSwitch />
               </div>
 
               <div className="mt-6 flex flex-wrap items-center gap-3">

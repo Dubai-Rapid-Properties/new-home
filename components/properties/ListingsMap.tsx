@@ -8,6 +8,8 @@ import type { MarkerClusterGroup, Map as LeafletMap } from 'leaflet';
 import { currencies } from '@/data/currency';
 import { bedsLabel, listingPlace, toPropertyCard, type Listing } from '@/data/properties';
 import { useCurrency } from '@/lib/currency';
+import { useAreaUnit } from '@/lib/areaUnit';
+import { formatSize, type AreaUnit } from '@/lib/units';
 import { englishBasemap } from './englishBasemap';
 
 /** Dubai, for a map with nothing on it */
@@ -34,7 +36,7 @@ function byBuilding(listings: Listing[]) {
   return [...groups.values()];
 }
 
-function popupHtml(listings: Listing[], code: string, perUnit: number) {
+function popupHtml(listings: Listing[], code: string, perUnit: number, unit: AreaUnit) {
   const place = listingPlace(listings[0]);
   const rows = listings
     .map((l) => {
@@ -42,7 +44,7 @@ function popupHtml(listings: Listing[], code: string, perUnit: number) {
       const price = `${code} ${compact(l.price, perUnit)}${l.offering === 'rent' ? ' / yr' : ''}`;
       return `<li><a class="drp-map-row" href="${esc(card.href)}">
         <img src="${esc(card.image)}" alt="" loading="lazy" width="72" height="56" />
-        <span><strong>${esc(price)}</strong><span>${esc(`${bedsLabel(l.beds)} · ${l.type} · ${l.size.toLocaleString('en-US')} sq ft`)}</span><span class="drp-map-title">${esc(l.title)}</span></span>
+        <span><strong>${esc(price)}</strong><span>${esc(`${bedsLabel(l.beds)} · ${l.type} · ${formatSize(l.size, unit)}`)}</span><span class="drp-map-title">${esc(l.title)}</span></span>
       </a></li>`;
     })
     .join('');
@@ -59,6 +61,7 @@ export default function ListingsMap({ listings }: { listings: Listing[] }) {
   const map = useRef<LeafletMap | null>(null);
   const pins = useRef<MarkerClusterGroup | null>(null);
   const { code } = useCurrency();
+  const { unit } = useAreaUnit();
   const perUnit = currencies.find((c) => c.code === code)?.perUnit ?? 1;
   const unpinned = listings.filter((l) => !l.map.near).length;
 
@@ -111,7 +114,7 @@ export default function ListingsMap({ listings }: { listings: Listing[] }) {
           /* Read by the cluster icon, which counts properties, not buildings */
           count: g.listings.length,
         } as L.MarkerOptions)
-          .bindPopup(popupHtml(g.listings, code, perUnit), { maxWidth: popupWidth, minWidth: popupWidth, autoPanPadding: [16, 16] })
+          .bindPopup(popupHtml(g.listings, code, perUnit, unit), { maxWidth: popupWidth, minWidth: popupWidth, autoPanPadding: [16, 16] })
           .addTo(pins.current!);
       }
       if (groups.length) {
@@ -121,7 +124,7 @@ export default function ListingsMap({ listings }: { listings: Listing[] }) {
     return () => {
       cancelled = true;
     };
-  }, [listings, code, perUnit]);
+  }, [listings, code, perUnit, unit]);
 
   useEffect(
     () => () => {

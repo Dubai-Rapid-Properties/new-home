@@ -252,6 +252,7 @@ export function toPropertyCard(
     beds: bedsLabel(l.beds),
     baths: `${l.baths} BA`,
     area: `${l.size.toLocaleString('en-US')} sq ft`,
+    sqft: l.size,
     image: l.images[0].src,
     alt: l.images[0].alt,
     href: l.href ?? listingHref(l.slug),
