@@ -1,6 +1,7 @@
+import type { ReactNode } from 'react';
 import Reveal from '../ui/Reveal';
 
-export type Stat = { value: string; label: string };
+export type Stat = { value: ReactNode; label: ReactNode };
 
 type Props = { items: Stat[]; tone?: 'white' | 'cream' | 'dark'; note?: string };
 
@@ -22,7 +23,7 @@ export default function StatStrip({ items, tone = 'white', note }: Props) {
           {items.map((s, i) => (
             <Reveal
               as="li"
-              key={s.label}
+              key={i}
               delay={i * 0.08}
               className={`py-7 sm:py-4 sm:pr-8 ${
                 i > 0 ? `lg:border-l lg:pl-8 ${dark ? 'lg:border-white/10' : 'lg:border-line'}` : ''

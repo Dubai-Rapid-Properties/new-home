@@ -26,6 +26,9 @@ export type Area = {
 
 const area = (a: Omit<Area, 'slug'>): Area => ({ ...a, slug: toSlug(a.name) });
 
+/** The guide's indicative price per sq ft as a number, e.g. 3900 */
+export const factPsf = (a: { facts: { pricePerSqft: string } }) => Number(a.facts.pricePerSqft.replace(/[^\d]/g, ''));
+
 export const areas: Area[] = [
   area({
     name: 'Palm Jumeirah',

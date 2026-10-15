@@ -6,6 +6,7 @@ import RecentlyViewed from '@/components/properties/RecentlyViewed';
 import { listings, toPropertyCard } from '@/data/properties';
 import CtaBand from '@/components/sections/CtaBand';
 import CurrencySwitch from '@/components/ui/CurrencySwitch';
+import UnitSwitch from '@/components/ui/UnitSwitch';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { unsplash } from '@/lib/media';
 
@@ -32,6 +33,7 @@ export default function Page() {
           <div className="flex items-center gap-3">
             <span className="text-[10px] uppercase tracking-eyebrow text-charcoal-muted">Prices in</span>
             <CurrencySwitch />
+            <UnitSwitch />
           </div>
         </div>
         <PropertyExplorer />

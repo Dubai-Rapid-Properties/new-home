@@ -1,5 +1,9 @@
 import { areaMarket, buildingSales, dayLabel, dldPeriod, formatAed, tidyName } from '@/lib/dld';
 import type { Listing } from '@/data/properties';
+import PricePerArea from '@/components/ui/PricePerArea';
+import Size, { UnitName } from '@/components/ui/Size';
+
+const HOME_TYPES = new Set<string>(['Apartment', 'Penthouse', 'Townhouse', 'Villa']);
 
 const beds = (n: number | null, type: string) => (n == null ? type : n === 0 ? 'Studio' : `${n} BR`);
 
@@ -11,6 +15,8 @@ const beds = (n: number | null, type: string) => (n == null ? type : n === 0 ? '
 export default function RecentSales({ listing, headingId }: { listing: Listing; headingId: string }) {
   const building = buildingSales(listing.building, listing.area);
   const area = areaMarket(listing.area);
+  /* DLD's figures are for homes; a shop or office is not comparable */
+  if (!HOME_TYPES.has(listing.type)) return null;
   if (!building && !area?.medianPsf) return null;
 
   const ownPsf = listing.offering === 'buy' && listing.size > 0 ? Math.round(listing.price / listing.size) : null;
@@ -34,7 +40,7 @@ export default function RecentSales({ listing, headingId }: { listing: Listing; 
           <div key={f.label} className="border-b border-line py-5 pr-4">
             <dt className="truncate text-[10px] uppercase tracking-eyebrow text-charcoal-muted">{f.label}</dt>
             <dd className="mt-2 text-[15px] text-charcoal">
-              {formatAed(f.value)} <span className="font-light text-charcoal-muted">/ sq ft</span>
+              <PricePerArea aedPerSqft={f.value} />
               <span className="mt-1 block text-[12px] font-light text-charcoal-muted">{f.note}</span>
             </dd>
           </div>
@@ -53,7 +59,7 @@ export default function RecentSales({ listing, headingId }: { listing: Listing; 
                 <th scope="col" className="py-3 pr-4 font-normal">Home</th>
                 <th scope="col" className="py-3 pr-4 text-right font-normal">Size</th>
                 <th scope="col" className="py-3 pr-4 text-right font-normal">Price</th>
-                <th scope="col" className="py-3 text-right font-normal">Per sq ft</th>
+                <th scope="col" className="py-3 text-right font-normal">Per <UnitName /></th>
               </tr>
             </thead>
             <tbody className="tabular-nums">
@@ -64,9 +70,9 @@ export default function RecentSales({ listing, headingId }: { listing: Listing; 
                     {beds(s.beds, s.type)}
                     {s.offPlan ? <span className="ml-2 text-[11px] text-charcoal-muted">off-plan</span> : null}
                   </td>
-                  <td className="whitespace-nowrap py-3 pr-4 text-right">{s.sqft.toLocaleString('en-US')} sq ft</td>
+                  <td className="whitespace-nowrap py-3 pr-4 text-right"><Size sqft={s.sqft} /></td>
                   <td className="whitespace-nowrap py-3 pr-4 text-right">{formatAed(s.price)}</td>
-                  <td className="whitespace-nowrap py-3 text-right">{Math.round(s.price / s.sqft).toLocaleString('en-US')}</td>
+                  <td className="whitespace-nowrap py-3 text-right"><PricePerArea aedPerSqft={s.price / s.sqft} unit={false} /></td>
                 </tr>
               ))}
             </tbody>

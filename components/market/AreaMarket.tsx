@@ -1,5 +1,8 @@
 import SectionHeading from '@/components/ui/SectionHeading';
 import { areaMarket, dayLabel, dldPeriod, formatAed, monthLabel } from '@/lib/dld';
+import PricePerArea from '@/components/ui/PricePerArea';
+import { UnitName } from '@/components/ui/Size';
+import UnitSwitch from '@/components/ui/UnitSwitch';
 import MonthlyPriceChart from './MonthlyPriceChart';
 
 /** Registered sales in an area this year: headline figures and price per sq ft by month. */
@@ -12,10 +15,10 @@ export default function AreaMarket({ area }: { area: string }) {
     .filter((m) => m.medianPsf != null)
     .map((m) => ({ ...m, medianPsf: m.medianPsf!, label: monthLabel(m.month, 'long'), partial: m.month === current }));
   const stats = [
-    { label: 'Median price per sq ft', value: formatAed(market.medianPsf) },
-    { label: 'Median sale price', value: market.medianPrice ? formatAed(market.medianPrice) : '—' },
-    { label: 'Homes sold this year', value: market.sales.toLocaleString('en-US') },
-    { label: 'Sold off-plan', value: market.offPlanShare != null ? `${Math.round(market.offPlanShare * 100)}%` : '—' },
+    { key: 'psf', label: <>Median price per <UnitName /></>, value: <PricePerArea aedPerSqft={market.medianPsf} unit={false} /> },
+    { key: 'price', label: 'Median sale price', value: market.medianPrice ? formatAed(market.medianPrice) : '—' },
+    { key: 'sales', label: 'Homes sold this year', value: market.sales.toLocaleString('en-US') },
+    { key: 'offplan', label: 'Sold off-plan', value: market.offPlanShare != null ? `${Math.round(market.offPlanShare * 100)}%` : '—' },
   ];
 
   return (
@@ -27,9 +30,12 @@ export default function AreaMarket({ area }: { area: string }) {
           headingId="market-heading"
           intro={`Residential sales registered in ${area} from ${dayLabel(dldPeriod.from)} to ${dayLabel(dldPeriod.to)}, updated daily.`}
         />
-        <dl className="mt-12 grid grid-cols-2 border-t border-line lg:grid-cols-4">
+        <div className="mt-10 flex justify-end">
+          <UnitSwitch />
+        </div>
+        <dl className="mt-4 grid grid-cols-2 border-t border-line lg:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.label} className="border-b border-line py-6 pr-4">
+            <div key={s.key} className="border-b border-line py-6 pr-4">
               <dt className="text-[10px] uppercase tracking-eyebrow text-charcoal-muted">{s.label}</dt>
               <dd className="mt-3 font-serif text-[clamp(1.5rem,2.6vw,2.1rem)] font-light leading-none text-charcoal">{s.value}</dd>
             </div>

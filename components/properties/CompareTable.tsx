@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { X } from 'lucide-react';
 import { useCompare } from '@/lib/slugStore';
 import Price from '../ui/Price';
+import PricePerArea from '../ui/PricePerArea';
+import Size, { UnitName } from '../ui/Size';
 import ArrowLink from '../ui/ArrowLink';
 import SmartLink from '../ui/SmartLink';
 
@@ -25,14 +27,16 @@ export type CompareListing = {
   permit: string | null;
 };
 
+const PER_AREA = 'Price per area';
+
 const ROWS: [string, (l: CompareListing) => React.ReactNode][] = [
   ['Price', (l) => (<><Price aed={l.price} />{l.offering === 'rent' ? ' / year' : ''}</>)],
-  ['Price per sq ft', (l) => (l.size ? <Price aed={Math.round(l.price / l.size)} /> : '—')],
+  [PER_AREA, (l) => (l.size ? <PricePerArea aedPerSqft={l.price / l.size} unit={false} /> : '—')],
   ['For', (l) => (l.offering === 'rent' ? 'Rent' : 'Sale')],
   ['Type', (l) => l.type],
   ['Bedrooms', (l) => l.beds],
   ['Bathrooms', (l) => l.baths],
-  ['Size', (l) => `${l.size.toLocaleString('en-US')} sq ft`],
+  ['Size', (l) => <Size sqft={l.size} />],
   ['Area', (l) => l.area],
   ['Building', (l) => l.building ?? '—'],
   ['Status', (l) => l.completion],
@@ -93,7 +97,7 @@ export default function CompareTable({ listings }: { listings: CompareListing[] 
             {ROWS.map(([label, value]) => (
               <tr key={label} className="border-t border-line">
                 <th scope="row" className="p-4 text-[10px] font-normal uppercase tracking-eyebrow text-charcoal-muted">
-                  {label}
+                  {label === PER_AREA ? <>Price per <UnitName /></> : label}
                 </th>
                 {picked.map((l) => (
                   <td key={l.slug} className="p-4 text-[15px] font-light text-charcoal">
