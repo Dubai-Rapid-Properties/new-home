@@ -1,3 +1,4 @@
+import { contactPage } from '@/data/company';
 import { contact, footer, licences, site } from '@/data/homepage';
 import { formatPrice, listingHref, type Listing } from '@/data/properties';
 import { siteUrl } from './siteUrl';
@@ -24,6 +25,11 @@ export const organisation = () => ({
     addressLocality: 'Dubai',
     addressCountry: 'AE',
   },
+  openingHoursSpecification: contactPage.hours.flatMap((h) =>
+    'open' in h && h.open
+      ? [{ '@type': 'OpeningHoursSpecification', dayOfWeek: h.open.days, opens: h.open.opens, closes: h.open.closes }]
+      : [],
+  ),
   areaServed: 'Dubai',
   sameAs: footer.socials.map((s) => s.href),
   ...(licences.orn ? { identifier: { '@type': 'PropertyValue', name: 'RERA ORN', value: licences.orn } } : {}),

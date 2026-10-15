@@ -254,10 +254,10 @@ export const contactPage = {
     size: 'tall' as const,
     clearHeader: true,
   },
-  // DEMO PLACEHOLDER – confirm office hours
+  // REAL – office hours; `open` feeds the structured data search engines read
   hours: [
-    { days: 'Monday – Friday', time: '9:00 – 18:00' },
-    { days: 'Saturday', time: '10:00 – 16:00' },
+    { days: 'Monday – Friday', time: '10:00 am – 7:00 pm', open: { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '10:00', closes: '19:00' } },
+    { days: 'Saturday', time: '10:00 am – 5:00 pm', open: { days: ['Saturday'], opens: '10:00', closes: '17:00' } },
     { days: 'Sunday', time: 'By appointment' },
   ],
   mapEmbed: contact.mapEmbed,
