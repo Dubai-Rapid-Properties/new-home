@@ -72,7 +72,9 @@ export const mortgage = {
   calculator: {
     defaultPrice: 2_500_000,
     defaultDownPct: 25,
-    defaultRate: 4.49,
+    defaultRate: 4,
+    /** Lowest rate on the slider */
+    minRate: 3.5,
     defaultYears: 25,
     minDownPct: 20,
     /** Upfront cost assumptions shown as estimates */
