@@ -100,7 +100,7 @@ function Calculator({ initialPrice }: { initialPrice?: number }) {
           label="Interest rate"
           value={rate}
           onChange={setRate}
-          min={2}
+          min={c.minRate}
           max={9}
           step={0.05}
           display={`${rate.toFixed(2)}%`}
@@ -232,7 +232,7 @@ export function ListingMortgage({ price: listPrice, headingId }: { price: number
             label="Interest rate"
             value={rate}
             onChange={setRate}
-            min={2}
+            min={c.minRate}
             max={9}
             step={0.05}
             display={`${rate.toFixed(2)}%`}
