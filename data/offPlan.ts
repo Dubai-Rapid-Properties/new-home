@@ -23,6 +23,7 @@ import {
   type PriceBand,
 } from '@/lib/filters';
 import importedConstruction from './imported/construction.json';
+import { curatedProjects } from './curatedProjects';
 import importedProjects from './imported/projects.json';
 
 export type ProjectType = 'Apartment' | 'Penthouse' | 'Townhouse' | 'Villa';
@@ -75,6 +76,8 @@ const PRICE_CORRECTIONS: Record<string, number | null> = {
   // CONFIRM – the DRP site says AED 1.35M, but Cavalli Couture is 3–6 bed
   // residences selling from roughly AED 16.5M; set the confirmed price here
   'cavalli-couture': null,
+  // DRP confirmed AED 1.1M; the DRP site still says AED 1.05M
+  diamondz: 1_100_000,
 };
 
 /**
@@ -94,7 +97,7 @@ const withPriceCollections = (collections: string[], fromPrice: number | null) =
  */
 export const projects: Project[] = importedProjects
   .filter((r) => r.startingPrice)
-  .map((r) => ({
+  .map((r): Project => ({
     slug: r.slug,
     name: r.name,
     developer: r.developer,
@@ -118,6 +121,8 @@ export const projects: Project[] = importedProjects
     map: r.map,
     sourceUrl: r.sourceUrl,
   }))
+  /* Projects D|R|P added by hand, unless the DRP website now has them too */
+  .concat(curatedProjects.filter((c) => !importedProjects.some((r) => r.slug === c.slug)))
   .sort((a, b) => b.launchedAt.localeCompare(a.launchedAt));
 
 /* -------------------------------------------------------------------------- */
