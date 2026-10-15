@@ -24,8 +24,12 @@ export const about = {
   hero: {
     eyebrow: 'About D|R|P',
     heading: 'Dubai Real Estate. One Team. Since 2007.',
-    image: '/images/team.png',
-    imageAlt: 'Inside the D|R|P office on Palm Jumeirah',
+    // REAL – the DRP team outside the office on Golden Mile 9
+    image: '/images/drpteam.jpeg',
+    imageAlt: 'The D|R|P team outside the office, under the D|R|P Dubai Rapid Properties sign',
+    /* Tall, and below the header, so the sign and the whole team stay in frame */
+    size: 'tall' as const,
+    clearHeader: true,
   },
   intro: [
     "Dubai Rapid Properties has been part of Dubai\u2019s real estate market since 2007. Over the years, we have grown from a real estate brokerage into a wider property ecosystem, supporting clients across property sales, rentals, off-plan investments, Holiday Homes and complementary services.",
