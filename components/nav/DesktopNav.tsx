@@ -19,8 +19,10 @@ export default function DesktopNav({ items, solid, ctaHref }: Props) {
   const closeTimer = useRef<number>();
   const triggerRefs = useRef<Record<string, HTMLElement | null>>({});
   const panelRef = useRef<HTMLDivElement>(null);
-  /* The panel drops from its own trigger: its left edge lines up with the open item */
+  /* The panel spans from the first item (Buy & Rent) to the hamburger at the far right */
   const [panelLeft, setPanelLeft] = useState(0);
+  const [panelWidth, setPanelWidth] = useState<number | undefined>(undefined);
+  const navRef = useRef<HTMLElement>(null);
 
   const clearTimers = () => {
     window.clearTimeout(openTimer.current);
@@ -95,16 +97,17 @@ export default function DesktopNav({ items, solid, ctaHref }: Props) {
     focusPanelLink(current + (e.key === 'ArrowDown' ? 1 : -1));
   };
 
-  /* Line the panel up under the open trigger; if it is wider than the space to
-     the right, shift it left just enough to stay inside the header. */
+  /* Left edge on the first menu item; right edge on the header row's content
+     edge, where the hamburger sits. */
   useLayoutEffect(() => {
     if (!openId) return;
-    const trigger = triggerRefs.current[openId];
-    const panel = panelRef.current;
-    const box = panel?.offsetParent as HTMLElement | null;
-    if (!trigger || !panel || !box) return;
-    const left = trigger.getBoundingClientRect().left - box.getBoundingClientRect().left;
-    setPanelLeft(Math.max(0, Math.min(left, box.clientWidth - panel.offsetWidth)));
+    const nav = navRef.current;
+    const box = panelRef.current?.offsetParent as HTMLElement | null;
+    if (!nav || !box) return;
+    const left = Math.max(0, nav.getBoundingClientRect().left - box.getBoundingClientRect().left);
+    const padRight = parseFloat(getComputedStyle(box).paddingRight) || 0;
+    setPanelLeft(left);
+    setPanelWidth(Math.max(0, box.clientWidth - padRight - left));
   }, [openId]);
 
   const activeNode = items.find((n) => n.id === openId) ?? null;
@@ -121,7 +124,7 @@ export default function DesktopNav({ items, solid, ctaHref }: Props) {
       onMouseLeave={scheduleClose}
       onMouseEnter={() => window.clearTimeout(closeTimer.current)}
     >
-      <nav aria-label="Primary">
+      <nav ref={navRef} aria-label="Primary">
         <ul className="flex items-center gap-9">
           {items.map((node, index) => {
             const open = openId === node.id;
@@ -193,8 +196,8 @@ export default function DesktopNav({ items, solid, ctaHref }: Props) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: reduce ? 0 : 0.18 }}
-            style={{ left: panelLeft }}
-            className="absolute top-full w-max max-w-full border border-t-0 border-white/10 bg-ink/95 shadow-[0_18px_40px_rgba(0,0,0,0.35)] backdrop-blur-md"
+            style={{ left: panelLeft, width: panelWidth }}
+            className="absolute top-full min-w-max border border-t-0 border-white/10 bg-ink/95 shadow-[0_18px_40px_rgba(0,0,0,0.35)] backdrop-blur-md"
           >
             <MegaPanel node={activeNode} ctaHref={ctaHref} onNavigate={closeNow} />
           </motion.div>
