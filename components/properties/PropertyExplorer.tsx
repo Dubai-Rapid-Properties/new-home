@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useMemo, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
 import {
@@ -71,6 +71,10 @@ function Explorer({
 }) {
   const [offering, setOffering] = useState<Offering>(initialOffering);
 
+  /* The menu links to /properties?offering=rent while this page is already open,
+     which changes the URL without remounting — follow it. */
+  useEffect(() => setOffering(initialOffering), [initialOffering]);
+
   const switchTo = (next: Offering) => {
     setOffering(next);
     /* Keep the address shareable without a navigation */
@@ -118,13 +122,14 @@ function Explorer({
 
 function ExplorerFromUrl() {
   const params = useSearchParams();
-  const initial = useMemo(() => {
-    const p = new URLSearchParams(params.toString());
-    const offering: Offering = p.get('offering') === 'rent' ? 'rent' : 'buy';
-    return { offering, selection: selectionFromParams(offering, p) };
+  const offering: Offering = params.get('offering') === 'rent' ? 'rent' : 'buy';
+  const selection = useMemo(
+    () => selectionFromParams(offering, new URLSearchParams(params.toString())),
     /* Read once: later changes are the visitor's, not the URL's */
-  }, []);
-  return <Explorer initialOffering={initial.offering} initialSelection={initial.selection} />;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+  return <Explorer initialOffering={offering} initialSelection={selection} />;
 }
 
 /** Ready-property explorer for /properties. */
