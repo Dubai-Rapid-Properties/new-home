@@ -78,6 +78,16 @@ const PRICE_CORRECTIONS: Record<string, number | null> = {
 };
 
 /**
+ * The DRP website tags only some of its cheaper projects "Under AED 1.5M", so
+ * every project whose starting price is below AED 1.5M joins that collection.
+ */
+const UNDER_1_5M = 'Under AED 1.5M';
+const withPriceCollections = (collections: string[], fromPrice: number | null) =>
+  fromPrice != null && fromPrice < 1_500_000 && !collections.includes(UNDER_1_5M)
+    ? [...collections, UNDER_1_5M]
+    : collections;
+
+/**
  * REAL – the off-plan projects on the current DRP website, imported by
  * `npm run import:drp` (see scripts/import-drp-content.mjs). Payment plans are
  * not published there, so cards show them only once the data includes one.
@@ -89,7 +99,10 @@ export const projects: Project[] = importedProjects
     name: r.name,
     developer: r.developer,
     area: r.area,
-    collections: r.collections.map((c) => COLLECTION_LABELS[c] ?? c),
+    collections: withPriceCollections(
+      r.collections.map((c) => COLLECTION_LABELS[c] ?? c),
+      r.slug in PRICE_CORRECTIONS ? PRICE_CORRECTIONS[r.slug] : r.startingPrice!,
+    ),
     propertyTypes: r.propertyTypes as ProjectType[],
     bedrooms: r.bedrooms,
     fromPrice: r.slug in PRICE_CORRECTIONS ? PRICE_CORRECTIONS[r.slug] : r.startingPrice!,
