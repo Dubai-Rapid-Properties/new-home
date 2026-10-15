@@ -75,6 +75,8 @@ const PRICE_CORRECTIONS: Record<string, number | null> = {
   // CONFIRM – the DRP site says AED 1.35M, but Cavalli Couture is 3–6 bed
   // residences selling from roughly AED 16.5M; set the confirmed price here
   'cavalli-couture': null,
+  // DRP confirmed AED 1.1M; the DRP site still says AED 1.05M
+  diamondz: 1_100_000,
 };
 
 /**
