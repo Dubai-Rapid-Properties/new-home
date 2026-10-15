@@ -2,6 +2,7 @@ import PageHero from '@/components/PageHero';
 import SiteShell from '@/components/layout/SiteShell';
 import ChoiceCard from '@/components/offplan/ChoiceCard';
 import ProjectCard from '@/components/offplan/ProjectCard';
+import ConsultationForm from '@/components/ConsultationForm';
 import CtaBand from '@/components/sections/CtaBand';
 import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -63,7 +64,7 @@ export default function Page() {
 
       <CtaBand
         {...page.cta}
-        button={{ label: 'Book a Free Consultation', href: '/contact' }}
+        form={<ConsultationForm context={{ section: 'Investment collections' }} />}
         whatsappText="Hello D|R|P, I would like a free consultation on off-plan investments."
       />
     </SiteShell>
