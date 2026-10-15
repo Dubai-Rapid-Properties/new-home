@@ -101,14 +101,16 @@ export default function DesktopNav({ items, solid, ctaHref }: Props) {
      edge, where the hamburger sits. */
   useLayoutEffect(() => {
     if (!openId) return;
-    const nav = navRef.current;
+    /* Start at the first dropdown item (Buy & Rent), not at Home */
+    const firstDropdown = items.find((n) => n.columns);
+    const nav = firstDropdown ? triggerRefs.current[firstDropdown.id] : navRef.current;
     const box = panelRef.current?.offsetParent as HTMLElement | null;
     if (!nav || !box) return;
     const left = Math.max(0, nav.getBoundingClientRect().left - box.getBoundingClientRect().left);
     const padRight = parseFloat(getComputedStyle(box).paddingRight) || 0;
     setPanelLeft(left);
     setPanelWidth(Math.max(0, box.clientWidth - padRight - left));
-  }, [openId]);
+  }, [openId, items]);
 
   const activeNode = items.find((n) => n.id === openId) ?? null;
 
