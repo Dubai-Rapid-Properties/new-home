@@ -19,8 +19,7 @@ export default function DesktopNav({ items, solid, ctaHref }: Props) {
   const closeTimer = useRef<number>();
   const triggerRefs = useRef<Record<string, HTMLElement | null>>({});
   const panelRef = useRef<HTMLDivElement>(null);
-  const navRef = useRef<HTMLElement>(null);
-  /* The panel drops from the menu: its left edge lines up with the first item (Home) */
+  /* The panel drops from its own trigger: its left edge lines up with the open item */
   const [panelLeft, setPanelLeft] = useState(0);
 
   const clearTimers = () => {
@@ -96,15 +95,15 @@ export default function DesktopNav({ items, solid, ctaHref }: Props) {
     focusPanelLink(current + (e.key === 'ArrowDown' ? 1 : -1));
   };
 
-  /* Line the panel up under the menu; if it is wider than the space to the
-     right, shift it left just enough to stay inside the header. */
+  /* Line the panel up under the open trigger; if it is wider than the space to
+     the right, shift it left just enough to stay inside the header. */
   useLayoutEffect(() => {
     if (!openId) return;
-    const nav = navRef.current;
+    const trigger = triggerRefs.current[openId];
     const panel = panelRef.current;
     const box = panel?.offsetParent as HTMLElement | null;
-    if (!nav || !panel || !box) return;
-    const left = nav.getBoundingClientRect().left - box.getBoundingClientRect().left;
+    if (!trigger || !panel || !box) return;
+    const left = trigger.getBoundingClientRect().left - box.getBoundingClientRect().left;
     setPanelLeft(Math.max(0, Math.min(left, box.clientWidth - panel.offsetWidth)));
   }, [openId]);
 
@@ -122,7 +121,7 @@ export default function DesktopNav({ items, solid, ctaHref }: Props) {
       onMouseLeave={scheduleClose}
       onMouseEnter={() => window.clearTimeout(closeTimer.current)}
     >
-      <nav ref={navRef} aria-label="Primary">
+      <nav aria-label="Primary">
         <ul className="flex items-center gap-9">
           {items.map((node, index) => {
             const open = openId === node.id;
