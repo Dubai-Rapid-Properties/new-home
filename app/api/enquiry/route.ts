@@ -4,10 +4,10 @@
  *
  *   RESEND_API_KEY   required — Resend → API Keys
  *   ENQUIRY_TO       optional, default office@dubairapidproperties.com
- *   ENQUIRY_FROM     optional, default "DRP Website <onboarding@resend.dev>".
+ *   ENQUIRY_FROM     optional, default "D|R|P Website <onboarding@resend.dev>".
  *                    The default sender only delivers to the Resend account's
  *                    own address; once dubairapidproperties.com is verified in
- *                    Resend, use e.g. "DRP Website <website@dubairapidproperties.com>".
+ *                    Resend, use e.g. "D|R|P Website <website@dubairapidproperties.com>".
  *
  * Each enquiry is also saved as a lead in the D|R|P portal (Leads), so staff
  * can assign and follow it up there:
@@ -23,7 +23,7 @@
 export const runtime = 'nodejs';
 
 const TO = process.env.ENQUIRY_TO || 'office@dubairapidproperties.com';
-const FROM = process.env.ENQUIRY_FROM || 'DRP Website <onboarding@resend.dev>';
+const FROM = process.env.ENQUIRY_FROM || 'D|R|P Website <onboarding@resend.dev>';
 /* Overridable for local testing against a mock */
 const RESEND_URL = process.env.RESEND_API_URL || 'https://api.resend.com/emails';
 const PORTAL_URL = process.env.PORTAL_ENQUIRIES_URL || 'https://admin.dubairapidproperties.com/api/public/enquiries';
@@ -42,7 +42,7 @@ const escape = (s: string) =>
 /** "listingRef" → "Listing ref", "book-a-stay" → "Book a stay" */
 const humanise = (s: string) => {
   const t = s.replace(/[-_]+/g, ' ').replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase().trim();
-  return (t.charAt(0).toUpperCase() + t.slice(1)).replace(/\bdrp\b/gi, 'DRP');
+  return (t.charAt(0).toUpperCase() + t.slice(1)).replace(/\bdrp\b/gi, 'D|R|P');
 };
 
 const show = (v: unknown): string => {
