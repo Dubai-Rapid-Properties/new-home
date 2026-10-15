@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import PageHero from '@/components/PageHero';
 import SiteShell from '@/components/layout/SiteShell';
 import ProjectExplorer from '@/components/offplan/ProjectExplorer';
+import ConsultationForm from '@/components/ConsultationForm';
 import CtaBand from '@/components/sections/CtaBand';
 import SmartLink from '@/components/ui/SmartLink';
 import { collectionHref, getCollection, offPlanCollections } from '@/data/offPlan';
@@ -52,7 +53,7 @@ export default async function Page({ params }: PageProps) {
         eyebrow="Not Sure Which Investment Is Right for You?"
         heading="Book a free consultation"
         text="Our property experts are here to understand your goals and recommend the perfect opportunities."
-        button={{ label: 'Book a Free Consultation', href: '/contact' }}
+        form={<ConsultationForm context={{ collection: c.title }} />}
         whatsappText={`Hello D|R|P, I would like advice on the ${c.title}.`}
       />
     </SiteShell>
