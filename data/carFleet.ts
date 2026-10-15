@@ -27,7 +27,7 @@ export const carFleet = {
     eyebrow: 'D|R|P Car Fleet',
     heading: 'Mobility, Part of\nthe D|R|P Experience',
     // REAL – DRP's own VGV U70 Pro outside the office
-    image: '/images/car2.jpeg',
+    image: '/images/car-fleet/drp-office.webp',
     imageAlt: 'The D|R|P-branded VGV U70 Pro outside the D|R|P office',
   },
   intro:
@@ -59,7 +59,7 @@ export const carFleet = {
     heading: 'Inside and Out',
     // TEMPORARY – manufacturer press photos; swap for DRP's own shots
     exterior: [
-      { src: '/images/car2.jpeg', alt: 'The D|R|P-branded VGV U70 Pro outside the D|R|P office' },
+      { src: '/images/car-fleet/drp-office.webp', alt: 'The D|R|P-branded VGV U70 Pro outside the D|R|P office' },
       photo('exterior-1.webp', 'The VGV U70 Pro from the front three-quarter'),
       photo('exterior-2.webp', 'Front three-quarter view, low angle'),
       photo('exterior-3.webp', 'Side profile'),
