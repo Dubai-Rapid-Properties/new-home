@@ -21,6 +21,10 @@
       "service": "drp-website"
     }
   ],
+  /* The main domain. Remove this route to send visitors back to WordPress. */
+  "routes": [
+    { "pattern": "dubairapidproperties.com/*", "zone_name": "dubairapidproperties.com" }
+  ],
   /* Variables and secrets set in the Cloudflare dashboard survive deploys */
   "keep_vars": true,
   "observability": {
