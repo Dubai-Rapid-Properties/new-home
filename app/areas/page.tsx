@@ -12,8 +12,14 @@ import PricePerArea from '@/components/ui/PricePerArea';
 import UnitSwitch from '@/components/ui/UnitSwitch';
 import { areaMarket } from '@/lib/dld';
 import { unsplash } from '@/lib/media';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'Dubai Area Guides | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'Dubai Area Guides | Dubai Rapid Properties',
+  description:
+    'Dubai area guides from D|R|P: price benchmarks, rental yields and lifestyle notes for Palm Jumeirah, Dubai Marina, Downtown and more.',
+  path: '/areas',
+});
 
 export default function Page() {
   return (

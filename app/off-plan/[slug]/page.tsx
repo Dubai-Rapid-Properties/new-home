@@ -19,10 +19,12 @@ import {
   handoverLabel,
   priceLabel,
   projectEyebrow,
+  projectHref,
   projectLocation,
   similarProjects,
   unitTypesLabel,
 } from '@/data/offPlan';
+import { clip, pageMeta } from '@/lib/seo';
 import { staticSlugs } from './slugs';
 
 /** Next 16: route params arrive as a Promise and must be awaited. */
@@ -36,11 +38,16 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps) {
   const project = getProject((await params).slug);
-  return {
-    title: project
-      ? `${project.name}${project.developer ? ` by ${project.developer}` : ''} | Dubai Rapid Properties`
-      : 'Off-Plan | Dubai Rapid Properties',
-  };
+  if (!project) return { title: 'Off-Plan | Dubai Rapid Properties' };
+  const by = project.developer ? ` by ${project.developer}` : '';
+  return pageMeta({
+    title: `${project.name}${by} | Dubai Rapid Properties`,
+    description: clip(
+      `${project.name}${by}, an off-plan project in ${project.area}, Dubai. ${project.fromPrice == null ? 'Price on request' : `From ${priceLabel(project)}`}, handover ${handoverLabel(project)}. ${project.description.join(' ')}`,
+    ),
+    path: projectHref(project.slug),
+    image: project.image,
+  });
 }
 
 const bedLabel = (n: number) => (n === 0 ? 'Studio' : `${n} Bedroom${n === 1 ? '' : 's'}`);

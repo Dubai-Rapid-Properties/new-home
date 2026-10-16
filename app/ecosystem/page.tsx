@@ -5,8 +5,14 @@ import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import SmartLink from '@/components/ui/SmartLink';
 import { ecosystem } from '@/data/ecosystem';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'The D|R|P Ecosystem | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'The D|R|P Ecosystem | Dubai Rapid Properties',
+  description:
+    'Buying, financing, furnishing, letting and looking after a home in Dubai with one team: the D|R|P property ecosystem.',
+  path: '/ecosystem',
+});
 
 export default function Page() {
   return (

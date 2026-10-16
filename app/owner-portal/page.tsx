@@ -6,8 +6,14 @@ import { contact } from '@/data/homepage';
 import { ownerPortal } from '@/data/ecosystem';
 import { OWNER_PORTAL_URL } from '@/data/external';
 import { unsplash } from '@/lib/media';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'Owner Portal | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'Owner Portal | Dubai Rapid Properties',
+  description:
+    'The D|R|P owner portal: statements, occupancy, tenancy and maintenance for every property D|R|P manages for you, in one place.',
+  path: '/owner-portal',
+});
 
 export default function Page() {
   return (

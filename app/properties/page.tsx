@@ -9,8 +9,14 @@ import CurrencySwitch from '@/components/ui/CurrencySwitch';
 import UnitSwitch from '@/components/ui/UnitSwitch';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { unsplash } from '@/lib/media';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'Properties for Sale and Rent in Dubai | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'Properties for Sale and Rent in Dubai | Dubai Rapid Properties',
+  description:
+    'Apartments, villas, townhouses and penthouses for sale and rent across Dubai, each one personally viewed by a D|R|P specialist.',
+  path: '/properties',
+});
 
 export default function Page() {
   return (

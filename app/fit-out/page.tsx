@@ -8,8 +8,14 @@ import IntroSplit from '@/components/sections/IntroSplit';
 import ProcessSteps from '@/components/sections/ProcessSteps';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { fitOut as page } from '@/data/services';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'Fit Out | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'Fit Out | Dubai Rapid Properties',
+  description:
+    'Turnkey fit-out in Dubai, from shell-and-core handover to a finished, rent-ready home: design, approvals and construction managed by one team.',
+  path: '/fit-out',
+});
 
 export default function Page() {
   return (

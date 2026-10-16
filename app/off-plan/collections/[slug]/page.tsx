@@ -6,6 +6,7 @@ import ConsultationForm from '@/components/ConsultationForm';
 import CtaBand from '@/components/sections/CtaBand';
 import SmartLink from '@/components/ui/SmartLink';
 import { collectionHref, getCollection, offPlanCollections } from '@/data/offPlan';
+import { clip, pageMeta } from '@/lib/seo';
 
 /** Next 16: route params arrive as a Promise and must be awaited. */
 type PageProps = { params: Promise<{ slug: string }> };
@@ -18,7 +19,13 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps) {
   const c = getCollection((await params).slug);
-  return { title: c ? `${c.title} | Dubai Rapid Properties` : 'Investment Collections | Dubai Rapid Properties' };
+  if (!c) return { title: 'Investment Collections | Dubai Rapid Properties' };
+  return pageMeta({
+    title: `${c.title} | Dubai Rapid Properties`,
+    description: clip(`${c.title}: ${c.description} Dubai off-plan projects shortlisted by D|R|P.`),
+    path: collectionHref(c.slug),
+    image: c.image,
+  });
 }
 
 export default async function Page({ params }: PageProps) {

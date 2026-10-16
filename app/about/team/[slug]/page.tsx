@@ -10,6 +10,7 @@ import SmartLink from '@/components/ui/SmartLink';
 import { getTeamMember, managementMessage, memberContact, team, teamHref, teamMemberForAgent } from '@/data/company';
 import { contactStep, type LeadFormConfig } from '@/data/leadPages';
 import { listings, toPropertyCard } from '@/data/properties';
+import { clip, pageMeta } from '@/lib/seo';
 
 /** Next 16: route params arrive as a Promise and must be awaited. */
 type PageProps = { params: Promise<{ slug: string }> };
@@ -22,10 +23,13 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps) {
   const member = getTeamMember((await params).slug);
-  return {
-    title: member ? `${member.name}, ${member.role} | Dubai Rapid Properties` : 'Our Team | Dubai Rapid Properties',
-    description: member?.bio[0],
-  };
+  if (!member) return { title: 'Our Team | Dubai Rapid Properties' };
+  return pageMeta({
+    title: `${member.name}, ${member.role} | Dubai Rapid Properties`,
+    description: clip(member.bio.join(' ') || `${member.name}, ${member.role} at Dubai Rapid Properties.`),
+    path: teamHref(member),
+    image: member.photo,
+  });
 }
 
 const actionClass =

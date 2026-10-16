@@ -3,8 +3,14 @@ import SiteShell from '@/components/layout/SiteShell';
 import ProjectExplorer from '@/components/offplan/ProjectExplorer';
 import CtaBand from '@/components/sections/CtaBand';
 import { latestLaunches, offPlanPages } from '@/data/offPlan';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'Latest Off-Plan Launches | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'Latest Off-Plan Launches | Dubai Rapid Properties',
+  description:
+    'The latest off-plan launches in Dubai: new projects, starting prices, payment plans and handover dates, shortlisted by D|R|P.',
+  path: '/off-plan/latest-launches',
+});
 
 export default function Page() {
   return (

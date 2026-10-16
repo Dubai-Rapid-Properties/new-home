@@ -11,8 +11,14 @@ import FeatureGrid from '@/components/sections/FeatureGrid';
 import ProcessSteps from '@/components/sections/ProcessSteps';
 import { carFleet as page } from '@/data/carFleet';
 import { site } from '@/data/homepage';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: page.metaTitle };
+export const metadata = pageMeta({
+  title: page.metaTitle,
+  description:
+    'The D|R|P car fleet: convenient vehicles for property owners, holiday-home guests and clients who need to get around during their stay in Dubai.',
+  path: '/ecosystem/car-fleet',
+});
 
 const { car } = page;
 

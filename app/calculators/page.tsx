@@ -6,11 +6,13 @@ import RentalYieldCalculator from '@/components/tools/RentalYieldCalculator';
 import ArrowLink from '@/components/ui/ArrowLink';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { calculatorsPage as page } from '@/data/tools';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = {
+export const metadata = pageMeta({
   title: 'Dubai Property Calculators: Buying Costs & Rental Yield | Dubai Rapid Properties',
   description: 'Estimate the DLD fee and other costs of buying in Dubai, and the gross and net rental yield of a property.',
-};
+  path: '/calculators',
+});
 
 export default function Page() {
   return (

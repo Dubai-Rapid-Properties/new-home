@@ -5,8 +5,14 @@ import ArrowLink from '@/components/ui/ArrowLink';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { contactPage } from '@/data/company';
 import { contact } from '@/data/homepage';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'Contact D|R|P | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'Contact D|R|P | Dubai Rapid Properties',
+  description:
+    'Call, WhatsApp, email or visit D|R|P on the Golden Mile, Palm Jumeirah. A D|R|P advisor replies within one business day.',
+  path: '/contact',
+});
 
 export default function Page() {
   const routes = [

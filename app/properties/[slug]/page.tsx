@@ -32,6 +32,8 @@ import {
   bedsLong,
   formatPrice,
   getListing,
+  listingHref,
+  listingPlace,
   listings,
   listingLocation,
   similarListings,
@@ -40,6 +42,7 @@ import {
 import { areaHref, areas } from '@/data/areas';
 import { teamHref, teamMemberForAgent } from '@/data/company';
 import { brnFor } from '@/data/licences';
+import { clip, pageMeta } from '@/lib/seo';
 import { listingData } from '@/lib/structuredData';
 import { staticSlugs } from './slugs';
 
@@ -54,7 +57,16 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps) {
   const listing = getListing((await params).slug);
-  return { title: listing ? `${listing.title} | Dubai Rapid Properties` : 'Property | Dubai Rapid Properties' };
+  if (!listing) return { title: 'Property | Dubai Rapid Properties' };
+  const what = `${bedsLong(listing.beds)} ${listing.type.toLowerCase()} for ${listing.offering === 'rent' ? 'rent' : 'sale'} in ${listingPlace(listing)}`;
+  return pageMeta({
+    title: `${listing.title} | Dubai Rapid Properties`,
+    description: clip(
+      `${what}: ${listing.size.toLocaleString('en-US')} sq ft, ${formatPrice(listing)}${listing.offering === 'rent' ? ' a year' : ''}. ${listing.description.join(' ')}`,
+    ),
+    path: listingHref(listing.slug),
+    image: listing.images[0]?.src,
+  });
 }
 
 const enquiryForm: LeadFormConfig = {

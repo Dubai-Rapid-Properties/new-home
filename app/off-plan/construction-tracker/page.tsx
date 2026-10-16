@@ -5,8 +5,14 @@ import CtaBand from '@/components/sections/CtaBand';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { constructionUpdates } from '@/data/offPlan';
 import { unsplash } from '@/lib/media';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'Construction Tracker | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'Construction Tracker | Dubai Rapid Properties',
+  description:
+    'Construction progress for the Dubai off-plan projects D|R|P follows, updated as developers report each milestone.',
+  path: '/off-plan/construction-tracker',
+});
 
 export default function Page() {
   return (

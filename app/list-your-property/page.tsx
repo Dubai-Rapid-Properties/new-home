@@ -5,8 +5,14 @@ import PageHero from '@/components/PageHero';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import Reveal from '@/components/ui/Reveal';
 import { listYourProperty as page } from '@/data/leadPages';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: page.metaTitle };
+export const metadata = pageMeta({
+  title: page.metaTitle,
+  description:
+    'Sell or rent your Dubai property with D|R|P: the right positioning, qualified clients and the process managed from listing to completion.',
+  path: '/list-your-property',
+});
 
 export default function Page() {
   return (

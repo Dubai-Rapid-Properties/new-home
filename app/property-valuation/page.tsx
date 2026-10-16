@@ -5,8 +5,14 @@ import PageHero from '@/components/PageHero';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import Reveal from '@/components/ui/Reveal';
 import { propertyValuation as page } from '@/data/leadPages';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: page.metaTitle };
+export const metadata = pageMeta({
+  title: page.metaTitle,
+  description:
+    'Know what your Dubai property is worth. Ask D|R|P for a valuation, the first step towards a successful sale or rental.',
+  path: '/property-valuation',
+});
 
 export default function Page() {
   return (

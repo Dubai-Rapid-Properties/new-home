@@ -6,8 +6,14 @@ import FormSection from '@/components/sections/FormSection';
 import ProcessSteps from '@/components/sections/ProcessSteps';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { mortgage as page } from '@/data/ecosystem';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'Mortgage Assistance | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'Mortgage Assistance | Dubai Rapid Properties',
+  description:
+    'Dubai mortgage assistance for residents and non-residents: pre-approval, rate comparison across UAE lenders and the paperwork handled with your purchase.',
+  path: '/ecosystem/mortgage',
+});
 
 export default function Page() {
   return (

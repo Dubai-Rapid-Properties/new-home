@@ -7,8 +7,14 @@ import IntroSplit from '@/components/sections/IntroSplit';
 import PackageCards from '@/components/sections/PackageCards';
 import ProcessSteps from '@/components/sections/ProcessSteps';
 import { propertyManagement as page } from '@/data/services';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'Property Management | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'Property Management | Dubai Rapid Properties',
+  description:
+    'Property management in Dubai by D|R|P: letting, tenants, rent, maintenance and statements for long-term and holiday-home owners, handled by one team.',
+  path: '/property-management',
+});
 
 export default function Page() {
   return (
