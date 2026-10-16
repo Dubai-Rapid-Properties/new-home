@@ -12,10 +12,14 @@
     "sync:pf": "node scripts/sync-property-finder.mjs",
     "sync:listings": "node scripts/sync-listings.mjs",
     "sync:dld": "node scripts/sync-dld.mjs",
-    "sync:nearby": "node scripts/sync-nearby.mjs"
+    "sync:nearby": "node scripts/sync-nearby.mjs",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload"
   },
   "dependencies": {
     "@maplibre/maplibre-gl-leaflet": "^0.1.4",
+    "@opennextjs/cloudflare": "^1.20.12",
     "@vercel/analytics": "2.0.1",
     "embla-carousel-react": "^8.3.0",
     "framer-motion": "^11.11.9",
@@ -23,7 +27,7 @@
     "leaflet.markercluster": "^1.5.3",
     "lucide-react": "^0.453.0",
     "maplibre-gl": "^5.24.0",
-    "next": "^16.3.6",
+    "next": "^16.4.2",
     "qrcode": "^1.5.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
@@ -38,6 +42,7 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "wrangler": "^4.151.0"
   }
 }
