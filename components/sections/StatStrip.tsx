@@ -8,7 +8,7 @@ type Props = { items: Stat[]; tone?: 'white' | 'cream' | 'dark'; note?: string }
 /** Serif figures with small labels, divided by hairlines. */
 export default function StatStrip({ items, tone = 'white', note }: Props) {
   const dark = tone === 'dark';
-  const cols = items.length === 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3';
+  const cols = items.length === 4 ? 'lg:grid-cols-4' : items.length === 2 ? 'lg:grid-cols-2' : 'lg:grid-cols-3';
   return (
     <section
       aria-label="Key figures"

@@ -6,7 +6,6 @@ import FormSection from '@/components/sections/FormSection';
 import IntroSplit from '@/components/sections/IntroSplit';
 import PackageCards from '@/components/sections/PackageCards';
 import ProcessSteps from '@/components/sections/ProcessSteps';
-import StatStrip from '@/components/sections/StatStrip';
 import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { furnishings, interiorDesign as page, whyItMatters } from '@/data/services';
@@ -64,11 +63,6 @@ export default function Page() {
           eyebrow="Why Furnishing Matters"
           heading="Decided in a single photo"
           paragraphs={whyItMatters.intro}
-        />
-        <StatStrip
-          items={whyItMatters.stats}
-          tone="cream"
-          note="Compared with similar unfurnished or dated homes in the D|R|P portfolio. Indicative figures."
         />
         <FeatureGrid eyebrow="Where It Shows" heading="Six Ways Furnishing Pays" items={whyItMatters.reasons} />
       </div>

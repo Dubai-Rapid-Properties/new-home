@@ -11,6 +11,9 @@ const json = (path) => JSON.parse(readFileSync(new URL(`../data/${path}`, import
 const slugify = (s) =>
   s.trim().toLowerCase().replace(/\+/g, '-plus').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
+/* The Holiday Homes website, where the homes are listed and booked (data/external.ts) */
+const STAY = 'https://stay.dubairapidproperties.com';
+
 /* Old project-location slugs → the new area guides (the rest open the project search) */
 const AREAS = {
   'palm-jumeirah': 'palm-jumeirah',
@@ -68,10 +71,10 @@ const PAGES = {
   '/holiday-home': '/holiday-homes',
   '/pre-summer-offer': '/holiday-homes',
   '/shop': '/holiday-homes',
-  '/accommodations': '/holiday-homes/book-a-stay',
-  '/search-results': '/holiday-homes/book-a-stay',
-  '/search-availability': '/holiday-homes/book-a-stay',
-  '/booking-cancellation': '/holiday-homes/book-a-stay',
+  '/accommodations': STAY,
+  '/search-results': STAY,
+  '/search-availability': STAY,
+  '/booking-cancellation': STAY,
   '/drp-magazine': '/news',
   '/news-blogs': '/news',
   '/test-form-to-bitrix': '/',
@@ -93,10 +96,10 @@ const SECTIONS = {
   '/agents-detail': '/about#team',
   '/teams-detail': '/about#team',
   '/interior-design-detail': '/drp-furnishing',
-  '/accommodation': '/holiday-homes/book-a-stay',
-  '/accommodation-category': '/holiday-homes/book-a-stay',
-  '/accommodation-facility': '/holiday-homes/book-a-stay',
-  '/booking-confirmation': '/holiday-homes/book-a-stay',
+  '/accommodation': STAY,
+  '/accommodation-category': STAY,
+  '/accommodation-facility': STAY,
+  '/booking-confirmation': STAY,
   '/mphb_template': '/holiday-homes',
   '/product': '/holiday-homes',
   '/product-category': '/holiday-homes',

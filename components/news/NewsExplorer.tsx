@@ -72,6 +72,13 @@ function ExplorerFromUrl() {
 
 /** Category-filtered article list for /news. Reads ?category= from the nav links. */
 export default function NewsExplorer() {
+  if (!articles.length) {
+    return (
+      <p className="max-w-xl text-[15px] font-light leading-relaxed text-charcoal/70">
+        Our magazine is being refreshed. New market reports and insights from the D|R|P team are coming soon.
+      </p>
+    );
+  }
   return (
     <Suspense fallback={<Explorer />}>
       <ExplorerFromUrl />

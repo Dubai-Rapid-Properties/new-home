@@ -50,8 +50,6 @@ export const holidayHomes = {
     imageAlt: 'The living room of a furnished Dubai holiday home',
   },
   stats: [
-    { value: '82%', label: 'Average occupancy' },
-    { value: '4.8', label: 'Average guest rating' },
     { value: '24/7', label: 'Guest support' },
     { value: '150+', label: 'Homes managed' },
   ],
@@ -90,93 +88,6 @@ export const holidayHomes = {
     { q: 'Who looks after the guests?', a: 'Our guest experience team, 24 hours a day, with housekeeping and maintenance partners on call.' },
   ],
 };
-
-/* -------------------------------------------------------------------------- */
-/*  BOOK A STAY                                                               */
-/* -------------------------------------------------------------------------- */
-
-export type Stay = {
-  id: string;
-  name: string;
-  area: string;
-  beds: number;
-  guests: number;
-  /** AED per night, from */
-  nightlyFrom: number;
-  image: string;
-  alt: string;
-  highlights: string[];
-};
-
-// DEMO PLACEHOLDERS – replace with the live holiday-home inventory and rates
-export const stays: Stay[] = [
-  {
-    id: 'shoreline-sea-view-2br',
-    name: 'Shoreline Sea View Residence',
-    area: 'Palm Jumeirah',
-    beds: 2,
-    guests: 5,
-    nightlyFrom: 1_250,
-    image: unsplash('1522708323590-d24dbb6b0267', 1400),
-    alt: 'A furnished sea-view living room on Palm Jumeirah',
-    highlights: ['Beach access', 'Sea view', 'Pool and gym'],
-  },
-  {
-    id: 'frond-garden-villa',
-    name: 'Frond Garden Villa',
-    area: 'Palm Jumeirah',
-    beds: 5,
-    guests: 10,
-    nightlyFrom: 6_800,
-    image: unsplash('1600585154340-be6161a56a0c', 1400),
-    alt: 'A garden villa with private beach frontage',
-    highlights: ['Private beach', 'Private pool', 'Chef on request'],
-  },
-  {
-    id: 'marina-skyline-1br',
-    name: 'Marina Skyline Apartment',
-    area: 'Dubai Marina',
-    beds: 1,
-    guests: 3,
-    nightlyFrom: 650,
-    image: unsplash('1524758631624-e2822e304c36', 1400),
-    alt: 'An apartment overlooking Dubai Marina',
-    highlights: ['Marina view', 'Walk to the beach', 'Near the tram'],
-  },
-  {
-    id: 'jbr-beachfront-3br',
-    name: 'JBR Beachfront Family Home',
-    area: 'Jumeirah Beach Residence',
-    beds: 3,
-    guests: 7,
-    nightlyFrom: 1_650,
-    image: unsplash('1493809842364-78817add7ffb', 1400),
-    alt: 'A furnished apartment with floor-to-ceiling windows',
-    highlights: ['On the beach', 'Family friendly', 'Sea view'],
-  },
-  {
-    id: 'downtown-fountain-view-2br',
-    name: 'Fountain View Residence',
-    area: 'Downtown Dubai',
-    beds: 2,
-    guests: 4,
-    nightlyFrom: 1_400,
-    image: unsplash('1600607687920-4e2a09cf159d', 1400),
-    alt: 'A high-floor Downtown Dubai apartment interior',
-    highlights: ['Burj Khalifa view', 'Walk to Dubai Mall', 'Rooftop pool'],
-  },
-  {
-    id: 'downtown-boulevard-studio',
-    name: 'Boulevard Studio',
-    area: 'Downtown Dubai',
-    beds: 0,
-    guests: 2,
-    nightlyFrom: 480,
-    image: unsplash('1586023492125-27b2c045efd7', 1400),
-    alt: 'A styled studio living space',
-    highlights: ['Boulevard location', 'Self check-in', 'Pool'],
-  },
-];
 
 /* -------------------------------------------------------------------------- */
 /*  HOLIDAY HOMES — LIST YOUR PROPERTY                                        */
@@ -344,11 +255,6 @@ export const furnishings = {
 
 /** Why furnishing matters, shown on /drp-furnishing. */
 export const whyItMatters = {
-  stats: [
-    { value: 'Up to 30%', label: 'Higher nightly rates' },
-    { value: '+15 pts', label: 'Occupancy uplift' },
-    { value: '2x', label: 'Faster to let' },
-  ],
   intro: [
     'Guests and tenants decide in seconds, from a single listing photo. A home that looks considered, comfortable and well kept wins the click, the booking and, more often, the five-star review that keeps bookings coming.',
     'Across the holiday homes we manage, professionally furnished properties consistently earn more per night and spend fewer nights empty than comparable homes with dated or mismatched interiors.',

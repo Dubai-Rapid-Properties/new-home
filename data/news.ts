@@ -4,7 +4,9 @@
  * ============================================================================
  *  DEMO PLACEHOLDERS — replace with real posts from the DRP Magazine feed.
  *  Titles, dates and article text are illustrative but written in DRP's voice;
- *  figures in the text are deliberately general.
+ *  figures in the text are deliberately general. They are kept here for the
+ *  layout only: `articles` (what the site shows) is empty until real posts
+ *  arrive, and /magazine/* redirects to /news meanwhile (next.config.mjs).
  * ============================================================================
  */
 
@@ -27,7 +29,7 @@ export type NewsArticle = {
   body: ArticleSection[];
 };
 
-export const articles: NewsArticle[] = [
+export const demoArticles: NewsArticle[] = [
   {
     slug: 'dubai-residential-market-h1-2026',
     category: 'Market Reports',
@@ -275,6 +277,9 @@ export const articles: NewsArticle[] = [
     ],
   },
 ];
+
+/** The articles the site shows. Empty until the real magazine feed replaces the demo ones. */
+export const articles: NewsArticle[] = [];
 
 export const articleHref = (slug: string) => `/magazine/${slug}`;
 export const getArticle = (slug: string) => articles.find((a) => a.slug === slug);
