@@ -111,7 +111,13 @@ const SECTIONS = {
 export function legacyRedirects() {
   const legacy = json('legacy/wordpress-urls.json');
   const projects = new Set(json('imported/projects.json').map((p) => p.slug));
-  const listings = new Set([...json('imported/listings.json'), ...json('imported/portal-listings.json')].map((l) => l.slug));
+  /* The listings the site has a page for: the same filter as data/properties.ts (hidden in the portal, commercial or without a size are left out) */
+  const hidden = new Set(json('imported/hidden-listings.json'));
+  const listings = new Set(
+    [...json('imported/listings.json'), ...json('imported/portal-listings.json')]
+      .filter((l) => !hidden.has(l.slug) && l.type !== 'Commercial' && l.size)
+      .map((l) => l.slug),
+  );
   const team = json('imported/team.json');
   const teamSlugs = new Set(team.map((t) => slugify(t.name)));
 

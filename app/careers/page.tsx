@@ -4,8 +4,14 @@ import SiteShell from '@/components/layout/SiteShell';
 import Reveal from '@/components/ui/Reveal';
 import { careers } from '@/data/company';
 import { contact } from '@/data/homepage';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'Careers at D|R|P | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'Careers at D|R|P | Dubai Rapid Properties',
+  description:
+    'Build your real estate career in Dubai with D|R|P on Palm Jumeirah: market knowledge, guidance and the right environment to grow, since 2007.',
+  path: '/careers',
+});
 
 export default function Page() {
   const { starting, join } = careers;

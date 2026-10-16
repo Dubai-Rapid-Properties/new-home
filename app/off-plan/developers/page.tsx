@@ -5,8 +5,14 @@ import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import SmartLink from '@/components/ui/SmartLink';
 import { developerNetwork as page, developers } from '@/data/developers';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'Developer Network | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'Developer Network | Dubai Rapid Properties',
+  description:
+    'Dubai’s leading property developers and the off-plan projects available from each of them through D|R|P.',
+  path: '/off-plan/developers',
+});
 
 export default function Page() {
   return (

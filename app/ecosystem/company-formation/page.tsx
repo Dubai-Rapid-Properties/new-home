@@ -6,8 +6,14 @@ import FormSection from '@/components/sections/FormSection';
 import IntroSplit from '@/components/sections/IntroSplit';
 import ProcessSteps from '@/components/sections/ProcessSteps';
 import { companyFormation as page } from '@/data/ecosystem';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'Company Formation | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'Company Formation | Dubai Rapid Properties',
+  description:
+    'Free-zone, offshore and mainland company structures for investors who hold Dubai property through a company, set up alongside the purchase.',
+  path: '/ecosystem/company-formation',
+});
 
 export default function Page() {
   return (

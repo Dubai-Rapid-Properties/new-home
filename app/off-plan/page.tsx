@@ -6,8 +6,14 @@ import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import SmartLink from '@/components/ui/SmartLink';
 import { offPlanPages, projects } from '@/data/offPlan';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'Off-Plan Projects in Dubai | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'Off-Plan Projects in Dubai | Dubai Rapid Properties',
+  description:
+    'Off-plan projects in Dubai from leading developers: latest launches, investment collections, payment plans and handover dates, with D|R|P specialists.',
+  path: '/off-plan',
+});
 
 const page = offPlanPages.landing;
 

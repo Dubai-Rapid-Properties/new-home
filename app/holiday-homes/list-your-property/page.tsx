@@ -5,8 +5,14 @@ import FeatureGrid from '@/components/sections/FeatureGrid';
 import FormSection from '@/components/sections/FormSection';
 import ProcessSteps from '@/components/sections/ProcessSteps';
 import { holidayHomes, holidayList, holidayListForm } from '@/data/services';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'List Your Holiday Home | D|R|P Holiday Homes' };
+export const metadata = pageMeta({
+  title: 'List Your Holiday Home | D|R|P Holiday Homes',
+  description:
+    'List your Dubai holiday home with D|R|P: licensing, furnishing, guests and statements handled. Tell us about your property for an earnings estimate.',
+  path: '/holiday-homes/list-your-property',
+});
 
 export default function Page() {
   return (

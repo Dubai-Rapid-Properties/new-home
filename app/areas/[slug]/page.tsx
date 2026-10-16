@@ -17,6 +17,7 @@ import { factPsf, getArea } from '@/data/areas';
 import { projects } from '@/data/offPlan';
 import { listings, toPropertyCard } from '@/data/properties';
 import { areaMarket } from '@/lib/dld';
+import { clip, pageMeta } from '@/lib/seo';
 import { toSlug } from '@/lib/slug';
 import { staticSlugs } from './slugs';
 
@@ -31,7 +32,13 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps) {
   const area = getArea((await params).slug);
-  return { title: area ? `${area.name} Area Guide | Dubai Rapid Properties` : 'Area Guide | Dubai Rapid Properties' };
+  if (!area) return { title: 'Area Guide | Dubai Rapid Properties' };
+  return pageMeta({
+    title: `${area.name} Area Guide | Dubai Rapid Properties`,
+    description: clip(`${area.name}: ${area.tagline} ${area.intro.join(' ')}`),
+    path: `/areas/${area.slug}`,
+    image: area.image,
+  });
 }
 
 export default async function Page({ params }: PageProps) {

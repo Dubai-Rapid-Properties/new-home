@@ -3,8 +3,14 @@ import SiteShell from '@/components/layout/SiteShell';
 import NewsExplorer from '@/components/news/NewsExplorer';
 import CtaBand from '@/components/sections/CtaBand';
 import { unsplash } from '@/lib/media';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'News & Insights | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'News & Insights | Dubai Rapid Properties',
+  description:
+    'Market reports, launch coverage and investment commentary on Dubai real estate from the D|R|P team on Palm Jumeirah.',
+  path: '/news',
+});
 
 export default function Page() {
   return (

@@ -9,8 +9,14 @@ import ProcessSteps from '@/components/sections/ProcessSteps';
 import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { furnishings, interiorDesign as page, whyItMatters } from '@/data/services';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'D|R|P Furnishing | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'D|R|P Furnishing | Dubai Rapid Properties',
+  description:
+    'D|R|P Furnishing: concept, sourcing and styling for Dubai homes being prepared to live in, to let or to sell, from furnishing packages to full design.',
+  path: '/drp-furnishing',
+});
 
 /** Interior design, the furnishing packages and why furnishing matters, on one page. */
 export default function Page() {

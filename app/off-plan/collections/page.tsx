@@ -7,8 +7,14 @@ import CtaBand from '@/components/sections/CtaBand';
 import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { collectionHref, offPlanCollections, offPlanPages, signatureProjects } from '@/data/offPlan';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'Investment Collections | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'Investment Collections | Dubai Rapid Properties',
+  description:
+    'Dubai off-plan shortlists chosen by D|R|P: luxury homes, townhouses and villas, ROI and capital growth, and projects under AED 1.5M.',
+  path: '/off-plan/collections',
+});
 
 const page = offPlanPages.collections;
 

@@ -7,8 +7,14 @@ import ProcessSteps from '@/components/sections/ProcessSteps';
 import StatStrip from '@/components/sections/StatStrip';
 import { HOLIDAY_HOMES_URL } from '@/data/external';
 import { holidayHomes as page } from '@/data/services';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'Holiday Homes | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'Holiday Homes | Dubai Rapid Properties',
+  description:
+    'Licensed holiday homes in Dubai across Palm Jumeirah, Dubai Marina and Downtown, for guests looking for a home and owners looking for returns.',
+  path: '/holiday-homes',
+});
 
 export default function Page() {
   return (

@@ -5,8 +5,14 @@ import FormSection from '@/components/sections/FormSection';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { partnerNetwork as page } from '@/data/ecosystem';
 import { partners } from '@/data/homepage';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'Partner Network | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'Partner Network | Dubai Rapid Properties',
+  description:
+    'The vetted developers, lenders, legal advisors, contractors and suppliers D|R|P works with, so every part of owning property in Dubai is in good hands.',
+  path: '/ecosystem/partner-network',
+});
 
 export default function Page() {
   return (

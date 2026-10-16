@@ -6,8 +6,14 @@ import SiteShell from '@/components/layout/SiteShell';
 import CtaBand from '@/components/sections/CtaBand';
 import Reveal from '@/components/ui/Reveal';
 import { about } from '@/data/company';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'About D|R|P | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'About D|R|P | Dubai Rapid Properties',
+  description:
+    'Dubai Rapid Properties has been part of Dubai’s property market since 2007, growing from a brokerage into a full ecosystem of sales, leasing and off-plan.',
+  path: '/about',
+});
 
 export default function Page() {
   const [lead, second] = about.intro;

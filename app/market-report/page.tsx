@@ -5,8 +5,14 @@ import IntroSplit from '@/components/sections/IntroSplit';
 import StatStrip from '@/components/sections/StatStrip';
 import { contactStep, type LeadFormConfig } from '@/data/leadPages';
 import { unsplash } from '@/lib/media';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata = { title: 'H1 2026 Dubai Market Report | Dubai Rapid Properties' };
+export const metadata = pageMeta({
+  title: 'H1 2026 Dubai Market Report | Dubai Rapid Properties',
+  description:
+    'Dubai’s residential market in H1 2026: transaction volumes, prime price movement and where the next wave of demand is forming, area by area.',
+  path: '/market-report',
+});
 
 const reportForm: LeadFormConfig = {
   formId: 'market-report',
