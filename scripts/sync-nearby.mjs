@@ -93,7 +93,7 @@ async function fetchPlaces(near) {
         method: 'POST',
         body,
         headers: { 'user-agent': 'DRP-website-build/1.0 (dubairapidproperties.com)' },
-        signal: AbortSignal.timeout(45_000),
+        signal: AbortSignal.timeout(25_000),
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const json = await res.json();
@@ -161,7 +161,7 @@ const save = async () => {
 
 const deadline = Date.now() + BUDGET_S * 1000;
 let fetched = 0;
-let failures = 0;
+let failuresInARow = 0;
 for (const [key, near] of todo) {
   if (Date.now() > deadline) {
     log(`Out of time; the rest wait for the next build.`);
@@ -170,12 +170,16 @@ for (const [key, near] of todo) {
   try {
     cache[key] = { fetchedAt: new Date().toISOString(), ...(await fetchPlaces(near)) };
     fetched++;
+    failuresInARow = 0;
     /* Saved as it goes, so an interrupted run keeps what it found */
     if (fetched % 5 === 0) await save();
   } catch (error) {
     log(`Skipping ${key} (${error.message}); trying again next build.`);
-    /* Every server down: no point asking about the other locations */
-    if (++failures >= 3 && !fetched) break;
+    /* The map servers are down or overloaded: no point asking about the other locations */
+    if (++failuresInARow >= 3) {
+      log('Three lookups in a row failed; the rest wait for the next build.');
+      break;
+    }
   }
   await new Promise((r) => setTimeout(r, 1000));
 }
