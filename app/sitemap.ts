@@ -25,7 +25,6 @@ const pages = [
   '/property-valuation',
   '/list-your-property',
   '/holiday-homes',
-  '/holiday-homes/book-a-stay',
   '/holiday-homes/list-your-property',
   '/drp-furnishing',
   '/fit-out',

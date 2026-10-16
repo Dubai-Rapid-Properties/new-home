@@ -5,6 +5,7 @@ import FaqList from '@/components/sections/FaqList';
 import ImageText from '@/components/sections/ImageText';
 import ProcessSteps from '@/components/sections/ProcessSteps';
 import StatStrip from '@/components/sections/StatStrip';
+import { HOLIDAY_HOMES_URL } from '@/data/external';
 import { holidayHomes as page } from '@/data/services';
 
 export const metadata = { title: 'Holiday Homes | Dubai Rapid Properties' };
@@ -18,7 +19,7 @@ export default function Page() {
         {...page.guests}
         imageAlt={page.guests.imageAlt}
         tone="cream"
-        link={{ label: 'Book a stay', href: '/holiday-homes/book-a-stay' }}
+        link={{ label: 'Book a stay', href: HOLIDAY_HOMES_URL }}
       />
       <ImageText
         {...page.owners}

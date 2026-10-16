@@ -10,6 +10,8 @@ const nextConfig = {
       /* Furnishing packages and why furnishing matters are sections of DRP Furnishing */
       { source: '/furnishings', destination: '/drp-furnishing#packages', permanent: true },
       { source: '/furnishings/why-it-matters', destination: '/drp-furnishing#why-it-matters', permanent: true },
+      /* Stays are listed and booked on the Holiday Homes website */
+      { source: '/holiday-homes/book-a-stay', destination: 'https://stay.dubairapidproperties.com', permanent: true },
       /* Interior Design is now DRP Furnishing */
       { source: '/interior-design', destination: '/drp-furnishing', permanent: true },
       /* One car fleet page, under the DRP Ecosystem */
