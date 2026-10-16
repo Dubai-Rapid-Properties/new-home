@@ -3,9 +3,8 @@
  * new tab (SmartLink treats any absolute URL as external).
  */
 
-// PLACEHOLDER – set to the separate DRP Holiday Homes website's address.
-// Currently the holiday-home page on the existing DRP site.
-export const HOLIDAY_HOMES_URL = 'https://dubairapidproperties.com/holiday-home';
+/** REAL – the separate DRP Holiday Homes website (holiday-homes repo). */
+export const HOLIDAY_HOMES_URL = 'https://stay.dubairapidproperties.com';
 
 /** REAL – the owner portal, where owners who list with DRP sign in. */
 export const OWNER_PORTAL_URL = 'https://owner.dubairapidproperties.com';
