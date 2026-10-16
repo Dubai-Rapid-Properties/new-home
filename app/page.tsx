@@ -6,6 +6,7 @@ import Hero from '@/components/Hero';
 import NewsCarousel from '@/components/NewsCarousel';
 import Solutions from '@/components/Solutions';
 import TrustSection from '@/components/TrustSection';
+import { news } from '@/data/homepage';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import CompareTray from '@/components/properties/CompareTray';
 
@@ -17,7 +18,7 @@ export default function HomePage() {
         <Hero />
         <ExploreProperties />
         <Solutions />
-        <NewsCarousel />
+        {news.articles.length > 0 && <NewsCarousel />}
         <TrustSection />
         <ContactSection />
       </main>

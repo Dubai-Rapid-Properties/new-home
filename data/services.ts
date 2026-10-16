@@ -50,8 +50,6 @@ export const holidayHomes = {
     imageAlt: 'The living room of a furnished Dubai holiday home',
   },
   stats: [
-    { value: '82%', label: 'Average occupancy' },
-    { value: '4.8', label: 'Average guest rating' },
     { value: '24/7', label: 'Guest support' },
     { value: '150+', label: 'Homes managed' },
   ],
@@ -344,11 +342,6 @@ export const furnishings = {
 
 /** Why furnishing matters, shown on /drp-furnishing. */
 export const whyItMatters = {
-  stats: [
-    { value: 'Up to 30%', label: 'Higher nightly rates' },
-    { value: '+15 pts', label: 'Occupancy uplift' },
-    { value: '2x', label: 'Faster to let' },
-  ],
   intro: [
     'Guests and tenants decide in seconds, from a single listing photo. A home that looks considered, comfortable and well kept wins the click, the booking and, more often, the five-star review that keeps bookings coming.',
     'Across the holiday homes we manage, professionally furnished properties consistently earn more per night and spend fewer nights empty than comparable homes with dated or mismatched interiors.',

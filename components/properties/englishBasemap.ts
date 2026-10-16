@@ -18,8 +18,9 @@ type StyleLayer = { type: string; layout?: Record<string, unknown> };
 
 export async function englishBasemap(L: typeof Leaflet, map: Leaflet.Map): Promise<void> {
   try {
-    const [{ maplibreGL }, style] = await Promise.all([
+    const [{ maplibreGL }, { getVersion, setWorkerUrl }, style] = await Promise.all([
       import('@maplibre/maplibre-gl-leaflet'),
+      import('maplibre-gl'),
       fetch(STYLE).then((res) => {
         if (!res.ok) throw new Error(`map style: HTTP ${res.status}`);
         return res.json() as Promise<{ layers: StyleLayer[] }>;
@@ -30,6 +31,8 @@ export async function englishBasemap(L: typeof Leaflet, map: Leaflet.Map): Promi
       /* Road numbers (shields) keep their ref; every name label goes English */
       if (layer.type === 'symbol' && field && JSON.stringify(field).includes('name')) layer.layout!['text-field'] = ENGLISH;
     }
+    /* MapLibre 6 loads its worker from a file of its own, copied to public/ at build time */
+    setWorkerUrl(`/maplibre/maplibre-gl-worker.mjs?v=${getVersion()}`);
     maplibreGL({ style: style as never, attributionControl: false }).addTo(map);
     map.attributionControl?.addAttribution(ATTRIBUTION);
   } catch (error) {

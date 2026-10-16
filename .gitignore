@@ -8,6 +8,9 @@ next-env.d.ts
 scripts/photos/.models/
 __pycache__/
 
+# Copied from node_modules on every build (scripts/copy-maplibre-worker.mjs)
+/public/maplibre/
+
 # Cloudflare (OpenNext) build output and local secrets
 .open-next
 .wrangler
