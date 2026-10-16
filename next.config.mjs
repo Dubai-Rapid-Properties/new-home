@@ -32,6 +32,12 @@ const nextConfig = {
     };
   },
   images: {
+    /*
+     * Off Vercel (Cloudflare) photos are served as they are: they are already
+     * web-sized (about 100 KB), and resizing them through Cloudflare Images
+     * would pass its free 5,000 a month and break.
+     */
+    unoptimized: !process.env.VERCEL,
     /* 85 for the listing gallery's large photos */
     qualities: [75, 85],
     remotePatterns: [

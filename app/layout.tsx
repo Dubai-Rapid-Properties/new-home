@@ -59,8 +59,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <TvMode />
         <JsonLd data={organisation()} />
-        {/* Vercel Web Analytics: cookieless page views, switched on in the Vercel project */}
-        <Analytics />
+        {/* Vercel Web Analytics: cookieless page views, switched on in the Vercel project.
+            Elsewhere (Cloudflare) its script does not exist, so it is left out. */}
+        {process.env.VERCEL ? <Analytics /> : null}
       </body>
     </html>
   );
