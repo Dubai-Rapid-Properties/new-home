@@ -36,7 +36,14 @@ export const about = {
     'Our approach remains personal: long-term relationships, local market knowledge and direct access to specialists who understand every stage of the property journey.',
   ],
   facts: [
-    { id: 'year', value: '2007', label: 'Established in Dubai' },
+    {
+      id: 'year',
+      value: '2007',
+      label: 'Established in Dubai',
+      // REAL – the reception, with the website on the screen and the D|R|P sign on the desk
+      image: '/images/drp-office-reception.webp',
+      imageAlt: 'The D|R|P reception, the website on the screen above and the D|R|P sign on the desk',
+    },
     {
       id: 'home',
       value: 'Palm Jumeirah',
