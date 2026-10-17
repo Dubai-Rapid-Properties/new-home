@@ -15,6 +15,9 @@ export const metadata = pageMeta({
   path: '/about',
 });
 
+/* Both intro paragraphs share one size */
+const introText = 'font-serif text-[clamp(1.3rem,2vw,1.75rem)] font-light leading-[1.4] text-charcoal';
+
 export default function Page() {
   const [lead, second] = about.intro;
 
@@ -24,11 +27,11 @@ export default function Page() {
 
       <section aria-label="Introduction" className="bg-white pb-14 pt-[var(--section-y)] sm:pb-20">
         <div className="container-drp grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16">
-          <Reveal className="lg:col-span-7">
-            <p className="font-serif text-[clamp(1.45rem,2.5vw,2.1rem)] font-light leading-[1.35] text-charcoal">{lead}</p>
+          <Reveal className="lg:col-span-6">
+            <p className={introText}>{lead}</p>
           </Reveal>
-          <Reveal delay={0.1} className="lg:col-span-5 lg:pt-3">
-            <p className="text-[15px] font-light leading-relaxed text-charcoal-light sm:text-base">{second}</p>
+          <Reveal delay={0.1} className="lg:col-span-6">
+            <p className={introText}>{second}</p>
           </Reveal>
         </div>
       </section>
