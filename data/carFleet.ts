@@ -10,10 +10,10 @@
  *  figures (ZigWheels UAE / CarNewsChina); confirm the seat count of DRP's own
  *  car (the U70 Pro comes as a 5- or 7-seater).
  *
- *  PHOTOS: the hero is DRP's own branded car. Every gallery photo below is a
- *  TEMPORARY manufacturer press image (public/images/car-fleet/) — replace
- *  each file with DRP's own exterior and interior shots, keeping the names,
- *  or edit the lists.
+ *  PHOTOS: the hero and every exterior photo are DRP's own branded car. The
+ *  interior photos are TEMPORARY manufacturer press images
+ *  (public/images/car-fleet/) — replace each file with DRP's own interior
+ *  shots, keeping the names, or edit the list.
  * ============================================================================
  */
 
@@ -42,7 +42,7 @@ export const carFleet = {
       'A spacious family SUV with room for passengers and luggage, chosen for comfortable airport runs, viewings and days out across Dubai.',
       'Leather seats, a panoramic sunroof and a 10.25-inch touchscreen make every journey easy, whether you are arriving for a stay or seeing properties with our team.',
     ],
-    image: photo('exterior-1.webp', 'The VGV U70 Pro'),
+    image: photo('drp-front.webp', 'The D|R|P-branded VGV U70 Pro outside the D|R|P office'),
     specs: [
       // CONFIRM – the U70 Pro comes as a 5- or 7-seater
       { label: 'Seats', value: '5 or 7' },
@@ -57,17 +57,15 @@ export const carFleet = {
   gallery: {
     eyebrow: 'Gallery',
     heading: 'Inside and Out',
-    // TEMPORARY – manufacturer press photos; swap for DRP's own shots
+    // REAL – DRP's own car
     exterior: [
-      { src: '/images/car-fleet/drp-office.webp', alt: 'The D|R|P-branded VGV U70 Pro outside the D|R|P office' },
-      photo('exterior-1.webp', 'The VGV U70 Pro from the front three-quarter'),
-      photo('exterior-2.webp', 'Front three-quarter view, low angle'),
-      photo('exterior-3.webp', 'Side profile'),
-      photo('exterior-4.webp', 'Rear three-quarter view'),
-      photo('exterior-5.webp', 'Rear three-quarter view, opposite side'),
-      photo('exterior-6.webp', 'Rear view'),
-      photo('exterior-7.webp', 'LED headlight detail'),
+      photo('drp-front.webp', 'The D|R|P-branded VGV U70 Pro from the front three-quarter, outside the D|R|P office'),
+      photo('drp-office.webp', 'Side profile of the D|R|P-branded VGV U70 Pro outside the D|R|P office'),
+      photo('drp-rear-side.webp', 'Rear three-quarter view, the D|R|P livery and QR codes'),
+      photo('drp-rear-quarter.webp', 'Rear three-quarter view from the other side, on the Palm Jumeirah'),
+      photo('drp-rear.webp', 'Rear view, with the D|R|P website address and QR codes'),
     ],
+    // TEMPORARY – manufacturer press photos; swap for DRP's own shots
     interior: [
       photo('interior-1.webp', 'Dashboard and front cabin'),
       photo('interior-2.webp', 'Centre console and touchscreen'),
