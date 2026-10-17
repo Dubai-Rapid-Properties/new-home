@@ -11,9 +11,10 @@
  *  car (the U70 Pro comes as a 5- or 7-seater).
  *
  *  PHOTOS: the hero and every exterior photo are DRP's own branded car. The
- *  interior photos are TEMPORARY manufacturer press images
- *  (public/images/car-fleet/) — replace each file with DRP's own interior
- *  shots, keeping the names, or edit the list.
+ *  interior photos are manufacturer press images (public/images/car-fleet/);
+ *  interior-1, -2, -3 and -5 show the D|R|P website on the touchscreen.
+ *  Replace a file with DRP's own interior shot, keeping the name, or edit
+ *  the list.
  * ============================================================================
  */
 
