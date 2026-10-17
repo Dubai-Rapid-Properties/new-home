@@ -12,7 +12,7 @@
  *
  *  PHOTOS: the hero and every exterior photo are DRP's own branded car. The
  *  interior photos are manufacturer press images (public/images/car-fleet/);
- *  interior-1, -2, -3 and -5 show the D|R|P website on the touchscreen.
+ *  interior-1, -2 and -5 show the D|R|P website on the touchscreen.
  *  Replace a file with DRP's own interior shot, keeping the name, or edit
  *  the list.
  * ============================================================================
@@ -70,7 +70,6 @@ export const carFleet = {
     interior: [
       photo('interior-1.webp', 'Dashboard and front cabin'),
       photo('interior-2.webp', 'Centre console and touchscreen'),
-      photo('interior-3.webp', 'Steering wheel and digital instrument cluster'),
       photo('interior-4.webp', 'Gear selector and leather console'),
       photo('interior-5.webp', '10.25-inch touchscreen'),
       photo('interior-6.webp', 'Boot with the tailgate open'),
