@@ -12,7 +12,7 @@
  * ============================================================================
  */
 
-import { drpPhoto, unsplash } from '@/lib/media';
+import { unsplash } from '@/lib/media';
 import { HOLIDAY_HOMES_URL } from './external';
 import { contact } from './homepage';
 import importedTeam from './imported/team.json';
@@ -36,20 +36,14 @@ export const about = {
     'Our approach remains personal: long-term relationships, local market knowledge and direct access to specialists who understand every stage of the property journey.',
   ],
   facts: [
-    {
-      id: 'year',
-      value: '2007',
-      label: 'Established in Dubai',
-      // REAL – the reception, with the website on the screen and the D|R|P sign on the desk
-      image: '/images/drp-office-reception.webp',
-      imageAlt: 'The D|R|P reception, the website on the screen above and the D|R|P sign on the desk',
-    },
+    { id: 'year', value: '2007', label: 'Established in Dubai' },
     {
       id: 'home',
       value: 'Palm Jumeirah',
       label: 'Our home and headquarters',
-      image: drpPhoto(2),
-      imageAlt: 'The D|R|P office on the Golden Mile, Palm Jumeirah',
+      // REAL – the reception, with the website on the screen and the D|R|P sign on the desk
+      image: '/images/drp-office-reception.webp',
+      imageAlt: 'The D|R|P reception on the Golden Mile, Palm Jumeirah, the website on the screen and the D|R|P sign on the desk',
     },
     {
       id: 'ecosystem',
