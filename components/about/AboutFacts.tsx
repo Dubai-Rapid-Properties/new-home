@@ -2,22 +2,32 @@ import Image from 'next/image';
 import { about } from '@/data/company';
 import Reveal from '../ui/Reveal';
 
-/** Three large facts: a typographic year, a photograph, a stacked list. */
+/** Three large facts: the year over the reception, a photograph, a stacked list. */
 export default function AboutFacts() {
   const [year, home, ecosystem] = about.facts;
 
   return (
     <section aria-label="D|R|P at a glance" className="bg-white pb-[var(--section-y)]">
       <div className="container-drp grid grid-cols-1 gap-3 lg:grid-cols-12">
-        {/* 2007 — pure type */}
+        {/* 2007 — the reception; framed so the screen and the desk sign both stay in view */}
         <Reveal className="lg:col-span-4">
-          <div className="flex h-full min-h-[340px] flex-col justify-between bg-cream p-8 sm:p-10 lg:min-h-[520px]">
-            <p className="eyebrow text-orange">01</p>
-            <div>
-              <p className="font-serif text-[clamp(5.5rem,13vw,10rem)] font-light leading-[0.85] tracking-[-0.03em] text-charcoal">
+          <div className="relative flex aspect-[4/5] h-full flex-col justify-between overflow-hidden bg-ink p-8 sm:p-10 lg:aspect-auto lg:min-h-[520px]">
+            {'image' in year && year.image ? (
+              <Image
+                src={year.image}
+                alt={year.imageAlt ?? ''}
+                fill
+                sizes="(max-width: 1024px) 100vw, 33vw"
+                className="object-cover object-[45%_8%]"
+              />
+            ) : null}
+            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-tr from-ink/85 via-ink/15 to-transparent" />
+            <p className="eyebrow relative text-orange">01</p>
+            <div className="relative">
+              <p className="font-serif text-[clamp(5.5rem,13vw,10rem)] font-light leading-[0.85] tracking-[-0.03em] text-white">
                 {year.value as string}
               </p>
-              <p className="mt-6 text-[11px] uppercase tracking-eyebrow text-charcoal-muted">{year.label}</p>
+              <p className="mt-6 text-[11px] uppercase tracking-eyebrow text-white/70">{year.label}</p>
             </div>
           </div>
         </Reveal>
