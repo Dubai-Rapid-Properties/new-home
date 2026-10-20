@@ -1,0 +1,63 @@
+{
+ "_": "Construction progress Property Finder shows for off-plan projects DLD's open data does not cover (constructionProgress and lastInspectionDate on each project page, checked 20 October 2026), by project slug. The tracker prefers DLD's figure when it has one.",
+ "akala-hotel-residences": {
+  "progress": 0.0,
+  "inspected": "2025-05-06",
+  "source": "https://www.propertyfinder.ae/en/new-projects/arada-sale/akala-hotel-and-residences"
+ },
+ "la-tilia-villanova": {
+  "progress": 1.3,
+  "inspected": "2025-12-22",
+  "source": "https://www.propertyfinder.ae/en/new-projects/dubai-properties/la-tilia-at-villanova"
+ },
+ "taormina-village": {
+  "progress": 7.3,
+  "inspected": "2025-10-20",
+  "source": "https://www.propertyfinder.ae/en/new-projects/reportage-real-estate/taormina-village"
+ },
+ "creek-waters-2": {
+  "progress": 63.0,
+  "inspected": "2025-12-09",
+  "source": "https://www.propertyfinder.ae/en/new-projects/emaar-properties/creek-waters-2"
+ },
+ "damac-casa": {
+  "progress": 19.4,
+  "inspected": "2025-12-22",
+  "source": "https://www.propertyfinder.ae/en/new-projects/damac-properties/damac-casa-tower"
+ },
+ "design-quarter": {
+  "progress": 16.9,
+  "inspected": "2025-11-07",
+  "source": "https://www.propertyfinder.ae/en/new-projects/meraas-holding/design-quarter"
+ },
+ "mercer-house": {
+  "progress": 7.1,
+  "inspected": "2025-11-19",
+  "source": "https://www.propertyfinder.ae/en/new-projects/ellington/mercer-house"
+ },
+ "trussardi-residences-phase-two": {
+  "progress": 0.0,
+  "inspected": "2025-02-17",
+  "source": "https://www.propertyfinder.ae/en/new-projects/mira-developments/trussardi-residences-phase-2-by-mira-developments"
+ },
+ "w1nner-tower": {
+  "progress": 14.5,
+  "inspected": "2025-06-09",
+  "source": "https://www.propertyfinder.ae/en/new-projects/object-1-contemporary-development/w1nner-tower"
+ },
+ "aspirz": {
+  "progress": 0.0,
+  "inspected": "2025-09-04",
+  "source": "https://www.propertyfinder.ae/en/new-projects/danube-properties/aspirz"
+ },
+ "sparklz": {
+  "progress": 0.1,
+  "inspected": "2025-10-02",
+  "source": "https://www.propertyfinder.ae/en/new-projects/danube-properties/sparklz"
+ },
+ "bayz-101": {
+  "progress": 8.3,
+  "inspected": "2025-12-23",
+  "source": "https://www.propertyfinder.ae/en/new-projects/danube-properties/bayz-101"
+ }
+}

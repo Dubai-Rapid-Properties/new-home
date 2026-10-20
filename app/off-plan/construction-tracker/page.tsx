@@ -31,7 +31,7 @@ export default function Page() {
             eyebrow="Site Progress"
             heading="Every Project, One View"
             headingId="tracker-heading"
-            intro={`${constructionUpdates.length} projects, most advanced first. Figures come from Dubai Land Department's latest site inspections, and D|R|P's construction status reports where DLD has none.`}
+            intro={`${constructionUpdates.length} projects, most advanced first. Figures come from Dubai Land Department's latest site inspections, or Property Finder and D|R|P's construction status reports where DLD has none; each shows the date of its figure.`}
           />
           <div className="mt-12">
             <ConstructionTracker />
