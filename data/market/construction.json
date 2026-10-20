@@ -1,0 +1,402 @@
+{
+ "source": "Dubai Land Department open data — project register",
+ "updatedAt": "2026-10-20T09:40:12.381Z",
+ "projects": {
+  "Address The Bay": {
+   "progress": 70.1,
+   "inspected": "2026-07-01",
+   "dld": [
+    2397
+   ]
+  },
+  "Altai": {
+   "progress": 98.4,
+   "inspected": "2026-09-19",
+   "dld": [
+    2636
+   ]
+  },
+  "Altai Tower": {
+   "progress": 98.4,
+   "inspected": "2026-09-19",
+   "dld": [
+    2636
+   ]
+  },
+  "Aquarise": {
+   "progress": 21,
+   "inspected": "2026-04-13",
+   "dld": [
+    3585
+   ]
+  },
+  "Avarra by Palace": {
+   "progress": 0.1,
+   "inspected": "2026-06-05",
+   "dld": [
+    4227
+   ]
+  },
+  "Azizi David": {
+   "progress": 2,
+   "inspected": "2026-03-17",
+   "dld": [
+    4096
+   ]
+  },
+  "Azizi Lina": {
+   "progress": 2,
+   "inspected": "2026-03-17",
+   "dld": [
+    4141
+   ]
+  },
+  "Baccarat Residences": {
+   "progress": 21.2,
+   "inspected": "2026-08-27",
+   "dld": [
+    2724
+   ]
+  },
+  "Bay Estate": {
+   "progress": 0,
+   "inspected": "2026-08-19",
+   "dld": [
+    4553
+   ]
+  },
+  "Beach Walk 3": {
+   "progress": 82,
+   "inspected": "2026-07-14",
+   "dld": [
+    3285
+   ]
+  },
+  "Beach Walk Grand": {
+   "progress": 53.2,
+   "inspected": "2026-08-05",
+   "dld": [
+    3367
+   ]
+  },
+  "Beverly Crown": {
+   "progress": 0,
+   "inspected": "2026-06-23",
+   "dld": [
+    4514
+   ]
+  },
+  "Binghatti Aquarise": {
+   "progress": 21,
+   "inspected": "2026-04-13",
+   "dld": [
+    3585
+   ]
+  },
+  "Binghatti Elite": {
+   "progress": 53.3,
+   "inspected": "2026-04-06",
+   "dld": [
+    3341
+   ]
+  },
+  "Binghatti Etherea": {
+   "progress": 7.2,
+   "inspected": "2026-09-09",
+   "dld": [
+    4303
+   ]
+  },
+  "Binghatti Ghost": {
+   "progress": 100,
+   "inspected": "2026-09-17",
+   "dld": [
+    3192
+   ]
+  },
+  "Binghatti Grove": {
+   "progress": 100,
+   "inspected": "2026-09-24",
+   "dld": [
+    3314
+   ]
+  },
+  "Binghatti Haven": {
+   "progress": 76.1,
+   "inspected": "2026-05-05",
+   "dld": [
+    3442
+   ]
+  },
+  "Binghatti Moonlight": {
+   "progress": 19.2,
+   "inspected": "2026-04-28",
+   "dld": [
+    3722
+   ]
+  },
+  "Binghatti Skyhall": {
+   "progress": 31.1,
+   "inspected": "2026-04-13",
+   "dld": [
+    3504
+   ]
+  },
+  "Binghatti Starfall": {
+   "progress": 0,
+   "inspected": "2026-05-18",
+   "dld": [
+    4483
+   ]
+  },
+  "Binghatti Starlight": {
+   "progress": 63.1,
+   "inspected": "2026-05-11",
+   "dld": [
+    3195
+   ]
+  },
+  "Binghatti Twilight": {
+   "progress": 55.4,
+   "inspected": "2026-09-11",
+   "dld": [
+    3397
+   ]
+  },
+  "Breez": {
+   "progress": 0.1,
+   "inspected": "2026-07-10",
+   "dld": [
+    4081
+   ]
+  },
+  "Burj Binghatti Jacob and Co Residences": {
+   "progress": 52.1,
+   "inspected": "2026-08-25",
+   "dld": [
+    2480
+   ]
+  },
+  "Cove Edition Residence 3": {
+   "progress": 37.1,
+   "inspected": "2026-07-16",
+   "dld": [
+    3466
+   ]
+  },
+  "Enre Residence by Imtiaz": {
+   "progress": 14.6,
+   "inspected": "2026-07-27",
+   "dld": [
+    4336
+   ]
+  },
+  "Equiterra": {
+   "progress": 0.9,
+   "inspected": "2026-04-24",
+   "dld": [
+    4185,
+    4162
+   ]
+  },
+  "Fior 1": {
+   "progress": 0,
+   "inspected": "2025-12-10",
+   "dld": [
+    4287
+   ]
+  },
+  "Golf Trails": {
+   "progress": 0,
+   "inspected": "2026-06-30",
+   "dld": [
+    4523
+   ]
+  },
+  "Greenz": {
+   "progress": 0.1,
+   "inspected": "2026-09-26",
+   "dld": [
+    4430
+   ]
+  },
+  "Liv Lux": {
+   "progress": 87.1,
+   "inspected": "2026-10-12",
+   "dld": [
+    2502
+   ]
+  },
+  "Maybach Ultimate Luxury": {
+   "progress": 0,
+   "inspected": "2025-12-25",
+   "dld": [
+    4320
+   ]
+  },
+  "Mercedes Benz": {
+   "progress": 65.3,
+   "inspected": "2026-01-23",
+   "dld": [
+    2545
+   ]
+  },
+  "Mercedes Benz Places": {
+   "progress": 65.3,
+   "inspected": "2026-01-23",
+   "dld": [
+    2545
+   ]
+  },
+  "Mykonos": {
+   "progress": 91.1,
+   "inspected": "2026-09-28",
+   "dld": [
+    2561
+   ]
+  },
+  "Natuzzi Harmony Residences": {
+   "progress": 19.6,
+   "inspected": "2026-03-06",
+   "dld": [
+    3223
+   ]
+  },
+  "One By Binghatti": {
+   "progress": 50.2,
+   "inspected": "2025-12-16",
+   "dld": [
+    3107
+   ]
+  },
+  "Ovelle The Valley": {
+   "progress": 2.4,
+   "inspected": "2026-06-10",
+   "dld": [
+    4219
+   ]
+  },
+  "Ruby": {
+   "progress": 46.4,
+   "inspected": "2026-07-20",
+   "dld": [
+    3533
+   ]
+  },
+  "Salva": {
+   "progress": 0.5,
+   "inspected": "2026-06-05",
+   "dld": [
+    4240
+   ]
+  },
+  "Samana Miami": {
+   "progress": 100,
+   "inspected": "2026-04-29",
+   "dld": [
+    2433
+   ]
+  },
+  "Samana Waves 2": {
+   "progress": 52.1,
+   "inspected": "2026-09-24",
+   "dld": [
+    2574
+   ]
+  },
+  "Serenz": {
+   "progress": 0.1,
+   "inspected": "2026-07-10",
+   "dld": [
+    4338
+   ]
+  },
+  "Serro": {
+   "progress": 0.5,
+   "inspected": "2026-06-05",
+   "dld": [
+    4237
+   ]
+  },
+  "Shahrukhz Residences": {
+   "progress": 0,
+   "inspected": "2026-08-12",
+   "dld": [
+    4548
+   ]
+  },
+  "Society House": {
+   "progress": 100,
+   "inspected": "2026-09-07",
+   "dld": [
+    2647
+   ]
+  },
+  "Sol Terra Casa": {
+   "progress": 0,
+   "inspected": "2026-04-14",
+   "dld": [
+    4391,
+    4135
+   ]
+  },
+  "Solaya": {
+   "progress": 0,
+   "inspected": "2026-09-21",
+   "dld": [
+    4089,
+    4122,
+    4123
+   ]
+  },
+  "Soma Residences": {
+   "progress": 0,
+   "inspected": "2026-07-15",
+   "dld": [
+    4453
+   ]
+  },
+  "Terra Woods": {
+   "progress": 0,
+   "inspected": "2026-01-23",
+   "dld": [
+    4367
+   ]
+  },
+  "The Edit at d3": {
+   "progress": 0.2,
+   "inspected": "2026-08-14",
+   "dld": [
+    4177
+   ]
+  },
+  "The Fifth Tower": {
+   "progress": 50.3,
+   "inspected": "2026-07-22",
+   "dld": [
+    3048
+   ]
+  },
+  "The Residences at The Dubai Beach EDITION": {
+   "progress": 0.2,
+   "inspected": "2026-05-19",
+   "dld": [
+    4134
+   ]
+  },
+  "The Wilds": {
+   "progress": 0,
+   "inspected": "2026-09-30",
+   "dld": [
+    4377
+   ]
+  },
+  "Valia": {
+   "progress": 0,
+   "inspected": "2026-08-04",
+   "dld": [
+    4448
+   ]
+  }
+ }
+}
