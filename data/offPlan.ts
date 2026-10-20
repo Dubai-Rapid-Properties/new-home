@@ -144,6 +144,8 @@ export type ConstructionUpdate = {
   href: string | null;
   /** Shown instead of progress while none is published */
   handoverYear: number | null;
+  /** When DRP published the project; the newest lead the tracker */
+  launchedAt: string | null;
 };
 
 /** An update with a published figure, as project pages show it */
@@ -185,6 +187,7 @@ export const constructionUpdates: ConstructionUpdate[] = [
       updated: dld?.inspected ?? c.updated,
       href: match ? `/off-plan/${match.slug}` : null,
       handoverYear: match?.handoverYear ?? null,
+      launchedAt: match?.launchedAt ?? null,
     };
   }),
   /* Every other project DRP sells: DLD's figure, else Property Finder's, else none yet */
@@ -202,10 +205,13 @@ export const constructionUpdates: ConstructionUpdate[] = [
         updated: dld?.inspected ?? pf?.inspected ?? null,
         href: `/off-plan/${p.slug}`,
         handoverYear: p.handoverYear,
+        launchedAt: p.launchedAt,
       };
     }),
 ].sort(
   (a, b) =>
+    /* DRP's projects, newest launch first, then the rest; most advanced first within each */
+    (b.launchedAt ?? '').localeCompare(a.launchedAt ?? '') ||
     (b.progress ?? -1) - (a.progress ?? -1) ||
     (a.handoverYear ?? 9999) - (b.handoverYear ?? 9999) ||
     a.name.localeCompare(b.name),
