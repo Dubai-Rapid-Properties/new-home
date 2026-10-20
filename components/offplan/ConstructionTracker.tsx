@@ -7,9 +7,10 @@ import SmartLink from '../ui/SmartLink';
 
 const filters: { id: string; label: string; test: (c: ConstructionUpdate) => boolean }[] = [
   { id: 'all', label: 'All projects', test: () => true },
-  { id: 'early', label: 'Early stages', test: (c) => c.progress < 40 },
-  { id: 'rising', label: 'Under construction', test: (c) => c.progress >= 40 && c.progress < 75 },
-  { id: 'nearing', label: 'Nearing completion', test: (c) => c.progress >= 75 },
+  { id: 'early', label: 'Early stages', test: (c) => c.progress != null && c.progress < 40 },
+  { id: 'rising', label: 'Under construction', test: (c) => c.progress != null && c.progress >= 40 && c.progress < 75 },
+  { id: 'nearing', label: 'Nearing completion', test: (c) => c.progress != null && c.progress >= 75 },
+  { id: 'awaiting', label: 'Not yet reported', test: (c) => c.progress == null },
 ];
 
 const formatDate = (iso: string) =>
@@ -38,25 +39,34 @@ function Row({ c }: { c: ConstructionUpdate }) {
         </h3>
       </div>
       <div className="col-span-2 sm:col-span-1 sm:col-start-2 lg:col-start-auto">
-        <div className="flex items-baseline justify-between gap-4 text-[12px]">
-          <span className="text-charcoal">{constructionStage(c.progress)}</span>
-          <span className="font-serif text-lg text-charcoal">{c.progress}%</span>
-        </div>
-        <div
-          role="progressbar"
-          aria-label={`${c.name} construction progress`}
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={c.progress}
-          className="mt-2 h-1 w-full bg-line"
-        >
-          <div className="h-full bg-orange" style={{ width: `${c.progress}%` }} />
-        </div>
+        {c.progress != null ? (
+          <>
+            <div className="flex items-baseline justify-between gap-4 text-[12px]">
+              <span className="text-charcoal">{constructionStage(c.progress)}</span>
+              <span className="font-serif text-lg text-charcoal">{c.progress}%</span>
+            </div>
+            <div
+              role="progressbar"
+              aria-label={`${c.name} construction progress`}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={c.progress}
+              className="mt-2 h-1 w-full bg-line"
+            >
+              <div className="h-full bg-orange" style={{ width: `${c.progress}%` }} />
+            </div>
+          </>
+        ) : (
+          <>
+            <p className="text-[12px] text-charcoal">Progress not yet reported</p>
+            <div aria-hidden="true" className="mt-2 h-1 w-full bg-line" />
+          </>
+        )}
       </div>
       <p className="col-span-2 text-[11px] uppercase tracking-eyebrow text-charcoal-muted sm:col-span-1 sm:row-start-1 sm:col-start-3 sm:text-right lg:col-start-auto lg:row-start-auto">
-        Updated
+        {c.updated ? 'Updated' : 'Handover'}
         <span className="mt-1 block font-serif text-lg normal-case tracking-normal text-charcoal">
-          {formatDate(c.updated)}
+          {c.updated ? formatDate(c.updated) : (c.handoverYear ?? 'To be confirmed')}
         </span>
       </p>
     </>

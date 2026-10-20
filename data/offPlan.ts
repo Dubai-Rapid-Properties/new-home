@@ -24,6 +24,7 @@ import {
 } from '@/lib/filters';
 import importedConstruction from './imported/construction.json';
 import dldConstruction from './market/construction.json';
+import pfConstruction from './market/construction-pf.json';
 import { curatedProjects } from './curatedProjects';
 import importedProjects from './imported/projects.json';
 
@@ -134,26 +135,36 @@ export type ConstructionUpdate = {
   id: string;
   name: string;
   area: string;
-  /** Site progress, 0–100, as reported by the developer */
-  progress: number;
+  /** Site progress, 0–100, at the latest inspection; null until one is published */
+  progress: number | null;
   image: string;
-  updated: string;
+  /** Date of that figure; null with it */
+  updated: string | null;
   /** The project page, when DRP also sells the project */
   href: string | null;
+  /** Shown instead of progress while none is published */
+  handoverYear: number | null;
 };
+
+/** An update with a published figure, as project pages show it */
+export type ReportedUpdate = ConstructionUpdate & { progress: number; updated: string };
+const isReported = (c: ConstructionUpdate): c is ReportedUpdate => c.progress != null && c.updated != null;
 
 const normalise = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
 type DldProgress = { progress: number; inspected: string | null; dld: number[] };
 /** REAL – DLD's latest inspection figures, by site name (scripts/sync-construction.mjs) */
 const dldProgress = dldConstruction.projects as Record<string, DldProgress>;
+/** REAL – Property Finder's figures for projects DLD's open data does not cover, by slug */
+const pfProgress = pfConstruction as unknown as Record<string, { progress: number; inspected: string; source: string }>;
 const sameDldProject = (a: string, b: string) =>
   dldProgress[a]?.dld.some((n) => dldProgress[b]?.dld.includes(n)) ?? false;
 
 /**
  * REAL – DRP's construction updates, imported with the projects, with DLD's
- * newer figures where DLD reports the project, plus the projects DRP sells
- * that DLD reports and the updates do not cover.
+ * newer figures where DLD reports the project, plus every other project DRP
+ * sells: DLD's figure, else Property Finder's, else none yet (the tracker
+ * shows its handover year until a figure is published).
  */
 const reported = importedConstruction
   .filter((c) => c.progress != null && c.updated)
@@ -173,27 +184,35 @@ export const constructionUpdates: ConstructionUpdate[] = [
       image: c.image,
       updated: dld?.inspected ?? c.updated,
       href: match ? `/off-plan/${match.slug}` : null,
+      handoverYear: match?.handoverYear ?? null,
     };
   }),
+  /* Every other project DRP sells: DLD's figure, else Property Finder's, else none yet */
   ...projects
-    .filter(
-      (p) =>
-        dldProgress[p.name]?.inspected &&
-        !reported.some((c) => normalise(c.name) === normalise(p.name) || sameDldProject(p.name, c.name)),
-    )
-    .map((p) => ({
-      id: `dld-${dldProgress[p.name].dld[0]}`,
-      name: p.name,
-      area: p.area,
-      progress: dldProgress[p.name].progress,
-      image: p.image,
-      updated: dldProgress[p.name].inspected!,
-      href: `/off-plan/${p.slug}`,
-    })),
-].sort((a, b) => b.progress - a.progress || a.name.localeCompare(b.name));
+    .filter((p) => !reported.some((c) => normalise(c.name) === normalise(p.name) || sameDldProject(p.name, c.name)))
+    .map((p) => {
+      const dld = dldProgress[p.name]?.inspected ? dldProgress[p.name] : undefined;
+      const pf = pfProgress[p.slug];
+      return {
+        id: p.slug,
+        name: p.name,
+        area: p.area,
+        progress: dld?.progress ?? pf?.progress ?? null,
+        image: p.image,
+        updated: dld?.inspected ?? pf?.inspected ?? null,
+        href: `/off-plan/${p.slug}`,
+        handoverYear: p.handoverYear,
+      };
+    }),
+].sort(
+  (a, b) =>
+    (b.progress ?? -1) - (a.progress ?? -1) ||
+    (a.handoverYear ?? 9999) - (b.handoverYear ?? 9999) ||
+    a.name.localeCompare(b.name),
+);
 
 export const constructionFor = (p: Project) =>
-  constructionUpdates.find((c) => c.href === `/off-plan/${p.slug}`);
+  constructionUpdates.filter(isReported).find((c) => c.href === `/off-plan/${p.slug}`);
 
 /* -------------------------------------------------------------------------- */
 /*  DERIVED LISTS + FORMATTING                                                */
