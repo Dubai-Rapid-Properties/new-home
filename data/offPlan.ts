@@ -23,6 +23,7 @@ import {
   type PriceBand,
 } from '@/lib/filters';
 import importedConstruction from './imported/construction.json';
+import dldConstruction from './market/construction.json';
 import { curatedProjects } from './curatedProjects';
 import importedProjects from './imported/projects.json';
 
@@ -143,25 +144,53 @@ export type ConstructionUpdate = {
 
 const normalise = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
-/** REAL – DRP's construction updates, imported with the projects. */
-export const constructionUpdates: ConstructionUpdate[] = importedConstruction
+type DldProgress = { progress: number; inspected: string | null; dld: number[] };
+/** REAL – DLD's latest inspection figures, by site name (scripts/sync-construction.mjs) */
+const dldProgress = dldConstruction.projects as Record<string, DldProgress>;
+const sameDldProject = (a: string, b: string) =>
+  dldProgress[a]?.dld.some((n) => dldProgress[b]?.dld.includes(n)) ?? false;
+
+/**
+ * REAL – DRP's construction updates, imported with the projects, with DLD's
+ * newer figures where DLD reports the project, plus the projects DRP sells
+ * that DLD reports and the updates do not cover.
+ */
+const reported = importedConstruction
   .filter((c) => c.progress != null && c.updated)
   /* Reports repeat a project month to month; keep its latest figure */
   .sort((a, b) => b.updated.localeCompare(a.updated))
-  .filter((c, i, all) => all.findIndex((x) => normalise(x.name) === normalise(c.name)) === i)
-  .map((c) => {
-    const match = projects.find((p) => normalise(p.name) === normalise(c.name));
+  .filter((c, i, all) => all.findIndex((x) => normalise(x.name) === normalise(c.name)) === i);
+
+export const constructionUpdates: ConstructionUpdate[] = [
+  ...reported.map((c) => {
+    const match = projects.find((p) => normalise(p.name) === normalise(c.name) || sameDldProject(p.name, c.name));
+    const dld = dldProgress[c.name];
     return {
       id: c.id,
       name: c.name,
       area: c.area,
-      progress: c.progress,
+      progress: dld?.progress ?? c.progress,
       image: c.image,
-      updated: c.updated,
+      updated: dld?.inspected ?? c.updated,
       href: match ? `/off-plan/${match.slug}` : null,
     };
-  })
-  .sort((a, b) => b.progress - a.progress || a.name.localeCompare(b.name));
+  }),
+  ...projects
+    .filter(
+      (p) =>
+        dldProgress[p.name]?.inspected &&
+        !reported.some((c) => normalise(c.name) === normalise(p.name) || sameDldProject(p.name, c.name)),
+    )
+    .map((p) => ({
+      id: `dld-${dldProgress[p.name].dld[0]}`,
+      name: p.name,
+      area: p.area,
+      progress: dldProgress[p.name].progress,
+      image: p.image,
+      updated: dldProgress[p.name].inspected!,
+      href: `/off-plan/${p.slug}`,
+    })),
+].sort((a, b) => b.progress - a.progress || a.name.localeCompare(b.name));
 
 export const constructionFor = (p: Project) =>
   constructionUpdates.find((c) => c.href === `/off-plan/${p.slug}`);

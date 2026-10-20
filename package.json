@@ -5,7 +5,7 @@
   "scripts": {
     "predev": "node scripts/copy-maplibre-worker.mjs",
     "dev": "next dev",
-    "prebuild": "node scripts/copy-maplibre-worker.mjs && node scripts/sync-property-finder.mjs && node scripts/sync-listings.mjs && node scripts/sync-dld.mjs && node scripts/sync-nearby.mjs",
+    "prebuild": "node scripts/copy-maplibre-worker.mjs && node scripts/sync-property-finder.mjs && node scripts/sync-listings.mjs && node scripts/sync-dld.mjs && node scripts/sync-construction.mjs && node scripts/sync-nearby.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -13,6 +13,7 @@
     "sync:pf": "node scripts/sync-property-finder.mjs",
     "sync:listings": "node scripts/sync-listings.mjs",
     "sync:dld": "node scripts/sync-dld.mjs",
+    "sync:construction": "node scripts/sync-construction.mjs",
     "sync:nearby": "node scripts/sync-nearby.mjs",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
