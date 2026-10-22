@@ -18,7 +18,16 @@ type PageMeta = {
  * the root layout's description and share card, so search engines and
  * social previews see the same text for every page.
  */
-export function pageMeta({ title, description, path, image, noindex }: PageMeta): Metadata {
+/**
+ * A title as search engines get it. Google reads "|" as a separator and
+ * shows only part of "D|R|P" (it dropped "D|R|" on the Holiday Homes site),
+ * so the brand's bars become "∣" (U+2223): it looks the same but is not a
+ * separator. The " | Dubai Rapid Properties" separator stays a real "|".
+ */
+export const searchTitle = (title: string) => title.replace(/D\|R\|P/g, 'D\u2223R\u2223P');
+
+export function pageMeta({ title: pageTitle, description, path, image, noindex }: PageMeta): Metadata {
+  const title = searchTitle(pageTitle);
   /* A page's own openGraph replaces the root's, so the site-wide image is set here too */
   const images = [image ?? '/opengraph-image.jpg'];
   return {

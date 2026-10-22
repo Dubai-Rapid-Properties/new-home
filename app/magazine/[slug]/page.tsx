@@ -7,6 +7,7 @@ import CtaBand from '@/components/sections/CtaBand';
 import SectionHeading from '@/components/ui/SectionHeading';
 import SmartLink from '@/components/ui/SmartLink';
 import { categories, formatArticleDate, getArticle, relatedArticles } from '@/data/news';
+import { searchTitle } from '@/lib/seo';
 import { staticSlugs } from './slugs';
 
 /** Next 16: route params arrive as a Promise and must be awaited. */
@@ -21,7 +22,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps) {
   const article = getArticle((await params).slug);
   return {
-    title: article ? `${article.title} | D|R|P News & Insights` : 'News & Insights | Dubai Rapid Properties',
+    title: article ? searchTitle(`${article.title} | D|R|P News & Insights`) : 'News & Insights | Dubai Rapid Properties',
     description: article?.excerpt,
   };
 }
