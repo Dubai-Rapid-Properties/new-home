@@ -328,8 +328,16 @@ function fromPropertyFinder(r: PfProject, slug: string): Project | null {
   };
 }
 
+type Inspection = { progress: number; inspected: string };
+
 /** Property Finder's latest site inspection for each of those projects, by slug */
-const pfInspections = new Map<string, { progress: number; inspected: string }>();
+const pfInspections = new Map<string, Inspection>();
+/** ...and for every Dubai project it lists, D|R|P's own included, by name */
+const pfInspectionsByName = new Map<string, Inspection>(
+  pfCatalog.projects.flatMap((r) =>
+    r.progress != null && r.inspected ? [[matchName(r.name), { progress: r.progress, inspected: r.inspected }] as const] : [],
+  ),
+);
 
 /** Property Finder's projects that D|R|P does not already list, with slugs unique on the site */
 const pfProjects: Project[] = (() => {
@@ -392,10 +400,10 @@ const sameDldProject = (a: string, b: string) =>
   dldProgress[a]?.dld.some((n) => dldProgress[b]?.dld.includes(n)) ?? false;
 
 /**
- * REAL – DRP's construction updates, imported with the projects, with DLD's
- * newer figures where DLD reports the project, plus every other project DRP
- * sells: DLD's figure, else Property Finder's, else none yet (the tracker
- * shows its handover year until a figure is published).
+ * REAL – DRP's construction updates, imported with the projects, plus every
+ * other project on the site. Each shows the figure from its latest site
+ * inspection, whichever of DLD, Property Finder and DRP's reports has it;
+ * DRP's own projects with none yet show their handover year instead.
  */
 /**
  * Names the construction reports use for a project that DRP lists under
@@ -418,17 +426,33 @@ const reported = importedConstruction
   .sort((a, b) => b.updated.localeCompare(a.updated))
   .filter((c, i, all) => all.findIndex((x) => normalise(x.name) === normalise(c.name)) === i);
 
+const inspectionOf = (d: DldProgress | undefined): Inspection | undefined =>
+  d?.inspected ? { progress: d.progress, inspected: d.inspected } : undefined;
+
+/** Of DLD's, Property Finder's and D|R|P's own figures, the one from the latest site inspection */
+const latestInspection = (...figures: (Inspection | undefined)[]) =>
+  figures
+    .filter((f): f is Inspection => !!f?.inspected && f.progress != null)
+    .sort((a, b) => b.inspected.localeCompare(a.inspected))[0];
+
+/** When the figures were last checked against DLD and Property Finder (every Monday, and before builds) */
+export const trackerCheckedOn = [pfCatalog.synced, dldConstruction.updatedAt.slice(0, 10)].sort().reverse()[0];
+
 export const constructionUpdates: ConstructionUpdate[] = [
   ...reported.map((c) => {
     const match = projects.find((p) => matchName(p.name) === matchName(c.name) || sameDldProject(p.name, c.name));
-    const dld = dldProgress[c.siteName];
+    const figure = latestInspection(
+      inspectionOf(dldProgress[c.siteName]),
+      pfInspectionsByName.get(matchName(c.name)),
+      { progress: c.progress, inspected: c.updated },
+    );
     return {
       id: c.id,
       name: c.name,
       area: c.area,
-      progress: dld?.progress ?? c.progress,
+      progress: figure?.progress ?? null,
       image: c.image,
-      updated: dld?.inspected ?? c.updated,
+      updated: figure?.inspected ?? null,
       href: match ? `/off-plan/${match.slug}` : null,
       handoverYear: match?.handoverYear ?? null,
       launchedAt: match?.launchedAt ?? null,
@@ -443,15 +467,19 @@ export const constructionUpdates: ConstructionUpdate[] = [
     .filter((p) => !p.catalog || pfInspections.has(p.slug) || dldProgress[p.name]?.inspected)
     .filter((p) => !reported.some((c) => matchName(c.name) === matchName(p.name) || sameDldProject(p.name, c.name)))
     .map((p) => {
-      const dld = dldProgress[p.name]?.inspected ? dldProgress[p.name] : undefined;
-      const pf = pfProgress[p.slug] ?? pfInspections.get(p.slug);
+      const figure = latestInspection(
+        inspectionOf(dldProgress[p.name]),
+        pfProgress[p.slug],
+        pfInspections.get(p.slug),
+        pfInspectionsByName.get(matchName(p.name)),
+      );
       return {
         id: p.slug,
         name: p.name,
         area: p.area,
-        progress: dld?.progress ?? pf?.progress ?? null,
+        progress: figure?.progress ?? null,
         image: p.image,
-        updated: dld?.inspected ?? pf?.inspected ?? null,
+        updated: figure?.inspected ?? null,
         href: `/off-plan/${p.slug}`,
         handoverYear: p.handoverYear,
         launchedAt: p.launchedAt,

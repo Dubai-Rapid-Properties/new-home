@@ -3,15 +3,22 @@ import SiteShell from '@/components/layout/SiteShell';
 import ConstructionTracker from '@/components/offplan/ConstructionTracker';
 import CtaBand from '@/components/sections/CtaBand';
 import SectionHeading from '@/components/ui/SectionHeading';
-import { constructionUpdates } from '@/data/offPlan';
+import { constructionUpdates, trackerCheckedOn } from '@/data/offPlan';
 import { unsplash } from '@/lib/media';
 import { pageMeta } from '@/lib/seo';
 
 export const metadata = pageMeta({
   title: 'Construction Tracker | Dubai Rapid Properties',
   description:
-    'Construction progress for the Dubai off-plan projects D|R|P follows, updated as developers report each milestone.',
+    'Construction progress for Dubai off-plan projects from their latest site inspections, checked every Monday.',
   path: '/off-plan/construction-tracker',
+});
+
+const checkedLabel = new Date(trackerCheckedOn).toLocaleDateString('en-GB', {
+  weekday: 'long',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
 });
 
 export default function Page() {
@@ -20,7 +27,7 @@ export default function Page() {
       <PageHero
         eyebrow="Off-Plan"
         heading="Construction Tracker"
-        intro="Site progress for the off-plan projects D|R|P follows, updated as developers report each milestone."
+        intro="Site progress for Dubai's off-plan projects, from each project's latest site inspection, checked every Monday."
         // DEMO PLACEHOLDER – swap for DRP site photography
         image={unsplash('1504307651254-35680f356dfd', 2000)}
         imageAlt="Construction under way on a new development"
@@ -31,7 +38,7 @@ export default function Page() {
             eyebrow="Site Progress"
             heading="Every Project, One View"
             headingId="tracker-heading"
-            intro={`${constructionUpdates.length} projects, newest launches first. Figures come from Dubai Land Department's latest site inspections, or Property Finder and D|R|P's construction status reports where DLD has none; each shows the date of its figure.`}
+            intro={`${constructionUpdates.length} projects, newest launches first. Each figure is from the project's latest site inspection by Dubai Land Department (its open data, Property Finder or D|R|P's construction reports, whichever is newest), so each project shows its own inspection date. The figures are checked every Monday; last checked ${checkedLabel}.`}
           />
           <div className="mt-12">
             <ConstructionTracker updates={constructionUpdates} />

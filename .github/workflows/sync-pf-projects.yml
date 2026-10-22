@@ -1,7 +1,9 @@
-# Refreshes the Dubai off-plan projects the site lists from Property Finder
-# (data/market/pf-projects.json, scripts/sync-pf-projects.mjs) every Monday,
-# and commits the file to main when anything changed: new launches, prices,
-# handover dates, construction phases.
+# Every Monday: refreshes the Dubai off-plan projects the site lists from
+# Property Finder (data/market/pf-projects.json, scripts/sync-pf-projects.mjs)
+# and the Construction Tracker's figures from Dubai Land Department
+# (data/market/construction.json, scripts/sync-construction.mjs), and commits
+# them to main when anything changed: new launches, prices, handover dates,
+# and each project's latest site inspection.
 #
 # A commit made here does not start a deploy by itself (GitHub does not run
 # workflows for its own token's pushes); deploy-cloudflare.yml's scheduled
@@ -23,7 +25,7 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
 
@@ -35,14 +37,19 @@ jobs:
       - name: Read Property Finder's New Projects pages
         run: node scripts/sync-pf-projects.mjs
 
-      - name: Commit the refreshed projects
+      - name: Read Dubai Land Department's latest site inspections
+        run: node scripts/sync-construction.mjs
+        env:
+          DLD_SYNC_FORCE: '1'
+
+      - name: Commit the refreshed figures
         run: |
-          if git diff --quiet -- data/market/pf-projects.json; then
+          if git diff --quiet -- data/market/pf-projects.json data/market/construction.json; then
             echo "No changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/market/pf-projects.json
-          git commit -m "Refresh Dubai off-plan projects from Property Finder"
+          git add data/market/pf-projects.json data/market/construction.json
+          git commit -m "Refresh off-plan projects and construction figures"
           git push
