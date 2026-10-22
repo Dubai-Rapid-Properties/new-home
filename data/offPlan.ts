@@ -15,20 +15,32 @@
  */
 
 import {
-  asOptions,
-  bedroomOptions,
-  priceFacet,
-  uniqueSorted,
-  type Facet,
-  type PriceBand,
-} from '@/lib/filters';
+  byPriceDesc,
+  facetsFor,
+  projectHref,
+  type ProjectCardData,
+  type ProjectType,
+} from '@/lib/offPlanCards';
 import importedConstruction from './imported/construction.json';
 import dldConstruction from './market/construction.json';
 import pfConstruction from './market/construction-pf.json';
 import { curatedProjects } from './curatedProjects';
 import importedProjects from './imported/projects.json';
+import pfCatalog from './market/pf-projects.json';
 
-export type ProjectType = 'Apartment' | 'Penthouse' | 'Townhouse' | 'Villa';
+export type { ProjectType };
+export {
+  byPriceDesc,
+  constructionStage,
+  facetsFor,
+  formatAed,
+  handoverLabel,
+  priceBands,
+  priceLabel,
+  projectEyebrow,
+  projectHref,
+  unitTypesLabel,
+} from '@/lib/offPlanCards';
 
 export type Project = {
   slug: string;
@@ -56,8 +68,13 @@ export type Project = {
   alt: string;
   gallery: { src: string; alt: string }[];
   /** Google Maps search, checked at import; `exact` is false when it shows the community */
-  map: { query: string; exact: boolean };
+  map: { query: string; exact: boolean; near?: [number, number] };
   sourceUrl: string;
+  /**
+   * Set on projects D|R|P has not listed itself, taken from Property Finder's
+   * New Projects pages so the site covers every Dubai off-plan project.
+   */
+  catalog?: 'property-finder';
 };
 
 /** WordPress collection names, tidied for the filter bar. */
@@ -83,6 +100,46 @@ const PRICE_CORRECTIONS: Record<string, number | null> = {
 };
 
 /**
+ * Developers the DRP website does not name on the project page (the importer
+ * finds none in the text), by project slug. Checked October 2026 against the
+ * developers' launch announcements and Property Finder.
+ */
+const DEVELOPER_CORRECTIONS: Record<string, string> = {
+  'address-residences-zabeel': 'Emaar',
+  'creek-waters-2': 'Emaar',
+  'golf-trails': 'Emaar',
+  hillsedge: 'Emaar',
+  'ovelle-the-valley': 'Emaar',
+  salva: 'Emaar',
+  serro: 'Emaar',
+  'cavalli-couture': 'DAMAC',
+  'cavalli-tower': 'DAMAC',
+  'design-quarter': 'Meraas',
+  'jumeirah-asora-bay': 'Meraas',
+  'the-edit-at-d3': 'Meraas',
+  'palm-central-private-residences-phase-2': 'Nakheel',
+  'the-wilds': 'Aldar',
+  'casa-canal': 'AHS Properties',
+  'eden-house-the-park': 'H&H',
+  // Developed by H&H with Shamal Holding, Dubai Harbour's owner
+  'dubai-harbour-residence': 'H&H',
+  'alta-v1ew': 'Object 1',
+  'elar1s-rise': 'Object 1',
+  'w1nner-tower': 'Object 1',
+  'mira-villas-by-bentley-home': 'MIRA Developments',
+  'trussardi-residences-phase-two': 'MIRA Developments',
+  'karl-lagerfeld-beach-residences': 'Aark Developers',
+  'soma-residences': 'Origami Development',
+  'vitalia-palm-jumeirah-residences': 'Pinnacle Developers',
+  eywa: 'R.Evolution',
+  'jacob-and-co-beachfront-living': 'Ohana Development',
+  knightsbridge: 'LEOS Developments',
+  'mr-c-residences-downtown': 'Alta Real Estate Development',
+  'terra-golf-collection-phase-2': 'Taraf',
+  'beverly-crown': 'HMB Homes',
+};
+
+/**
  * The DRP website tags only some of its cheaper projects "Under AED 1.5M", so
  * every project whose starting price is below AED 1.5M joins that collection.
  */
@@ -97,12 +154,12 @@ const withPriceCollections = (collections: string[], fromPrice: number | null) =
  * `npm run import:drp` (see scripts/import-drp-content.mjs). Payment plans are
  * not published there, so cards show them only once the data includes one.
  */
-export const projects: Project[] = importedProjects
+const drpProjects: Project[] = importedProjects
   .filter((r) => r.startingPrice)
   .map((r): Project => ({
     slug: r.slug,
     name: r.name,
-    developer: r.developer,
+    developer: r.developer ?? DEVELOPER_CORRECTIONS[r.slug] ?? null,
     area: r.area,
     collections: withPriceCollections(
       r.collections.map((c) => COLLECTION_LABELS[c] ?? c),
@@ -126,6 +183,178 @@ export const projects: Project[] = importedProjects
   /* Projects D|R|P added by hand, unless the DRP website now has them too */
   .concat(curatedProjects.filter((c) => !importedProjects.some((r) => r.slug === c.slug)))
   .sort((a, b) => b.launchedAt.localeCompare(a.launchedAt));
+
+/* -------------------------------------------------------------------------- */
+/*  EVERY OTHER DUBAI PROJECT (Property Finder)                               */
+/* -------------------------------------------------------------------------- */
+
+type PfProject = (typeof pfCatalog.projects)[number];
+
+/** Property Finder's developer names, as the site names the developers */
+const PF_DEVELOPERS: Record<string, string> = {
+  'Emaar Properties': 'Emaar',
+  'Damac Properties': 'DAMAC',
+  'Azizi Developments': 'Azizi',
+  'Binghatti Developers': 'Binghatti',
+  'Meraas Holding': 'Meraas',
+  'Samana Developers': 'Samana',
+  'Aldar Properties PJSC': 'Aldar',
+  'Imtiaz Developments': 'Imtiaz',
+  'Danube Properties': 'Danube',
+  'Wasl Properties': 'Wasl',
+  'H&H Development': 'H&H',
+  'Omniyat Group': 'OMNIYAT',
+  ARADA: 'Arada',
+  'Reportage Real Estate': 'Reportage',
+  'Acube Developers': 'Acube Developments',
+  'Chaimaa Holding Limited': 'Chaimaa Holding',
+  'Mr Eight Development': 'Mr. Eight Development',
+  'Mira Developments': 'MIRA Developments',
+  'Zoya Developments': 'Zoya',
+  'Sol Properties': 'SOL Properties',
+  'Origami Developer': 'Origami Development',
+  Darglobal: 'Dar Global',
+  'R. Evolution': 'R.Evolution',
+  'Amis properties': 'AMIS Development',
+  'LEOS International': 'LEOS Developments',
+  'Swank Developments': 'Swank Development',
+  'Taraf Properties': 'Taraf',
+  'HMB Properties': 'HMB Homes',
+  'H M B Development': 'HMB Homes',
+  'Valores Property Development': 'Valores',
+  'Evera Real Estate': 'Evera Development',
+  'Pantheon Development': 'Pantheon',
+  'Peace Homes Group': 'Peace Homes',
+};
+
+/** Property Finder's community names, as the site's areas are named */
+const PF_AREAS: Record<string, string> = {
+  'Jumeirah Village Circle': 'JVC',
+  'Dubai South (Dubai World Central)': 'Dubai South',
+  'Dubai Land Residence Complex': 'Dubailand',
+  'Dubai Land': 'Dubailand',
+  'Maritime City': 'Dubai Maritime City',
+  'International City Phase 2 (Al Warsan 4)': 'Warsan 4',
+  'The Heights Country Club & Wellness': 'The Heights',
+  'DAMAC Sun City': 'Damac Suncity',
+  'Liwan 2': 'Liwan',
+};
+const pfArea = (community: string | null) =>
+  community ? (PF_AREAS[community] ?? community.replace(/\s*\([^)]*\)$/, '')) : 'Dubai';
+
+const PF_TYPES: [RegExp, ProjectType][] = [
+  [/penthouse/, 'Penthouse'],
+  [/town ?house/, 'Townhouse'],
+  [/villa|bungalow|mansion|compound/, 'Villa'],
+  [/apartment|duplex|loft|studio|residential/, 'Apartment'],
+];
+const pfTypes = (types: string[]): ProjectType[] => [
+  ...new Set(types.flatMap((t) => PF_TYPES.filter(([re]) => re.test(t.replace(/_/g, ' '))).map(([, type]) => type).slice(0, 1))),
+];
+
+/** A name as the matcher compares it: W1NNER = Winner, "X by Binghatti" = "X", "Phase 2" = "2" */
+const matchName = (name: string) =>
+  name
+    .toLowerCase()
+    .replace(/(?<=[a-z])1(?=[a-z])/g, 'i')
+    .replace(/(?<=[a-z])0(?=[a-z])/g, 'o')
+    .replace(/\s+by\s+.*$/, '')
+    .replace(/\bphase\s*/g, '')
+    .replace(/[^a-z0-9]/g, '');
+
+/** Property Finder pages for projects D|R|P lists under another name, by page path */
+const PF_LISTED_BY_DRP = new Set([
+  'object-1/alta-view-skyhomes',
+  'emaar-properties/ovelle',
+  'emaar-properties/parkwood',
+  'emaar-properties/salva-by-emaar',
+  'emaar-properties/serro-the-heights',
+  'emaar-properties/valia-tower',
+  'origami-developer/soma-residence',
+  'danube-properties/aspirz',
+  'damac-properties/chelsea-residences',
+  'damac-properties/damac-islands',
+  'damac-properties/damac-islands-phase-2',
+]);
+
+const yearOf = (iso: string | null) => (iso ? Number(iso.slice(0, 4)) : null);
+
+/** The data file keeps only each photo's key (scripts/sync-pf-projects.mjs) */
+const pfImage = (id: string, key: string) =>
+  key.startsWith('https://') ? key : `https://new-projects-media.propertyfinder.com/project/${id}/gallery/image/${key}/medium.webp`;
+
+function fromPropertyFinder(r: PfProject, slug: string): Project | null {
+  const propertyTypes = pfTypes(r.propertyTypes);
+  const images = r.images.map((key) => pfImage(r.id, key));
+  /* Offices, shops and plots are not homes */
+  if (!propertyTypes.length || !images.length) return null;
+  const developer = r.developer ? (PF_DEVELOPERS[r.developer] ?? r.developer) : null;
+  const area = pfArea(r.community);
+  const where = r.subCommunity && r.subCommunity !== r.name ? `${r.subCommunity}, ${area}` : area;
+  const handoverYear = yearOf(r.deliveryDate);
+  const fromPrice = r.startingPrice || null;
+  const highlights = [
+    handoverYear ? { title: `Handover ${handoverYear}`, text: `Expected completion in ${handoverYear}, as the developer publishes it.` } : null,
+    r.paymentPlan ? { title: `${r.paymentPlan} Plan`, text: `${r.paymentPlan.split('/')[0]}% before handover and ${r.paymentPlan.split('/')[1]}% on and after handover.` } : null,
+    fromPrice ? { title: 'Starting Price', text: `Homes from AED ${fromPrice.toLocaleString('en-US')}.` } : null,
+    r.amenities.length ? { title: 'Amenities', text: `${r.amenities.slice(0, 4).join(', ')}.` } : null,
+  ].filter((h): h is { title: string; text: string } => h !== null);
+  return {
+    slug,
+    name: r.name,
+    developer,
+    area,
+    collections: withPriceCollections([], fromPrice),
+    propertyTypes,
+    bedrooms: r.bedrooms,
+    fromPrice,
+    handoverYear,
+    paymentPlan: r.paymentPlan,
+    launchedAt: r.salesStart ?? '',
+    description: r.description.length
+      ? r.description
+      : [`${r.name} is an off-plan project${developer ? ` by ${developer}` : ''} in ${where}, Dubai.`],
+    highlights,
+    locationText: [`${r.name} is in ${where}, Dubai.`],
+    image: images[0],
+    alt: `${r.name}, ${area}`,
+    gallery: images.map((src, i) => ({ src, alt: `${r.name}, image ${i + 1}` })),
+    map:
+      r.lat != null && r.lng != null
+        ? { query: `${r.name}, ${area}, Dubai`, exact: true, near: [r.lat, r.lng] }
+        : { query: `${r.name}, ${area}, Dubai`, exact: false },
+    sourceUrl: `https://www.propertyfinder.ae/en/new-projects/${r.path}`,
+    catalog: 'property-finder',
+  };
+}
+
+/** Property Finder's latest site inspection for each of those projects, by slug */
+const pfInspections = new Map<string, { progress: number; inspected: string }>();
+
+/** Property Finder's projects that D|R|P does not already list, with slugs unique on the site */
+const pfProjects: Project[] = (() => {
+  const listed = new Set(drpProjects.map((p) => matchName(p.name)));
+  const slugs = new Set(drpProjects.map((p) => p.slug));
+  const out: Project[] = [];
+  for (const r of pfCatalog.projects) {
+    if (PF_LISTED_BY_DRP.has(r.path) || listed.has(matchName(r.name))) continue;
+    const [devSlug, projectSlug] = r.path.split('/');
+    const slug = slugs.has(projectSlug) ? `${projectSlug}-${devSlug}` : projectSlug;
+    if (slugs.has(slug)) continue;
+    const project = fromPropertyFinder(r, slug);
+    if (!project) continue;
+    slugs.add(slug);
+    listed.add(matchName(r.name));
+    out.push(project);
+    if (r.progress != null && r.inspected) pfInspections.set(slug, { progress: r.progress, inspected: r.inspected });
+  }
+  return out;
+})();
+
+/** Every off-plan project on the site: D|R|P's own, then the rest of Dubai's. */
+export const projects: Project[] = [...drpProjects, ...pfProjects].sort((a, b) =>
+  b.launchedAt.localeCompare(a.launchedAt),
+);
 
 /* -------------------------------------------------------------------------- */
 /*  CONSTRUCTION UPDATES                                                      */
@@ -168,16 +397,31 @@ const sameDldProject = (a: string, b: string) =>
  * sells: DLD's figure, else Property Finder's, else none yet (the tracker
  * shows its handover year until a figure is published).
  */
+/**
+ * Names the construction reports use for a project that DRP lists under
+ * another name, or that the reports list twice under two names.
+ */
+const TRACKER_NAMES: Record<string, string> = {
+  'Winner Tower': 'W1NNER Tower',
+  'Alta View Skyhomes': 'ALTA V1EW',
+  'Elaris Rise': 'ELAR1S Rise',
+  Altai: 'Altai Tower',
+  'Mercedes Benz': 'Mercedes Benz Places',
+  'Liv Maritime Dubai': 'Liv Maritime',
+  Celestara: 'Celestara Residences',
+};
+
 const reported = importedConstruction
   .filter((c) => c.progress != null && c.updated)
+  .map((c) => ({ ...c, siteName: c.name, name: TRACKER_NAMES[c.name] ?? c.name }))
   /* Reports repeat a project month to month; keep its latest figure */
   .sort((a, b) => b.updated.localeCompare(a.updated))
   .filter((c, i, all) => all.findIndex((x) => normalise(x.name) === normalise(c.name)) === i);
 
 export const constructionUpdates: ConstructionUpdate[] = [
   ...reported.map((c) => {
-    const match = projects.find((p) => normalise(p.name) === normalise(c.name) || sameDldProject(p.name, c.name));
-    const dld = dldProgress[c.name];
+    const match = projects.find((p) => matchName(p.name) === matchName(c.name) || sameDldProject(p.name, c.name));
+    const dld = dldProgress[c.siteName];
     return {
       id: c.id,
       name: c.name,
@@ -190,12 +434,17 @@ export const constructionUpdates: ConstructionUpdate[] = [
       launchedAt: match?.launchedAt ?? null,
     };
   }),
-  /* Every other project DRP sells: DLD's figure, else Property Finder's, else none yet */
+  /*
+   * Every other project on the site: DLD's figure, else Property Finder's. D|R|P's
+   * own projects show without one too (their handover year until it is published);
+   * the rest of Dubai's only once a figure is published.
+   */
   ...projects
-    .filter((p) => !reported.some((c) => normalise(c.name) === normalise(p.name) || sameDldProject(p.name, c.name)))
+    .filter((p) => !p.catalog || pfInspections.has(p.slug) || dldProgress[p.name]?.inspected)
+    .filter((p) => !reported.some((c) => matchName(c.name) === matchName(p.name) || sameDldProject(p.name, c.name)))
     .map((p) => {
       const dld = dldProgress[p.name]?.inspected ? dldProgress[p.name] : undefined;
-      const pf = pfProgress[p.slug];
+      const pf = pfProgress[p.slug] ?? pfInspections.get(p.slug);
       return {
         id: p.slug,
         name: p.name,
@@ -224,7 +473,6 @@ export const constructionFor = (p: Project) =>
 /*  DERIVED LISTS + FORMATTING                                                */
 /* -------------------------------------------------------------------------- */
 
-export const projectHref = (slug: string) => `/off-plan/${slug}`;
 
 /* Communities DRP sells in outside Dubai */
 const EMIRATE: Record<string, string> = {
@@ -241,41 +489,11 @@ export function projectLocation(p: Project) {
 /** DRP's "Latest Launch" collection, newest first. */
 export const latestLaunches = projects.filter((p) => p.collections.includes('Latest Launch'));
 
-/** Highest starting price first; projects priced on request go last. */
-export const byPriceDesc = (a: Project, b: Project) => (b.fromPrice ?? -1) - (a.fromPrice ?? -1);
-
 /** The homepage's off-plan tab: the four most exclusive Luxury projects, highest starting price first. */
 export const featuredProjects = projects
   .filter((p) => p.collections.includes('Luxury'))
   .sort(byPriceDesc)
   .slice(0, 4);
-
-export const formatAed = (n: number) => `AED ${n.toLocaleString('en-US')}`;
-
-/** "AED 2,800,000", or "Price on request" when DRP has no confirmed price. */
-export const priceLabel = (p: Project) => (p.fromPrice == null ? 'Price on request' : formatAed(p.fromPrice));
-
-export const handoverLabel = (p: Project) => (p.handoverYear ? String(p.handoverYear) : 'TBC');
-
-/** "Developer · Area", or just the area when the developer is not named. */
-export const projectEyebrow = (p: Project) => (p.developer ? `${p.developer} · ${p.area}` : p.area);
-
-const bedLabel = (n: number) => (n === 0 ? 'Studio' : String(n));
-
-/** "Studio – 2 Bed · Apartments" / "4 – 6 Bed · Villas" / "Apartments & Penthouses" */
-export function unitTypesLabel(p: Project): string {
-  const types = p.propertyTypes.map((t) => `${t}s`).join(' & ');
-  if (!p.bedrooms.length) return types;
-  const min = Math.min(...p.bedrooms);
-  const max = Math.max(...p.bedrooms);
-  const beds =
-    min === max
-      ? min === 0
-        ? 'Studio'
-        : `${min} Bed`
-      : `${bedLabel(min)} – ${max} Bed`;
-  return `${beds} · ${types}`;
-}
 
 /* -------------------------------------------------------------------------- */
 /*  INVESTMENT COLLECTIONS                                                    */
@@ -346,83 +564,27 @@ export const signatureProjects = [
 ].flatMap((slug) => projects.filter((p) => p.slug === slug));
 
 /* -------------------------------------------------------------------------- */
-/*  FILTERS                                                                   */
-/* -------------------------------------------------------------------------- */
-
-const bedroomFacet: Facet<Project> = {
-  key: 'beds',
-  label: 'Bedrooms',
-  options: bedroomOptions.map(({ id, label }) => ({ id, label })),
-  test: (p, sel) => bedroomOptions.some((o) => sel.includes(o.id) && p.bedrooms.some(o.test)),
-};
-
-export const priceBands: PriceBand[] = [
-  { id: 'under-2m', label: 'Under AED 2M', max: 2_000_000 },
-  { id: '2m-5m', label: 'AED 2M – 5M', min: 2_000_000, max: 5_000_000 },
-  { id: '5m-10m', label: 'AED 5M – 10M', min: 5_000_000, max: 10_000_000 },
-  { id: '10m-up', label: 'AED 10M+', min: 10_000_000 },
-];
-
-/**
- * The filter bar for a set of projects; options come from those projects only.
- * The collection filter shows only on the all-projects page.
- */
-export const facetsFor = (items: Project[], { withCollection = false } = {}): Facet<Project>[] => [
-  {
-    key: 'area',
-    label: 'Area',
-    options: asOptions(uniqueSorted(items.map((p) => p.area))),
-    test: (p, sel) => sel.includes(p.area),
-  },
-  ...(withCollection
-    ? [
-        {
-          key: 'collection',
-          label: 'Collection',
-          options: asOptions(uniqueSorted(items.flatMap((p) => p.collections))),
-          test: (p: Project, sel: string[]) => p.collections.some((c) => sel.includes(c)),
-        },
-      ]
-    : []),
-  {
-    key: 'developer',
-    label: 'Developer',
-    options: asOptions(uniqueSorted(items.flatMap((p) => (p.developer ? [p.developer] : [])))),
-    test: (p, sel) => !!p.developer && sel.includes(p.developer),
-  },
-  {
-    key: 'type',
-    label: 'Property Type',
-    options: asOptions(uniqueSorted(items.flatMap((p) => p.propertyTypes))),
-    test: (p, sel) => p.propertyTypes.some((t) => sel.includes(t)),
-  },
-  bedroomFacet,
-  /* Projects priced on request match no price band */
-  priceFacet<Project>('Price Range', priceBands, (p) => p.fromPrice ?? NaN),
-  {
-    key: 'handover',
-    label: 'Handover',
-    options: asOptions(uniqueSorted(items.flatMap((p) => (p.handoverYear ? [String(p.handoverYear)] : [])))),
-    test: (p, sel) => sel.includes(String(p.handoverYear)),
-  },
-];
-
-export const facets = facetsFor(projects, { withCollection: true });
-
-/* -------------------------------------------------------------------------- */
 /*  DETAIL HELPERS                                                            */
 /* -------------------------------------------------------------------------- */
 
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);
 
-/** Construction stage named from site progress. */
-export function constructionStage(progress: number) {
-  if (progress >= 95) return 'Handover preparation';
-  if (progress >= 75) return 'Finishing works';
-  if (progress >= 40) return 'Superstructure';
-  if (progress >= 15) return 'Substructure';
-  return 'Enabling works';
-}
+/** What a project card and the filters need: client components get only this. */
+export const toCard = (p: Project): ProjectCardData => ({
+  slug: p.slug,
+  name: p.name,
+  developer: p.developer,
+  area: p.area,
+  collections: p.collections,
+  propertyTypes: p.propertyTypes,
+  bedrooms: p.bedrooms,
+  fromPrice: p.fromPrice,
+  handoverYear: p.handoverYear,
+  paymentPlan: p.paymentPlan,
+  launchedAt: p.launchedAt,
+  image: p.image,
+  alt: p.alt,
+});
 
 /** Same area or developer first. */
 export function similarProjects(p: Project, count = 3) {
@@ -507,7 +669,7 @@ export const offPlanPages = {
     hero: {
       eyebrow: 'Off-Plan',
       heading: 'All Off-Plan Projects',
-      intro: 'Every off-plan project D|R|P sells, with filters for area, developer, budget and handover.',
+      intro: 'Every off-plan project in Dubai, with filters for area, developer, budget and handover.',
       image: '/images/off-plan/hero.webp',
       imageAlt: 'A penthouse terrace overlooking the Dubai skyline at dusk',
     },

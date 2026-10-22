@@ -1,5 +1,11 @@
 import { legacyRedirects } from './scripts/legacy-redirects.mjs';
 
+/*
+ * Built with webpack (`next build --webpack` in package.json), not Turbopack:
+ * Turbopack copies the off-plan project data (data/offPlan.ts, well over a
+ * thousand projects) into each page's server chunk, which took the Cloudflare
+ * Worker past its size limit. Webpack shares one copy.
+ */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,

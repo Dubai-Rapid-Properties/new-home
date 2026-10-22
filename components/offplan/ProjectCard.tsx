@@ -5,12 +5,12 @@ import {
   projectEyebrow,
   projectHref,
   unitTypesLabel,
-  type Project,
-} from '@/data/offPlan';
+  type ProjectCardData,
+} from '@/lib/offPlanCards';
 import SmartLink from '../ui/SmartLink';
 
 type Props = {
-  project: Project;
+  project: ProjectCardData;
   /** Shows the orange NEW LAUNCH tag above the payment plan badge. */
   isNew?: boolean;
   sizes?: string;
