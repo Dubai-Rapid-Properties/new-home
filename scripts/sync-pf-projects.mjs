@@ -4,7 +4,7 @@
  * (propertyfinder.ae/en/new-projects), into data/market/pf-projects.json.
  * data/offPlan.ts adds the ones D|R|P has not listed itself to the site.
  *
- *   npm run sync:pf-projects            refresh (details older than four weeks)
+ *   npm run sync:pf-projects            refresh (details older than six days)
  *   npm run sync:pf-projects -- --all   refetch every project's details
  *
  * Reads the public pages, as a visitor's browser would: first the listing
@@ -33,8 +33,8 @@ const ORIGIN = 'https://www.propertyfinder.ae';
 const OUT = new URL('../data/market/pf-projects.json', import.meta.url);
 const UA =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0 Safari/537.36';
-/* Prices, dates and phases come from the listing on every run; the rest of a project's page is reread monthly */
-const REFRESH_AFTER_MS = 28 * 24 * 3600_000;
+/* Every project's page is reread on each weekly run: its construction progress and inspection date are only there */
+const REFRESH_AFTER_MS = 6 * 24 * 3600_000;
 const CONCURRENCY = 4;
 /* A run that finds fewer than this many keeps the current file */
 const MIN_PROJECTS = 500;

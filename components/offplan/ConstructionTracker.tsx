@@ -68,7 +68,7 @@ function Row({ c }: { c: ConstructionUpdate }) {
         )}
       </div>
       <p className="col-span-2 text-[11px] uppercase tracking-eyebrow text-charcoal-muted sm:col-span-1 sm:row-start-1 sm:col-start-3 sm:text-right lg:col-start-auto lg:row-start-auto">
-        {c.updated ? 'Updated' : 'Handover'}
+        {c.updated ? 'Inspected' : 'Handover'}
         <span className="mt-1 block font-serif text-lg normal-case tracking-normal text-charcoal">
           {c.updated ? formatDate(c.updated) : (c.handoverYear ?? 'To be confirmed')}
         </span>
