@@ -4,13 +4,14 @@
  * (propertyfinder.ae/en/new-projects), into data/market/pf-projects.json.
  * data/offPlan.ts adds the ones D|R|P has not listed itself to the site.
  *
- *   npm run sync:pf-projects            refresh (details older than a week)
+ *   npm run sync:pf-projects            refresh (details older than four weeks)
  *   npm run sync:pf-projects -- --all   refetch every project's details
  *
  * Reads the public pages, as a visitor's browser would: first the listing
  * (about 125 pages, 24 projects each), then each Dubai project's own page for
  * its description, photos, unit types and payment plan. Takes 10-20 minutes,
- * so it is run by hand or on a schedule, not before every build.
+ * so it runs weekly (.github/workflows/sync-pf-projects.yml) or by hand, not
+ * before every build.
  *
  * Safe by design: if Property Finder fails or returns too few projects, the
  * current file is kept.
@@ -32,7 +33,8 @@ const ORIGIN = 'https://www.propertyfinder.ae';
 const OUT = new URL('../data/market/pf-projects.json', import.meta.url);
 const UA =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0 Safari/537.36';
-const REFRESH_AFTER_MS = 7 * 24 * 3600_000;
+/* Prices, dates and phases come from the listing on every run; the rest of a project's page is reread monthly */
+const REFRESH_AFTER_MS = 28 * 24 * 3600_000;
 const CONCURRENCY = 4;
 /* A run that finds fewer than this many keeps the current file */
 const MIN_PROJECTS = 500;
