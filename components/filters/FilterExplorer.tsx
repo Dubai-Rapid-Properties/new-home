@@ -36,6 +36,8 @@ type Props<T> = {
   emptyHint?: string;
   /** Offers a map of the results beside the grid; ?view=map opens on it. */
   renderMap?: (results: T[]) => ReactNode;
+  /** Shows this many results, then a "Show more" button for the next as many. */
+  pageSize?: number;
 };
 
 /**
@@ -53,6 +55,7 @@ export default function FilterExplorer<T>({
   sortOptions,
   leading,
   renderMap,
+  pageSize,
   emptyHint = 'Try removing a filter, or speak to a specialist about what you are looking for.',
 }: Props<T>) {
   const reduce = useReducedMotion();
@@ -109,6 +112,11 @@ export default function FilterExplorer<T>({
     const sort = sortOptions?.find((o) => o.id === sortId);
     return sort ? [...filtered].sort(sort.compare) : filtered;
   }, [items, facets, selected, sortOptions, sortId]);
+
+  /* A new filter or sort starts again from the first page */
+  const [shown, setShown] = useState(pageSize ?? Infinity);
+  useEffect(() => setShown(pageSize ?? Infinity), [pageSize, selected, sortId]);
+  const visible = results.length > shown ? results.slice(0, shown) : results;
 
   /** How many items an option would show, given every other active filter. */
   const countFor = useCallback(
@@ -318,7 +326,7 @@ export default function FilterExplorer<T>({
         ) : results.length ? (
           <ul className="grid grid-cols-1 gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
             <AnimatePresence mode="popLayout" initial={false}>
-              {results.map((item) => (
+              {visible.map((item) => (
                 <motion.li
                   key={getKey(item)}
                   layout={!reduce}
@@ -332,7 +340,22 @@ export default function FilterExplorer<T>({
               ))}
             </AnimatePresence>
           </ul>
-        ) : (
+        ) : null}
+        {view === 'grid' && results.length > visible.length ? (
+          <div className="mt-16 flex flex-col items-center gap-4 text-center">
+            <p className="text-[11px] uppercase tracking-eyebrow text-charcoal-muted">
+              Showing {visible.length} of {results.length} {many}
+            </p>
+            <button
+              type="button"
+              onClick={() => setShown((n) => n + (pageSize ?? 0))}
+              className="border border-charcoal px-8 py-3 text-[11px] font-medium uppercase tracking-eyebrow text-charcoal transition-colors duration-300 hover:bg-charcoal hover:text-white"
+            >
+              Show more
+            </button>
+          </div>
+        ) : null}
+        {results.length ? null : (
           <div className="border-y border-line py-16 text-center sm:py-24">
             <p className="font-serif text-[clamp(1.6rem,3vw,2.2rem)] font-light text-charcoal">
               No {many} match these filters.

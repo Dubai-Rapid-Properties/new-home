@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { constructionStage, constructionUpdates, type ConstructionUpdate } from '@/data/offPlan';
+import type { ConstructionUpdate } from '@/data/offPlan';
+import { constructionStage } from '@/lib/offPlanCards';
 import SmartLink from '../ui/SmartLink';
 
 const filters: { id: string; label: string; test: (c: ConstructionUpdate) => boolean }[] = [
@@ -12,6 +13,9 @@ const filters: { id: string; label: string; test: (c: ConstructionUpdate) => boo
   { id: 'nearing', label: 'Nearing completion', test: (c) => c.progress != null && c.progress >= 75 },
   { id: 'awaiting', label: 'Not yet reported', test: (c) => c.progress == null },
 ];
+
+/* Rows shown at first, and added by each "Show more" */
+const PAGE_SIZE = 40;
 
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
@@ -82,24 +86,31 @@ function Row({ c }: { c: ConstructionUpdate }) {
   );
 }
 
-/** Site progress reported for the off-plan projects DRP follows, filterable by stage. */
-export default function ConstructionTracker() {
+/**
+ * Site progress for the off-plan projects on the site, filterable by stage.
+ * The page passes the rows in (data/offPlan.ts stays on the server).
+ */
+export default function ConstructionTracker({ updates }: { updates: ConstructionUpdate[] }) {
   const [filterId, setFilterId] = useState('all');
+  const [shown, setShown] = useState(PAGE_SIZE);
   const filter = filters.find((f) => f.id === filterId)!;
-  const rows = constructionUpdates.filter(filter.test);
+  const rows = updates.filter(filter.test);
 
   return (
     <div>
       <div role="group" aria-label="Filter by stage" className="no-scrollbar -mx-1 flex gap-2 overflow-x-auto px-1">
         {filters.map((f) => {
           const active = f.id === filterId;
-          const count = constructionUpdates.filter(f.test).length;
+          const count = updates.filter(f.test).length;
           return (
             <button
               key={f.id}
               type="button"
               aria-pressed={active}
-              onClick={() => setFilterId(f.id)}
+              onClick={() => {
+                setFilterId(f.id);
+                setShown(PAGE_SIZE);
+              }}
               className={`flex h-11 shrink-0 items-center gap-2 rounded-full border px-5 text-[13px] transition-colors duration-300 ${
                 active ? 'border-charcoal bg-charcoal text-white' : 'border-charcoal/20 bg-white text-charcoal hover:border-charcoal/50'
               }`}
@@ -116,12 +127,26 @@ export default function ConstructionTracker() {
       </p>
 
       <ul className="mt-10 border-t border-line">
-        {rows.map((c) => (
+        {rows.slice(0, shown).map((c) => (
           <li key={c.id} className="border-b border-line">
             <Row c={c} />
           </li>
         ))}
       </ul>
+      {rows.length > shown ? (
+        <div className="mt-12 flex flex-col items-center gap-4 text-center">
+          <p className="text-[11px] uppercase tracking-eyebrow text-charcoal-muted">
+            Showing {shown} of {rows.length} projects
+          </p>
+          <button
+            type="button"
+            onClick={() => setShown((n) => n + PAGE_SIZE)}
+            className="border border-charcoal px-8 py-3 text-[11px] font-medium uppercase tracking-eyebrow text-charcoal transition-colors duration-300 hover:bg-charcoal hover:text-white"
+          >
+            Show more
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }

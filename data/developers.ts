@@ -2,8 +2,8 @@
  * ============================================================================
  *  DEVELOPER NETWORK — /off-plan/developers
  * ============================================================================
- *  Every developer behind an off-plan project DRP sells (from
- *  /data/imported/projects.json). Logos were taken from each developer's own
+ *  Every developer behind an off-plan project on the site: D|R|P's own
+ *  projects and the rest of Dubai's (data/offPlan.ts). Logos were taken from each developer's own
  *  website and live in /public/developers/; they render in one colour on the
  *  page, so any version of the logo (white, black, colour) works.
  *
@@ -71,15 +71,23 @@ export const developers: Developer[] = [...new Set(projects.flatMap((p) => (p.de
   .map((name) => ({
     ...(info.find((d) => d.name === name) ?? { name }),
     projects: projects.filter((p) => p.developer === name).length,
-    href: `/off-plan/projects?q=${toSlug(name)}#projects`,
+    href: `/off-plan/projects?developer=${toSlug(name)}#projects`,
   }))
   .sort((a, b) => b.projects - a.projects || a.name.localeCompare(b.name));
+
+/* Shown as logo cards: developers with a logo, or a large portfolio */
+const FEATURED_FROM = 10;
+export const featuredDevelopers = developers.filter((d) => d.logo || d.projects >= FEATURED_FROM);
+/** Every other developer, A to Z, listed by name under the cards */
+export const otherDevelopers = developers
+  .filter((d) => !featuredDevelopers.includes(d))
+  .sort((a, b) => a.name.localeCompare(b.name));
 
 export const developerNetwork = {
   hero: {
     eyebrow: 'Off-Plan',
     heading: 'Developer Network',
-    intro: "The developers behind the off-plan projects D|R|P sells, from Dubai's master developers to boutique names.",
+    intro: "Every developer with an off-plan project in Dubai, from the master developers to boutique names.",
     image: '/images/newproperty.webp',
     imageAlt: 'A new residential development in Dubai',
   },

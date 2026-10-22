@@ -4,7 +4,7 @@ import CtaBand from '@/components/sections/CtaBand';
 import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import SmartLink from '@/components/ui/SmartLink';
-import { developerNetwork as page, developers } from '@/data/developers';
+import { developerNetwork as page, developers, featuredDevelopers, otherDevelopers } from '@/data/developers';
 import { pageMeta } from '@/lib/seo';
 
 export const metadata = pageMeta({
@@ -25,11 +25,11 @@ export default function Page() {
             eyebrow="Developers We Work With"
             heading={`${developers.length} Developers, One Team`}
             headingId="developers-heading"
-            intro="Select a developer to see their projects available through D|R|P."
+            intro="Every developer with an off-plan project in Dubai. Select one to see their projects."
           />
 
           <ul className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
-            {developers.map((d, i) => (
+            {featuredDevelopers.map((d, i) => (
               <Reveal as="li" key={d.name} delay={(i % 4) * 0.05}>
                 <SmartLink
                   href={d.href}
@@ -64,6 +64,29 @@ export default function Page() {
               </Reveal>
             ))}
           </ul>
+
+          {otherDevelopers.length ? (
+            <div className="mt-20">
+              <h3 className="text-[11px] uppercase tracking-eyebrow text-charcoal-muted">
+                {otherDevelopers.length} more developers, A to Z
+              </h3>
+              <ul className="mt-6 grid grid-cols-1 gap-x-8 border-t border-line sm:grid-cols-2 lg:grid-cols-4">
+                {otherDevelopers.map((d) => (
+                  <li key={d.name} className="border-b border-line">
+                    <SmartLink
+                      href={d.href}
+                      className="group flex items-baseline justify-between gap-3 py-3 text-[13px] text-charcoal"
+                    >
+                      <span className="truncate transition-colors duration-300 group-hover:text-orange">{d.name}</span>
+                      <span className="shrink-0 text-[10px] uppercase tracking-eyebrow text-charcoal-muted">
+                        {d.projects}
+                      </span>
+                    </SmartLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
       </section>
 

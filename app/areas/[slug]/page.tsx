@@ -47,6 +47,10 @@ export default async function Page({ params }: PageProps) {
 
   const homes = listings.filter((l) => l.area === area.name);
   const launches = projects.filter((p) => p.area === area.name);
+  /* Six to show: D|R|P's own projects first, then the newest launches; the link lists them all */
+  const shownLaunches = [...launches]
+    .sort((a, b) => Number(!!a.catalog) - Number(!!b.catalog) || b.launchedAt.localeCompare(a.launchedAt))
+    .slice(0, 6);
   /* Dubai Land Department's registered sales replace the guide's indicative figure */
   const market = areaMarket(area.name);
 
@@ -95,10 +99,10 @@ export default async function Page({ params }: PageProps) {
           <div className="container-drp">
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <SectionHeading eyebrow="Off-Plan" heading={`New Projects in ${area.name}`} headingId="launches-heading" />
-              <ArrowLink href={`/off-plan/projects?q=${toSlug(area.name)}#projects`} label="All off-plan here" />
+              <ArrowLink href={`/off-plan/projects?area=${toSlug(area.name)}#projects`} label={`All ${launches.length} off-plan projects here`} />
             </div>
             <ul className="mt-12 grid grid-cols-1 gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
-              {launches.map((p, i) => (
+              {shownLaunches.map((p, i) => (
                 <Reveal as="li" key={p.slug} delay={(i % 3) * 0.08}>
                   <ProjectCard project={p} />
                 </Reveal>
