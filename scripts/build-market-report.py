@@ -26,6 +26,8 @@ from reportlab.graphics.shapes import Drawing, Rect, String, Line, PolyLine, Cir
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'public', 'reports', 'drp-h1-2026-market-report.pdf')
+LOGO_DARK = os.path.join(ROOT, 'scripts', 'assets', 'drp-logo-dark.png')
+LOGO_WHITE = os.path.join(ROOT, 'scripts', 'assets', 'drp-logo-white.png')
 
 # ---------- Brand ----------
 INK = HexColor('#1c1c1c')
@@ -132,13 +134,8 @@ def cover(c, doc):
     c.setFillColor(INK)
     c.rect(0, 0, W, H, stroke=0, fill=1)
     c.setFillColor(ORANGE)
-    c.rect(M, H - 62 * mm, 14 * mm, 1.2 * mm, stroke=0, fill=1)
-    c.setFillColor(white)
-    c.setFont('Serif', 30)
-    c.drawString(M, H - 30 * mm, 'D  |  R  |  P')
-    c.setFont('Sans', 8)
-    c.setFillColor(HexColor('#b8b8b8'))
-    c.drawString(M, H - 36 * mm, 'DUBAI RAPID PROPERTIES')
+    c.rect(M, H - 66 * mm, 14 * mm, 1.2 * mm, stroke=0, fill=1)
+    c.drawImage(LOGO_WHITE, M, H - 52 * mm, width=48 * mm, height=48 * mm * 933 / 1757, mask='auto')
     c.setFillColor(ORANGE)
     c.setFont('Sans-Bold', 9)
     c.drawString(M, H - 76 * mm, 'MARKET REPORT')
@@ -157,6 +154,7 @@ def cover(c, doc):
 
 
 def page(c, doc):
+    c.drawImage(LOGO_DARK, M, H - 25 * mm, width=30 * mm, height=30 * mm * 506 / 953, mask='auto')
     c.setStrokeColor(LINE)
     c.line(M, 16 * mm, W - M, 16 * mm)
     c.setFont('Sans', 7.5)
@@ -343,10 +341,10 @@ S.append(KeepTogether([
 ]))
 
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
-doc = BaseDocTemplate(OUT, pagesize=A4, leftMargin=M, rightMargin=M, topMargin=20 * mm, bottomMargin=24 * mm,
+doc = BaseDocTemplate(OUT, pagesize=A4, leftMargin=M, rightMargin=M, topMargin=30 * mm, bottomMargin=24 * mm,
                       title='Dubai Residential Market H1 2026', author='Dubai Rapid Properties',
                       subject='Dubai residential market report, H1 2026')
-frame = Frame(M, 24 * mm, W - 2 * M, H - 44 * mm, id='f', leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
+frame = Frame(M, 24 * mm, W - 2 * M, H - 54 * mm, id='f', leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
 doc.addPageTemplates([PageTemplate(id='cover', frames=[frame], onPage=cover, autoNextPageTemplate='body'),
                       PageTemplate(id='body', frames=[frame], onPage=page)])
 doc.build(S)
