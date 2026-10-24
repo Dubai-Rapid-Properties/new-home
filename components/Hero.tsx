@@ -98,7 +98,7 @@ export default function Hero() {
           {/* One heading, so search engines read both lines: the small line, then the name. */}
           <motion.h1 {...rise(0.15)}>
             <span className="eyebrow block text-white/70">{hero.eyebrow}</span>
-            <span className="heading-display mt-3 block max-w-[16ch] text-[clamp(2.2rem,7vw,5.6rem)] text-white sm:mt-6">
+            <span className="heading-display mt-3 block max-w-[16ch] text-[clamp(2.2rem,7vw,5.6rem)] text-white sm:mt-6 sm:max-w-none sm:whitespace-nowrap">
               {hero.heading}
             </span>
           </motion.h1>
