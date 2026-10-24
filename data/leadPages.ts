@@ -32,8 +32,8 @@ type StepBase = {
 export type LeadStep =
   /** Large tappable option cards. Picking one moves straight to the next step. */
   | (StepBase & { kind: 'choice'; options: LeadOption[]; columns?: 2 | 3 })
-  /** Type-to-filter dropdown. */
-  | (StepBase & { kind: 'search'; options: string[]; placeholder: string })
+  /** Dropdown with a final "Other" that opens a field to type the answer in. */
+  | (StepBase & { kind: 'select'; options: string[]; placeholder: string; otherPlaceholder: string })
   /** Single free-text field. `optional` adds a Skip action. */
   | (StepBase & { kind: 'text'; placeholder: string; optional?: boolean })
   /** Name, Phone / WhatsApp and Email, plus an optional consent-style checkbox. */
@@ -70,8 +70,9 @@ const areaStep: LeadStep = {
   id: 'area',
   label: 'Area',
   question: 'Where is the property?',
-  kind: 'search',
-  placeholder: 'Search Dubai areas',
+  kind: 'select',
+  placeholder: 'Choose an area',
+  otherPlaceholder: 'Type the area or community',
   options: searchData.locations,
 };
 
