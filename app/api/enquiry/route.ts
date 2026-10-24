@@ -15,6 +15,9 @@
  *   PORTAL_API_KEY        the portal's WEBSITE_API_KEY; without it nothing is saved
  *   PORTAL_ENQUIRIES_URL  optional, default https://admin.dubairapidproperties.com/api/public/enquiries
  *
+ * Bots are kept out with Cloudflare Turnstile once TURNSTILE_SECRET_KEY is set
+ * (Cloudflare → Turnstile); the browser half is lib/turnstile.ts.
+ *
  * The visitor sees success when either the email or the portal got the enquiry.
  *
  * The market-report form also emails the report to the visitor (data/marketReport.ts).
@@ -34,6 +37,9 @@ const FROM = process.env.ENQUIRY_FROM || 'D|R|P Website <onboarding@resend.dev>'
 /* Overridable for local testing against a mock */
 const RESEND_URL = process.env.RESEND_API_URL || 'https://api.resend.com/emails';
 const PORTAL_URL = process.env.PORTAL_ENQUIRIES_URL || 'https://admin.dubairapidproperties.com/api/public/enquiries';
+
+/* Overridable for local testing against a mock */
+const TURNSTILE_URL = process.env.TURNSTILE_VERIFY_URL || 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
 const MAX_DATA = 20_000;
 const MAX_FILE = 4 * 1024 * 1024;
@@ -109,6 +115,24 @@ async function sendReport(key: string, to: string, name: string, link: string): 
   }
 }
 
+/** True when Cloudflare says the visitor passed the check, or when the check is not switched on. */
+async function passedBotCheck(req: Request, token: FormDataEntryValue | null): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) return true;
+  if (typeof token !== 'string' || !token || token.length > 2048) return false;
+  const body = new URLSearchParams({ secret, response: token });
+  const ip = req.headers.get('cf-connecting-ip');
+  if (ip) body.set('remoteip', ip);
+  try {
+    const res = await fetch(TURNSTILE_URL, { method: 'POST', body, signal: AbortSignal.timeout(8_000) });
+    return res.ok && ((await res.json()) as { success?: boolean }).success === true;
+  } catch (error) {
+    /* Turnstile unreachable: let the visitor through rather than lose a real lead */
+    console.error('[enquiry] Turnstile could not be reached', error instanceof Error ? error.message : error);
+    return true;
+  }
+}
+
 const fail = (status: number, error: string) => Response.json({ ok: false, error }, { status });
 
 /** Saves the enquiry as a lead in the portal. True when it is there (or the portal skips this form). */
@@ -137,6 +161,8 @@ export async function POST(req: Request) {
   } catch {
     return fail(400, 'bad-body');
   }
+
+  if (!(await passedBotCheck(req, form.get('cf-turnstile-response')))) return fail(403, 'bot-check');
 
   const raw = form.get('data');
   if (typeof raw !== 'string' || raw.length > MAX_DATA) return fail(400, 'bad-data');

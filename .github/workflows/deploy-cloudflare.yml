@@ -16,7 +16,8 @@
 #   Secrets:   CLOUDFLARE_API_TOKEN (template "Edit Cloudflare Workers"),
 #              PF_API_KEY, PF_API_SECRET
 #   Variables: CLOUDFLARE_ACCOUNT_ID, NEXT_PUBLIC_SITE_URL,
-#              LISTINGS_FEED_URL, PF_LIVE_ONLY (optional)
+#              LISTINGS_FEED_URL, PF_LIVE_ONLY (optional),
+#              NEXT_PUBLIC_TURNSTILE_SITE_KEY (optional, the forms' bot check)
 # Runtime secrets (RESEND_API_KEY, PORTAL_API_KEY, ...) are set on the Worker
 # in the Cloudflare dashboard; deploys keep them.
 name: Deploy to Cloudflare
@@ -125,6 +126,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
 
       # Remembers these listings as deployed, so the hourly checks skip them until they change.
       - name: Mark the listings as deployed

@@ -90,6 +90,7 @@ Set in Vercel → Environment Variables:
 | `RESEND_API_KEY` | Required. Resend → API Keys. Without it the forms show a "could not be sent — call or WhatsApp us" message. |
 | `ENQUIRY_FROM` | Optional. Defaults to `DRP Website <onboarding@resend.dev>`, which only delivers to the Resend account's own address — so sign up to Resend with office@dubairapidproperties.com, or verify the domain in Resend and set e.g. `DRP Website <website@dubairapidproperties.com>`. |
 | `ENQUIRY_TO` | Optional. Defaults to office@dubairapidproperties.com. |
+| `TURNSTILE_SECRET_KEY` | Optional. Cloudflare Turnstile secret; once set, a form is only accepted with a passed bot check. Its pair, `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, is a GitHub Actions variable used at build time. Without them the forms work as before. |
 
 CVs are limited to 4 MB (PDF or Word).
 

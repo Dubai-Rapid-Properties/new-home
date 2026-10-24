@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
+import { turnstileToken } from './turnstile';
 
 export type EnquiryData = Record<string, unknown>;
 
@@ -12,6 +13,8 @@ export async function sendEnquiry(data: EnquiryData, file?: File | null) {
   const body = new FormData();
   body.append('data', JSON.stringify({ ...data, page: window.location.pathname }));
   if (file) body.append('file', file);
+  const token = await turnstileToken();
+  if (token) body.append('cf-turnstile-response', token);
   const res = await fetch('/api/enquiry', { method: 'POST', body });
   if (!res.ok) throw new Error(`Enquiry failed: ${res.status}`);
 }
