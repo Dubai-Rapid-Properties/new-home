@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import type { SolutionTile as Tile } from '@/data/homepage';
 import { tileImageSizes } from './solutionLayout';
 import SmartLink from './ui/SmartLink';
@@ -36,7 +36,7 @@ export default function SolutionTile({ tile }: { tile: Tile }) {
       }`}
     >
       {isReport ? (
-        /* ---------- Editorial market-report card (no photograph) ---------- */
+        /* ---------- Editorial text card, no photograph (the magazine) ---------- */
         <div className="relative flex h-full w-full flex-col justify-between p-5 sm:p-6 lg:p-7">
           <div
             aria-hidden="true"
@@ -54,7 +54,7 @@ export default function SolutionTile({ tile }: { tile: Tile }) {
               <p className="max-w-[26ch] translate-y-1 text-xs font-light leading-relaxed text-white/60 transition-transform duration-[600ms] ease-premium group-hover:translate-y-0">
                 {tile.subtitle}
               </p>
-              <TileAction icon={Download} />
+              <TileAction icon={ArrowRight} />
             </div>
           </div>
         </div>

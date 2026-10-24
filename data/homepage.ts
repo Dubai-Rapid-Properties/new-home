@@ -339,13 +339,13 @@ export const solutions = {
     },
     {
       id: 'report',
-      title: 'Download H1 2026 Market Report',
-      subtitle: 'Dubai property market intelligence',
-      href: '/market-report',
+      title: 'Read the D|R|P Magazine',
+      subtitle: 'Dubai property stories and market insight',
+      href: '/magazine',
       span: 'tall',
       variant: 'report',
-      reportKicker: 'H1 2026',
-      reportLabel: 'Download',
+      reportKicker: 'D|R|P',
+      reportLabel: 'Coming soon',
     },
     {
       id: 'areas',
