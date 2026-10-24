@@ -31,8 +31,9 @@ const areaStep = {
   id: 'area',
   label: 'Area',
   question: 'Where is the property?',
-  kind: 'search' as const,
-  placeholder: 'Search Dubai areas',
+  kind: 'select' as const,
+  placeholder: 'Choose an area',
+  otherPlaceholder: 'Type the area or community',
   options: searchData.locations,
 };
 

@@ -7,10 +7,9 @@ import {
   useRef,
   useState,
   type FormEvent,
-  type KeyboardEvent,
 } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { ArrowLeft, Check, Search } from 'lucide-react';
+import { ArrowLeft, Check, ChevronDown } from 'lucide-react';
 import type { LeadFormConfig, LeadStep } from '@/data/leadPages';
 import { useEnquiry } from '@/lib/enquiry';
 import { DEFAULT_DIAL, normalisePhone, phoneError } from '@/lib/phone';
@@ -25,6 +24,9 @@ const INITIAL: Values = { dialCode: DEFAULT_DIAL };
 
 /** Pause after a card is picked so the selected state registers before moving on. */
 const ADVANCE_DELAY = 320;
+
+/** Whether a dropdown's "Other" is picked; kept apart from the answer, which is the typed text. */
+const otherKey = (id: string) => `${id}__other`;
 
 const choiceColumns = { 2: 'sm:grid-cols-2', 3: 'sm:grid-cols-3' } as const;
 
@@ -98,7 +100,8 @@ export default function LeadForm({ config, context, density = 'regular', classNa
     const str = (key: string) => String(values[key] ?? '').trim();
 
     if (s.kind === 'choice' && !str(s.id)) next[s.id] = 'Please choose an option.';
-    if (s.kind === 'search' && !str(s.id)) next[s.id] = 'Please choose an area from the list.';
+    if (s.kind === 'select' && !str(s.id))
+      next[s.id] = values[otherKey(s.id)] ? 'Please type the area.' : 'Please choose an area.';
     if (s.kind === 'text' && !s.optional && !str(s.id)) next[s.id] = 'Please fill in this field.';
 
     if (s.kind === 'contact') {
@@ -243,18 +246,28 @@ export default function LeadForm({ config, context, density = 'regular', classNa
           </>
         );
 
-      case 'search':
+      case 'select':
         return (
           <>
-            <SearchSelect
+            <AreaSelect
               inputId={`${uid}-${s.id}`}
               labelledBy={headingId}
               describedBy={describedBy(s.id)}
               invalid={!!errors[s.id]}
               options={s.options}
               placeholder={s.placeholder}
+              otherPlaceholder={s.otherPlaceholder}
+              other={values[otherKey(s.id)] === true}
               value={String(values[s.id] ?? '')}
-              onChange={(v) => setValue(s.id, v)}
+              onPick={(v) => {
+                setValue(otherKey(s.id), false);
+                setValue(s.id, v);
+              }}
+              onOther={() => {
+                setValue(otherKey(s.id), true);
+                setValue(s.id, '');
+              }}
+              onType={(v) => setValue(s.id, v)}
             />
             {errorText(s.id)}
           </>
@@ -527,155 +540,101 @@ export default function LeadForm({ config, context, density = 'regular', classNa
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Searchable dropdown                                                       */
+/*  Dropdown with "Other"                                                     */
 /* -------------------------------------------------------------------------- */
 
-type SearchSelectProps = {
+const OTHER = 'Other';
+
+type AreaSelectProps = {
   inputId: string;
   labelledBy: string;
   describedBy?: string;
   invalid: boolean;
   options: string[];
   placeholder: string;
+  otherPlaceholder: string;
+  other: boolean;
   value: string;
-  onChange: (value: string) => void;
+  onPick: (value: string) => void;
+  onOther: () => void;
+  onType: (value: string) => void;
 };
 
 /**
- * Combobox that filters a fixed list as you type. The list opens in the flow
- * of the card rather than floating, so it is never hidden behind a mobile
- * keyboard or clipped by the step transition. An area not in the list can
- * still be used as typed.
+ * A native dropdown (so phones show their own picker) with an "Other" at the
+ * end. Choosing it opens a text field to type an area that is not in the list.
  */
-function SearchSelect({
+function AreaSelect({
   inputId,
   labelledBy,
   describedBy,
   invalid,
   options,
   placeholder,
+  otherPlaceholder,
+  other,
   value,
-  onChange,
-}: SearchSelectProps) {
-  const listId = `${inputId}-list`;
-  const [query, setQuery] = useState(value);
-  const [open, setOpen] = useState(false);
-  const [active, setActive] = useState(-1);
-
-  const q = query.trim().toLowerCase();
-  /* Once an option is chosen, reopening shows the whole list again */
-  const matches =
-    !q || query === value ? options : options.filter((o) => o.toLowerCase().includes(q));
-  const items: { value: string; label: string }[] = matches.map((o) => ({ value: o, label: o }));
-  if (q && matches.length === 0) {
-    items.push({ value: query.trim(), label: `Use “${query.trim()}”` });
-  }
-
-  const select = (v: string) => {
-    onChange(v);
-    setQuery(v);
-    setOpen(false);
-    setActive(-1);
-  };
-
-  const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      setOpen(true);
-      setActive((i) => (i + 1) % items.length);
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      setOpen(true);
-      setActive((i) => (i <= 0 ? items.length - 1 : i - 1));
-    } else if (e.key === 'Escape' && open) {
-      e.preventDefault();
-      setOpen(false);
-      setActive(-1);
-    } else if (e.key === 'Enter' && open) {
-      /* Pick the highlighted (or only) match instead of submitting the step */
-      const pick = active >= 0 ? items[active] : items.length === 1 ? items[0] : undefined;
-      if (pick) {
-        e.preventDefault();
-        select(pick.value);
-      }
-    }
-  };
+  onPick,
+  onOther,
+  onType,
+}: AreaSelectProps) {
+  const typeRef = useRef<HTMLInputElement>(null);
+  const underline = `border-b transition-colors duration-300 focus-within:border-orange ${
+    invalid ? 'border-orange' : 'border-line'
+  }`;
 
   return (
-    <div>
-      <div
-        className={`flex items-center gap-3 border-b transition-colors duration-300 focus-within:border-orange ${
-          invalid ? 'border-orange' : 'border-line'
-        }`}
-      >
-        <Search aria-hidden="true" strokeWidth={1.5} className="h-5 w-5 shrink-0 text-charcoal-muted" />
-        <input
+    <div className="space-y-6">
+      <div className={`relative flex items-center ${underline}`}>
+        <select
           id={inputId}
-          type="text"
-          role="combobox"
           aria-labelledby={labelledBy}
           aria-describedby={describedBy}
-          aria-invalid={invalid}
-          aria-expanded={open}
-          aria-controls={listId}
-          aria-autocomplete="list"
-          aria-activedescendant={open && active >= 0 ? `${listId}-${active}` : undefined}
-          autoComplete="off"
-          placeholder={placeholder}
-          value={query}
+          aria-invalid={invalid && !other}
+          value={other ? OTHER : value}
           onChange={(e) => {
-            setQuery(e.target.value);
-            setOpen(true);
-            setActive(-1);
-            if (value) onChange('');
+            if (e.target.value === OTHER) {
+              onOther();
+              /* The field mounts on the next render */
+              window.setTimeout(() => typeRef.current?.focus(), 0);
+            } else onPick(e.target.value);
           }}
-          onFocus={() => setOpen(true)}
-          onClick={() => setOpen(true)}
-          onBlur={() => {
-            setOpen(false);
-            /* A typed name that matches an area exactly counts as choosing it */
-            const exact = options.find((o) => o.toLowerCase() === q);
-            if (exact && exact !== value) select(exact);
-          }}
-          onKeyDown={onKeyDown}
-          className="w-full min-w-0 border-0 bg-transparent pb-3 pt-2 text-lg font-light text-charcoal outline-none placeholder:text-charcoal-muted/60 focus-visible:outline-none"
+          className={`w-full min-w-0 cursor-pointer appearance-none border-0 bg-transparent pb-3 pt-2 pr-8 text-lg font-light outline-none focus-visible:outline-none ${
+            value || other ? 'text-charcoal' : 'text-charcoal-muted/60'
+          }`}
+        >
+          <option value="" disabled>
+            {placeholder}
+          </option>
+          {options.map((o) => (
+            <option key={o} value={o}>
+              {o}
+            </option>
+          ))}
+          <option value={OTHER}>{OTHER}</option>
+        </select>
+        <ChevronDown
+          aria-hidden="true"
+          strokeWidth={1.5}
+          className="pointer-events-none absolute right-0 h-5 w-5 text-charcoal-muted"
         />
-        {value ? (
-          <Check aria-hidden="true" strokeWidth={2} className="h-4 w-4 shrink-0 text-orange" />
-        ) : null}
       </div>
 
-      {open && items.length > 0 ? (
-        <ul
-          id={listId}
-          role="listbox"
-          aria-labelledby={labelledBy}
-          className="mt-3 max-h-64 overflow-y-auto rounded-md border border-line bg-white py-1.5 shadow-[0_12px_32px_-16px_rgba(26,26,26,0.2)]"
-        >
-          {items.map((item, i) => {
-            const selected = item.value === value;
-            return (
-              <li
-                key={item.label}
-                id={`${listId}-${i}`}
-                role="option"
-                aria-selected={selected}
-                /* mousedown keeps focus in the input so blur does not close first */
-                onMouseDown={(e) => e.preventDefault()}
-                onClick={() => select(item.value)}
-                onMouseEnter={() => setActive(i)}
-                className={`flex min-h-[48px] cursor-pointer items-center justify-between gap-3 px-4 text-[15px] font-light text-charcoal transition-colors duration-150 ${
-                  i === active ? 'bg-cream' : ''
-                }`}
-              >
-                {item.label}
-                {selected ? (
-                  <Check aria-hidden="true" strokeWidth={2} className="h-4 w-4 text-orange" />
-                ) : null}
-              </li>
-            );
-          })}
-        </ul>
+      {other ? (
+        <div className={underline}>
+          <input
+            ref={typeRef}
+            type="text"
+            autoComplete="off"
+            aria-label={otherPlaceholder}
+            aria-describedby={describedBy}
+            aria-invalid={invalid}
+            placeholder={otherPlaceholder}
+            value={value}
+            onChange={(e) => onType(e.target.value)}
+            className="w-full min-w-0 border-0 bg-transparent pb-3 pt-2 text-lg font-light text-charcoal outline-none placeholder:text-charcoal-muted/60 focus-visible:outline-none"
+          />
+        </div>
       ) : null}
     </div>
   );
