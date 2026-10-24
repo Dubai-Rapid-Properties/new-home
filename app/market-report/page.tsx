@@ -4,6 +4,7 @@ import FormSection from '@/components/sections/FormSection';
 import IntroSplit from '@/components/sections/IntroSplit';
 import StatStrip from '@/components/sections/StatStrip';
 import { contactStep, type LeadFormConfig } from '@/data/leadPages';
+import { dubaiMarket } from '@/lib/dld';
 import { unsplash } from '@/lib/media';
 import { pageMeta } from '@/lib/seo';
 
@@ -14,11 +15,15 @@ export const metadata = pageMeta({
   path: '/market-report',
 });
 
+/* The same figures as the PDF (scripts/build-market-report.py): January to June from the DLD data */
+const h1 = dubaiMarket.months.filter((m) => m.month <= '2026-06');
+const h1Sales = h1.reduce((n, m) => n + m.sales, 0);
+const h1Psf = Math.round(h1.reduce((n, m) => n + m.sales * (m.medianPsf ?? 0), 0) / h1Sales);
+
 const reportForm: LeadFormConfig = {
   formId: 'market-report',
   submitLabel: 'Send Me the Report',
   successTitle: 'Thank you.',
-  // TODO: attach the PDF (or a download link) once the report is final
   successBody: 'The H1 2026 Market Report is on its way to your inbox.',
   steps: [
     {
@@ -36,7 +41,7 @@ const reportForm: LeadFormConfig = {
     },
     contactStep(
       { id: 'subscribe', label: 'Send me D|R|P market insights each month' },
-      { question: 'Where should we send it?', helper: 'The report arrives by email as a PDF.' },
+      { question: 'Where should we send it?', helper: 'You will get a link to the report as a PDF.' },
     ),
   ],
 };
@@ -54,28 +59,28 @@ export default function Page() {
       />
       <StatStrip
         items={[
-          { value: '+18%', label: 'Transactions vs H1 2025' },
-          { value: '54%', label: 'Off-plan share of sales' },
-          { value: '+9%', label: 'Prime villa prices' },
-          { value: '12', label: 'Areas analysed' },
+          { value: h1Sales.toLocaleString('en-US'), label: 'Registered sales, Jan to Jun' },
+          { value: `AED ${h1Psf.toLocaleString('en-US')}`, label: 'Average median price per sq ft' },
+          { value: `${Math.round((dubaiMarket.offPlanShare ?? 0) * 100)}%`, label: 'Off-plan share of 2026 sales' },
+          { value: '15', label: 'Areas ranked' },
         ]}
-        note="Indicative figures. The full report has the final numbers."
+        note="From Dubai Land Department registered sales. The report has the full tables."
       />
       <IntroSplit
         eyebrow="Inside the Report"
         heading="What the first half of 2026 tells us"
         tone="cream"
         paragraphs={[
-          'Our research team combines Dubai Land Department transaction data with what our agents see on the ground every day on Palm Jumeirah and across the city.',
-          'The report covers sales volumes and values, the off-plan versus ready split, prime and mid-market price movement, rental trends and yields by area, and the launches shaping supply over the next two years.',
-          'It closes with our outlook for the second half of the year and what it means for buyers, sellers and landlords.',
+          'The report is built from the Dubai Land Department’s registered residential sales, checked against what our agents see on the ground every day on Palm Jumeirah and across the city.',
+          'It covers sales by month, the areas with the most transactions and what each costs per sq ft, the off-plan share, and a closer look at Palm Jumeirah, building by building.',
+          'It closes with what July to September added, so you can see how the market has moved since the half-year.',
         ]}
       />
       <FormSection
         eyebrow="Free Download"
         heading="Get the full report"
         intro="Tell us a little about yourself and we will email the report straight away."
-        points={['Sales volumes and values', 'Prime and mid-market pricing', 'Rental yields by area', 'Outlook for H2 2026']}
+        points={['Sales volumes by month', 'Price per sq ft by area', 'Palm Jumeirah, building by building', 'What July to September added']}
         config={reportForm}
         tone="white"
       />
