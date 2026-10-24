@@ -95,15 +95,12 @@ export default function Hero() {
       {/* ---------- Content ---------- */}
       <div className="relative z-20 flex flex-1 items-end pb-5 pt-24 sm:pb-14 sm:pt-32 lg:pb-20">
         <div className="container-drp">
-          <motion.p {...rise(0.15)} className="eyebrow text-white/70">
-            {hero.eyebrow}
-          </motion.p>
-
-          <motion.h1
-            {...rise(0.28)}
-            className="heading-display mt-3 max-w-[16ch] text-[clamp(2.2rem,7vw,5.6rem)] text-white sm:mt-6"
-          >
-            {hero.heading}
+          {/* One heading, so search engines read both lines: the small line, then the name. */}
+          <motion.h1 {...rise(0.15)}>
+            <span className="eyebrow block text-white/70">{hero.eyebrow}</span>
+            <span className="heading-display mt-3 block max-w-[16ch] text-[clamp(2.2rem,7vw,5.6rem)] text-white sm:mt-6">
+              {hero.heading}
+            </span>
           </motion.h1>
 
           <motion.p

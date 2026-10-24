@@ -70,8 +70,10 @@ export type NavItem = { label: string; href: string; external?: boolean };
 /* -------------------------------------------------------------------------- */
 
 export const hero = {
-  eyebrow: 'Dubai Rapid Properties',
-  heading: 'Dubai Real Estate. Global Perspective.',
+  /** The small line above the name. */
+  eyebrow: 'Dubai Real Estate. Global Perspective.',
+  /** The large heading: the company's name. */
+  heading: 'Dubai Rapid Properties',
   paragraph:
     'Established in Dubai since 2007, connecting clients from around the world with property, investment and opportunities across the UAE.',
   /** Background video — muted, looping, no controls. */
