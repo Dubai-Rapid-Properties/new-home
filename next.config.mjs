@@ -29,7 +29,7 @@ const nextConfig = {
        * No magazine articles are published yet (data/news.ts), so article
        * links go to /news. Temporary: remove once real articles are added.
        */
-      { source: '/magazine/:slug*', destination: '/news', permanent: false },
+      { source: '/magazine/:slug+', destination: '/news', permanent: false },
       /* Addresses from the old WordPress site */
       ...legacyRedirects(),
     ];
