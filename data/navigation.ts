@@ -195,6 +195,7 @@ export const fullMenu: NavLink[] = [
   { label: 'About Us', href: '/about' },
   { label: 'Careers', href: '/careers' },
   { label: 'News & Insights', href: '/news' },
+  { label: 'D|R|P Magazine', href: '/magazine' },
   { label: 'D|R|P Ecosystem', href: '/ecosystem', accent: true },
   { label: 'Contact', href: '/contact' },
 ];
