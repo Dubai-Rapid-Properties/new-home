@@ -262,6 +262,16 @@ const matchName = (name: string) =>
     .replace(/\bphase\s*/g, '')
     .replace(/[^a-z0-9]/g, '');
 
+/**
+ * Property Finder projects never shown on the site, by page path: their
+ * developer asked for them to be taken down (not yet approved for
+ * advertising). The weekly refresh keeps them in pf-projects.json; this keeps
+ * them off the site.
+ */
+const PF_REMOVED = new Set([
+  'acube-developers/zeta', // Acube Developments, 26 Oct 2026: not yet approved for advertising
+]);
+
 /** Property Finder pages for projects D|R|P lists under another name, by page path */
 const PF_LISTED_BY_DRP = new Set([
   'object-1/alta-view-skyhomes',
@@ -345,7 +355,7 @@ const pfProjects: Project[] = (() => {
   const slugs = new Set(drpProjects.map((p) => p.slug));
   const out: Project[] = [];
   for (const r of pfCatalog.projects) {
-    if (PF_LISTED_BY_DRP.has(r.path) || listed.has(matchName(r.name))) continue;
+    if (PF_REMOVED.has(r.path) || PF_LISTED_BY_DRP.has(r.path) || listed.has(matchName(r.name))) continue;
     const [devSlug, projectSlug] = r.path.split('/');
     const slug = slugs.has(projectSlug) ? `${projectSlug}-${devSlug}` : projectSlug;
     if (slugs.has(slug)) continue;
