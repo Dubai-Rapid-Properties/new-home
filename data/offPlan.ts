@@ -359,8 +359,51 @@ const pfProjects: Project[] = (() => {
   return out;
 })();
 
+/**
+ * Property Finder's coordinates for each project name, so the map pins D|R|P's
+ * own projects on their building instead of searching Google for the name
+ * ("Serenz, JVC" finds only the community; the building is "Serenz by Danube").
+ */
+const pfCoordsByName = new Map<string, { developer: string | null; near: [number, number] }[]>();
+for (const r of pfCatalog.projects) {
+  if (r.lat == null || r.lng == null) continue;
+  const key = matchName(r.name);
+  const developer = r.developer ? (PF_DEVELOPERS[r.developer] ?? r.developer) : null;
+  pfCoordsByName.set(key, [...(pfCoordsByName.get(key) ?? []), { developer, near: [r.lat, r.lng] }]);
+}
+
+/** D|R|P projects Property Finder lists under another name: D|R|P slug -> Property Finder page path */
+const PF_PATH_FOR_DRP: Record<string, string> = {
+  'mirari-lagoon-by-zoya': 'zoya-developments/mirari',
+  'orla-dorchester-collection': 'omniyat-group/orla-by-omniyat',
+  'soma-residences': 'origami-developer/soma-residence',
+  'burj-binghatti-jacob-and-co-residences': 'binghatti-developers-fze/burj-binghatti-jacob-and-co',
+  'chelsea-residences-1-tower-c': 'damac-properties/chelsea-residences',
+  elwood: 'sobha-real-estate-llc/sobha-elwood',
+  'ovelle-the-valley': 'emaar-properties/ovelle',
+  'parkwood-emaar': 'emaar-properties/parkwood',
+  salva: 'emaar-properties/salva-by-emaar',
+  serro: 'emaar-properties/serro-the-heights',
+  valia: 'emaar-properties/valia-tower',
+  'alta-v1ew': 'object-1/alta-view-skyhomes',
+  'trussardi-residences-phase-two': 'mira-developments/trussardi-residences-phase-2-by-mira-developments',
+};
+const pfCoordsByPath = new Map<string, [number, number]>(
+  pfCatalog.projects.flatMap((r) => (r.lat != null && r.lng != null ? [[r.path, [r.lat, r.lng]] as const] : [])),
+);
+
+/** The project's map, pinned on Property Finder's coordinates when one project of that name (and developer) has them */
+function pinned(p: Project): Project {
+  if (p.map.near) return p;
+  const byPath = PF_PATH_FOR_DRP[p.slug] ? pfCoordsByPath.get(PF_PATH_FOR_DRP[p.slug]) : undefined;
+  if (byPath) return { ...p, map: { ...p.map, exact: true, near: byPath } };
+  const all = pfCoordsByName.get(matchName(p.name)) ?? [];
+  const same = all.length > 1 && p.developer ? all.filter((c) => c.developer === p.developer) : all;
+  return same.length === 1 ? { ...p, map: { ...p.map, exact: true, near: same[0].near } } : p;
+}
+
 /** Every off-plan project on the site: D|R|P's own, then the rest of Dubai's. */
-export const projects: Project[] = [...drpProjects, ...pfProjects].sort((a, b) =>
+export const projects: Project[] = [...drpProjects.map(pinned), ...pfProjects].sort((a, b) =>
   b.launchedAt.localeCompare(a.launchedAt),
 );
 
