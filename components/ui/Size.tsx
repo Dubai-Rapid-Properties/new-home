@@ -14,3 +14,15 @@ export function UnitName() {
   const { unit } = useAreaUnit();
   return <>{unitLabel(unit)}</>;
 }
+
+/** A size range, e.g. "650 - 1,200 sq ft", or one size when both ends match. */
+export function SizeRange({ from, to }: { from: number; to: number }) {
+  const { unit } = useAreaUnit();
+  if (Math.round(from) === Math.round(to)) return <>{formatSize(from, unit)}</>;
+  const [a] = formatSize(from, unit).split(' ');
+  return (
+    <>
+      {a} - {formatSize(to, unit)}
+    </>
+  );
+}
