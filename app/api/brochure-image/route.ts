@@ -5,12 +5,16 @@
  * browser (components/offplan/BrochureButton.tsx). Property Finder's photo
  * server sends no CORS header, so a page cannot read its photos into a PDF
  * directly; this passes them through from the site's own address. Only that
- * photo server is allowed, so the route cannot fetch anything else.
+ * photo server is allowed, so the route cannot fetch anything else, and only
+ * for a browser signed in as a D|R|P agent (lib/agentAccess.ts).
  */
+import { isAgent } from '@/lib/agentAccess';
+
 const ALLOWED_HOSTS = new Set(['new-projects-media.propertyfinder.com']);
 const MAX_BYTES = 8 * 1024 * 1024;
 
 export async function GET(req: Request) {
+  if (!(await isAgent(req))) return new Response('Agents only', { status: 403 });
   const src = new URL(req.url).searchParams.get('src') ?? '';
   let url: URL;
   try {

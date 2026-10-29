@@ -42,6 +42,15 @@ export default function BrochureButton({ project, agents, office }: Props) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const dialog = useRef<HTMLDivElement>(null);
+  /* Only D|R|P agents, signed in at /agents, see the button */
+  const [isAgent, setIsAgent] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/agent-access', { cache: 'no-store' })
+      .then((r) => r.json())
+      .then((d) => setIsAgent(Boolean(d.agent)))
+      .catch(() => setIsAgent(false));
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -111,6 +120,8 @@ export default function BrochureButton({ project, agents, office }: Props) {
       </label>
     </div>
   );
+
+  if (!isAgent) return null;
 
   return (
     <>
