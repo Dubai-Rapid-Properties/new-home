@@ -11,6 +11,7 @@ import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import SmartLink from '@/components/ui/SmartLink';
 import BrochureButton from '@/components/offplan/BrochureButton';
+import { DetailsAndAmenities, UnitsAndPlan } from '@/components/offplan/ProjectDetails';
 import { agentCards } from '@/data/agentCards';
 import { allTeam, memberContact } from '@/data/company';
 import { contact } from '@/data/homepage';
@@ -21,6 +22,7 @@ import { contactStep, type LeadFormConfig } from '@/data/leadPages';
 import {
   constructionFor,
   constructionStage,
+  formatAed,
   getProject,
   handoverLabel,
   priceLabel,
@@ -28,6 +30,7 @@ import {
   projectHref,
   projectLocation,
   similarProjects,
+  unitName,
   unitTypesLabel,
 } from '@/data/offPlan';
 import { clip, pageMeta } from '@/lib/seo';
@@ -73,8 +76,27 @@ export default async function Page({ params }: PageProps) {
     ...(project.paymentPlan ? [['Payment plan', project.paymentPlan]] : []),
     ...(project.developer ? [['Developer', project.developer]] : []),
   ].slice(0, 5);
+  const schedule = project.schedule;
+  const details: [string, string][] = [
+    ...(project.developer ? ([['Developer', project.developer]] as [string, string][]) : []),
+    ['Location', `${project.area}, Dubai`],
+    ['Property types', project.propertyTypes.join(', ')],
+    ['Unit types', unitTypesLabel(project)],
+    ['Starting price', priceLabel(project)],
+    ['Expected handover', handoverLabel(project)],
+    ...(schedule
+      ? ([['Payment plan', `${schedule[0]}% on booking, ${schedule[1]}% during construction, ${schedule[2]}% on and after handover`]] as [string, string][])
+      : project.paymentPlan
+        ? ([['Payment plan', project.paymentPlan]] as [string, string][])
+        : []),
+    ...(project.ownership ? ([['Ownership', project.ownership]] as [string, string][]) : []),
+    ...(project.availability ? ([['Availability', project.availability]] as [string, string][]) : []),
+    ...(construction ? ([['Construction', `${construction.progress}% complete`]] as [string, string][]) : []),
+  ];
   /* Unit-type step: bedrooms when known, otherwise property types */
-  const unitOptions = project.bedrooms.length
+  const unitOptions = project.units?.length
+    ? [...new Set(project.units.map(unitName))]
+    : project.bedrooms.length
     ? project.bedrooms.map(bedLabel)
     : project.propertyTypes.map((t) => `${t}`);
 
@@ -115,10 +137,23 @@ export default async function Page({ params }: PageProps) {
     facts: facts.filter(([label]) => label !== 'Developer').slice(0, 4) as [string, string][],
     description: project.description,
     highlights: project.highlights,
+    units: (project.units ?? []).map((u) => ({
+      name: unitName(u),
+      size: u.size
+        ? u.size[0] === u.size[1]
+          ? `${u.size[0].toLocaleString('en-US')} sq ft`
+          : `${u.size[0].toLocaleString('en-US')} - ${u.size[1].toLocaleString('en-US')} sq ft`
+        : '',
+      price: u.from ? formatAed(u.from) : 'On request',
+    })),
+    schedule: project.schedule,
+    amenities: project.amenities ?? [],
+    details,
+    masterPlan: project.masterPlan,
     configurations: `${project.bedrooms.length ? `${project.bedrooms.map(bedLabel).join(' · ')} - ` : ''}${project.propertyTypes.join(', ')}`,
     area: project.area,
     locationText: project.locationText,
-    images: [...new Set([project.image, ...project.gallery.map((g) => g.src)])].slice(0, 7),
+    images: [...new Set([project.image, ...project.gallery.map((g) => g.src)])].slice(0, 17),
     pageUrl: `${siteUrl}${projectHref(project.slug)}`,
   };
   const brochureAgents = allTeam.map((m) => {
@@ -217,14 +252,43 @@ export default async function Page({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ---------- Gallery ---------- */}
-      {project.gallery.length > 1 ? (
+      <UnitsAndPlan project={project} />
+      <DetailsAndAmenities project={project} details={details} />
+
+      {/* ---------- Gallery and master plan ---------- */}
+      {project.gallery.length > 1 || project.masterPlan ? (
         <section aria-labelledby="gallery-heading" className="section-y bg-cream">
           <div className="container-drp">
-            <SectionHeading eyebrow="Gallery" heading={`Inside ${project.name}`} headingId="gallery-heading" />
-            <div className="mt-12">
-              <ListingGallery images={project.gallery} title={project.name} />
-            </div>
+            {project.gallery.length > 1 ? (
+              <>
+                <SectionHeading
+                  eyebrow={`Gallery · ${project.gallery.length} photos`}
+                  heading={`Inside ${project.name}`}
+                  headingId="gallery-heading"
+                />
+                <div className="mt-12">
+                  <ListingGallery images={project.gallery} title={project.name} />
+                </div>
+              </>
+            ) : null}
+            {project.masterPlan ? (
+              <div className={project.gallery.length > 1 ? 'mt-20' : ''}>
+                <SectionHeading
+                  eyebrow="Master Plan"
+                  heading={`${project.name} master plan`}
+                  headingId={project.gallery.length > 1 ? undefined : 'gallery-heading'}
+                />
+                <div className="mt-10 bg-white p-4 sm:p-8">
+                  {/* eslint-disable-next-line @next/next/no-img-element -- a drawing shown whole, at its own shape */}
+                  <img
+                    src={project.masterPlan}
+                    alt={`${project.name} master plan`}
+                    loading="lazy"
+                    className="mx-auto h-auto max-h-[80vh] w-auto max-w-full"
+                  />
+                </div>
+              </div>
+            ) : null}
           </div>
         </section>
       ) : null}

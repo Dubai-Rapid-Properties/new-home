@@ -18,6 +18,14 @@ export type BrochureProject = {
   facts: [string, string][];
   description: string[];
   highlights: { title: string; text: string }[];
+  /** Each unit type with its size and starting price, ready to print */
+  units: { name: string; size: string; price: string }[];
+  /** Payment stages in %: on booking, during construction, on and after handover */
+  schedule?: [number, number, number];
+  amenities: string[];
+  /** Label / value rows for "At a glance" */
+  details: [string, string][];
+  masterPlan?: string;
   configurations: string;
   area: string;
   locationText: string[];
@@ -101,6 +109,24 @@ async function photo(src: string, w: number, h: number, quality = 0.82): Promise
   }
 }
 
+/** A drawing shown whole (no crop), at most `max` pixels across, with its aspect ratio. */
+async function drawing(src: string, max = 1800): Promise<{ data: string; ratio: number } | null> {
+  try {
+    const img = await loadImage(src);
+    const ratio = img.naturalWidth / img.naturalHeight || 1.4;
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.min(max, img.naturalWidth || max);
+    canvas.height = Math.round(canvas.width / ratio);
+    const ctx = canvas.getContext('2d')!;
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    return { data: canvas.toDataURL('image/jpeg', 0.85), ratio };
+  } catch {
+    return null;
+  }
+}
+
 /** A round crop of a portrait, as a PNG data URL with a transparent corner. */
 async function portrait(src: string, size = 360): Promise<string | null> {
   try {
@@ -148,14 +174,15 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
   const digits = (n: string) => n.replace(/[^\d]/g, '');
   const waLink = agent.whatsapp ? `https://wa.me/${digits(agent.whatsapp)}` : '';
 
-  const [cover, gallery, whiteLogo, blackLogo, face, qr, card] = await Promise.all([
+  const [cover, gallery, whiteLogo, blackLogo, face, qr, card, plan] = await Promise.all([
     project.images[0] ? photo(project.images[0], 1680, 1520, 0.85) : Promise.resolve(null),
-    Promise.all(project.images.slice(1, 7).map((src) => photo(src, 1000, 700))),
+    Promise.all(project.images.slice(1, 17).map((src) => photo(src, 1000, 700, 0.8))),
     logo('/brand/drp-white.svg'),
     logo('/brand/drp-black.svg'),
     agent.photo ? portrait(agent.photo) : Promise.resolve(null),
     waLink ? QRCode.toDataURL(waLink, { margin: 0, width: 360, color: { dark: '#1a1a1a', light: '#ffffff' } }) : Promise.resolve(null),
     agent.card ? photo(agent.card, 1920, 1080, 0.9) : Promise.resolve(null),
+    project.masterPlan ? drawing(project.masterPlan) : Promise.resolve(null),
   ]);
 
   const text = (s: string, x: number, y: number, opts?: Parameters<JsPdf['text']>[3]) => doc.text(plain(s), x, y, opts);
@@ -276,7 +303,7 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
       y += 2.5;
     }
   }
-  if (project.configurations) {
+  if (project.configurations && !project.units.length) {
     y += 2;
     room(14);
     eyebrow('Configurations', M, y);
@@ -284,8 +311,139 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
     paragraph(project.configurations);
   }
 
+  /* Units and starting prices */
+  if (project.units.length) {
+    room(60);
+    if (y > 38) y += 6;
+    heading('Units & Prices', 'Starting prices by unit');
+    const sized = project.units.some((u) => u.size);
+    const sizeX = M + CW * 0.5;
+    font('helvetica', 'bold', 6.5, MUTED);
+    doc.setCharSpace(0.6);
+    text('UNIT TYPE', M, y);
+    if (sized) text('SIZE', sizeX, y);
+    text('STARTING PRICE', W - M, y, { align: 'right' });
+    doc.setCharSpace(0);
+    y += 3;
+    doc.setDrawColor(...CHARCOAL);
+    doc.setLineWidth(0.3);
+    doc.line(M, y, W - M, y);
+    doc.setLineWidth(0.2);
+    doc.setDrawColor(...LINE);
+    for (const u of project.units) {
+      room(9);
+      y += 6;
+      font('helvetica', 'normal', 9.5, INK);
+      text(u.name, M, y);
+      if (sized) {
+        font('helvetica', 'normal', 9, CHARCOAL);
+        text(u.size || '-', sizeX, y);
+      }
+      font('times', 'bold', 11, INK);
+      text(u.price, W - M, y, { align: 'right' });
+      y += 3;
+      doc.line(M, y, W - M, y);
+    }
+    y += 5;
+    font('helvetica', 'normal', 7, MUTED);
+    text("The developer's published starting prices; availability and prices to be confirmed.", M, y);
+    y += 6;
+  }
+
+  /* Payment plan */
+  const plan3 = project.schedule;
+  if (plan3) {
+    room(48);
+    if (y > 38) y += 6;
+    heading('Payment Plan', `${plan3[0] + plan3[1]}/${plan3[2]} payment plan`);
+    const colours: [number, number, number][] = [ORANGE, CHARCOAL, [190, 185, 178]];
+    let bx = M;
+    plan3.forEach((pct, i) => {
+      if (!pct) return;
+      doc.setFillColor(...colours[i]);
+      doc.rect(bx, y, (CW * pct) / 100, 2.5, 'F');
+      bx += (CW * pct) / 100;
+    });
+    y += 11;
+    const stages = ['On booking', 'During construction', 'On & after handover'];
+    const sw = CW / 3;
+    plan3.forEach((pct, i) => {
+      const x = M + i * sw;
+      doc.setFillColor(...colours[i]);
+      doc.circle(x + 1.2, y - 1.3, 1.2, 'F');
+      font('helvetica', 'normal', 8, MUTED);
+      text(stages[i].toUpperCase(), x + 4.5, y);
+      font('times', 'normal', 22, INK);
+      text(`${pct}%`, x, y + 10);
+    });
+    y += 18;
+  }
+
+  /* At a glance */
+  if (project.details.length) {
+    room(50);
+    if (y > 38) y += 6;
+    heading('Project Details', 'At a glance');
+    doc.setDrawColor(...LINE);
+    for (const [label, value] of project.details) {
+      font('helvetica', 'normal', 9.5, INK);
+      const body = lines(value, CW - 52);
+      room(4 + body.length * lineH(9.5));
+      font('helvetica', 'normal', 6.5, MUTED);
+      doc.setCharSpace(0.6);
+      text(label.toUpperCase(), M, y);
+      doc.setCharSpace(0);
+      font('helvetica', 'normal', 9.5, INK);
+      body.forEach((l, i) => text(l, M + 50, y + i * lineH(9.5)));
+      y += Math.max(1, body.length) * lineH(9.5) + 1.5;
+      doc.line(M, y - 2.5, W - M, y - 2.5);
+      y += 2;
+    }
+  }
+
+  /* Amenities */
+  if (project.amenities.length) {
+    const cols = 3;
+    const rows = Math.ceil(project.amenities.length / cols);
+    room(30 + Math.min(rows, 6) * 6);
+    if (y > 38) y += 6;
+    heading('Amenities', `Life at ${project.name}`);
+    const aw = CW / cols;
+    font('helvetica', 'normal', 8.5, CHARCOAL);
+    for (let r = 0; r < rows; r++) {
+      room(6);
+      for (let c = 0; c < cols; c++) {
+        const a = project.amenities[r * cols + c];
+        if (!a) continue;
+        const x = M + c * aw;
+        doc.setFillColor(...ORANGE);
+        doc.circle(x + 0.8, y - 1.1, 0.7, 'F');
+        font('helvetica', 'normal', 8.5, CHARCOAL);
+        text(lines(a, aw - 6)[0], x + 4, y);
+      }
+      y += 6;
+    }
+  }
+
+  /* Master plan, whole, on its own page */
+  if (plan) {
+    newPage();
+    heading('Master Plan', `${project.name} master plan`);
+    const maxH = H - 24 - y - 4;
+    let pw = CW;
+    let ph = pw / plan.ratio;
+    if (ph > maxH) {
+      ph = maxH;
+      pw = ph * plan.ratio;
+    }
+    doc.addImage(plan.data, 'JPEG', M + (CW - pw) / 2, y, pw, ph);
+    y += ph + 10;
+  }
+
   /* Gallery */
-  const shots = gallery.filter((g): g is string => Boolean(g));
+  /* An even number, so no photo sits alone on a row */
+  const read = gallery.filter((g): g is string => Boolean(g));
+  const shots = read.length > 2 ? read.slice(0, read.length - (read.length % 2)) : read;
   if (shots.length) {
     newPage();
     heading('Gallery', `Inside ${project.name}`);

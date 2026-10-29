@@ -70,11 +70,35 @@ export type Project = {
   /** Google Maps search, checked at import; `exact` is false when it shows the community */
   map: { query: string; exact: boolean; near?: [number, number] };
   sourceUrl: string;
+  /** Each unit type on sale with its starting price and sizes (sq ft), as the developer publishes them */
+  units?: ProjectUnit[];
+  amenities?: string[];
+  /** The payment plan's stages in %: on booking, during construction, on and after handover */
+  schedule?: [number, number, number];
+  /** "Freehold" or "Leasehold" */
+  ownership?: string;
+  /** "Available", "Limited availability", "Sold out" */
+  availability?: string;
+  /** The master plan drawing */
+  masterPlan?: string;
   /**
    * Set on projects D|R|P has not listed itself, taken from Property Finder's
    * New Projects pages so the site covers every Dubai off-plan project.
    */
   catalog?: 'property-finder';
+};
+
+export type ProjectUnit = {
+  /** "apartment", "townhouse", "villa", "penthouse", "duplex"... */
+  type: string;
+  /** 0 = studio */
+  beds: number;
+  /** Starting price in AED */
+  from?: number;
+  /** Smallest and largest size, sq ft */
+  size?: [number, number];
+  baths?: [number, number];
+  count?: number;
 };
 
 /** WordPress collection names, tidied for the filter bar. */
@@ -286,6 +310,41 @@ const yearOf = (iso: string | null) => (iso ? Number(iso.slice(0, 4)) : null);
 const pfImage = (id: string, key: string) =>
   key.startsWith('https://') ? key : `https://new-projects-media.propertyfinder.com/project/${id}/gallery/image/${key}/medium.webp`;
 
+/** The fields scripts/sync-pf-projects.mjs adds beyond the listing's */
+type PfExtra = {
+  units?: ProjectUnit[];
+  amenities: string[];
+  schedule?: number[] | null;
+  ownership?: string | null;
+  availability?: string | null;
+  masterPlan?: string | null;
+};
+
+const AVAILABILITY: Record<string, string> = {
+  available: 'Available',
+  limited_availability: 'Limited availability',
+  limited: 'Limited availability',
+  might_be_sold_out: 'Limited availability',
+  sold_out: 'Sold out',
+};
+const titleCase = (s: string) => s.replace(/_/g, ' ').replace(/\b[a-z]/g, (c) => c.toUpperCase());
+
+/** Unit prices, amenities, payment stages, ownership and master plan from Property Finder's page */
+function pfDetails(r: PfProject): Pick<Project, 'units' | 'amenities' | 'schedule' | 'ownership' | 'availability' | 'masterPlan'> {
+  const x = r as unknown as PfExtra;
+  const s = x.schedule;
+  return {
+    ...(x.units?.length ? { units: x.units } : {}),
+    ...(x.amenities?.length ? { amenities: x.amenities } : {}),
+    ...(s?.length === 3 ? { schedule: [s[0], s[1], s[2]] as [number, number, number] } : {}),
+    ...(x.ownership ? { ownership: titleCase(x.ownership) } : {}),
+    ...(x.availability ? { availability: AVAILABILITY[x.availability] ?? titleCase(x.availability) } : {}),
+    ...(x.masterPlan
+      ? { masterPlan: `https://new-projects-media.propertyfinder.com/project/${r.id}/master_plan/image/${x.masterPlan}/medium.webp` }
+      : {}),
+  };
+}
+
 function fromPropertyFinder(r: PfProject, slug: string): Project | null {
   const propertyTypes = pfTypes(r.propertyTypes);
   const images = r.images.map((key) => pfImage(r.id, key));
@@ -327,6 +386,7 @@ function fromPropertyFinder(r: PfProject, slug: string): Project | null {
         ? { query: `${r.name}, ${area}, Dubai`, exact: true, near: [r.lat, r.lng] }
         : { query: `${r.name}, ${area}, Dubai`, exact: false },
     sourceUrl: `https://www.propertyfinder.ae/en/new-projects/${r.path}`,
+    ...pfDetails(r),
     catalog: 'property-finder',
   };
 }
@@ -405,8 +465,63 @@ function pinned(p: Project): Project {
   return same.length === 1 ? { ...p, map: { ...p.map, exact: true, near: same[0].near } } : p;
 }
 
+const pfByPath = new Map(pfCatalog.projects.map((r) => [r.path, r]));
+const pfByName = new Map<string, PfProject[]>();
+for (const r of pfCatalog.projects) {
+  const key = matchName(r.name);
+  pfByName.set(key, [...(pfByName.get(key) ?? []), r]);
+}
+
+/** Property Finder's page for one of D|R|P's own projects, when exactly one matches its name (and developer) */
+function pfPageFor(p: Project): PfProject | undefined {
+  if (PF_PATH_FOR_DRP[p.slug]) return pfByPath.get(PF_PATH_FOR_DRP[p.slug]);
+  const all = (pfByName.get(matchName(p.name)) ?? []).filter((r) => !PF_HIDDEN.has(r.path));
+  const developerOf = (r: PfProject) => (r.developer ? (PF_DEVELOPERS[r.developer] ?? r.developer) : null);
+  const same = all.length > 1 && p.developer ? all.filter((r) => developerOf(r) === p.developer) : all;
+  return same.length === 1 ? same[0] : undefined;
+}
+
+/** Every project page shows at least this many photos where the developer has published them */
+const MIN_PHOTOS = 12;
+
+/**
+ * D|R|P's own project, completed from the developer's published details on
+ * Property Finder: each unit type's starting price, the amenities, the payment
+ * stages, and more photos when the D|R|P page has only a few.
+ */
+function completed(p: Project): Project {
+  const r = pfPageFor(p);
+  if (!r) return p;
+  /* D|R|P knows its own availability better than the listing does */
+  const { availability: _listed, ...details } = pfDetails(r);
+  const have = new Set([p.image, ...p.gallery.map((g) => g.src)]);
+  const extra =
+    p.gallery.length < MIN_PHOTOS
+      ? r.images
+          .map((key) => pfImage(r.id, key))
+          .filter((src) => !have.has(src))
+          .slice(0, Math.max(0, MIN_PHOTOS + 4 - p.gallery.length))
+      : [];
+  /*
+   * D|R|P's starting price is the confirmed one: a unit listed below it is a
+   * launch price that has sold, so it shows "On request"
+   */
+  if (details.units && p.fromPrice != null) {
+    const floor = p.fromPrice;
+    details.units = details.units.map(({ from, ...u }) => (from != null && from >= floor ? { ...u, from } : u));
+  }
+  return {
+    ...p,
+    ...details,
+    bedrooms: p.bedrooms.length ? p.bedrooms : r.bedrooms,
+    handoverYear: p.handoverYear ?? yearOf(r.deliveryDate),
+    paymentPlan: p.paymentPlan ?? r.paymentPlan,
+    gallery: [...p.gallery, ...extra.map((src, i) => ({ src, alt: `${p.name}, image ${p.gallery.length + i + 1}` }))],
+  };
+}
+
 /** Every off-plan project on the site: D|R|P's own, then the rest of Dubai's. */
-export const projects: Project[] = [...drpProjects.map(pinned), ...pfProjects].sort((a, b) =>
+export const projects: Project[] = [...drpProjects.map((p) => completed(pinned(p))), ...pfProjects].sort((a, b) =>
   b.launchedAt.localeCompare(a.launchedAt),
 );
 
@@ -640,6 +755,14 @@ export const signatureProjects = [
 /* -------------------------------------------------------------------------- */
 /*  DETAIL HELPERS                                                            */
 /* -------------------------------------------------------------------------- */
+
+const UNIT_TYPES: Record<string, string> = { apartment: 'Apartment', townhouse: 'Townhouse', villa: 'Villa', penthouse: 'Penthouse', duplex: 'Duplex' };
+
+/** "Studio Apartment", "2 Bedroom Townhouse" */
+export const unitName = (u: Pick<ProjectUnit, 'type' | 'beds'>) =>
+  u.type === 'land'
+    ? 'Plot'
+    : `${u.beds === 0 ? 'Studio' : `${u.beds} Bedroom`} ${UNIT_TYPES[u.type] ?? titleCase(u.type)}`;
 
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);
 

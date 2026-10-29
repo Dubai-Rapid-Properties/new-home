@@ -82,13 +82,13 @@ function clip(text, max = 450) {
   return end > max / 2 ? cut.slice(0, end + 1) : `${cut.replace(/\s+\S*$/, '')}…`;
 }
 
-/** The description's first two paragraphs as plain text: no headings, lists or empty lines. */
-function paragraphs(html) {
+/** The description's first paragraphs as plain text: no headings, lists or empty lines. */
+function paragraphs(html, count = 4) {
   return [...(html ?? '').matchAll(/<p[^>]*>([\s\S]*?)<\/p>/g)]
     .map((m) => decode(m[1].replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim())
     .filter((t) => t.length >= 60 && !/:$/.test(t))
-    .slice(0, 2)
-    .map((t) => clip(t));
+    .slice(0, count)
+    .map((t) => clip(t, 600));
 }
 
 /** "70/30": paid before handover / on and after handover, from the first plan. */
@@ -102,6 +102,53 @@ function paymentPlan(plans) {
     .reduce((n, p) => n + (Number(p.value) || 0), 0);
   const before = Math.round(total - after);
   return `${before}/${Math.round(after)}`;
+}
+
+/** The first plan's stages as percentages: [on booking, during construction, on and after handover]. */
+function schedule(plans) {
+  const phases = plans?.[0]?.phases;
+  if (!phases?.length) return null;
+  const sum = (re) => Math.round(phases.filter((p) => re.test(p.label)).reduce((n, p) => n + (Number(p.value) || 0), 0));
+  const stages = [sum(/down_payment|booking/), sum(/during_construction/), sum(/handover/)];
+  const total = stages.reduce((a, b) => a + b, 0);
+  return total >= 95 && total <= 105 ? stages : null;
+}
+
+/**
+ * Each unit type the developer sells, with its starting price and size range
+ * (sq ft): from the page's unit table, one row per property type and bedrooms.
+ */
+function unitsOf(groups) {
+  const rows = [];
+  for (const g of groups ?? [])
+    for (const u of g.units ?? [])
+      for (const l of u.list ?? []) {
+        if (!Number.isInteger(l.bedrooms) || l.bedrooms < 0 || l.bedrooms > 12) continue;
+        const sizes = [l.areaFrom, l.areaTo, ...(l.layouts ?? []).map((x) => x.area)].map(Number).filter((n) => n > 0);
+        const row = { type: String(u.propertyType ?? 'apartment').toLowerCase(), beds: l.bedrooms };
+        if (Number(l.startingPrice) > 0) row.from = Number(l.startingPrice);
+        if (sizes.length) {
+          row.size = [Math.round(Math.min(...sizes)), Math.round(Math.max(...sizes))];
+        }
+        const baths = [l.bathroomsFrom, l.bathroomsTo].map(Number).filter((n) => n > 0);
+        if (baths.length) row.baths = [Math.min(...baths), Math.max(...baths)];
+        if (Number(l.totalUnits) > 0) row.count = Number(l.totalUnits);
+        rows.push(row);
+      }
+  /* One row per type and bedrooms: the lowest price, the widest size range */
+  const merged = new Map();
+  for (const r of rows) {
+    const key = `${r.type}:${r.beds}`;
+    const m = merged.get(key);
+    if (!m) merged.set(key, r);
+    else {
+      if (r.from && (!m.from || r.from < m.from)) m.from = r.from;
+      if (r.size) m.size = m.size ? [Math.min(m.size[0], r.size[0]), Math.max(m.size[1], r.size[1])] : r.size;
+      if (r.baths) m.baths = m.baths ? [Math.min(m.baths[0], r.baths[0]), Math.max(m.baths[1], r.baths[1])] : r.baths;
+      if (r.count) m.count = (m.count ?? 0) + r.count;
+    }
+  }
+  return [...merged.values()].sort((a, b) => a.type.localeCompare(b.type) || a.beds - b.beds);
 }
 
 const bedroomsOf = (units, listed) => {
@@ -119,6 +166,12 @@ const typesOf = (types) => [...new Set((types ?? []).map((t) => String(t).toLowe
  */
 const shortImage = (id, url) =>
   url.match(new RegExp(`^https://new-projects-media\\.propertyfinder\\.com/project/${id}/gallery/image/([^/]+)/medium\\.webp$`))?.[1] ?? url;
+
+/** The master plan drawing's file key (under master_plan/image/) */
+const masterPlanKey = (id, images, plan) => {
+  const url = plan?.image ?? images.find((i) => i.type === 'master-plan')?.source;
+  return url?.match(new RegExp(`/project/${id}/master_plan/image/([^/]+)/`))?.[1] ?? null;
+};
 
 /* ---------- Listing ---------- */
 
@@ -149,11 +202,12 @@ function record(item, detail) {
   const community = tree.find((l) => l.type === 'COMMUNITY')?.name ?? (item.location?.fullName ?? '').split(',')[1] ?? null;
   const subCommunity = tree.find((l) => l.type === 'SUBCOMMUNITY')?.name ?? null;
   const coords = d.location?.coordinates ?? item.location?.coordinates;
-  const images = (d.images ?? item.images ?? [])
+  const all = d.images ?? item.images ?? [];
+  const images = all
     .filter((i) => i.type === 'image')
     .map((i) => i.variants?.medium ?? i.source)
     .filter(Boolean)
-    .slice(0, 8)
+    .slice(0, 24)
     .map((url) => shortImage(item.id, url));
   return {
     id: item.id,
@@ -173,9 +227,14 @@ function record(item, detail) {
     propertyTypes: typesOf(d.propertyTypes ?? item.propertyTypes),
     bedrooms: bedroomsOf(d.units, item.bedrooms),
     paymentPlan: paymentPlan(d.paymentPlans ?? item.paymentPlans),
+    schedule: schedule(d.paymentPlans ?? item.paymentPlans),
+    units: unitsOf(d.units),
+    ownership: d.ownershipType ?? null,
+    availability: d.stockAvailability ?? null,
     description: paragraphs(d.description),
-    amenities: (d.amenities ?? item.amenities ?? []).map((a) => a.name).filter(Boolean).slice(0, 12),
+    amenities: [...new Set((d.amenities ?? item.amenities ?? []).map((a) => a.name?.trim()).filter(Boolean))].slice(0, 40),
     images,
+    masterPlan: masterPlanKey(item.id, all, d.masterPlan),
     fetched: detail ? new Date().toISOString().slice(0, 10) : null,
   };
 }
@@ -199,7 +258,7 @@ async function main() {
   }
 
   const fresh = (p) =>
-    !ALL && p?.fetched && Date.now() - new Date(p.fetched).getTime() < REFRESH_AFTER_MS && p.description.length;
+    !ALL && p?.fetched && Date.now() - new Date(p.fetched).getTime() < REFRESH_AFTER_MS && p.description.length && p.units;
   const out = new Array(offPlan.length);
   let next = 0;
   let fetched = 0;
