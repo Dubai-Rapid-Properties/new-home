@@ -27,6 +27,7 @@ import pfConstruction from './market/construction-pf.json';
 import { curatedProjects } from './curatedProjects';
 import importedProjects from './imported/projects.json';
 import pfCatalog from './market/pf-projects.json';
+import photoHashes from './imported/photo-hashes.json';
 
 export type { ProjectType };
 export {
@@ -481,6 +482,19 @@ function pfPageFor(p: Project): PfProject | undefined {
   return same.length === 1 ? same[0] : undefined;
 }
 
+/** Each photo's fingerprint (scripts/photo-hashes.mjs), by address or Property Finder file key */
+const HASHES = photoHashes as Record<string, string>;
+/** Two fingerprints of the same picture differ in no more than a few of their 64 bits */
+function alike(a: string, b: string) {
+  let x = BigInt(`0x${a}`) ^ BigInt(`0x${b}`);
+  let d = 0;
+  while (x) {
+    d += Number(x & BigInt(1));
+    x >>= BigInt(1);
+  }
+  return d <= 10;
+}
+
 /** Every project page shows at least this many photos where the developer has published them */
 const MIN_PHOTOS = 12;
 
@@ -494,14 +508,17 @@ function completed(p: Project): Project {
   if (!r) return p;
   /* D|R|P knows its own availability better than the listing does */
   const { availability: _listed, ...details } = pfDetails(r);
-  const have = new Set([p.image, ...p.gallery.map((g) => g.src)]);
-  const extra =
-    p.gallery.length < MIN_PHOTOS
-      ? r.images
-          .map((key) => pfImage(r.id, key))
-          .filter((src) => !have.has(src))
-          .slice(0, Math.max(0, MIN_PHOTOS + 4 - p.gallery.length))
-      : [];
+  /* Property Finder's photos that are not the same render as one already shown */
+  const seen = [p.image, ...p.gallery.map((g) => g.src)].map((src) => HASHES[src]).filter(Boolean);
+  const extra: string[] = [];
+  if (p.gallery.length < MIN_PHOTOS)
+    for (const key of r.images) {
+      if (p.gallery.length + extra.length >= MIN_PHOTOS + 4) break;
+      const h = HASHES[key];
+      if (h && seen.some((s) => alike(s, h))) continue;
+      if (h) seen.push(h);
+      extra.push(pfImage(r.id, key));
+    }
   /*
    * D|R|P's starting price is the confirmed one: a unit listed below it is a
    * launch price that has sold, so it shows "On request"

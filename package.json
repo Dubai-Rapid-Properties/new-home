@@ -19,7 +19,8 @@
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
-    "sync:pf-projects": "node scripts/sync-pf-projects.mjs"
+    "sync:pf-projects": "node scripts/sync-pf-projects.mjs",
+    "hash:photos": "node scripts/photo-hashes.mjs"
   },
   "dependencies": {
     "@maplibre/maplibre-gl-leaflet": "^0.1.4",
