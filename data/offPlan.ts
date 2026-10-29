@@ -263,7 +263,7 @@ const matchName = (name: string) =>
     .replace(/[^a-z0-9]/g, '');
 
 /** Property Finder projects D|R|P does not show on the site, by page path */
-const PF_HIDDEN = new Set(['acube-developers/zeta']);
+const PF_HIDDEN = new Set(['acube-developers/zeta', 'ays-property-development/ventone']);
 
 /** Property Finder pages for projects D|R|P lists under another name, by page path */
 const PF_LISTED_BY_DRP = new Set([
