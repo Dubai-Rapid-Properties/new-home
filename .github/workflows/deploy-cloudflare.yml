@@ -3,7 +3,8 @@
 # Runs on every push to main, when the D|R|P portal asks for a rebuild
 # (repository_dispatch "rebuild": hourly from Supabase pg_cron, and after a
 # listing is saved), and on GitHub's own hourly schedule as a fallback, so the
-# site shows Property Finder's and the portal's current listings. GitHub runs
+# site shows Property Finder's and the portal's current listings, and the
+# current Dubai property news (scripts/sync-news.mjs). GitHub runs
 # scheduled workflows late when it is busy, so the schedule is a safety net,
 # not the quick path.
 #
@@ -72,8 +73,10 @@ jobs:
         run: |
           node scripts/sync-property-finder.mjs
           node scripts/sync-listings.mjs
+          node scripts/sync-news.mjs
           sum=$(cat data/imported/listings.json data/imported/pf-photos.json data/imported/clean-photos.json \
             data/imported/portal-listings.json data/imported/hidden-listings.json data/imported/portal-team.json \
+            <(node -p "JSON.stringify(require('./data/imported/news.json').picks ?? [])") \
             | sha256sum | cut -c1-16)
           echo "key=deployed-$(date -u +%F)-$sum" >> "$GITHUB_OUTPUT"
 
