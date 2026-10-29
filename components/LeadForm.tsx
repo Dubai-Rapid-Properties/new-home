@@ -9,10 +9,11 @@ import {
   type FormEvent,
 } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { ArrowLeft, Check, ChevronDown } from 'lucide-react';
+import { ArrowLeft, Check } from 'lucide-react';
 import type { LeadFormConfig, LeadStep } from '@/data/leadPages';
 import { useEnquiry } from '@/lib/enquiry';
 import { DEFAULT_DIAL, normalisePhone, phoneError } from '@/lib/phone';
+import AreaCombobox from './ui/AreaCombobox';
 import PhoneField from './ui/PhoneField';
 import SendError from './ui/SendError';
 import { EMAIL_PATTERN, inputBase, labelBase } from './ui/formStyles';
@@ -24,9 +25,6 @@ const INITIAL: Values = { dialCode: DEFAULT_DIAL };
 
 /** Pause after a card is picked so the selected state registers before moving on. */
 const ADVANCE_DELAY = 320;
-
-/** Whether a dropdown's "Other" is picked; kept apart from the answer, which is the typed text. */
-const otherKey = (id: string) => `${id}__other`;
 
 const choiceColumns = { 2: 'sm:grid-cols-2', 3: 'sm:grid-cols-3' } as const;
 
@@ -100,8 +98,7 @@ export default function LeadForm({ config, context, density = 'regular', classNa
     const str = (key: string) => String(values[key] ?? '').trim();
 
     if (s.kind === 'choice' && !str(s.id)) next[s.id] = 'Please choose an option.';
-    if (s.kind === 'select' && !str(s.id))
-      next[s.id] = values[otherKey(s.id)] ? 'Please type the area.' : 'Please choose an area.';
+    if (s.kind === 'select' && !str(s.id)) next[s.id] = 'Please choose or type the area.';
     if (s.kind === 'text' && !s.optional && !str(s.id)) next[s.id] = 'Please fill in this field.';
 
     if (s.kind === 'contact') {
@@ -249,25 +246,15 @@ export default function LeadForm({ config, context, density = 'regular', classNa
       case 'select':
         return (
           <>
-            <AreaSelect
-              inputId={`${uid}-${s.id}`}
+            <AreaCombobox
+              id={`${uid}-${s.id}`}
               labelledBy={headingId}
               describedBy={describedBy(s.id)}
               invalid={!!errors[s.id]}
               options={s.options}
               placeholder={s.placeholder}
-              otherPlaceholder={s.otherPlaceholder}
-              other={values[otherKey(s.id)] === true}
               value={String(values[s.id] ?? '')}
-              onPick={(v) => {
-                setValue(otherKey(s.id), false);
-                setValue(s.id, v);
-              }}
-              onOther={() => {
-                setValue(otherKey(s.id), true);
-                setValue(s.id, '');
-              }}
-              onType={(v) => setValue(s.id, v)}
+              onChange={(v) => setValue(s.id, v)}
             />
             {errorText(s.id)}
           </>
@@ -535,107 +522,6 @@ export default function LeadForm({ config, context, density = 'regular', classNa
           </motion.form>
         )}
       </AnimatePresence>
-    </div>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  Dropdown with "Other"                                                     */
-/* -------------------------------------------------------------------------- */
-
-const OTHER = 'Other';
-
-type AreaSelectProps = {
-  inputId: string;
-  labelledBy: string;
-  describedBy?: string;
-  invalid: boolean;
-  options: string[];
-  placeholder: string;
-  otherPlaceholder: string;
-  other: boolean;
-  value: string;
-  onPick: (value: string) => void;
-  onOther: () => void;
-  onType: (value: string) => void;
-};
-
-/**
- * A native dropdown (so phones show their own picker) with an "Other" at the
- * end. Choosing it opens a text field to type an area that is not in the list.
- */
-function AreaSelect({
-  inputId,
-  labelledBy,
-  describedBy,
-  invalid,
-  options,
-  placeholder,
-  otherPlaceholder,
-  other,
-  value,
-  onPick,
-  onOther,
-  onType,
-}: AreaSelectProps) {
-  const typeRef = useRef<HTMLInputElement>(null);
-  const underline = `border-b transition-colors duration-300 focus-within:border-orange ${
-    invalid ? 'border-orange' : 'border-line'
-  }`;
-
-  return (
-    <div className="space-y-6">
-      <div className={`relative flex items-center ${underline}`}>
-        <select
-          id={inputId}
-          aria-labelledby={labelledBy}
-          aria-describedby={describedBy}
-          aria-invalid={invalid && !other}
-          value={other ? OTHER : value}
-          onChange={(e) => {
-            if (e.target.value === OTHER) {
-              onOther();
-              /* The field mounts on the next render */
-              window.setTimeout(() => typeRef.current?.focus(), 0);
-            } else onPick(e.target.value);
-          }}
-          className={`w-full min-w-0 cursor-pointer appearance-none border-0 bg-transparent pb-3 pt-2 pr-8 text-lg font-light outline-none focus-visible:outline-none ${
-            value || other ? 'text-charcoal' : 'text-charcoal-muted/60'
-          }`}
-        >
-          <option value="" disabled>
-            {placeholder}
-          </option>
-          {options.map((o) => (
-            <option key={o} value={o}>
-              {o}
-            </option>
-          ))}
-          <option value={OTHER}>{OTHER}</option>
-        </select>
-        <ChevronDown
-          aria-hidden="true"
-          strokeWidth={1.5}
-          className="pointer-events-none absolute right-0 h-5 w-5 text-charcoal-muted"
-        />
-      </div>
-
-      {other ? (
-        <div className={underline}>
-          <input
-            ref={typeRef}
-            type="text"
-            autoComplete="off"
-            aria-label={otherPlaceholder}
-            aria-describedby={describedBy}
-            aria-invalid={invalid}
-            placeholder={otherPlaceholder}
-            value={value}
-            onChange={(e) => onType(e.target.value)}
-            className="w-full min-w-0 border-0 bg-transparent pb-3 pt-2 text-lg font-light text-charcoal outline-none placeholder:text-charcoal-muted/60 focus-visible:outline-none"
-          />
-        </div>
-      ) : null}
     </div>
   );
 }

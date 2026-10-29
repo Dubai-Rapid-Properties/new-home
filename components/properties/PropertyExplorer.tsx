@@ -15,6 +15,7 @@ import {
 } from '@/data/properties';
 import { priceSelection, type Selection } from '@/lib/filters';
 import { toSlug } from '@/lib/slug';
+import { areaSlugs } from '@/data/dubaiAreas';
 import PropertyCard from '../PropertyCard';
 import FilterExplorer, { type SortOption } from '../filters/FilterExplorer';
 
@@ -44,7 +45,8 @@ const tabs: { id: Offering; label: string }[] = [
 const matching = (offering: Offering, key: string, value: string | null) => {
   if (!value) return [];
   const facet = listingFacets[offering].find((f) => f.key === key)!;
-  return facet.options.filter((o) => o.id === value || toSlug(o.label) === value).map((o) => o.id);
+  const slugs = key === 'area' ? areaSlugs(value) : [value];
+  return facet.options.filter((o) => o.id === value || slugs.includes(toSlug(o.label))).map((o) => o.id);
 };
 
 /**

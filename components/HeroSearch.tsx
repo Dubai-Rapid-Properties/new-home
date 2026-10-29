@@ -333,7 +333,8 @@ export default function HeroSearch() {
   const suggestions = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return [];
-    return heroSearch.locations.filter((l) => l.toLowerCase().includes(q));
+    const hits = heroSearch.locations.filter((l) => l.toLowerCase().includes(q));
+    return [...hits.filter((l) => l.toLowerCase().startsWith(q)), ...hits.filter((l) => !l.toLowerCase().startsWith(q))].slice(0, 8);
   }, [query]);
 
   const showSuggestions = suggestOpen && suggestions.length > 0;
