@@ -66,7 +66,7 @@ export const buyingGuide: Guide = {
     ],
   },
   faqs: [
-    { q: 'What does it cost to buy on top of the price?', a: 'The main cost is the 4% DLD transfer fee. A resale purchase adds the trustee office fee and usually a 2% agency fee plus VAT; a mortgage adds registration, valuation and bank fees. Altogether, plan for about 6% (4% + 2%) for a resale purchase.' },
+    { q: 'What does it cost to buy on top of the price?', a: 'The main cost is the 4% DLD transfer fee. A resale purchase always adds the 2% agency fee plus VAT, the trustee office fee (AED 4,000 plus VAT) and the AED 580 title deed fee, with or without a mortgage; a mortgage also adds registration, valuation and bank fees. Altogether, plan for about 6% (4% + 2%) plus the fixed fees for a resale purchase.' },
     { q: 'Can I buy without being in Dubai?', a: 'Yes. Documents can be signed remotely or through a power of attorney, and D|R|P can attend the transfer on your behalf.' },
     { q: 'Can non-residents get a mortgage?', a: 'Yes. Non-residents can typically borrow up to 50–60% of the value, residents up to 80% on a first home under AED 5 million. Our mortgage team compares UAE lenders for you.' },
     { q: 'How long does a purchase take?', a: 'A cash resale typically completes in 2 – 4 weeks from the MOU to handover; with a mortgage allow 4 – 6 weeks.' },

@@ -9,12 +9,13 @@
 
 export const buyingCosts = {
   defaultPrice: 2_500_000,
-  /** Dubai Land Department transfer fee, % of price, plus title deed admin */
+  /** Dubai Land Department transfer fee, % of price */
   dldPct: 4,
-  dldAdminAed: 580,
+  /** Title deed fee */
+  titleDeedAed: 580,
   /** Registration trustee office fee, by price, plus VAT */
   trusteeAed: (price: number) => (price >= 500_000 ? 4_000 : 2_000),
-  /** Buyer's agency fee, % of price, plus VAT (not charged on developer sales) */
+  /** Buyer's agency fee, % of price, plus VAT: always paid on a resale, cash or mortgage (not on developer sales) */
   agencyPct: 2,
   vatPct: 5,
   /** With a mortgage */
