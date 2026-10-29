@@ -8,7 +8,8 @@
  *   - the UAE property stories from publishers' own public RSS feeds:
  *     PropertyNews.ae (its recent pages too), Forbes Middle East (its Real
  *     Estate section), The National (Property and Business), Khaleej Times
- *     and Gulf News.
+ *     and Gulf News (its feed, and its Property section's articles from the
+ *     daily sitemaps it publishes).
  *
  * Every story has a picture: the feed's, else the one the article page gives
  * for sharing (og:image, read once and kept), else the site's own Dubai
