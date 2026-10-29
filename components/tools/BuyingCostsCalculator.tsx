@@ -7,18 +7,40 @@ import { buyingCosts as c } from '@/data/tools';
 const aed = (n: number) => `AED ${Math.round(n).toLocaleString('en-US')}`;
 const withVat = (n: number) => n * (1 + c.vatPct / 100);
 
-function Toggle({ label, checked, onChange }: { label: string; checked: boolean; onChange: (v: boolean) => void }) {
+/** Two answers to one question, side by side: the chosen one filled. */
+function Choice({
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  label: string;
+  value: boolean;
+  onChange: (v: boolean) => void;
+  options: [string, string];
+}) {
   return (
-    <button
-      type="button"
-      aria-pressed={checked}
-      onClick={() => onChange(!checked)}
-      className={`h-11 border px-5 text-[12px] transition-colors duration-300 ${
-        checked ? 'border-charcoal bg-charcoal text-white' : 'border-line bg-white text-charcoal hover:border-charcoal'
-      }`}
-    >
-      {label}
-    </button>
+    <div role="group" aria-label={label}>
+      <p className="text-[11px] font-medium uppercase tracking-eyebrow text-charcoal-muted">{label}</p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {options.map((o, i) => {
+          const on = value === (i === 1);
+          return (
+            <button
+              key={o}
+              type="button"
+              aria-pressed={on}
+              onClick={() => onChange(i === 1)}
+              className={`h-11 border px-5 text-[12px] transition-colors duration-300 ${
+                on ? 'border-charcoal bg-charcoal text-white' : 'border-line bg-white text-charcoal hover:border-charcoal'
+              }`}
+            >
+              {o}
+            </button>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
@@ -32,10 +54,12 @@ export default function BuyingCostsCalculator() {
 
   const loan = mortgage ? price * (1 - downPct / 100) : 0;
   const rows: [string, number][] = [
-    [`DLD transfer fee (${c.dldPct}%)`, (price * c.dldPct) / 100 + c.dldAdminAed],
+    [`DLD transfer fee (${c.dldPct}%)`, (price * c.dldPct) / 100],
+    ['Title deed fee', c.titleDeedAed],
+    // A resale always pays these, with or without a mortgage.
     ...(offPlan ? [] : ([
-      ['Registration trustee fee (+ VAT)', withVat(c.trusteeAed(price))],
       [`Agency fee (${c.agencyPct}% + VAT)`, withVat((price * c.agencyPct) / 100)],
+      [`Trustee office fee (AED ${c.trusteeAed(price).toLocaleString('en-US')} + VAT)`, withVat(c.trusteeAed(price))],
     ] as [string, number][])),
     ...(mortgage
       ? ([
@@ -64,9 +88,9 @@ export default function BuyingCostsCalculator() {
             className="mt-3 w-full border-0 border-b border-line bg-transparent pb-2.5 font-serif text-[2rem] text-charcoal outline-none focus:border-orange"
           />
         </div>
-        <div className="flex flex-wrap gap-3">
-          <Toggle label="Buying with a mortgage" checked={mortgage} onChange={setMortgage} />
-          <Toggle label="Off-plan, from the developer" checked={offPlan} onChange={setOffPlan} />
+        <div className="grid gap-7 sm:grid-cols-2">
+          <Choice label="Payment" value={mortgage} onChange={setMortgage} options={['Without a mortgage', 'With a mortgage']} />
+          <Choice label="Property" value={offPlan} onChange={setOffPlan} options={['Resale', 'Off-plan from the developer']} />
         </div>
         {mortgage ? (
           <SliderField
@@ -83,7 +107,7 @@ export default function BuyingCostsCalculator() {
         <p className="text-sm font-light leading-relaxed text-charcoal-muted">
           {offPlan
             ? 'Buying off-plan from the developer, there is usually no agency or trustee fee; the 4% is paid to register the sale (Oqood).'
-            : 'Resale purchases are registered at a Land Department trustee office, with the agency fee paid at transfer.'}
+            : 'A resale is registered at a Land Department trustee office. The agency fee, trustee office fee and title deed fee are paid at transfer, with or without a mortgage.'}
         </p>
       </div>
 

@@ -79,7 +79,9 @@ export const mortgage = {
     minDownPct: 20,
     /** Upfront cost assumptions shown as estimates */
     dldPct: 4,
-    dldAdminAed: 580,
+    titleDeedAed: 580,
+    /** Trustee office fee, by price, plus VAT */
+    trusteeAed: (price: number) => (price >= 500_000 ? 4_000 : 2_000),
     mortgageRegPct: 0.25,
     mortgageRegAdminAed: 290,
     agencyPct: 2,
@@ -95,7 +97,7 @@ export const mortgage = {
   faqs: [
     { q: 'Can non-residents get a mortgage in Dubai?', a: 'Yes. Several UAE banks lend to non-residents, usually with a larger down payment than residents. We will match you with lenders that suit your situation.' },
     { q: 'How much deposit do I need?', a: 'Typically at least 20% of the price for residents buying their first home, and more for non-residents, higher-value or off-plan purchases. Lender policies vary.' },
-    { q: 'What other costs should I budget for?', a: 'The Dubai Land Department transfer fee, mortgage registration, valuation and agency fees. The calculator above estimates these for you.' },
+    { q: 'What other costs should I budget for?', a: 'The 4% Dubai Land Department transfer fee, the 2% agency fee plus VAT, the trustee office fee (AED 4,000 plus VAT), the AED 580 title deed fee, mortgage registration and the bank valuation. The calculator above estimates these for you.' },
     { q: 'Does D|R|P charge for mortgage assistance?', a: 'Our mortgage partners are paid by the lender in most cases.' }, // DEMO PLACEHOLDER — confirm the arrangement
   ],
   form: {

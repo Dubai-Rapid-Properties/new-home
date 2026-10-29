@@ -64,10 +64,11 @@ function Calculator({ initialPrice }: { initialPrice?: number }) {
   const monthly = monthlyPayment(loan, rate, years);
   const totalInterest = monthly * years * 12 - loan;
 
-  const dld = (price * c.dldPct) / 100 + c.dldAdminAed;
+  const dld = (price * c.dldPct) / 100;
   const registration = (loan * c.mortgageRegPct) / 100 + c.mortgageRegAdminAed;
   const agency = (price * c.agencyPct) / 100 * (1 + c.vatPct / 100);
-  const fees = dld + registration + agency + c.valuationAed;
+  const trustee = c.trusteeAed(price) * (1 + c.vatPct / 100);
+  const fees = dld + c.titleDeedAed + agency + trustee + registration + c.valuationAed;
 
   return (
     <div className="grid grid-cols-1 gap-10 bg-white p-6 shadow-[0_24px_70px_-30px_rgba(26,26,26,0.18)] sm:p-10 lg:grid-cols-12 lg:gap-14 lg:p-14">
@@ -136,8 +137,10 @@ function Calculator({ initialPrice }: { initialPrice?: number }) {
           {[
             ['Down payment', aed(down)],
             [`DLD transfer fee (${c.dldPct}%)`, aed(dld)],
-            ['Mortgage registration', aed(registration)],
+            ['Title deed fee', aed(c.titleDeedAed)],
             [`Agency fee (${c.agencyPct}% + VAT)`, aed(agency)],
+            [`Trustee office fee (AED ${c.trusteeAed(price).toLocaleString('en-US')} + VAT)`, aed(trustee)],
+            ['Mortgage registration', aed(registration)],
             ['Bank valuation', aed(c.valuationAed)],
           ].map(([k, v]) => (
             <div key={k} className="flex justify-between gap-4">
