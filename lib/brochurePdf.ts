@@ -425,21 +425,6 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
     }
   }
 
-  /* Gallery */
-  const shots = gallery.filter((g): g is string => Boolean(g));
-  if (shots.length) {
-    newPage();
-    heading('Gallery', `Inside ${project.name}`);
-    const gw = (CW - 6) / 2;
-    const gh = gw * 0.7;
-    shots.forEach((g, i) => {
-      if (i > 0 && i % 2 === 0) y += gh + 6;
-      if (i % 2 === 0) room(gh);
-      doc.addImage(g, 'JPEG', M + (i % 2) * (gw + 6), y, gw, gh);
-    });
-    y += gh + 10;
-  }
-
   /* Master plan, whole, on its own page */
   if (plan) {
     newPage();
@@ -453,6 +438,23 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
     }
     doc.addImage(plan.data, 'JPEG', M + (CW - pw) / 2, y, pw, ph);
     y += ph + 10;
+  }
+
+  /* Gallery */
+  /* An even number, so no photo sits alone on a row */
+  const read = gallery.filter((g): g is string => Boolean(g));
+  const shots = read.length > 2 ? read.slice(0, read.length - (read.length % 2)) : read;
+  if (shots.length) {
+    newPage();
+    heading('Gallery', `Inside ${project.name}`);
+    const gw = (CW - 6) / 2;
+    const gh = gw * 0.7;
+    shots.forEach((g, i) => {
+      if (i > 0 && i % 2 === 0) y += gh + 6;
+      if (i % 2 === 0) room(gh);
+      doc.addImage(g, 'JPEG', M + (i % 2) * (gw + 6), y, gw, gh);
+    });
+    y += gh + 10;
   }
 
   /* Location */

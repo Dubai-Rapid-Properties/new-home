@@ -324,6 +324,7 @@ const AVAILABILITY: Record<string, string> = {
   available: 'Available',
   limited_availability: 'Limited availability',
   limited: 'Limited availability',
+  might_be_sold_out: 'Limited availability',
   sold_out: 'Sold out',
 };
 const titleCase = (s: string) => s.replace(/_/g, ' ').replace(/\b[a-z]/g, (c) => c.toUpperCase());
@@ -491,7 +492,8 @@ const MIN_PHOTOS = 12;
 function completed(p: Project): Project {
   const r = pfPageFor(p);
   if (!r) return p;
-  const details = pfDetails(r);
+  /* D|R|P knows its own availability better than the listing does */
+  const { availability: _listed, ...details } = pfDetails(r);
   const have = new Set([p.image, ...p.gallery.map((g) => g.src)]);
   const extra =
     p.gallery.length < MIN_PHOTOS
@@ -500,6 +502,14 @@ function completed(p: Project): Project {
           .filter((src) => !have.has(src))
           .slice(0, Math.max(0, MIN_PHOTOS + 4 - p.gallery.length))
       : [];
+  /*
+   * D|R|P's starting price is the confirmed one: a unit listed below it is a
+   * launch price that has sold, so it shows "On request"
+   */
+  if (details.units && p.fromPrice != null) {
+    const floor = p.fromPrice;
+    details.units = details.units.map(({ from, ...u }) => (from != null && from >= floor ? { ...u, from } : u));
+  }
   return {
     ...p,
     ...details,
@@ -750,7 +760,9 @@ const UNIT_TYPES: Record<string, string> = { apartment: 'Apartment', townhouse: 
 
 /** "Studio Apartment", "2 Bedroom Townhouse" */
 export const unitName = (u: Pick<ProjectUnit, 'type' | 'beds'>) =>
-  `${u.beds === 0 ? 'Studio' : `${u.beds} Bedroom`} ${UNIT_TYPES[u.type] ?? titleCase(u.type)}`;
+  u.type === 'land'
+    ? 'Plot'
+    : `${u.beds === 0 ? 'Studio' : `${u.beds} Bedroom`} ${UNIT_TYPES[u.type] ?? titleCase(u.type)}`;
 
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);
 
