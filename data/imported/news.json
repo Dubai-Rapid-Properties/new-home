@@ -2,10 +2,46 @@
   "picks": [],
   "stories": [
     {
+      "url": "https://www.khaleejtimes.com/business/dubai-property-prices-new-supply-impact-may-emerge-in-coming-months",
+      "title": "Dubai property prices: New supply impact may emerge in coming months",
+      "summary": "Dubai’s property market has so far avoided the widespread distressed selling some buyers expected this year, but the impact of new housing supply on asking prices could become more visible in the coming months,…",
+      "image": "https://imgengine.khaleejtimes.com/khaleejtimes/import/images/6c133892-a79e-4a88-8773-341f5d995b98-org.jpg",
+      "date": "2026-10-29",
+      "source": "Khaleej Times",
+      "pick": false
+    },
+    {
+      "url": "https://www.khaleejtimes.com/business/abu-dhabi-apartment-prices-climb-by-up-to-92-buyers-turn-to-affordable-areas",
+      "title": "Abu Dhabi apartment prices climb by up to 9.2%; buyers turn to affordable areas",
+      "summary": "Apartment asking prices in some of Abu Dhabi's affordable and mid-market communities increased by as much as 9.2 per cent during the third quarter of 2026, as demand for more budget-friendly homes continued alongside…",
+      "image": "https://imgengine.khaleejtimes.com/khaleejtimes/import/images/c7554dbd-3abb-42c4-a3b1-d615ab27f6ab-org.jpg",
+      "date": "2026-10-29",
+      "source": "Khaleej Times",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/difc-adds-hotels-homes-and-offices-as-dh51-billion-project-takes-shape-1.500726646",
+      "title": "H&H starts Dh5.1bn Water Gardens in the heart of DIFC",
+      "summary": "DIFC's $1.4 billion Water Gardens project to feature hotels, homes, and offices, enhancing Dubai's financial hub with a mixed-use destination by 2028.",
+      "image": "https://media.assettype.com/gulfnews%2F2026-10-28%2Fuw8irzra%2FWater-feature-Top-Down-Water-Gardens-DIFC.jpeg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-28",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/bought-property-in-uae-indias-tax-alert-raises-questions-for-expats-1.500726205",
+      "title": "Bought property in the UAE? Why India’s tax department is contacting owners",
+      "summary": "Own property in the UAE? Indian tax authorities nudge expats to ensure accurate reporting of foreign assets and income before the 2026 deadline.",
+      "image": "https://media.assettype.com/gulfnews%2Fimport%2F2021%2F11%2F09%2FStock-Dubai-marina_17d052333e1_large.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-28",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
       "url": "https://www.forbesmiddleeast.com/industry/real-estate/aldar-third-quarter-net-profit-rises-19-to-$193b",
       "title": "Aldar Net Profit Rises 19% To $1.9B In First 9 Months Of 2026, Driven By Backlog",
       "summary": "Aldar's net profit after tax increased by 19% year on year to $1.9 billion (AED 7.1 billion) in the first nine months of 2026, driven by backlog conversion and resilient earnings from a diversified investment properties…",
-      "image": null,
+      "image": "https://d1epq84pwgteub.cloudfront.net/42ef46c8a6cc4a7c84e22911a9dfe542.jfif",
       "date": "2026-10-27",
       "source": "Forbes Middle East",
       "pick": false
@@ -20,10 +56,28 @@
       "pick": false
     },
     {
+      "url": "https://gulfnews.com/business/property/zimaya-advances-portfolio-with-dh185m-lawncrest-in-production-city-1.500725521",
+      "title": "Zimaya advances portfolio with Dh185m Lawncrest in Production City",
+      "summary": "Lawncrest launch marks Zimaya Properties' fifth residential project in Dubai",
+      "image": "https://media.assettype.com/gulfnews%2F2026-10-27%2F2u5p8s6s%2F190507.jpg?rect=0%2C196%2C1282%2C673&w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-27",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/casa-vista-strengthens-uae-market-presence-as-aquora-records-40-sales-ahead-of-dubai-unveiling-1.500725443",
+      "title": "Casa Vista strengthens UAE market presence as AQUORA records 40% sales ahead of Dubai unveiling",
+      "summary": "Dh350m Dubai Islands project reflects developer's commitment to exceptional living experiences",
+      "image": "https://media.assettype.com/gulfnews%2F2026-10-27%2Fuo7zl3kt%2F2.jpg?rect=0%2C27%2C1600%2C840&w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-27",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
       "url": "https://www.forbesmiddleeast.com/industry/real-estate/nakheel-awards-over-$2587m-construction-contract-for-bay-grove-residences",
       "title": "Nakheel Awards Over $258.7M Construction Contract To Parkway International Contracting For Bay Grove Residences",
       "summary": "Nakheel, a member of Dubai Holding Real Estate, has awarded Parkway International Contracting a construction contract valued at more than $258.7 million (AED 950 million) for Phases 2 and 4 of Bay Grove Residences on…",
-      "image": null,
+      "image": "https://d1epq84pwgteub.cloudfront.net/ab9c9ebab6364f04bd999840412e2cea.jpeg",
       "date": "2026-10-26",
       "source": "Forbes Middle East",
       "pick": false
@@ -38,28 +92,370 @@
       "pick": false
     },
     {
+      "url": "https://gulfnews.com/business/property/uae-property-investors-must-look-beyond-rental-yields-says-realtor-signature-properties-ceo-1.500719388",
+      "title": "UAE property investors must look beyond rental yields, says Realtor Signature Properties CEO",
+      "summary": "Buyers must assess entry prices, rental demand and exit prospects before investing",
+      "image": "https://media.assettype.com/gulfnews%2F2026-10-22%2Fp5f8moiw%2F1000108661.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-22",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/vibe-by-arsenal-east-brings-a-fresh-take-on-urban-living-to-dubai-1.500716811",
+      "title": "VIBE by Arsenal East brings a fresh take on urban living to Dubai",
+      "summary": "Jumeirah Garden City project blends playful, unconventional design with functionality",
+      "image": "https://media.assettype.com/gulfnews%2F2026-10-20%2F5iaoic7c%2F4.jpeg?rect=0%2C91%2C5504%2C2890&w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-22",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/10-projects-launched-in-just-two-years-zoya-developments-adds-elvora-to-its-growing-dubai-portfolio-1.500718601",
+      "title": "10+ projects launched in just two years: Zoya Developments adds Elvora to its growing Dubai portfolio",
+      "summary": "DLRC project's part of Zoya’s strategy to build a strong presence in emerging communities",
+      "image": "https://media.assettype.com/gulfnews%2F2026-10-21%2Fntwqjfvc%2F10-Projects-Launched-in-Just-Two-Years-Zoya-Developments-Adds-Elvora-to-Its-Growing-Dubai-Portfolio.jpeg?rect=0%2C86%2C4608%2C2419&w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-21",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/sold-out-in-two-weeks-breaking-ground-in-two-months-zoya-advances-elinor-in-dubai-south-1.500718052",
+      "title": "Sold out in two weeks, breaking ground in two months: Zoya advances Elinor in Dubai South",
+      "summary": "Construction begins on Dh104-million project, underscoring rapid expansion across projects",
+      "image": "https://media.assettype.com/gulfnews%2F2026-10-21%2Fgc62gtpu%2FSold-Out-in-Two-Weeks-Breaking-Ground-in-Two-Months-Zoya-Advances-Elinor-in-Dubai-South.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-21",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/abu-dhabi-records-dh215-billion-in-residential-property-sales-in-q3-2026-across-6085-transactions-1.500717696",
+      "title": "Abu Dhabi records Dh21.5 billion in residential property sales in Q3 2026 across 6,085 transactions",
+      "summary": "Luxury and off-plan properties fuel Abu Dhabi's Dh21.5 billion residential sales in Q3 2026, with average transaction values surging year-on-year.",
+      "image": "https://media.assettype.com/gulfnews%2F2026-10-20%2Ff4elk89r%2FIMG7793.jpeg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-20",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/abu-dhabis-al-raha-gardens-where-neighbours-go-the-extra-mile-for-each-other-1.500716318",
+      "title": "Inside Abu Dhabi’s green neighbourhood where residents go the extra mile: ‘You feel as if you’re looked after’",
+      "summary": "Residents share why they feel particularly at home in these sprawling green spaces",
+      "image": "https://media.assettype.com/gulfnews%2F2026-10-19%2F1ptlrlev%2FFotoJet.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-20",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/dubai-rental-contracts-exceed-1-million-for-first-time-as-value-hits-dh1274b-1.500714905",
+      "title": "Dubai rental contracts cross 1 million for the first time, reaching Dh127.4 billion",
+      "summary": "Dubai's rental market saw a 17.6% rise in value in 2025, with Business Bay and Burj Khalifa leading in rental contract values.",
+      "image": "https://media.assettype.com/gulfnews%2F2026-10-18%2Fe0ojkblo%2FDMO?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-18",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/dubai-property-rental-prices-fall-where-they-were-once-the-highest-1.500714361",
+      "title": "Dubai rents fall in prime areas, rise on the outskirts, what should tenants be looking for?",
+      "summary": "Dubai rental prices drop as tenants move to cheaper homes and landlords adjust rents in prime areas. Discover the latest trends and key insights.",
+      "image": "https://media.assettype.com/gulfnews%2Fimport%2F2024%2F04%2F22%2FStock-Dubai-Marina_18f0479851d_large.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-18",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
       "url": "https://www.forbesmiddleeast.com/industry/real-estate/aldar-enters-sharjah-with-$300m-acquisition-of-nine-aljada-residential-buildings",
       "title": "Aldar Enters Sharjah With $300M Acquisition Of Arada's Nine Residential Buildings In Aljada",
       "summary": "Abu Dhabi-listed Aldar announced Thursday that it has agreed to acquire nine residential buildings comprising more than 1,100 units from Arada in Sharjah’s Aljada community for $300 million (AED 1.1 billion), marking…",
-      "image": null,
+      "image": "https://d1epq84pwgteub.cloudfront.net/28ce3eb3b6d644faaf4f4f6699471159.jpg",
       "date": "2026-10-15",
       "source": "Forbes Middle East",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/94-of-employees-adopted-digital-rewards-platform-in-first-year-damac-1.500711565",
+      "title": "DAMAC says nearly 3,000 employees have joined its digital recognition platform",
+      "summary": "DAMAC reports 94% employee adoption of its digital rewards platform in the first year, transforming recognition processes and enhancing workplace engagement.",
+      "image": "https://media.assettype.com/gulfnews%2F2026-10-15%2Fdouvjwmc%2FDAMAC-Elevate-winning-the-ETHCA-MENA-2026-for-Excellence-in-Reward-Recognition-Programs-LR.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-15",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/abu-dhabis-aldar-enters-sharjah-after-dh11-billion-acquisition-deal-with-arada-1.500711403",
+      "title": "Aldar makes its first Sharjah property investment with Dh1.1b Aljada deal",
+      "summary": "Aldar Properties makes its first move into Sharjah with a Dh1.1 billion acquisition of nine residential buildings in Aljada, expanding its rental portfolio.",
+      "image": "https://media.assettype.com/gulfnews%2F2026-10-15%2Fk9l8e2fv%2FAldar-Arada-Image-1.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-15",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/sharjah-property-market-hits-dh468-billion-in-nine-months-up-56-1.500708940",
+      "title": "Sharjah real estate market surges to Dh46.8 billion as investor demand grows",
+      "summary": "Sharjah's real estate market sees a 5.6% rise, hitting Dh46.8 billion in transactions over nine months, driven by strong investor demand and development growth.",
+      "image": "https://media.assettype.com/gulfnews%2F2026-03-08%2F5mxbgpuc%2FUAEFlag?rect=0%2C290%2C5093%2C2674&w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-13",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-property-market-boosted-by-surge-in-early-home-deliveries/",
+      "title": "Dubai Property Market Boosted by Surge in Early Home Deliveries",
+      "summary": "Dubai’s real estate market is experiencing a significant uplift, driven by a pronounced trend among developers towards the early completion and handover of residential projects. This operational efficiency is not only…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-19.png",
+      "date": "2026-10-09",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/uae-non-oil-sectors-drive-dh961-9-billion-economic-growth-in-h1-2026/",
+      "title": "UAE Non-Oil Sectors Drive Dh961.9 Billion Economic Growth in H1 2026",
+      "summary": "The United Arab Emirates’ economy achieved a significant milestone in the first half of 2026, recording a total real Gross Domestic Product (GDP) of Dh961.9 billion. This robust performance underscores the nation’s…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-18.png",
+      "date": "2026-10-09",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/abu-dhabis-growth-charted-through-its-four-iconic-bridges/",
+      "title": "Abu Dhabi’s Growth Charted Through Its Four Iconic Bridges",
+      "summary": "Abu Dhabi’s remarkable urban transformation over recent decades is intrinsically linked to its infrastructure development, with its four iconic bridges serving as key markers of this progress. These vital arteries—Al…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-17.png",
+      "date": "2026-10-09",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/abu-dhabi-partners-with-the-boring-company-on-advanced-underground-infrastructure/",
+      "title": "Abu Dhabi Partners with The Boring Company on Advanced Underground Infrastructure",
+      "summary": "The Abu Dhabi Projects and Infrastructure Centre (ADPIC) has initiated a strategic partnership with The Boring Company, an enterprise founded by Elon Musk, to explore advanced underground infrastructure solutions across…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-16.png",
+      "date": "2026-10-09",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/etihad-towers-defining-luxury-and-commerce-in-abu-dhabis-skyline/",
+      "title": "Etihad Towers: Defining Luxury and Commerce in Abu Dhabi’s Skyline",
+      "summary": "Etihad Towers stands as a prominent feature of the Abu Dhabi skyline, embodying a comprehensive approach to luxury living, hospitality, and commercial enterprise. Located in a prime position, the complex has…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-15.png",
+      "date": "2026-10-09",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/uae-staycation-bookings-surge-31-amidst-strong-october-half-term-demand/",
+      "title": "UAE Staycation Bookings Surge 31% Amidst Strong October Half-Term Demand",
+      "summary": "The UAE’s hospitality sector experienced a significant boost during the October half-term break, with staycation bookings recording a substantial 31% increase year-on-year. This upward trend highlights a growing…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-14.png",
+      "date": "2026-10-09",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/dubai-property-buyers-get-keys-months-ahead-of-time-1.500703324",
+      "title": "Dubai property buyers get keys months ahead of time",
+      "summary": "Dubai developers are delivering homes ahead of schedule, offering buyers financial savings, rental returns, and a competitive edge in the real estate market.",
+      "image": "https://media.assettype.com/gulfnews%2Fimport%2F2020%2F08%2F12%2FStock-aerial-Dubai-skyline_173e34e774b_large.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-09",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/nakheel-awards-contract-for-major-marine-works-on-palm-jumeirah/",
+      "title": "Nakheel Awards Contract for Major Marine Works on Palm Jumeirah",
+      "summary": "Nakheel, a leading Dubai-based master developer, has awarded a significant contract for marine works aimed at enhancing the western section of Palm Jumeirah. This strategic infrastructure upgrade underscores Nakheel’s…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-13.png",
+      "date": "2026-10-08",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/uae-anticipates-partly-cloudy-skies-amidst-high-temperatures/",
+      "title": "UAE Anticipates Partly Cloudy Skies Amidst High Temperatures",
+      "summary": "The United Arab Emirates is set to experience partly cloudy conditions across various regions, with daytime temperatures expected to climb significantly. This forecast underscores the typical summer climate in the…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-12.png",
+      "date": "2026-10-08",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-unveils-modernised-addressing-system-with-colour-coded-signs/",
+      "title": "Dubai Unveils Modernised Addressing System with Colour-Coded Signs",
+      "summary": "Dubai has launched a comprehensive overhaul of its urban addressing system, introducing a new visual identity for street signs and house number plates across the emirate. This strategic initiative aims to significantly…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-11.png",
+      "date": "2026-10-08",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-honours-create-apps-champions-advances-global-ai-strategy/",
+      "title": "Dubai Honours Create Apps Champions, Advances Global AI Strategy",
+      "summary": "Dubai recently celebrated the winners of the third Create Apps Championship, a pivotal event underscoring the emirate’s commitment to fostering digital innovation and talent. The competition attracted a record 9,754…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-10.png",
+      "date": "2026-10-08",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-launches-global-ai-agents-championship-with-substantial-prize-fund/",
+      "title": "Dubai Launches Global AI Agents Championship with Substantial Prize Fund",
+      "summary": "Dubai has officially inaugurated the Create AI Agents Championship, a significant initiative designed to cement the emirate’s position at the forefront of global artificial intelligence innovation. This new championship…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-9.png",
+      "date": "2026-10-08",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/dhg-properties-completes-first-dubai-project-starts-handover-of-200m-helvetia-residences-1.500703150",
+      "title": "DHG Properties completes first Dubai project; starts handover of $200m Helvetia Residences",
+      "summary": "Helvetia Residences at Jumeirah Village Circle is built to Swiss quality standards",
+      "image": "https://media.assettype.com/gulfnews%2F2026-10-08%2Ff6jngwti%2FHelvetia-Residences-entrance.jpg?rect=0%2C137%2C1920%2C1008&w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-08",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/dubai-shared-housing-law-who-can-rent-sublet-and-face-fines-of-up-to-dh1-million-1.500702961",
+      "title": "Sharing a home in Dubai? New rules on bed spaces, bathrooms and fines",
+      "summary": "New law covers permits, occupancy limits, approved locations and penalties",
+      "image": "https://media.assettype.com/gulfnews%2Fimport%2F2019%2F05%2F21%2F1.1928249_3792938631_16adb1b09ad_large.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-08",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/nakheel-hires-mar-marine-for-dubai-island-coastal-works-1.500702909",
+      "title": "Dubai Islands gets 320m of new beach near Bay Villas",
+      "summary": "Nakheel partners with Mar Marine for coastal upgrades on Dubai Islands, enhancing 3km of shoreline and adding 320m of beach near Bay Villas.",
+      "image": "https://media.assettype.com/gulfnews%2F2026-10-08%2Fws2t2gk0%2FDubai-Islands.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-08",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-introduces-new-shared-accommodation-regulations/",
+      "title": "Dubai Introduces New Shared Accommodation Regulations",
+      "summary": "Dubai has enacted new comprehensive regulations governing shared residential accommodation, introducing stringent requirements aimed at enhancing living standards and urban planning across the emirate. The new framework…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-8.png",
+      "date": "2026-10-07",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-municipality-tightens-shared-housing-regulations-in-tourist-and-commercial-zones/",
+      "title": "Dubai Municipality Tightens Shared Housing Regulations in Tourist and Commercial Zones",
+      "summary": "Dubai Municipality has introduced stringent new regulations concerning shared housing, specifically prohibiting bachelor accommodation in designated tourist and commercial areas. The directives, outlined in a recent…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-7.png",
+      "date": "2026-10-07",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-residential-property-transactions-decline-in-third-quarter-amid-regional-caution/",
+      "title": "Dubai Residential Property Transactions Decline in Third Quarter Amid Regional Caution",
+      "summary": "Dubai’s residential property market experienced a notable slowdown in the third quarter of this year, as transaction volumes and values decreased significantly. This shift follows a period of robust growth and reflects…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-6.png",
+      "date": "2026-10-07",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/emirates-direct-dubai-helsinki-route-to-enhance-uae-finland-tourism-and-business-links/",
+      "title": "Emirates Direct Dubai-Helsinki Route to Enhance UAE-Finland Tourism and Business Links",
+      "summary": "The launch of direct flights between Dubai and Helsinki by Emirates is poised to significantly strengthen economic and tourism ties between the UAE and Finland. This new aviation link is expected to increase the flow of…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-5.png",
+      "date": "2026-10-07",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubais-foundational-vision-sheikh-rashids-infrastructure-legacy/",
+      "title": "Dubai’s Foundational Vision: Sheikh Rashid’s Infrastructure Legacy",
+      "summary": "Modern Dubai stands as a testament to the visionary leadership of Sheikh Rashid bin Saeed Al Maktoum, whose strategic decisions and long-term planning laid the essential groundwork for the emirate’s remarkable growth.…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-4.png",
+      "date": "2026-10-07",
+      "source": "PropertyNews.ae",
       "pick": false
     },
     {
       "url": "https://www.forbesmiddleeast.com/industry/real-estate/karim-benzema-acquires-residence-at-binghattis-vision-iconic-tower-in-dubai",
       "title": "Karim Benzema Acquires Multiple Residences In Binghatti Developments In Dubai",
       "summary": "French-Algerian football star Karim Benzema has acquired several residences at Mercedes-Benz Places | Binghatti City and another at Vision Iconic in Dubai, becoming the latest international footballer to invest in…",
-      "image": null,
+      "image": "https://d1epq84pwgteub.cloudfront.net/6a19050fd4f742e2ae6b92b809ca0acb.jpg",
       "date": "2026-10-07",
       "source": "Forbes Middle East",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/dubai-bans-mixing-families-and-individuals-in-shared-housing-units-1.500701345",
+      "title": "Dubai sets new shared housing rules, bans mixing families and individuals",
+      "summary": "Updated requirements cover families, individuals, landlords and shared accommodation",
+      "image": "https://media.assettype.com/gulfnews%2F2026-03-19%2Fi5sa827e%2FDubaiofficestaff?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-07",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/guggenheim-abu-dhabi-nears-completion-highlighting-frank-gehrys-architectural-vision-on-saadiyat-island/",
+      "title": "Guggenheim Abu Dhabi Nears Completion, Highlighting Frank Gehry’s Architectural Vision on Saadiyat Island",
+      "summary": "The Guggenheim Abu Dhabi is progressing rapidly towards its anticipated December opening, slated to become a cornerstone of the Saadiyat Cultural District. This institution, designed by Pritzker Prize-winning architect…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-3.png",
+      "date": "2026-10-06",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/abu-dhabi-expands-transport-network-with-800-new-taxis-bolstering-zayed-international-airport-access/",
+      "title": "Abu Dhabi Expands Transport Network with 800 New Taxis, Bolstering Zayed International Airport Access",
+      "summary": "Abu Dhabi has significantly enhanced its public transportation infrastructure with the introduction of 800 new taxis. This strategic expansion primarily aims to improve connectivity to Zayed International Airport while…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-2.png",
+      "date": "2026-10-06",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/etihad-rail-passengers-gain-seamless-dubai-metro-and-bus-connectivity-with-integrated-nol-pass/",
+      "title": "Etihad Rail Passengers Gain Seamless Dubai Metro and Bus Connectivity with Integrated Nol Pass",
+      "summary": "Dubai’s extensive public transport network has further integrated with the national infrastructure, as Etihad Rail passengers can now acquire a Nol one-day pass directly with their train booking. This new initiative…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1-1.png",
+      "date": "2026-10-06",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-unveils-skylight-mall-major-retail-destination-set-for-al-khail-road-by-2027/",
+      "title": "Dubai Unveils Skylight Mall: Major Retail Destination Set for Al Khail Road by 2027",
+      "summary": "Dubai Retail, a key entity within Dubai Holding Asset Management, has announced the development of Skylight Mall, a significant new super-regional shopping and lifestyle destination slated to open in 2027. Positioned…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/10/output1.png",
+      "date": "2026-10-06",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/arif-developments-recognised-as-promising-developer-of-the-year-1.500693475",
+      "title": "Arif Developments recognised as Promising Developer of the Year",
+      "summary": "The award recognises the UAE developer’s growing presence in the residential property sector and its focus on creating design-led villa communities",
+      "image": "https://media.assettype.com/gulfnews%2F2026-09-30%2Fu9i32x5i%2FLead.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-02",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/invest-in-dubai-one-habba-at-a-time-with-prypco-blocks-1.500695844",
+      "title": "Invest in Dubai, one Habba at a time with PRYPCO Blocks",
+      "summary": "PRYPCO Blocks’ Habba Habba campaign brings a fresh perspective to real estate ownership",
+      "image": "https://media.assettype.com/gulfnews%2F2026-10-02%2F4v8y1isp%2FGulf-News-Lead-Image.jpg?rect=0%2C22%2C1110%2C583&w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-10-02",
+      "source": "Gulf News",
       "pick": false
     },
     {
       "url": "https://www.forbesmiddleeast.com/industry/real-estate/modon-launches-phase-one-of-wadeem-gardens",
       "title": "Modon Launches Phase One Of Wadeem Gardens In Abu Dhabi, Offers Home Finance Plan With ADIB",
       "summary": "Modon Holding has launched phase one of Wadeem Gardens, a villa community on Hudayriyat Island and the first in Abu Dhabi to offer up to 75% off-plan home finance through Modon’s partnership with Abu Dhabi Islamic Bank…",
-      "image": null,
+      "image": "https://d1epq84pwgteub.cloudfront.net/74010dc5b9f24fcb97827796e3fbe5da.jpg",
       "date": "2026-10-01",
       "source": "Forbes Middle East",
       "pick": false
@@ -68,9 +464,783 @@
       "url": "https://www.forbesmiddleeast.com/industry/real-estate/aldar-arada-partner-on-$4b-real-estate-deal-in-abu-dhabi",
       "title": "Aldar, Arada Sign $4.1B Partnership To Develop Real Estate Projects In Abu Dhabi",
       "summary": "UAE developers Aldar and Arada have signed a strategic partnership for major development opportunities on Yas Island and at Seih Sdeirah in Abu Dhabi, representing a combined value of approximately $4.1 billion (AED 15…",
-      "image": null,
+      "image": "https://d1epq84pwgteub.cloudfront.net/0e062e90aabd4fbe9b381f627ecfbd5b.jpg",
       "date": "2026-09-30",
       "source": "Forbes Middle East",
+      "pick": false
+    },
+    {
+      "url": "https://www.khaleejtimes.com/business/the-switch-company-marks-major-sustainability-milestone-in-the-uae",
+      "title": "The Switch Company marks major sustainability milestone in the UAE",
+      "summary": "Over the past 14 years, The Switch Company has transformed more than 2,000 properties across the UAE into smart, sustainable and energy-efficient projects. The company’s work supports UAE’s vision for a greener and more…",
+      "image": "https://imgengine.khaleejtimes.com/khaleejtimes-english/2026-09-28/aqb21rju/businessportrait1MB.jpg",
+      "date": "2026-09-29",
+      "source": "Khaleej Times",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/meraas-accelerates-dubai-developments-with-city-walk-crestlane-groundworks-and-aed-1-billion-nad-al-sheba-gardens-contract/",
+      "title": "Meraas Accelerates Dubai Developments with City Walk Crestlane Groundworks and AED 1 Billion Nad Al Sheba Gardens Contract",
+      "summary": "Meraas, a prominent Dubai-based developer, has announced the commencement of groundworks for City Walk Crestlane, signalling continued investment in the emirate’s urban landscape. This development is part of Meraas’s…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-33.png",
+      "date": "2026-09-26",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-housing-market-offers-value-amidst-bubble-risk-concerns/",
+      "title": "Dubai Housing Market Offers Value Amidst Bubble Risk Concerns",
+      "summary": "Dubai continues to stand out as a prominent global housing market where the prospect of homeownership retains significant appeal when weighed against renting. This enduring attractiveness for buyers persists even as…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-32.png",
+      "date": "2026-09-25",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/abu-dhabi-extends-building-occupancy-certificate-application-deadline-to-november-30/",
+      "title": "Abu Dhabi Extends Building Occupancy Certificate Application Deadline to November 30",
+      "summary": "Abu Dhabi has announced a significant extension for the application deadline of Building Occupancy Certificates, moving it from September 16, 2026, to November 30, 2026. This grace period, enacted by the Department of…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-31.png",
+      "date": "2026-09-23",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/cosmo-developments-unveils-dh6-billion-the-wadi-project-on-abu-dhabis-yas-island/",
+      "title": "Cosmo Developments Unveils Dh6 Billion THE WADI Project on Abu Dhabi’s Yas Island",
+      "summary": "Cosmo Developments, a joint venture operating within Abu Dhabi’s dynamic real estate sector, has announced the launch of THE WADI, a substantial mixed-use residential development situated on Yas Island. This new project…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-30.png",
+      "date": "2026-09-23",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/aldar-mubadala-joint-venture-expands-masdar-city-portfolio-with-aed-918-million-acquisition/",
+      "title": "Aldar-Mubadala Joint Venture Expands Masdar City Portfolio with AED 918 Million Acquisition",
+      "summary": "A joint venture between Aldar Properties and Mubadala Investment Company has significantly expanded its real estate holdings in Masdar City with the acquisition of Masdar City Square for AED 918 million. This strategic…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-29.png",
+      "date": "2026-09-22",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/abu-dhabi-rolls-out-enhanced-holiday-home-licensing-requirements/",
+      "title": "Abu Dhabi Rolls Out Enhanced Holiday Home Licensing Requirements",
+      "summary": "Abu Dhabi has implemented updated regulations governing its holiday home sector, introducing a mandatory licensing framework designed to bolster transparency, ensure safety, and elevate quality standards across all…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-28.png",
+      "date": "2026-09-22",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/yas-island-drives-abu-dhabis-dh30-billion-real-estate-and-tourism-expansion/",
+      "title": "Yas Island Drives Abu Dhabi’s Dh30 Billion Real Estate and Tourism Expansion",
+      "summary": "Abu Dhabi’s Yas Island is undergoing a significant transformation, propelled by an estimated Dh30 billion investment aimed at expanding its residential, hospitality, and entertainment sectors. This substantial capital…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-27.png",
+      "date": "2026-09-22",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/how-yas-island-is-drawing-a-dh30-billion-plus-development-wave-1.500683697",
+      "title": "How Yas Island is drawing a Dh30 billion-plus development wave",
+      "summary": "Yas Island is attracting over Dh30 billion in new investments, from mega attractions and hotels to waterfront homes, reshaping Abu Dhabi’s tourism and lifestyle hub.",
+      "image": "https://media.assettype.com/gulfnews%2F2025-08-07%2Fi3s6smri%2FThe-waterfront-in-Yas-Bay?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-09-22",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/eagle-hills-signs-12-billion-maldives-waterfront-deal-1.500682175",
+      "title": "Abu Dhabi’s Eagle Hills to develop $12 billion Maldives Waterfront and Marina in Ras Malé",
+      "summary": "Abu Dhabi’s Eagle Hills to develop $12bn Maldives Waterfront and Marina in Ras Malé, with hotels, branded residences, marina, retail and healthcare facilities.",
+      "image": "https://media.assettype.com/gulfnews%2F2026-09-21%2F09q0k33m%2FEagle-Hills-Maldives.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-09-21",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/abu-dhabi-holiday-home-rules-what-guests-and-operators-need-to-know-1.500682123",
+      "title": "Abu Dhabi holiday home rules: What guests and operators need to know",
+      "summary": "Abu Dhabi tightens holiday home rules: guests must check DCT licence numbers on listings, while owners and operators face new eligibility and compliance requirements.",
+      "image": "https://media.assettype.com/gulfnews%2Fimport%2F2024%2F08%2F20%2FSTOCK-Abu-Dhabi-hotels_191708a732a_large.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-09-21",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/abu-dhabi-streamlines-regulatory-process-for-holiday-homes-sector/",
+      "title": "Abu Dhabi Streamlines Regulatory Process for Holiday Homes Sector",
+      "summary": "Abu Dhabi has significantly updated its regulatory framework for holiday homes, introducing a more streamlined and efficient system for property owners, operators, and industry partners. The enhancements, implemented by…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-26.png",
+      "date": "2026-09-20",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/abu-dhabi-unveils-dh6-billion-wadi-community-on-yas-island/",
+      "title": "Abu Dhabi Unveils Dh6 Billion Wadi Community on Yas Island",
+      "summary": "Abu Dhabi has announced the development of the Wadi community, a significant Dh6 billion project situated on Yas Island. This new master-planned community is positioned along the Yas Canal, near the island’s entrance,…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-25.png",
+      "date": "2026-09-19",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/abu-dhabi-expands-holiday-home-eligibility-and-enhances-transparency/",
+      "title": "Abu Dhabi Expands Holiday Home Eligibility and Enhances Transparency",
+      "summary": "Abu Dhabi has introduced updated regulations governing its burgeoning holiday home sector, significantly broadening the categories of individuals and entities eligible to operate these properties. Concurrently, the new…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-24.png",
+      "date": "2026-09-19",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/aldar-unveils-saadiyat-grove-a-major-luxury-retail-and-lifestyle-destination-on-saadiyat-island/",
+      "title": "Aldar Unveils Saadiyat Grove, a Major Luxury Retail and Lifestyle Destination on Saadiyat Island",
+      "summary": "Aldar Properties has announced the launch of Saadiyat Grove, a new luxury retail and fine-dining project positioned on Saadiyat Island. This significant development aims to expand Abu Dhabi’s lifestyle offerings within…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-23.png",
+      "date": "2026-09-18",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/aldar-unveils-yas-riva-reserve-premium-waterfront-villas-on-yas-island-abu-dhabi/",
+      "title": "Aldar Unveils Yas Riva Reserve: Premium Waterfront Villas on Yas Island, Abu Dhabi",
+      "summary": "Aldar Properties, Abu Dhabi’s prominent real estate developer, has announced the launch of Yas Riva Reserve, a new collection of premium waterfront villas on Yas Island. This latest addition to Aldar’s expansive…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-22.png",
+      "date": "2026-09-18",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/aldar-launches-yas-riva-reserve-a-waterfront-villa-community-on-yas-island-1.500679693",
+      "title": "Aldar launches Yas Riva Reserve, a waterfront villa community with villas starting at Dh8.5 million",
+      "summary": "Aldar launches Yas Riva Reserve, a premium waterfront villa community on Yas Island with 4-6 bedroom homes, private pontoons and resort-style amenities.",
+      "image": "https://media.assettype.com/gulfnews%2F2026-09-21%2F58f4pwqj%2FALDARYas-Riva-Reserve-2.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-09-18",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/record-dh100-million-land-sale-cements-dubai-hills-estates-ultra-prime-status-1.500676935",
+      "title": "Record Dh100 million land sale cements Dubai Hills Estate's ultra-prime status",
+      "summary": "A 41,345 square-foot plot in Dubai Hills View has changed hands for Dh100 million, the highest price ever paid for a single plot of land in Dubai Hills Estate",
+      "image": "https://media.assettype.com/gulfnews%2F2026-09-16%2F2ltfl7cc%2FPhoto-4.jpg?rect=0%2C0%2C1536%2C806&w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-09-18",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/sharjah/sharjah-executive-council-advances-new-law-to-regulate-lost-and-abandoned-property/",
+      "title": "Sharjah Executive Council Advances New Law to Regulate Lost and Abandoned Property",
+      "summary": "The Sharjah Executive Council has advanced a draft law aimed at regulating lost and abandoned property across the emirate, signifying a strategic move to bolster public services and ensure the meticulous handling of…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-21.png",
+      "date": "2026-09-17",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/aldar-and-mubadala-joint-venture-acquires-masdar-city-square-for-dh918-million-boosting-abu-dhabi-portfolio-to-dh4-7-billion/",
+      "title": "Aldar and Mubadala Joint Venture Acquires Masdar City Square for Dh918 Million, Boosting Abu Dhabi Portfolio to Dh4.7 Billion",
+      "summary": "A joint venture between Aldar Properties and Mubadala Investment Company has completed the acquisition of Masdar City Square for Dh918 million. This strategic move significantly expands their real estate portfolio…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-20.png",
+      "date": "2026-09-17",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/how-dubais-property-market-enters-a-new-phase-of-consolidation-1.500678195",
+      "title": "How Dubai’s property market enters a new phase of consolidation",
+      "summary": "Inside Dubai’s new era of property market consolidation, where strong developers expand, absorb cost pressures and adapt to changing buyer behaviour.",
+      "image": "https://media.assettype.com/gulfnews%2F2026-09-17%2F4krpcglv%2FImran-Farooq.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-09-17",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/aldar-mubadala-jv-buys-99-occupied-masdar-city-square-for-dh918-million-1.500677780",
+      "title": "Aldar-Mubadala JV buys 99%-occupied Masdar City Square for Dh918m",
+      "summary": "Aldar-Mubadala JV acquires 99%-occupied Masdar City Square for Dh918m, boosting its sustainable Abu Dhabi office portfolio to Dh4.7bn and 158,000 sqm.",
+      "image": "https://media.assettype.com/gulfnews%2F2026-09-17%2Ftwhezdrh%2FMasdar-City-Image-1.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-09-17",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/nakheel-awards-dh800-million-deal-to-build-537-dubai-islands-homes-1.500677701",
+      "title": "Dubai Islands project moves ahead with Dh800m construction award",
+      "summary": "Nakheel awards Dh800m contract to build 537 sold-out Bay Grove Residences homes on Dubai Islands, advancing the waterfront community toward 2028 completion.",
+      "image": "https://media.assettype.com/gulfnews%2F2026-09-17%2Fas5fqjbt%2FBay-Grove-Residences.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-09-17",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/ellington-properties-adcb-pioneer-new-off-plan-and-ready-pre-approved-home-buying-solutions-1.500670034",
+      "title": "Ellington Properties, ADCB pioneer new off-plan and ready pre-approved home buying solutions",
+      "summary": "Ellington Properties and Abu Dhabi Commercial Bank (ADCB) are introducing pre-approved home financing solutions for ready and off-plan residential developments in Dubai,",
+      "image": "https://media.assettype.com/gulfnews%2F2026-09-10%2Fd2ouikat%2FEllington-x-ADCB-Signing-2.jpg?rect=0%2C700%2C7008%2C3679&w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-09-16",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/gulf-news-and-aurex-privy-launch-sheowns-a-new-property-platform-putting-women-at-the-centre-of-ownership-decisions-1.500676671",
+      "title": "Gulf News and Aurex Privy launch SheOwns, a new property platform putting women at the centre of ownership decisions",
+      "summary": "New Dubai property platform puts women buyers and investors at the heart of ownership",
+      "image": "https://media.assettype.com/gulfnews%2F2026-09-16%2Fk2bra8o5%2FSheOwnsHero1440x628.jpg?rect=0%2C119%2C737%2C387&w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-09-16",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/abu-dhabi-accelerates-holiday-home-licensing-with-enhanced-digital-platform/",
+      "title": "Abu Dhabi Accelerates Holiday Home Licensing with Enhanced Digital Platform",
+      "summary": "Abu Dhabi has significantly advanced its regulatory framework for the holiday home sector, introducing an upgraded digital licensing system. Spearheaded by the Department of Culture and Tourism – Abu Dhabi (DCT Abu…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-19.png",
+      "date": "2026-09-15",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/miral-commits-aed-12-billion-to-yas-island-expansion-in-abu-dhabi/",
+      "title": "Miral Commits AED 12 Billion to Yas Island Expansion in Abu Dhabi",
+      "summary": "Miral, the Abu Dhabi-based destination developer, has announced a substantial investment exceeding AED 12 billion over the next five years to enhance Yas Island’s position as a premier global entertainment and leisure…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-18.png",
+      "date": "2026-09-15",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/sharjah-moves-to-tighten-property-rules-on-lost-and-abandoned-1.500675630",
+      "title": "Sharjah moves to tighten rules on lost and abandoned property law",
+      "summary": "Sharjah drafts new law to regulate lost and abandoned property, ensuring items are safeguarded, traced and returned to rightful owners under clear procedures.",
+      "image": "https://media.assettype.com/gulfnews%2F2026-05-15%2Fihbx1pxp%2FAsad-Alvi.jpg?rect=0%2C67%2C2048%2C1075&w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-09-15",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://gulfnews.com/business/property/abu-dhabi-holiday-homes-must-now-display-licence-numbers-on-online-listings-1.500675372",
+      "title": "Abu Dhabi holiday homes must now display licence numbers on online listings",
+      "summary": "Abu Dhabi streamlines holiday home licensing with a faster, digital system, cutting approval times and boosting compliance for owners and operators.",
+      "image": "https://media.assettype.com/gulfnews%2F2026-03-23%2Fd342hcy7%2FAbudhabiskyline-2026?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+      "date": "2026-09-15",
+      "source": "Gulf News",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/abu-dhabis-new-off-plan-mortgage-framework-strengthens-property-market-confidence/",
+      "title": "Abu Dhabi’s New Off-Plan Mortgage Framework Strengthens Property Market Confidence",
+      "summary": "Abu Dhabi’s real estate market anticipates a significant boost in investor confidence and transactional activity following the introduction of a new off-plan mortgage framework. This regulation is designed to provide…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-17.png",
+      "date": "2026-09-13",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubais-palm-jebel-ali-to-launch-the-yard-a-new-waterfront-retail-and-lifestyle-hub-in-2027/",
+      "title": "Dubai’s Palm Jebel Ali to Launch The Yard, a New Waterfront Retail and Lifestyle Hub, in 2027",
+      "summary": "Dubai’s ambitious Palm Jebel Ali master development is set to introduce its inaugural retail and lifestyle destination, The Yard, with an anticipated opening in 2027. This waterfront hub will integrate 26 distinct…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-16.png",
+      "date": "2026-09-13",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-property-market-anticipated-to-balance-in-2027-amid-emaars-strategic-expansion/",
+      "title": "Dubai Property Market Anticipated to Balance in 2027 Amid Emaar’s Strategic Expansion",
+      "summary": "Dubai’s property market is projected to achieve a “nice balance” in 2027, driven by a significant influx of new supply. This outlook comes from Mohamed Alabbar, founder of Emaar Properties, who also acknowledged a…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-15.png",
+      "date": "2026-09-13",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-holding-awards-record-dh5-billion-construction-contract-for-new-hq-and-jumeirah-residences-emirates-towers/",
+      "title": "Dubai Holding Awards Record Dh5 Billion Construction Contract for New HQ and Jumeirah Residences Emirates Towers",
+      "summary": "Dubai Holding has announced the award of its largest construction contract to date, a substantial Dh5 billion (approximately $1.36 billion) deal. The contract has been secured by China State Construction Engineering…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-14.png",
+      "date": "2026-09-13",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-healthcare-city-breaks-ground-on-dh3-billion-dubai-creek-gardens-community/",
+      "title": "Dubai Healthcare City Breaks Ground on Dh3 Billion Dubai Creek Gardens Community",
+      "summary": "Dubai Healthcare City (DHCC) has commenced work on Dubai Creek Gardens, a significant residential development valued at Dh3 billion within DHCC Phase 2. This project, spearheaded by Global Partners Ltd, is set to…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-13.png",
+      "date": "2026-09-13",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-holding-awards-dh5-billion-contract-for-new-headquarters-and-jumeirah-residences-emirates-towers/",
+      "title": "Dubai Holding Awards Dh5 Billion Contract for New Headquarters and Jumeirah Residences Emirates Towers",
+      "summary": "Dubai Holding has committed a substantial Dh5 billion to a new construction contract, awarded to China State Construction Engineering Corporation Middle East (CSCEC ME). This landmark agreement is set to deliver Dubai…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-12.png",
+      "date": "2026-09-11",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/uae-reinforces-global-lead-in-skyscraper-construction-with-dubais-tower-boom/",
+      "title": "UAE Reinforces Global Lead in Skyscraper Construction with Dubai’s Tower Boom",
+      "summary": "The UAE continues to assert its position as a global leader in skyscraper development, primarily driven by significant private sector investment. As of July 2026, Dubai alone accounts for six of the world’s top 20…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-11.png",
+      "date": "2026-09-10",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/emaar-development-buyers-in-dubai-can-secure-up-to-50-pre-approved-financing-through-adcb/",
+      "title": "Emaar Development Buyers in Dubai Can Secure Up to 50% Pre-Approved Financing Through ADCB",
+      "summary": "Emaar Development customers in Dubai are now able to secure pre-approval for property financing of up to 50% of a property’s value, following a new agreement with Abu Dhabi Commercial Bank (ADCB). This initiative aims…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-10.png",
+      "date": "2026-09-10",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/aldar-launches-sei-saadiyat-introducing-new-residential-offering-to-saadiyat-cultural-district/",
+      "title": "Aldar Launches Sei Saadiyat, Introducing New Residential Offering to Saadiyat Cultural District",
+      "summary": "Abu Dhabi, UAE – Aldar Properties has announced the launch of Sei Saadiyat, a new residential development situated within the Saadiyat Cultural District. The project, unveiled on 7 September 2026, focuses on offering…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-9.png",
+      "date": "2026-09-07",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/aldar-unveils-sei-saadiyat-a-wellness-focused-development-on-abu-dhabis-cultural-island/",
+      "title": "Aldar Unveils Sei Saadiyat, a Wellness-Focused Development on Abu Dhabi’s Cultural Island",
+      "summary": "Aldar Properties, Abu Dhabi’s largest listed developer, has launched Sei Saadiyat, a new residential project featuring 778 homes across six buildings within the Saadiyat Cultural District. This development responds to…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-8.png",
+      "date": "2026-09-07",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-property-market-poised-for-nice-balance-in-2027-says-emaar-founder-amid-supply-boost/",
+      "title": "Dubai Property Market Poised for ‘Nice Balance’ in 2027, Says Emaar Founder Amid Supply Boost",
+      "summary": "Dubai’s property market is anticipated to achieve a “nice balance” in 2027, driven by a significant influx of new supply, according to Mohamed Alabbar, founder of Emaar Properties. Speaking at the AIM Congress in Dubai,…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-7.png",
+      "date": "2026-09-07",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/sharjah/abu-dhabi-rent-regulations-stabilise-market-bolstering-tenant-retention/",
+      "title": "Abu Dhabi Rent Regulations Stabilise Market, Bolstering Tenant Retention",
+      "summary": "New rental market regulations in Abu Dhabi are set to enhance tenant stability and reduce turnover, according to analysis by Colliers. These restrictions, which limit landlords’ ability to significantly raise prices…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-6.png",
+      "date": "2026-09-05",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/flow-founded-by-adam-neumann-launches-uae-operations-amid-robust-property-market-growth/",
+      "title": "Flow, Founded by Adam Neumann, Launches UAE Operations Amid Robust Property Market Growth",
+      "summary": "The UAE’s real estate sector continues to demonstrate significant resilience and growth, attracting substantial investment despite regional economic shifts. Data from the Dubai Land Department (DLD) for the first half…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-5.png",
+      "date": "2026-09-05",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubais-luxury-property-market-commences-september-with-dh260-million-palm-jumeirah-villa-sale/",
+      "title": "Dubai’s Luxury Property Market Commences September with Dh260 Million Palm Jumeirah Villa Sale",
+      "summary": "Dubai’s ultra-luxury residential market demonstrated sustained momentum at the start of September, marked by a significant Dh260 million transaction for a six-bedroom villa on Palm Jumeirah. This sale underscores the…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-4.png",
+      "date": "2026-09-05",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-land-department-launches-ai-platform-for-enhanced-real-estate-registration/",
+      "title": "Dubai Land Department Launches AI Platform for Enhanced Real Estate Registration",
+      "summary": "The Dubai Land Department (DLD) has introduced an Artificial Intelligence (AI)-powered platform, ‘Initial Registration,’ designed to significantly streamline real estate registration and project management for…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-3.png",
+      "date": "2026-09-05",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/ras-al-khaimah/ras-al-khaimah-and-uae-see-surge-in-monthly-rental-demand/",
+      "title": "Ras Al Khaimah and UAE See Surge in Monthly Rental Demand",
+      "summary": "The United Arab Emirates property market is experiencing a significant shift, with a notable increase in demand for monthly rental accommodations. This evolving trend is largely driven by residents seeking greater…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-2.png",
+      "date": "2026-09-05",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/ras-al-khaimah/leading-uae-developer-reports-strong-profit-growth-amidst-robust-abu-dhabi-real-estate-market/",
+      "title": "Leading UAE Developer Reports Strong Profit Growth Amidst Robust Abu Dhabi Real Estate Market",
+      "summary": "A prominent Abu Dhabi-based developer has reported a significant financial uplift, with second-quarter profit climbing 10 percent year-on-year. This increase brings the net profit attributable to equity holders to…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1-1.png",
+      "date": "2026-09-05",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/abu-dhabi-unlocks-new-mortgage-option-for-off-plan-buyers-through-aldar-and-adcb-partnership/",
+      "title": "Abu Dhabi Unlocks New Mortgage Option for Off-Plan Buyers Through Aldar and ADCB Partnership",
+      "summary": "Abu Dhabi’s real estate sector has achieved a significant milestone with the first official registration of a mortgage on an off-plan property. This landmark development introduces a crucial new financing pathway for…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/09/output1.png",
+      "date": "2026-09-05",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/uae-launches-new-tenant-credit-screening-service-for-landlords/",
+      "title": "UAE Launches New Tenant Credit Screening Service for Landlords",
+      "summary": "The launch of the Etihad Credit Bureau’s (ECB) new tenant screening service marks a significant advancement for the UAE’s residential real estate sector. This initiative empowers landlords across the Emirates to assess…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-54.png",
+      "date": "2026-08-29",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/uae-expands-vat-refunds-for-emirati-homebuilders-boosting-residential-construction-savings/",
+      "title": "UAE Expands VAT Refunds for Emirati Homebuilders, Boosting Residential Construction Savings",
+      "summary": "The UAE Cabinet has recently approved a significant expansion of its Value Added Tax (VAT) refund scheme for Emirati citizens constructing new homes. This strategic enhancement aims to alleviate financial burdens for…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-53.png",
+      "date": "2026-08-29",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/hudayriyat-island-drives-robust-abu-dhabi-real-estate-performance-in-first-half-of-2026/",
+      "title": "Hudayriyat Island Drives Robust Abu Dhabi Real Estate Performance in First Half of 2026",
+      "summary": "Abu Dhabi’s real estate market demonstrated significant strength in the first half of 2026, with total residential sales reaching an impressive Dh70.4 billion. This robust performance was significantly propelled by…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-52.png",
+      "date": "2026-08-22",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubais-iconic-toyota-building-sees-70-tenant-departure-ahead-of-2027-demolition/",
+      "title": "Dubai’s Iconic Toyota Building Sees 70% Tenant Departure Ahead of 2027 Demolition",
+      "summary": "Dubai’s long-standing Toyota Building on Sheikh Zayed Road has experienced a significant exodus, with approximately 70% of its tenants vacating the premises. This development follows recent disruptions to the…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-51.png",
+      "date": "2026-08-21",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/nakheel-launches-44-luxury-beachfront-villas-on-palm-jebel-alis-frond-f-in-dubai/",
+      "title": "Nakheel Launches 44 Luxury Beachfront Villas on Palm Jebel Ali’s Frond F in Dubai",
+      "summary": "Nakheel has released a new collection of 44 beachfront villas on Frond F within Palm Jebel Ali, marking one of the final opportunities for buyers to acquire new residential units on the destination’s fronds. This…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-50.png",
+      "date": "2026-08-21",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-adds-over-24000-new-property-units-in-h1-2026-investments-reach-dh111-billion/",
+      "title": "Dubai Adds Over 24,000 New Property Units in H1 2026, Investments Reach Dh111 Billion",
+      "summary": "Dubai’s real estate sector demonstrated robust growth in the first half of 2026, with the completion of 104 projects adding more than 24,000 new property units across the city. This surge represents a 36% increase in…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-49.png",
+      "date": "2026-08-21",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/abu-dhabi-to-deliver-71000-new-residential-units-by-2030-with-significant-growth-concentrated-in-key-districts/",
+      "title": "Abu Dhabi to Deliver 71,000 New Residential Units by 2030, With Significant Growth Concentrated in Key Districts",
+      "summary": "Abu Dhabi’s residential market is poised for a substantial expansion, with projections indicating an addition of 71,000 new homes by 2030. The most significant wave of these deliveries is anticipated in 2028,…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-48.png",
+      "date": "2026-08-19",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/uae-property-showcase-targets-indian-investors-in-hyderabad/",
+      "title": "UAE Property Showcase Targets Indian Investors in Hyderabad",
+      "summary": "The United Arab Emirates’ real estate market is set to feature prominently at a dedicated property showcase in Hyderabad, India, aiming to attract Indian investors to its robust and transparent environment. The two-day…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-47.png",
+      "date": "2026-08-18",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/nakheel-commences-handover-of-892-homes-at-redeveloped-jebel-ali-village-in-dubai/",
+      "title": "Nakheel Commences Handover of 892 Homes at Redeveloped Jebel Ali Village in Dubai",
+      "summary": "Nakheel has initiated the handover of 892 residential units at the redeveloped Jebel Ali Village in Dubai, marking a significant milestone in the transformation of this historic community. The extensive redevelopment…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-46.png",
+      "date": "2026-08-18",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-attracts-186-new-property-developers-in-seven-months-of-2026/",
+      "title": "Dubai Attracts 186 New Property Developers in Seven Months of 2026",
+      "summary": "Dubai’s real estate sector experienced substantial growth in the first seven and a half months of 2026, with 186 new property development companies establishing operations in the emirate. Data from the Dubai Land…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-18.png",
+      "date": "2026-08-16",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/uae-top-developers-record-dh113-7-billion-in-property-sales-during-first-half-of-2026/",
+      "title": "UAE Top Developers Record Dh113.7 Billion in Property Sales During First Half of 2026",
+      "summary": "The United Arab Emirates’ leading property developers collectively achieved Dh113.7 billion in sales during the first half of 2026. This robust performance, covering the six months to the end of June, highlights the…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-17.png",
+      "date": "2026-08-13",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/uae-residents-increasingly-opt-for-monthly-rentals-amidst-shifting-market-dynamics/",
+      "title": "UAE Residents Increasingly Opt for Monthly Rentals Amidst Shifting Market Dynamics",
+      "summary": "The United Arab Emirates is witnessing a significant shift in its residential rental market, with a growing number of residents choosing monthly rental agreements over traditional annual leases. This trend is driven…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-16.png",
+      "date": "2026-08-13",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-to-launch-zero-interest-rent-now-pay-later-service-for-enhanced-rental-flexibility/",
+      "title": "Dubai to Launch Zero-Interest ‘Rent Now, Pay Later’ Service for Enhanced Rental Flexibility",
+      "summary": "Dubai is set to introduce a new ‘Rent Now, Pay Later’ service, an initiative designed to significantly enhance payment flexibility for tenants across the emirate. Expected to launch in September, this service will allow…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-15.png",
+      "date": "2026-08-13",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/sharjah/sharjah-property-market-exceeds-dh7-billion-in-july-with-muwaileh-commercial-and-al-sajaa-industrial-leading-sales/",
+      "title": "Sharjah Property Market Exceeds Dh7 Billion in July with Muwaileh Commercial and Al Sajaa Industrial Leading Sales",
+      "summary": "Sharjah’s real estate market demonstrated robust performance in July, recording transactions valued at over Dh7 billion. This significant activity highlights sustained investor confidence across residential, commercial,…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-14.png",
+      "date": "2026-08-10",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/emaar-properties-reports-robust-q2-profit-amidst-strong-uae-market-performance/",
+      "title": "Emaar Properties Reports Robust Q2 Profit Amidst Strong UAE Market Performance",
+      "summary": "Emaar Properties, the UAE’s largest listed developer, announced a significant uplift in its second-quarter profit, climbing nearly 9 percent annually. The company reported a net profit attributable to owners of Dh3.7…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-13.png",
+      "date": "2026-08-08",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/abu-dhabi-property-owners-face-dh1-million-fine-for-occupancy-certificate-non-compliance/",
+      "title": "Abu Dhabi Property Owners Face Dh1 Million Fine for Occupancy Certificate Non-Compliance",
+      "summary": "Property owners and real estate operators in Abu Dhabi have been granted a grace period until September 16, 2026, to obtain or renew building occupancy certificates, as announced by the Department of Municipalities and…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-12.png",
+      "date": "2026-08-05",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/uae-commercial-property-market-records-significant-growth-with-rak-retail-prices-soaring-up-to-348/",
+      "title": "UAE Commercial Property Market Records Significant Growth, with RAK Retail Prices Soaring up to 348%",
+      "summary": "The commercial property market across the UAE has exhibited substantial expansion, with Ras Al Khaimah (RAK) leading a remarkable surge in retail property values, alongside sustained rental and sales growth in Dubai’s…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-11.png",
+      "date": "2026-08-05",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/burj-khalifa-unveils-advanced-facade-lighting-system-in-dubai/",
+      "title": "Burj Khalifa Unveils Advanced Facade Lighting System in Dubai",
+      "summary": "Dubai’s iconic Burj Khalifa has received a significant upgrade to its exterior lighting, with Emaar Properties implementing a new dynamic RGBW system. This enhancement is designed to bring a refreshed visual identity to…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-10.png",
+      "date": "2026-08-02",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/emaar-unveils-seashore-sirdhana-by-emaar-homes-in-dubais-mina-rashid-featuring-longest-canal-pool/",
+      "title": "Emaar Unveils Seashore (Sirdhana By Emaar) Homes in Dubai’s Mina Rashid, Featuring Longest Canal Pool",
+      "summary": "Emaar Properties has launched Seashore (Sirdhana By Emaar), a new residential offering situated within the Mina Rashid development in Dubai. The project introduces waterfront homes designed to align with Mina Rashid’s…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-9.png",
+      "date": "2026-08-02",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-property-market-sees-rent-moderation-home-prices-remain-robust-in-q2-2026/",
+      "title": "Dubai Property Market Sees Rent Moderation, Home Prices Remain Robust in Q2 2026",
+      "summary": "Dubai’s dynamic real estate market experienced a notable moderation in the second quarter of 2026, with rental rates easing across the emirate. Figures indicate a 6.2% decline in Dubai rents during this period, offering…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-8.png",
+      "date": "2026-08-02",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/aldar-properties-finalises-aed-658-million-acquisition-of-international-tower-on-al-maryah-island/",
+      "title": "Aldar Properties Finalises AED 658 Million Acquisition of International Tower on Al Maryah Island",
+      "summary": "Aldar Properties PJSC, Abu Dhabi’s leading property development, investment, and management company, has successfully completed the acquisition of International Tower. The strategic transaction, valued at AED 658…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-7.png",
+      "date": "2026-08-01",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/aldar-unveils-the-sustainable-city-yas-island-advancing-abu-dhabis-green-commitments/",
+      "title": "Aldar Unveils The Sustainable City – Yas Island, Advancing Abu Dhabi’s Green Commitments",
+      "summary": "Aldar Properties has introduced The Sustainable City – Yas Island, a new residential offering designed to integrate environmental stewardship with contemporary community living in Abu Dhabi. This development is…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-6.png",
+      "date": "2026-08-01",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/aldar-to-deliver-abu-dhabis-first-tesla-experience-centre-on-yas-island/",
+      "title": "Aldar to Deliver Abu Dhabi’s First Tesla Experience Centre on Yas Island",
+      "summary": "Aldar Properties, a prominent Abu Dhabi-based master developer, is set to deliver the emirate’s first dedicated Tesla Experience Centre on Yas Island. This purpose-built facility represents a significant addition to Yas…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-5.png",
+      "date": "2026-08-01",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/emaar-development-records-25-increase-in-uae-property-sales/",
+      "title": "Emaar Development Records 25% Increase in UAE Property Sales",
+      "summary": "Emaar Development PJSC, a leading UAE property developer, reported a significant surge in property sales during the first nine months of 2023, sustaining robust momentum from the third quarter. The company’s property…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-4.png",
+      "date": "2026-08-01",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubais-emaar-development-announces-robust-2024-financial-results/",
+      "title": "Dubai’s Emaar Development Announces Robust 2024 Financial Results",
+      "summary": "Emaar Development PJSC (DFM: EMAARDEV) concluded its Annual General Meeting (AGM) on March 26, 2025, where the Board of Directors reviewed the company’s strong financial performance for 2024 and outlined its future…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-3.png",
+      "date": "2026-08-01",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/emaar-properties-records-significant-growth-in-q1-2026-across-uae-and-global-operations/",
+      "title": "Emaar Properties Records Significant Growth in Q1 2026 Across UAE and Global Operations",
+      "summary": "Emaar Properties PJSC has reported a strong financial start to 2026, driven by sustained demand across its core segments and a robust, diversified business model. The Dubai-based developer announced substantial…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-2.png",
+      "date": "2026-08-01",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/aldar-generates-aed-1-5-billion-in-sales-for-the-canopies-at-yas-point-attracting-new-buyers-to-abu-dhabi/",
+      "title": "Aldar Generates AED 1.5 Billion in Sales for The Canopies at Yas Point, Attracting New Buyers to Abu Dhabi",
+      "summary": "Aldar Properties, a prominent Abu Dhabi-based developer, has announced sales totaling AED 1.5 billion during the launch of its latest residential offering, The Canopies at Yas Point. This strong performance underscores…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1-1.png",
+      "date": "2026-08-01",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-unveils-qr-code-initiative-for-holiday-homes/",
+      "title": "Dubai Unveils QR Code Initiative for Holiday Homes",
+      "summary": "Dubai has introduced a new QR Code initiative for its burgeoning holiday home sector, a move designed to enhance market transparency and bolster confidence among investors and guests. This development aligns with…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/08/output1.png",
+      "date": "2026-08-01",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/adgm-introduces-broker-classification-framework-to-elevate-real-estate-professionalism-in-abu-dhabi/",
+      "title": "ADGM Introduces Broker Classification Framework to Elevate Real Estate Professionalism in Abu Dhabi",
+      "summary": "Abu Dhabi Global Market (ADGM), the international financial centre situated on Al Maryah Island, has unveiled a new Broker Classification Framework aimed at enhancing standards and transparency within its real estate…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/07/output1-46.png",
+      "date": "2026-07-31",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/modon-reports-dh2-2-billion-h1-2026-net-profit-as-property-sales-reach-dh26-billion/",
+      "title": "Modon Reports Dh2.2 Billion H1 2026 Net Profit as Property Sales Reach Dh26 Billion",
+      "summary": "Modon Holding has announced a robust financial performance for the first half of 2026, recording a net profit of Dh2.2 billion. This achievement follows significant property sales totalling Dh26 billion, with Dh23…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/07/output1-45.png",
+      "date": "2026-07-30",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/jeddah-tower-reaches-430-metres-setting-sights-on-burj-khalifas-world-record/",
+      "title": "Jeddah Tower Reaches 430 Metres, Setting Sights on Burj Khalifa’s World Record",
+      "summary": "Jeddah Tower, Saudi Arabia’s ambitious supertall skyscraper, has reached a significant construction milestone, now standing at 430 metres. This progress positions the structure, planned to exceed 1,000 metres, as a…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/07/output1-44.png",
+      "date": "2026-07-29",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/uae-extends-lead-in-skyscraper-construction-with-record-breaking-dubai-towers/",
+      "title": "UAE Extends Lead in Skyscraper Construction with Record-Breaking Dubai Towers",
+      "summary": "The UAE continues to solidify its global leadership in high-rise development, driven by substantial private investment in ambitious projects. Data from Skyscraper Center in July 2026 reveals that six of the world’s 20…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/07/output1-43.png",
+      "date": "2026-07-29",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/adcb-offers-up-to-50-pre-handover-financing-for-emaar-properties-in-dubai/",
+      "title": "ADCB Offers Up to 50% Pre-Handover Financing for Emaar Properties in Dubai",
+      "summary": "Abu Dhabi Commercial Bank (ADCB) has introduced a new mortgage offering designed to provide eligible Emaar Development customers in Dubai with greater financing certainty for their property purchases. Under the new…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/07/output1-42.png",
+      "date": "2026-07-29",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/aldar-properties-reports-strong-h1-2026-growth-as-abu-dhabi-real-estate-market-surges/",
+      "title": "Aldar Properties Reports Strong H1 2026 Growth as Abu Dhabi Real Estate Market Surges",
+      "summary": "Aldar Properties, Abu Dhabi’s leading listed developer, announced a robust financial performance for the second quarter and first half of 2026, demonstrating resilience amidst regional economic shifts. The company…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/07/output1-41.png",
+      "date": "2026-07-29",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-property-sales-hit-dh87-9-billion-amidst-transaction-volume-slowdown/",
+      "title": "Dubai Property Sales Hit Dh87.9 Billion Amidst Transaction Volume Slowdown",
+      "summary": "The Dubai property market demonstrated significant resilience in the second quarter, recording a robust Dh87.9 billion in property sales. This substantial performance was achieved even as transaction volumes experienced…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/07/output1-40.png",
+      "date": "2026-07-23",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/abu-dhabi-launches-dh100-billion-marsa-al-saadiyat-development-on-saadiyat-island/",
+      "title": "Abu Dhabi Launches Dh100 Billion Marsa Al Saadiyat Development on Saadiyat Island",
+      "summary": "Abu Dhabi has unveiled Marsa Al Saadiyat, a significant new waterfront community on Saadiyat Island, backed by an investment of Dh100 billion. This ambitious masterplan is set to redefine premium living and leisure…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/07/output1-39.png",
+      "date": "2026-07-22",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/abu-dhabi/apartment-prices-on-yas-island-and-al-reem-island-surge-18-amidst-robust-abu-dhabi-market-growth/",
+      "title": "Apartment Prices on Yas Island and Al Reem Island Surge 18% Amidst Robust Abu Dhabi Market Growth",
+      "summary": "Abu Dhabi’s residential property market continues to demonstrate robust growth, with apartment prices on Yas Island and Al Reem Island recording an approximately 18 per cent increase over the past year. This significant…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/07/output1-38.png",
+      "date": "2026-07-22",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/sustained-grade-a-demand-stabilises-dubai-office-rents/",
+      "title": "Sustained Grade A Demand Stabilises Dubai Office Rents",
+      "summary": "The Dubai office market has demonstrated notable resilience, with rental rates stabilising during the second quarter of the year. This equilibrium is primarily attributed to consistent and robust demand for Grade A…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/07/output1-37.png",
+      "date": "2026-07-22",
+      "source": "PropertyNews.ae",
+      "pick": false
+    },
+    {
+      "url": "https://propertynews.ae/uae/dubai/dubai-off-plan-luxury-apartment-commands-dh166-million-amid-surging-demand/",
+      "title": "Dubai Off-Plan Luxury Apartment Commands Dh166 Million Amid Surging Demand",
+      "summary": "Dubai’s luxury residential market has registered a significant milestone with an off-plan apartment in Aman Residences, Jumeirah Second, commanding a price of Dh166 million. This record-setting transaction underscores…",
+      "image": "https://propertynews.ae/wp-content/uploads/2026/07/output1-36.png",
+      "date": "2026-07-22",
+      "source": "PropertyNews.ae",
       "pick": false
     }
   ]
