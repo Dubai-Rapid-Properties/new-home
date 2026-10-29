@@ -153,11 +153,11 @@ export const navigation: NavNode[] = [
       },
     ],
     promo: {
-      title: 'H1 2026 Market Report',
+      title: 'Q3 2026 Market Report',
       linkLabel: 'Download',
       href: '/market-report',
-      image: '/images/market.webp',
-      alt: 'A contemporary Dubai building against a clear sky',
+      image: '/images/market-report-q3-2026.webp',
+      alt: 'The Dubai skyline at sunset from the Dubai Creek Harbour bridge',
     },
   },
   /* Holiday Homes is a separate DRP website — opens in a new tab */

@@ -4,27 +4,20 @@ import FormSection from '@/components/sections/FormSection';
 import IntroSplit from '@/components/sections/IntroSplit';
 import StatStrip from '@/components/sections/StatStrip';
 import { contactStep, type LeadFormConfig } from '@/data/leadPages';
-import { dubaiMarket } from '@/lib/dld';
-import { unsplash } from '@/lib/media';
 import { pageMeta } from '@/lib/seo';
 
 export const metadata = pageMeta({
-  title: 'H1 2026 Dubai Market Report | Dubai Rapid Properties',
+  title: 'Q3 2026 Dubai Residential Market Report | Dubai Rapid Properties',
   description:
-    'Dubai’s residential market in H1 2026: transaction volumes, prime price movement and where the next wave of demand is forming, area by area.',
+    'Dubai’s residential market from July to September 2026: AED 73.9bn of sales, prices per sq ft and rental yields by community, the luxury market and the outlook for Q4.',
   path: '/market-report',
 });
-
-/* The same figures as the PDF (scripts/build-market-report.py): January to June from the DLD data */
-const h1 = dubaiMarket.months.filter((m) => m.month <= '2026-06');
-const h1Sales = h1.reduce((n, m) => n + m.sales, 0);
-const h1Psf = Math.round(h1.reduce((n, m) => n + m.sales * (m.medianPsf ?? 0), 0) / h1Sales);
 
 const reportForm: LeadFormConfig = {
   formId: 'market-report',
   submitLabel: 'Send Me the Report',
   successTitle: 'Thank you.',
-  successBody: 'The H1 2026 Market Report is on its way to your inbox.',
+  successBody: 'The Q3 2026 Market Report is on its way to your inbox.',
   steps: [
     {
       id: 'interest',
@@ -46,41 +39,46 @@ const reportForm: LeadFormConfig = {
   ],
 };
 
+/* REAL – the headline figures of the PDF (Property Monitor, from Dubai Land Department transactions) */
 export default function Page() {
   return (
     <SiteShell>
       <PageHero
-        eyebrow="Market Report"
-        heading="Dubai Residential Market H1 2026"
-        intro="Transaction volumes, prime price movement and where the next wave of demand is forming, area by area."
-        // DEMO PLACEHOLDER – swap for the report cover
-        image={unsplash('1512453979798-5ea266f8880c', 2000)}
-        imageAlt="An aerial view of the Dubai skyline at dusk"
+        eyebrow="Market Report · Q3 2026"
+        heading="Dubai Residential Market Report"
+        intro="July to September 2026: sales, prices and rents across Dubai, community by community, with our outlook for the final quarter."
+        image="/images/market-report-q3-2026.webp"
+        imageAlt="The Dubai skyline at sunset from the Dubai Creek Harbour bridge"
       />
       <StatStrip
         items={[
-          { value: h1Sales.toLocaleString('en-US'), label: 'Registered sales, Jan to Jun' },
-          { value: `AED ${h1Psf.toLocaleString('en-US')}`, label: 'Average median price per sq ft' },
-          { value: `${Math.round((dubaiMarket.offPlanShare ?? 0) * 100)}%`, label: 'Off-plan share of 2026 sales' },
-          { value: '15', label: 'Areas ranked' },
+          { value: 'AED 73.9bn', label: 'Residential sales value' },
+          { value: '33,969', label: 'Homes sold' },
+          { value: '71.7%', label: 'Off-plan share of sales' },
+          { value: '6.3%', label: 'Average gross rental yield' },
         ]}
-        note="From Dubai Land Department registered sales. The report has the full tables."
+        note="Source: Property Monitor (Dubai Land Department transaction data), July to September 2026."
       />
       <IntroSplit
         eyebrow="Inside the Report"
-        heading="What the first half of 2026 tells us"
+        heading="What the summer quarter tells us"
         tone="cream"
         paragraphs={[
-          'The report is built from the Dubai Land Department’s registered residential sales, checked against what our agents see on the ground every day on Palm Jumeirah and across the city.',
-          'It covers sales by month, the areas with the most transactions and what each costs per sq ft, the off-plan share, and a closer look at Palm Jumeirah, building by building.',
-          'It closes with what July to September added, so you can see how the market has moved since the half-year.',
+          'Almost 34,000 homes changed hands in Q3, worth AED 73.9 billion. The ready market came back: completed-home sales rose by almost 15% on the previous quarter, as buyers looked for homes they can move into or rent out straight away.',
+          'Off-plan still makes up most sales, but buyers are more selective, comparing developers, delivery records, pricing and payment plans. Two-thirds chose studios or one-bedroom homes, and 782 homes sold for more than AED 10 million.',
+          'The report covers price per sq ft and rental yields by community, the top sales of the quarter, 173,076 leases and average rents, mortgages, and what we expect from Q4.',
         ]}
       />
       <FormSection
         eyebrow="Free Download"
         heading="Get the full report"
         intro="Tell us a little about yourself and we will email the report straight away."
-        points={['Sales volumes by month', 'Price per sq ft by area', 'Palm Jumeirah, building by building', 'What July to September added']}
+        points={[
+          'Sales by month, price bracket and size',
+          'Price per sq ft by community',
+          'Rental yields and rents by community',
+          'The luxury market and the outlook for Q4',
+        ]}
         config={reportForm}
         tone="white"
       />

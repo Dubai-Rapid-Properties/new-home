@@ -51,9 +51,9 @@ export default function Page() {
         </section>
       ) : null}
       <CtaBand
-        eyebrow="H1 2026 Market Report"
+        eyebrow="Q3 2026 Market Report"
         heading="The full report, free"
-        text="Transaction volumes, prime price movement and area-by-area outlook."
+        text="Sales, prices per sq ft, rental yields and rents by community, the luxury market and the outlook for Q4."
         button={{ label: 'Get the Report', href: '/market-report' }}
       />
     </SiteShell>
