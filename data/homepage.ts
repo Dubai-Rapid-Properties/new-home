@@ -15,6 +15,7 @@ import { featuredProjects, handoverLabel, priceLabel, projectHref, unitTypesLabe
 import { HOLIDAY_HOMES_URL } from './external';
 import { articleHref, articles, formatArticleDate } from './news';
 import { homepageRent, homepageSale, toPropertyCard } from './properties';
+import { dubaiAreas } from './dubaiAreas';
 
 /** Helper so Unsplash URLs stay readable and consistently sized. */
 const unsplash = (id: string, w = 1600) =>
@@ -159,23 +160,8 @@ function buildPriceBands(options: PriceOption[], anyLabel: string): PriceBand[] 
 }
 
 export const searchData = {
-  /** Areas offered as hero typeahead suggestions and in the Section 02 select. */
-  locations: [
-    'Palm Jumeirah',
-    'Dubai Marina',
-    'Downtown Dubai',
-    'Business Bay',
-    'Dubai Hills Estate',
-    'JBR',
-    'JVC',
-    'Arabian Ranches',
-    'DAMAC Hills',
-    'Dubai Harbour',
-    'DIFC',
-    'Mohammed Bin Rashid City',
-    'Emaar Beachfront',
-    'Bluewaters Island',
-  ],
+  /** Areas offered as hero typeahead suggestions and in the Section 02 select: every Dubai area. */
+  locations: dubaiAreas,
 
   propertyTypes: ['Apartment', 'Villa', 'Townhouse', 'Penthouse', 'Plot', 'Commercial'],
 

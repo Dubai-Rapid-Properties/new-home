@@ -11,6 +11,7 @@
 import { unsplash } from '@/lib/media';
 import { contactStep, type LeadFormConfig } from './leadPages';
 import { searchData } from './homepage';
+import { dubaiAreas } from './dubaiAreas';
 
 export type Package = {
   name: string;
@@ -32,9 +33,8 @@ const areaStep = {
   label: 'Area',
   question: 'Where is the property?',
   kind: 'select' as const,
-  placeholder: 'Choose an area',
-  otherPlaceholder: 'Type the area or community',
-  options: searchData.locations,
+  placeholder: 'Type or choose an area',
+  options: dubaiAreas,
 };
 
 /* -------------------------------------------------------------------------- */

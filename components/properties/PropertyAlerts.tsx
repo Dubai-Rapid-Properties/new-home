@@ -1,7 +1,7 @@
 'use client';
 
 import { useId, useState } from 'react';
-import { areas } from '@/data/areas';
+import { dubaiAreas } from '@/data/dubaiAreas';
 import { useEnquiry } from '@/lib/enquiry';
 import SendError from '../ui/SendError';
 import { EMAIL_PATTERN, inputBase, labelBase } from '../ui/formStyles';
@@ -88,8 +88,8 @@ export default function PropertyAlerts() {
                 <div className="relative">
                   <select id={`${uid}-area`} value={values.area} onChange={set('area')} className={selectBase}>
                     <option>Anywhere in Dubai</option>
-                    {areas.map((a) => (
-                      <option key={a.slug}>{a.name}</option>
+                    {dubaiAreas.map((a) => (
+                      <option key={a}>{a}</option>
                     ))}
                   </select>
                   <label htmlFor={`${uid}-area`} className={selectLabel}>Area</label>

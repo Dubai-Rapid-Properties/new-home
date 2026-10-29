@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { byPriceDesc, facetsFor, type ProjectCardData } from '@/lib/offPlanCards';
 import { priceSelection, type Facet, type Selection } from '@/lib/filters';
 import { toSlug } from '@/lib/slug';
+import { areaSlugs } from '@/data/dubaiAreas';
 import FilterExplorer, { type SortOption } from '../filters/FilterExplorer';
 import ProjectCard from './ProjectCard';
 
@@ -34,7 +35,8 @@ const PAGE_SIZE = 24;
 const optionIdsMatching = (facets: Facet<ProjectCardData>[], key: string, slugValue: string | null) => {
   if (!slugValue) return [];
   const facet = facets.find((f) => f.key === key);
-  return (facet?.options ?? []).filter((o) => toSlug(o.label) === slugValue || o.id === slugValue).map((o) => o.id);
+  const slugs = key === 'area' ? areaSlugs(slugValue) : [slugValue];
+  return (facet?.options ?? []).filter((o) => slugs.includes(toSlug(o.label)) || o.id === slugValue).map((o) => o.id);
 };
 
 /**
