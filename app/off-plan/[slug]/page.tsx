@@ -10,6 +10,11 @@ import ArrowLink from '@/components/ui/ArrowLink';
 import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import SmartLink from '@/components/ui/SmartLink';
+import BrochureButton from '@/components/offplan/BrochureButton';
+import { allTeam, memberContact } from '@/data/company';
+import { contact } from '@/data/homepage';
+import { licences } from '@/data/licences';
+import { siteUrl } from '@/lib/siteUrl';
 import { areaHref, areas } from '@/data/areas';
 import { contactStep, type LeadFormConfig } from '@/data/leadPages';
 import {
@@ -101,6 +106,40 @@ export default async function Page({ params }: PageProps) {
     ],
   };
 
+  /* The agents' brochure: the page's own details and photos */
+  const brochure = {
+    slug: project.slug,
+    name: project.name,
+    eyebrow: projectEyebrow(project),
+    facts: facts.filter(([label]) => label !== 'Developer').slice(0, 4) as [string, string][],
+    description: project.description,
+    highlights: project.highlights,
+    configurations: `${project.bedrooms.length ? `${project.bedrooms.map(bedLabel).join(' · ')} - ` : ''}${project.propertyTypes.join(', ')}`,
+    area: project.area,
+    locationText: project.locationText,
+    images: [...new Set([project.image, ...project.gallery.map((g) => g.src)])].slice(0, 7),
+    pageUrl: `${siteUrl}${projectHref(project.slug)}`,
+  };
+  const brochureAgents = allTeam.map((m) => {
+    const c = memberContact(m);
+    return {
+      name: m.name,
+      role: m.role,
+      phone: c.phone,
+      whatsapp: m.whatsappNumber ?? contact.whatsapp,
+      email: m.emailAddress ?? contact.email,
+      brn: m.brn ?? '',
+      photo: m.photo || undefined,
+    };
+  });
+  const brochureOffice = {
+    phone: contact.phone,
+    email: contact.email,
+    address: contact.addressFull,
+    orn: licences.orn,
+    website: siteUrl.replace(/^https?:\/\//, ''),
+  };
+
   return (
     <SiteShell>
       <PageHero
@@ -145,6 +184,7 @@ export default async function Page({ params }: PageProps) {
             <div className="mt-10 flex flex-wrap gap-x-10 gap-y-4">
               {guide ? <ArrowLink href={areaHref(guide.name)} label={`${guide.name} area guide`} /> : null}
               <ArrowLink href="/ecosystem/mortgage" label="Mortgage assistance" />
+              <BrochureButton project={brochure} agents={brochureAgents} office={brochureOffice} />
             </div>
           </div>
           <div className="lg:col-span-5 lg:pt-16">
