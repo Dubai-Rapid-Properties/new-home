@@ -62,6 +62,12 @@ const show = (v: unknown): string => {
   if (v == null || v === '') return '—';
   if (typeof v === 'boolean') return v ? 'Yes' : 'No';
   if (Array.isArray(v)) return v.map(show).join(', ');
+  /* A file the form sent (e.g. the CV): its name and size, the file itself is attached */
+  if (typeof v === 'object' && typeof (v as { name?: unknown }).name === 'string') {
+    const f = v as { name: string; size?: number };
+    const size = typeof f.size === 'number' ? ` (${(f.size / 1024 / 1024).toFixed(1)} MB)` : '';
+    return `${f.name}${size}, attached to this email`;
+  }
   if (typeof v === 'object') return JSON.stringify(v);
   return String(v);
 };
@@ -209,7 +215,7 @@ export async function POST(req: Request) {
 <table cellpadding="8" style="border-collapse:collapse;font-size:14px">
 ${rows.map(([k, v]) => `<tr><td style="border-bottom:1px solid #eee;color:#777;vertical-align:top;white-space:nowrap">${escape(k)}</td><td style="border-bottom:1px solid #eee;white-space:pre-wrap">${escape(v)}</td></tr>`).join('\n')}
 </table>
-${attachments.length ? `<p style="font-size:13px;color:#777">Attached: ${escape(attachments[0].filename)}</p>` : ''}
+${attachments.length ? `<p style="font-size:14px;margin-top:20px">📎 <strong>${escape(attachments[0].filename)}</strong> is attached to this email. On a phone it is at the very end of the message: scroll down and tap it to open.</p>` : ''}
 </body></html>`;
   const text = rows.map(([k, v]) => `${k}: ${v}`).join('\n');
 
