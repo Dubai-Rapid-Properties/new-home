@@ -59,6 +59,10 @@ export async function generateMetadata({ params }: PageProps) {
   });
 }
 
+/** "AED 1.35M", "AED 850K" */
+const shortAed = (n: number) =>
+  n >= 1_000_000 ? `AED ${(n / 1_000_000).toFixed(2).replace(/\.?0+$/, '')}M` : `AED ${Math.round(n / 1000)}K`;
+
 const bedLabel = (n: number) => (n === 0 ? 'Studio' : `${n} Bedroom${n === 1 ? '' : 's'}`);
 
 export default async function Page({ params }: PageProps) {
@@ -130,30 +134,68 @@ export default async function Page({ params }: PageProps) {
   };
 
   /* The agents' brochure: the page's own details and photos */
+  const plan = schedule ? `${schedule[0] + schedule[1]}/${schedule[2]}` : project.paymentPlan;
+  const [beds, types] = unitTypesLabel(project).includes(' · ')
+    ? unitTypesLabel(project).split(' · ')
+    : ['', unitTypesLabel(project)];
+  const sizes = (project.units ?? []).flatMap((u) => u.size ?? []);
+  const sqft = (n: number) => n.toLocaleString('en-US');
+  const grid = [
+    {
+      label: 'Starting price',
+      value: project.fromPrice ? shortAed(project.fromPrice) : 'On request',
+      sub: project.fromPrice ? formatAed(project.fromPrice) : 'Ask your D|R|P specialist',
+    },
+    project.developer ? { label: 'Developer', value: project.developer, sub: project.ownership ? `${project.ownership} ownership` : 'Developer' } : null,
+    {
+      label: 'Handover',
+      value: handoverLabel(project),
+      sub: construction ? `${construction.progress}% built` : 'Expected completion',
+    },
+    plan
+      ? {
+          label: 'Payment plan',
+          value: plan,
+          sub: schedule ? `${schedule[0]}% booking · ${schedule[1]}% build · ${schedule[2]}% handover` : 'Before / after handover',
+        }
+      : null,
+    { label: 'Unit types', value: beds || types, sub: beds ? types : 'Unit types' },
+    sizes.length
+      ? { label: 'Sizes', value: `${sqft(Math.min(...sizes))} - ${sqft(Math.max(...sizes))} sq ft`, sub: 'Across the unit types' }
+      : null,
+    { label: 'Location', value: project.area, sub: 'Dubai' },
+    project.ownership ? { label: 'Ownership', value: project.ownership, sub: 'Title' } : null,
+    project.amenities?.length
+      ? { label: 'Amenities', value: `${project.amenities.length} amenities`, sub: project.amenities.slice(0, 3).join(' · ') }
+      : null,
+  ].filter((c): c is { label: string; value: string; sub: string } => c !== null);
   const brochure = {
     slug: project.slug,
     name: project.name,
-    eyebrow: projectEyebrow(project),
-    facts: facts.filter(([label]) => label !== 'Developer').slice(0, 4) as [string, string][],
+    eyebrow: project.developer ? `Off-plan · ${project.developer}` : 'Off-plan',
+    location: `${project.area} · Dubai`,
+    price: project.fromPrice ? formatAed(project.fromPrice) : null,
+    keyFacts: [
+      [handoverLabel(project), 'Handover'],
+      ...(plan ? [[plan, 'Payment plan']] : project.ownership ? [[project.ownership, 'Ownership']] : []),
+      [beds || types, beds ? 'Units' : 'Homes'],
+    ] as [string, string][],
+    /* Whole rows of three */
+    grid: grid.length > 6 ? grid.slice(0, grid.length - (grid.length % 3)) : grid,
     description: project.description,
     highlights: project.highlights,
     units: (project.units ?? []).map((u) => ({
       name: unitName(u),
-      size: u.size
-        ? u.size[0] === u.size[1]
-          ? `${u.size[0].toLocaleString('en-US')} sq ft`
-          : `${u.size[0].toLocaleString('en-US')} - ${u.size[1].toLocaleString('en-US')} sq ft`
-        : '',
+      size: u.size ? (u.size[0] === u.size[1] ? `${sqft(u.size[0])} sq ft` : `${sqft(u.size[0])} - ${sqft(u.size[1])} sq ft`) : '',
       price: u.from ? formatAed(u.from) : 'On request',
     })),
     schedule: project.schedule,
     amenities: project.amenities ?? [],
-    details,
-    masterPlan: project.masterPlan,
-    configurations: `${project.bedrooms.length ? `${project.bedrooms.map(bedLabel).join(' · ')} - ` : ''}${project.propertyTypes.join(', ')}`,
     area: project.area,
     locationText: project.locationText,
+    coords: project.map.exact ? project.map.near : undefined,
     images: [...new Set([project.image, ...project.gallery.map((g) => g.src)])].slice(0, 17),
+    masterPlan: project.masterPlan,
     pageUrl: `${siteUrl}${projectHref(project.slug)}`,
   };
   const brochureAgents = allTeam.map((m) => {
