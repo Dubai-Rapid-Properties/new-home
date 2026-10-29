@@ -33,6 +33,8 @@ export type BrochureAgent = {
   email: string;
   brn: string;
   photo?: string;
+  /** The agent's own 16:9 contact card (data/agentCards.ts): the closing page shows it instead of the standard card */
+  card?: string;
 };
 
 export type BrochureOffice = { phone: string; email: string; address: string; orn: string; website: string };
@@ -146,13 +148,14 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
   const digits = (n: string) => n.replace(/[^\d]/g, '');
   const waLink = agent.whatsapp ? `https://wa.me/${digits(agent.whatsapp)}` : '';
 
-  const [cover, gallery, whiteLogo, blackLogo, face, qr] = await Promise.all([
+  const [cover, gallery, whiteLogo, blackLogo, face, qr, card] = await Promise.all([
     project.images[0] ? photo(project.images[0], 1680, 1520, 0.85) : Promise.resolve(null),
     Promise.all(project.images.slice(1, 7).map((src) => photo(src, 1000, 700))),
     logo('/brand/drp-white.svg'),
     logo('/brand/drp-black.svg'),
     agent.photo ? portrait(agent.photo) : Promise.resolve(null),
     waLink ? QRCode.toDataURL(waLink, { margin: 0, width: 360, color: { dark: '#1a1a1a', light: '#ffffff' } }) : Promise.resolve(null),
+    agent.card ? photo(agent.card, 1920, 1080, 0.9) : Promise.resolve(null),
   ]);
 
   const text = (s: string, x: number, y: number, opts?: Parameters<JsPdf['text']>[3]) => doc.text(plain(s), x, y, opts);
@@ -305,41 +308,52 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
   }
 
   /* The agent */
-  const cardH = 62;
-  room(cardH + 30);
-  y += 6;
-  eyebrow('Your D|R|P Specialist', M, y);
-  y += 5;
-  doc.setFillColor(...INK);
-  doc.rect(M, y, CW, cardH, 'F');
-  let tx = M + 10;
-  if (face) {
-    doc.addImage(face, 'PNG', M + 10, y + 12, 36, 36);
-    tx = M + 54;
+  if (card) {
+    /* The agent's own contact card, across the page */
+    const ch = (CW * 9) / 16;
+    room(ch + 40);
+    y += 6;
+    eyebrow('Your D|R|P Specialist', M, y);
+    y += 5;
+    doc.addImage(card, 'JPEG', M, y, CW, ch);
+    y += ch + 8;
+  } else {
+    const cardH = 62;
+    room(cardH + 30);
+    y += 6;
+    eyebrow('Your D|R|P Specialist', M, y);
+    y += 5;
+    doc.setFillColor(...INK);
+    doc.rect(M, y, CW, cardH, 'F');
+    let tx = M + 10;
+    if (face) {
+      doc.addImage(face, 'PNG', M + 10, y + 12, 36, 36);
+      tx = M + 54;
+    }
+    font('times', 'normal', 20, [255, 255, 255]);
+    text(agent.name, tx, y + 18);
+    font('helvetica', 'normal', 8.5, [190, 185, 178]);
+    text([agent.role, agent.brn ? `BRN ${agent.brn}` : ''].filter(Boolean).join('  ·  '), tx, y + 25);
+    const rows: [string, string][] = [
+      ['Phone', agent.phone],
+      ...(agent.whatsapp ? ([['WhatsApp', agent.whatsapp]] as [string, string][]) : []),
+      ['Email', agent.email],
+    ];
+    rows.forEach(([label, value], i) => {
+      font('helvetica', 'normal', 6.5, [150, 145, 138]);
+      text(label.toUpperCase(), tx, y + 35 + i * 7.5);
+      font('helvetica', 'normal', 9.5, [255, 255, 255]);
+      text(value, tx + 20, y + 35 + i * 7.5);
+    });
+    if (qr) {
+      doc.setFillColor(255, 255, 255);
+      doc.rect(W - M - 38, y + 12, 30, 30, 'F');
+      doc.addImage(qr, 'PNG', W - M - 36, y + 14, 26, 26);
+      font('helvetica', 'normal', 6.5, [190, 185, 178]);
+      text('Scan to WhatsApp', W - M - 23, y + 47, { align: 'center' });
+    }
+    y += cardH + 8;
   }
-  font('times', 'normal', 20, [255, 255, 255]);
-  text(agent.name, tx, y + 18);
-  font('helvetica', 'normal', 8.5, [190, 185, 178]);
-  text([agent.role, agent.brn ? `BRN ${agent.brn}` : ''].filter(Boolean).join('  ·  '), tx, y + 25);
-  const rows: [string, string][] = [
-    ['Phone', agent.phone],
-    ...(agent.whatsapp ? ([['WhatsApp', agent.whatsapp]] as [string, string][]) : []),
-    ['Email', agent.email],
-  ];
-  rows.forEach(([label, value], i) => {
-    font('helvetica', 'normal', 6.5, [150, 145, 138]);
-    text(label.toUpperCase(), tx, y + 35 + i * 7.5);
-    font('helvetica', 'normal', 9.5, [255, 255, 255]);
-    text(value, tx + 20, y + 35 + i * 7.5);
-  });
-  if (qr) {
-    doc.setFillColor(255, 255, 255);
-    doc.rect(W - M - 38, y + 12, 30, 30, 'F');
-    doc.addImage(qr, 'PNG', W - M - 36, y + 14, 26, 26);
-    font('helvetica', 'normal', 6.5, [190, 185, 178]);
-    text('Scan to WhatsApp', W - M - 23, y + 47, { align: 'center' });
-  }
-  y += cardH + 8;
 
   /* D|R|P and the small print */
   doc.setFillColor(...CREAM);

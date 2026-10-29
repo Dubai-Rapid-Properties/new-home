@@ -11,6 +11,7 @@ import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import SmartLink from '@/components/ui/SmartLink';
 import BrochureButton from '@/components/offplan/BrochureButton';
+import { agentCards } from '@/data/agentCards';
 import { allTeam, memberContact } from '@/data/company';
 import { contact } from '@/data/homepage';
 import { licences } from '@/data/licences';
@@ -122,14 +123,17 @@ export default async function Page({ params }: PageProps) {
   };
   const brochureAgents = allTeam.map((m) => {
     const c = memberContact(m);
+    /* The agent's own contact card, and the details printed on it */
+    const card = agentCards[m.name];
     return {
       name: m.name,
-      role: m.role,
-      phone: c.phone,
-      whatsapp: m.whatsappNumber ?? contact.whatsapp,
-      email: m.emailAddress ?? contact.email,
+      role: card?.role ?? m.role,
+      phone: card?.phone ?? c.phone,
+      whatsapp: card?.whatsapp ?? m.whatsappNumber ?? contact.whatsapp,
+      email: card?.email ?? m.emailAddress ?? contact.email,
       brn: m.brn ?? '',
       photo: m.photo || undefined,
+      card: card?.card,
     };
   });
   const brochureOffice = {
