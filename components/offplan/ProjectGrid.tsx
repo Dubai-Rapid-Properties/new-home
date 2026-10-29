@@ -65,6 +65,12 @@ function selectionFromParams(facets: Facet<ProjectCardData>[], params: URLSearch
   };
 }
 
+/** The search bar matches a project's name, developer, area and collections. */
+const projectSearch = {
+  placeholder: 'Project, developer or community',
+  text: (p: ProjectCardData) => [p.name, p.developer, p.area, ...p.collections].filter(Boolean).join(' '),
+};
+
 type Props = {
   items: ProjectCardData[];
   defaultSort: DefaultSort;
@@ -87,7 +93,8 @@ function Explorer({ items, itemFacets, defaultSort, isNew, initialSelection }: E
       initialSelection={initialSelection}
       sortOptions={sortOptionsFrom(defaultSort)}
       pageSize={PAGE_SIZE}
-      emptyHint="Try removing a filter, or speak to a specialist about upcoming launches."
+      emptyHint="Try another search or remove a filter, or speak to a specialist about upcoming launches."
+      search={projectSearch}
     />
   );
 }

@@ -12,11 +12,20 @@ import {
   type RefObject,
 } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { Check, ChevronDown, LayoutGrid, Map as MapIcon, SlidersHorizontal, X } from 'lucide-react';
+import { Check, ChevronDown, LayoutGrid, Map as MapIcon, Search, SlidersHorizontal, X } from 'lucide-react';
 import { emptySelection, matchesAll, type Facet, type Selection } from '@/lib/filters';
 
 /** Header height + breathing room, so a scrolled-to grid clears the sticky bars. */
 const SCROLL_OFFSET = 160;
+/** The same with the search bar above the filters. */
+const SCROLL_OFFSET_SEARCH = 230;
+
+/** Every word typed appears in the item's text, in any order: "emaar creek" finds Emaar's Creek Harbour projects. */
+const matchesQuery = (text: string, query: string) => {
+  const words = query.toLowerCase().split(/\s+/).filter(Boolean);
+  const hay = text.toLowerCase();
+  return words.every((w) => hay.includes(w));
+};
 
 export type SortOption<T> = { id: string; label: string; compare: (a: T, b: T) => number };
 
@@ -38,6 +47,8 @@ type Props<T> = {
   renderMap?: (results: T[]) => ReactNode;
   /** Shows this many results, then a "Show more" button for the next as many. */
   pageSize?: number;
+  /** A search bar above the filters, matching the words typed against each item's text. */
+  search?: { placeholder: string; text: (item: T) => string };
 };
 
 /**
@@ -56,6 +67,7 @@ export default function FilterExplorer<T>({
   leading,
   renderMap,
   pageSize,
+  search,
   emptyHint = 'Try removing a filter, or speak to a specialist about what you are looking for.',
 }: Props<T>) {
   const reduce = useReducedMotion();
@@ -65,6 +77,13 @@ export default function FilterExplorer<T>({
     ...initialSelection,
   }));
   const [sortId, setSortId] = useState(sortOptions?.[0]?.id);
+  const [query, setQuery] = useState('');
+  /* What the search bar finds; the filters then narrow it down */
+  const searchText = search?.text;
+  const searched = useMemo(
+    () => (searchText && query.trim() ? items.filter((item) => matchesQuery(searchText(item), query)) : items),
+    [items, searchText, query],
+  );
   const [openFacet, setOpenFacet] = useState<string | null>(null);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [view, setView] = useState<'grid' | 'map'>('grid');
@@ -108,23 +127,23 @@ export default function FilterExplorer<T>({
   }, [facets]);
 
   const results = useMemo(() => {
-    const filtered = items.filter((item) => matchesAll(item, facets, selected));
+    const filtered = searched.filter((item) => matchesAll(item, facets, selected));
     const sort = sortOptions?.find((o) => o.id === sortId);
     return sort ? [...filtered].sort(sort.compare) : filtered;
-  }, [items, facets, selected, sortOptions, sortId]);
+  }, [searched, facets, selected, sortOptions, sortId]);
 
   /* A new filter or sort starts again from the first page */
   const [shown, setShown] = useState(pageSize ?? Infinity);
-  useEffect(() => setShown(pageSize ?? Infinity), [pageSize, selected, sortId]);
+  useEffect(() => setShown(pageSize ?? Infinity), [pageSize, selected, sortId, query]);
   const visible = results.length > shown ? results.slice(0, shown) : results;
 
   /** How many items an option would show, given every other active filter. */
   const countFor = useCallback(
     (f: Facet<T>, id: string) => {
       const next = { ...selected, [f.key]: [id] };
-      return items.filter((item) => matchesAll(item, facets, next)).length;
+      return searched.filter((item) => matchesAll(item, facets, next)).length;
     },
-    [items, facets, selected],
+    [searched, facets, selected],
   );
 
   const chips = facets.flatMap((f) =>
@@ -159,6 +178,7 @@ export default function FilterExplorer<T>({
   const clearAll = () => {
     bump();
     setSelected(emptySelection(facets));
+    setQuery('');
   };
 
   /* If the grid's top has scrolled out of view, bring it back after a change
@@ -168,9 +188,10 @@ export default function FilterExplorer<T>({
     const el = gridTopRef.current;
     if (!el) return;
     const top = el.getBoundingClientRect().top;
-    if (top < SCROLL_OFFSET - 40) {
+    const offset = search ? SCROLL_OFFSET_SEARCH : SCROLL_OFFSET;
+    if (top < offset - 40) {
       window.scrollTo({
-        top: window.scrollY + top - SCROLL_OFFSET,
+        top: window.scrollY + top - offset,
         behavior: reduce ? 'auto' : 'smooth',
       });
     }
@@ -192,6 +213,50 @@ export default function FilterExplorer<T>({
     <div>
       {/* ---------- Filter bar, sticky under the header ---------- */}
       <div className="sticky top-16 z-30 border-y border-line bg-cream/95 backdrop-blur-md lg:top-[72px]">
+        {search ? (
+          <form
+            role="search"
+            onSubmit={(e) => {
+              e.preventDefault();
+              (document.activeElement as HTMLElement | null)?.blur();
+              bump();
+            }}
+            className="container-drp pt-3"
+          >
+            <div className="flex h-12 items-center gap-3 rounded-full border border-charcoal/15 bg-white pl-5 pr-1.5 shadow-[0_6px_20px_-12px_rgba(26,26,26,0.25)] transition-colors duration-300 focus-within:border-charcoal/40">
+              <Search aria-hidden="true" strokeWidth={1.5} className="h-[18px] w-[18px] shrink-0 text-charcoal-muted" />
+              <label htmlFor={`${uid}-search`} className="sr-only">
+                Search
+              </label>
+              <input
+                id={`${uid}-search`}
+                type="search"
+                enterKeyHint="search"
+                autoComplete="off"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder={search.placeholder}
+                className="h-full min-w-0 flex-1 bg-transparent text-[15px] font-light text-charcoal outline-none placeholder:text-charcoal-muted/70 [&::-webkit-search-cancel-button]:hidden"
+              />
+              {query ? (
+                <button
+                  type="button"
+                  onClick={() => setQuery('')}
+                  aria-label="Clear the search"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-charcoal-muted transition-colors hover:text-charcoal"
+                >
+                  <X aria-hidden="true" strokeWidth={1.5} className="h-4 w-4" />
+                </button>
+              ) : null}
+              <button
+                type="submit"
+                className="h-9 shrink-0 rounded-full bg-orange px-5 text-[13px] font-medium text-white transition-colors duration-300 hover:bg-orange-600"
+              >
+                Search
+              </button>
+            </div>
+          </form>
+        ) : null}
         <div className="container-drp flex min-h-[68px] flex-wrap items-center justify-between gap-x-4 gap-y-3 py-3">
           <div className="flex flex-wrap items-center gap-2">
             {leading}
@@ -227,7 +292,7 @@ export default function FilterExplorer<T>({
             <p aria-live="polite" className="whitespace-nowrap text-[12px] font-light text-charcoal-muted sm:text-[13px]">
               {countLabel}
             </p>
-            {chips.length ? (
+            {chips.length || query.trim() ? (
               <button
                 type="button"
                 onClick={clearAll}
