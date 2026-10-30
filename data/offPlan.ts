@@ -27,6 +27,8 @@ import pfConstruction from './market/construction-pf.json';
 import { curatedProjects } from './curatedProjects';
 import importedProjects from './imported/projects.json';
 import pfCatalog from './market/pf-projects.json';
+/* Projects from the DRP website that D|R|P has taken off the site, by slug */
+import hiddenProjects from './hidden-projects.json';
 import photoHashes from './imported/photo-hashes.json';
 
 export type { ProjectType };
@@ -180,7 +182,7 @@ const withPriceCollections = (collections: string[], fromPrice: number | null) =
  * not published there, so cards show them only once the data includes one.
  */
 const drpProjects: Project[] = importedProjects
-  .filter((r) => r.startingPrice)
+  .filter((r) => r.startingPrice && !hiddenProjects.includes(r.slug))
   .map((r): Project => ({
     slug: r.slug,
     name: r.name,
@@ -288,7 +290,11 @@ const matchName = (name: string) =>
     .replace(/[^a-z0-9]/g, '');
 
 /** Property Finder projects D|R|P does not show on the site, by page path */
-const PF_HIDDEN = new Set(['acube-developers/zeta', 'ays-property-development/ventone']);
+const PF_HIDDEN = new Set([
+  'acube-developers/zeta',
+  'ays-property-development/ventone',
+  'acube-developers/avior-by-acube',
+]);
 
 /** Property Finder pages for projects D|R|P lists under another name, by page path */
 const PF_LISTED_BY_DRP = new Set([

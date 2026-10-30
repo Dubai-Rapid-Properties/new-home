@@ -110,7 +110,9 @@ const SECTIONS = {
 
 export function legacyRedirects() {
   const legacy = json('legacy/wordpress-urls.json');
-  const projects = new Set(json('imported/projects.json').map((p) => p.slug));
+  /* The projects the site has a page for: hidden ones (data/hidden-projects.json) go to the project list */
+  const hiddenProjects = json('hidden-projects.json');
+  const projects = new Set(json('imported/projects.json').map((p) => p.slug).filter((s) => !hiddenProjects.includes(s)));
   /* The listings the site has a page for: the same filter as data/properties.ts (hidden in the portal, commercial or without a size are left out) */
   const hidden = new Set(json('imported/hidden-listings.json'));
   const listings = new Set(
@@ -122,6 +124,7 @@ export function legacyRedirects() {
   const teamSlugs = new Set(team.map((t) => slugify(t.name)));
 
   const exact = { ...PAGES };
+  for (const s of hiddenProjects) exact[`/off-plan/${s}`] = '/off-plan/projects';
   for (const p of legacy.posts) exact[`/${p}`] = '/news';
 
   for (const s of legacy.projects) if (projects.has(s)) exact[`/projects/${s}`] = `/off-plan/${s}`;
