@@ -26,7 +26,63 @@ const sensoriaPhotos: string[] = [
   'The Five Luxe beach club and pools on JBR beach, from above',
 ];
 
+const sensoria4Photos: string[] = [
+  'The private pool on the terrace, with Ain Dubai across the water',
+  'The living room, with floor-to-ceiling windows over the sea',
+  'The living room and its shelving, looking out to the sea',
+  'The dining table for eight beside the kitchen',
+  'The kitchen island, open to the dining and living room',
+  'A lounge corner by the windows, facing the terrace',
+  'The terrace pool and lounge, looking along the JBR coast',
+  'The master bedroom, with Ain Dubai through the window',
+  'The master bedroom, with sea and marina views',
+  'The second bedroom',
+  'The third bedroom, with a city view',
+  'The master bathroom, with a freestanding bath and double vanity',
+  'A bathroom with a walk-in shower',
+  'The terrace, opening off the living room',
+  'Sensoria at Five Luxe on the JBR beachfront at sunset',
+];
+
 export const manualListings: Listing[] = [
+  {
+    slug: 'sensoria-five-luxe-4-bedroom-penthouse-private-pool-jbr',
+    ref: 'DRP-SENSORIA-4BR',
+    permit: null,
+    permitUrl: null,
+    title: 'Sensoria at Five Luxe | 4-Bedroom Penthouse with Private Pool | Full Sea View',
+    offering: 'buy',
+    price: 22_500_000,
+    type: 'Penthouse',
+    area: 'Jumeirah Beach Residence',
+    building: 'Sensoria at Five Luxe',
+    map: { query: 'Five Luxe JBR, Dubai', exact: false },
+    beds: 4,
+    baths: 5,
+    size: 4050,
+    completion: 'Ready',
+    furnishing: 'Furnished',
+    listedAt: '2026-10-30',
+    agent: null,
+    images: sensoria4Photos.map((alt, i) => ({
+      src: `/media/sensoria-five-luxe-4br/${String(i + 1).padStart(2, '0')}.webp`,
+      alt,
+    })),
+    description: [
+      'A fully furnished 4-bedroom penthouse at Sensoria, Five Luxe, on the JBR beachfront, with a private pool on the terrace and panoramic views of the sea and Ain Dubai.',
+      'Residents enjoy private beach and spa access. Ready to move in, sold furnished.',
+      '4,050 sq ft in total.',
+    ],
+    features: [
+      'Private pool on the terrace',
+      'Full sea view: Ain Dubai and the JBR coast',
+      'Fully furnished',
+      'Ready to move in',
+      'Private beach and spa access',
+      'JBR beachfront',
+    ],
+    sourceUrl: 'https://dubairapidproperties.com/properties/sensoria-five-luxe-4-bedroom-penthouse-private-pool-jbr',
+  },
   {
     slug: 'sensoria-five-luxe-3-bedroom-private-pool-jbr',
     ref: 'DRP-SENSORIA-3BR',
