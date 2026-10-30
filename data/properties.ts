@@ -16,6 +16,7 @@ import {
   type PriceBand,
 } from '@/lib/filters';
 import { hotDeals } from './hotDeals';
+import { manualListings } from './manualListings';
 import { licences } from './licences';
 import type { ReadyProperty, RentalProperty } from './homepage';
 import imported from './imported/listings.json';
@@ -147,6 +148,7 @@ export const listings: Listing[] = [
     .filter((r) => !hotDealSlugs.has(r.slug) && !hiddenSlugs.has(r.slug))
     .filter((r) => r.type !== 'Commercial' && r.size)
     .map(toListing)
+    .concat(manualListings)
     .sort((a, b) => b.listedAt.localeCompare(a.listedAt)),
 ];
 
