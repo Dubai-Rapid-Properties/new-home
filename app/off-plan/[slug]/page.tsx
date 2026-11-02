@@ -166,7 +166,7 @@ export default async function Page({ params }: PageProps) {
     { label: 'Location', value: project.area, sub: 'Dubai' },
     project.ownership ? { label: 'Ownership', value: project.ownership, sub: 'Title' } : null,
     project.amenities?.length
-      ? { label: 'Amenities', value: `${project.amenities.length} amenities`, sub: project.amenities.slice(0, 3).join(' · ') }
+      ? { label: 'Amenities', value: `${project.amenityCount ?? project.amenities.length} amenities`, sub: project.amenities.slice(0, 3).join(' · ') }
       : null,
   ].filter((c): c is { label: string; value: string; sub: string } => c !== null);
   const brochure = {
@@ -191,6 +191,7 @@ export default async function Page({ params }: PageProps) {
     })),
     schedule: project.schedule,
     amenities: project.amenities ?? [],
+    amenityCount: project.amenityCount,
     area: project.area,
     locationText: project.locationText,
     coords: project.map.exact ? project.map.near : undefined,

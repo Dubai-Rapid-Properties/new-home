@@ -76,6 +76,8 @@ export type Project = {
   /** Each unit type on sale with its starting price and sizes (sq ft), as the developer publishes them */
   units?: ProjectUnit[];
   amenities?: string[];
+  /** How many amenities the developer advertises when the list shows only some, e.g. "40+" */
+  amenityCount?: string;
   /** The payment plan's stages in %: on booking, during construction, on and after handover */
   schedule?: [number, number, number];
   /** "Freehold" or "Leasehold" */
@@ -122,8 +124,8 @@ const PRICE_CORRECTIONS: Record<string, number | null> = {
   // CONFIRM – the DRP site says AED 1.35M, but Cavalli Couture is 3–6 bed
   // residences selling from roughly AED 16.5M; set the confirmed price here
   'cavalli-couture': null,
-  // DRP confirmed AED 1.1M; the DRP site still says AED 1.05M
-  diamondz: 1_100_000,
+  // Ms Tara, Nov 2026: the studios and 1-bedrooms are sold; 2-bedrooms from AED 2.8M
+  diamondz: 2_800_000,
 };
 
 /**
@@ -543,8 +545,46 @@ function completed(p: Project): Project {
   };
 }
 
+/**
+ * What D|R|P knows better than the imported page and Property Finder, by
+ * project slug: units sold out, the amenities the developer advertises, the
+ * photo to lead with.
+ */
+const PROJECT_CORRECTIONS: Record<string, (p: Project) => Project> = {
+  // Ms Tara, Nov 2026: no studios or 1-bedrooms left; 2-bedrooms from AED 2.8M;
+  // Danube advertises 40+ amenities; the cover was a bathroom render.
+  diamondz: (p) => {
+    const order = ['1-5', '2-1-3', '3-2', '6-1', '8', '12-3', '14-3', '13-4', '10-4', '16-3', '15-1'];
+    const photo = (name: string) => `/media/2026/08/${name}.webp`;
+    return {
+      ...p,
+      bedrooms: [2, 3, 4],
+      units: (p.units ?? [])
+        .filter((u) => u.beds >= 2)
+        .map((u) => (u.beds === 2 ? { ...u, from: 2_800_000 } : u)),
+      amenities: [
+        'Infinity swimming pool',
+        'Private pools in selected residences',
+        'Indoor swimming pool',
+        'Rooftop pool bar',
+        'Spa',
+        'Aquatic gym',
+        'Gymnasium',
+        'Yoga deck',
+        'Wellness facilities',
+        'Cafés and restaurants',
+        '24-hour security',
+      ],
+      amenityCount: '40+',
+      image: photo(order[0]),
+      gallery: order.map((name, i) => ({ src: photo(name), alt: `${p.name}, image ${i + 1}` })),
+    };
+  },
+};
+const corrected = (p: Project) => PROJECT_CORRECTIONS[p.slug]?.(p) ?? p;
+
 /** Every off-plan project on the site: D|R|P's own, then the rest of Dubai's. */
-export const projects: Project[] = [...drpProjects.map((p) => completed(pinned(p))), ...pfProjects].sort((a, b) =>
+export const projects: Project[] = [...drpProjects.map((p) => corrected(completed(pinned(p)))), ...pfProjects].sort((a, b) =>
   b.launchedAt.localeCompare(a.launchedAt),
 );
 
