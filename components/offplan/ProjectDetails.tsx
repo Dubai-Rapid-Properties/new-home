@@ -129,6 +129,11 @@ export function DetailsAndAmenities({
         {amenities.length ? (
           <div className="lg:col-span-7">
             <SectionHeading eyebrow="Amenities" heading={`Life at ${project.name}`} />
+            {project.amenityCount ? (
+              <p className="mt-5 text-[15px] font-light text-charcoal-muted">
+                {project.amenityCount} amenities, among them:
+              </p>
+            ) : null}
             <ul className="mt-10 grid grid-cols-1 gap-x-8 sm:grid-cols-2">
               {amenities.map((a) => (
                 <li key={a} className="flex items-center gap-3 border-b border-line py-3.5 text-[15px] font-light text-charcoal">

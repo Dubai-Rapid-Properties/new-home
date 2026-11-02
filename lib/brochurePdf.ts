@@ -32,6 +32,8 @@ export type BrochureProject = {
   /** Payment stages in %: on booking, during construction, on and after handover */
   schedule?: [number, number, number];
   amenities: string[];
+  /** "40+" when the list shows only some of them */
+  amenityCount?: string;
   area: string;
   locationText: string[];
   /** [lat, lng] of the building, when known exactly */
@@ -586,7 +588,12 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
     cornerLogo();
     const y = intro('Amenities', `Life at ${project.name}`);
     font('sans', 'light', 13, TEXT);
-    lines(`${project.amenities.length} amenities for residents, as the developer publishes them.`, 360)
+    lines(
+      project.amenityCount
+        ? `${project.amenityCount} amenities for residents, among them:`
+        : `${project.amenities.length} amenities for residents, as the developer publishes them.`,
+      360,
+    )
       .slice(0, 2)
       .forEach((l, i) => text(l, M, y + 10 + i * 24));
     const list = project.amenities.slice(0, 42);
