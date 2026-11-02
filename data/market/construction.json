@@ -1,6 +1,6 @@
 {
  "source": "Dubai Land Department open data — project register",
- "updatedAt": "2026-10-26T09:06:10.836Z",
+ "updatedAt": "2026-11-02T11:22:38.152Z",
  "projects": {
   "Address The Bay": {
    "progress": 70.1,
@@ -178,8 +178,8 @@
    ]
   },
   "Cove Edition Residence 3": {
-   "progress": 37.1,
-   "inspected": "2026-07-16",
+   "progress": 44,
+   "inspected": "2026-10-14",
    "dld": [
     3466
    ]
@@ -256,8 +256,8 @@
    ]
   },
   "Natuzzi Harmony Residences": {
-   "progress": 19.6,
-   "inspected": "2026-03-06",
+   "progress": 43.7,
+   "inspected": "2026-10-19",
    "dld": [
     3223
    ]
@@ -277,8 +277,8 @@
    ]
   },
   "Ruby": {
-   "progress": 46.4,
-   "inspected": "2026-07-20",
+   "progress": 65,
+   "inspected": "2026-10-21",
    "dld": [
     3533
    ]
