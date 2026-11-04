@@ -296,6 +296,7 @@ const PF_HIDDEN = new Set([
   'acube-developers/zeta',
   'ays-property-development/ventone',
   'acube-developers/avior-by-acube',
+  'acube-developers/gloas',
 ]);
 
 /** Property Finder pages for projects D|R|P lists under another name, by page path */
