@@ -121,21 +121,36 @@ async function sendReport(key: string, to: string, name: string, link: string): 
   }
 }
 
-/** True when Cloudflare says the visitor passed the check, or when the check is not switched on. */
-async function passedBotCheck(req: Request, token: FormDataEntryValue | null): Promise<boolean> {
+/**
+ * Cloudflare's answer on the visitor: "passed" (or the check is off), "failed"
+ * (Cloudflare checked and said no: a bot), or "unchecked" (no answer could be
+ * had: the visitor's browser blocked Cloudflare's script, the check timed out,
+ * or the keys are set up wrong). Every enquiry still arrives, the email's
+ * subject marked when it was not passed: Cloudflare cannot tell a bot from
+ * keys that do not belong together, and a lost lead costs more than spam.
+ */
+async function botCheck(req: Request, token: FormDataEntryValue | null): Promise<'passed' | 'failed' | 'unchecked'> {
   const secret = process.env.TURNSTILE_SECRET_KEY;
-  if (!secret) return true;
-  if (typeof token !== 'string' || !token || token.length > 2048) return false;
+  if (!secret) return 'passed';
+  if (typeof token !== 'string' || !token || token.length > 2048) return 'unchecked';
   const body = new URLSearchParams({ secret, response: token });
   const ip = req.headers.get('cf-connecting-ip');
   if (ip) body.set('remoteip', ip);
   try {
     const res = await fetch(TURNSTILE_URL, { method: 'POST', body, signal: AbortSignal.timeout(8_000) });
-    return res.ok && ((await res.json()) as { success?: boolean }).success === true;
+    const answer = (await res.json().catch(() => ({}))) as { success?: boolean; 'error-codes'?: string[] };
+    if (res.ok && answer.success === true) return 'passed';
+    const codes = answer['error-codes'] ?? [];
+    /* The keys, not the visitor: a wrong or missing secret, or a site key the secret does not belong to */
+    if (!res.ok || codes.some((c) => /secret|sitekey|internal-error/.test(c))) {
+      console.error('[enquiry] Turnstile is set up wrong:', res.status, codes.join(', '));
+      return 'unchecked';
+    }
+    return 'failed';
   } catch (error) {
     /* Turnstile unreachable: let the visitor through rather than lose a real lead */
     console.error('[enquiry] Turnstile could not be reached', error instanceof Error ? error.message : error);
-    return true;
+    return 'unchecked';
   }
 }
 
@@ -168,7 +183,8 @@ export async function POST(req: Request) {
     return fail(400, 'bad-body');
   }
 
-  if (!(await passedBotCheck(req, form.get('cf-turnstile-response')))) return fail(403, 'bot-check');
+  const check = await botCheck(req, form.get('cf-turnstile-response'));
+  if (check !== 'passed') console.warn(`[enquiry] bot check ${check}: delivered, marked`);
 
   const raw = form.get('data');
   if (typeof raw !== 'string' || raw.length > MAX_DATA) return fail(400, 'bad-data');
@@ -200,6 +216,8 @@ export async function POST(req: Request) {
   }
 
   const formName = humanise(String(data.form ?? 'website'));
+  /* Shown on the email and the portal's lead, so staff can tell a likely bot */
+  if (check !== 'passed') data.botCheck = check === 'failed' ? 'Possible spam (failed the bot check)' : 'Not verified (the bot check could not run)';
   const keys = [...LEAD.filter((k) => k in data), ...Object.keys(data).filter((k) => !LEAD.includes(k))];
   const rows = keys.map((k) => [humanise(k), show(k === 'form' ? formName : data[k])]);
 
@@ -234,7 +252,7 @@ ${attachments.length ? `<p style="font-size:14px;margin-top:20px">📎 <strong>$
       from: FROM,
       to: [TO],
       ...(EMAIL.test(email) ? { reply_to: email } : {}),
-      subject: `Website enquiry: ${formName} — ${name}`.slice(0, 200),
+      subject: `${check === 'failed' ? '[Possible spam] ' : check === 'unchecked' ? '[Unverified] ' : ''}Website enquiry: ${formName} — ${name}`.slice(0, 200),
       html,
       text,
       ...(attachments.length ? { attachments } : {}),

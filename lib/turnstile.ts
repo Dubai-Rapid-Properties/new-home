@@ -44,6 +44,8 @@ export async function turnstileToken(): Promise<string | null> {
 
   return new Promise((resolve) => {
     const host = document.createElement('div');
+    /* On screen, above everything: a puzzle shown at the foot of a long page goes unseen and times out */
+    host.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:2147483000;';
     document.body.appendChild(host);
     let id: string | undefined;
     const done = (token: string | null) => {
@@ -60,6 +62,7 @@ export async function turnstileToken(): Promise<string | null> {
       callback: (token: string) => done(token),
       'error-callback': () => done(null),
       'timeout-callback': () => done(null),
+      'unsupported-callback': () => done(null),
     });
   });
 }
