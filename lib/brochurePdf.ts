@@ -7,7 +7,7 @@
  *
  * Property Finder's photos come through /api/brochure-image (their server
  * sends no CORS header); the site's own photos and the map tiles
- * (OpenStreetMap, which allows it) are read directly.
+ * (Esri's base map, which allows it) are read directly.
  */
 import type { jsPDF as JsPdf } from 'jspdf';
 import QRCode from 'qrcode';
@@ -91,8 +91,8 @@ const plain = (s: string) =>
 /*  Images                                                                    */
 /* -------------------------------------------------------------------------- */
 
-/* OpenStreetMap's tiles allow cross-origin reads, so they are fetched directly */
-const DIRECT = /^https:\/\/tile\.openstreetmap\.org\//;
+/* Esri's map tiles allow cross-origin reads, so they are fetched directly */
+const DIRECT = /^https:\/\/services\.arcgisonline\.com\//;
 
 const readable = (src: string) =>
   /^https?:\/\//.test(src) && !src.startsWith(window.location.origin) && !DIRECT.test(src)
@@ -213,15 +213,65 @@ async function logo(src: string): Promise<{ data: string; ratio: number } | null
 }
 
 /**
- * A street map around [lat, lng], w×h points, from OpenStreetMap's tiles one
- * zoom level closer, so the map is sharp at twice the resolution.
+ * Places in Dubai a client knows, named on the brochure's map in English (the
+ * map tiles themselves carry no names: every free street map of Dubai shows
+ * them in Arabic and English together, too small to read).
  */
-async function streetMap([lat, lng]: [number, number], w: number, h: number, zoom = 15): Promise<string | null> {
+const LANDMARKS: [string, number, number][] = [
+  ['Burj Khalifa', 25.1972, 55.2744],
+  ['DIFC', 25.2115, 55.2797],
+  ['Business Bay', 25.185, 55.265],
+  ['Dubai Design District', 25.188, 55.297],
+  ['Dubai Frame', 25.2353, 55.3003],
+  ['Bur Dubai', 25.258, 55.297],
+  ['Deira', 25.27, 55.31],
+  ['Port Rashid', 25.268, 55.277],
+  ['Dubai Maritime City', 25.272, 55.262],
+  ['Dubai Islands', 25.292, 55.31],
+  ['La Mer, Jumeirah', 25.23, 55.255],
+  ['Dubai International Airport', 25.2532, 55.3657],
+  ['Dubai Festival City', 25.222, 55.353],
+  ['Dubai Creek Harbour', 25.201, 55.346],
+  ['Ras Al Khor Sanctuary', 25.189, 55.335],
+  ['Dubai Healthcare City', 25.231, 55.322],
+  ['Meydan', 25.159, 55.302],
+  ['Al Quoz', 25.145, 55.23],
+  ['Mirdif City Centre', 25.216, 55.407],
+  ['International City', 25.165, 55.41],
+  ['Dubai Silicon Oasis', 25.12, 55.38],
+  ['Burj Al Arab', 25.1412, 55.1853],
+  ['Mall of the Emirates', 25.1181, 55.2006],
+  ['Dubai Hills Mall', 25.102, 55.239],
+  ['Palm Jumeirah', 25.1304, 55.1171],
+  ['Dubai Internet City', 25.095, 55.16],
+  ['Dubai Marina', 25.0805, 55.1403],
+  ['JVC', 25.06, 55.21],
+  ['Dubai Sports City', 25.04, 55.22],
+  ['Arabian Ranches', 25.055, 55.27],
+  ['DAMAC Hills', 25.025, 55.25],
+  ['Dubai Investments Park', 24.99, 55.17],
+  ['Expo City Dubai', 24.963, 55.149],
+  ['Al Maktoum Airport', 24.896, 55.161],
+  ['Jebel Ali', 25.01, 55.06],
+];
+
+type StreetMap = { data: string; at: (lat: number, lng: number) => [number, number] };
+
+/**
+ * A street map around [lat, lng], w×h points, from Esri's light grey base
+ * map (no names on it), drawn from tiles one zoom level closer than shown so
+ * it is sharp at twice the resolution. At zoom 14 the page shows about 16 km
+ * across: the community and the main roads and landmarks around it. `at`
+ * gives a place's position on the page, for the names drawn over it.
+ */
+async function streetMap([lat, lng]: [number, number], w: number, h: number, zoom = 14): Promise<StreetMap | null> {
   try {
     const world = 256 * 2 ** zoom;
-    const cx = ((lng + 180) / 360) * world;
-    const s = Math.sin((lat * Math.PI) / 180);
-    const cy = (0.5 - Math.log((1 + s) / (1 - s)) / (4 * Math.PI)) * world;
+    const px = (la: number, ln: number): [number, number] => {
+      const s = Math.sin((la * Math.PI) / 180);
+      return [((ln + 180) / 360) * world, (0.5 - Math.log((1 + s) / (1 - s)) / (4 * Math.PI)) * world];
+    };
+    const [cx, cy] = px(lat, lng);
     const pw = w * 2;
     const ph = h * 2;
     const left = cx - pw / 2;
@@ -230,19 +280,25 @@ async function streetMap([lat, lng]: [number, number], w: number, h: number, zoo
     canvas.width = pw;
     canvas.height = ph;
     const ctx = canvas.getContext('2d')!;
-    ctx.fillStyle = '#f2efe9';
+    ctx.fillStyle = '#ecebe8';
     ctx.fillRect(0, 0, pw, ph);
     const jobs: Promise<void>[] = [];
     for (let tx = Math.floor(left / 256); tx <= Math.floor((left + pw) / 256); tx++)
       for (let ty = Math.floor(top / 256); ty <= Math.floor((top + ph) / 256); ty++)
         jobs.push(
-          loadImage(`https://tile.openstreetmap.org/${zoom}/${tx}/${ty}.png`).then((img) =>
-            ctx.drawImage(img, tx * 256 - left, ty * 256 - top, 256, 256),
-          ),
+          loadImage(
+            `https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/${zoom}/${ty}/${tx}`,
+          ).then((img) => ctx.drawImage(img, tx * 256 - left, ty * 256 - top, 256, 256)),
         );
     const done = await Promise.allSettled(jobs);
     if (!done.some((d) => d.status === 'fulfilled')) return null;
-    return canvas.toDataURL('image/jpeg', 0.85);
+    return {
+      data: canvas.toDataURL('image/jpeg', 0.85),
+      at: (la, ln) => {
+        const [x, y] = px(la, ln);
+        return [(x - left) / 2, (y - top) / 2];
+      },
+    };
   } catch {
     return null;
   }
@@ -657,10 +713,29 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
   fill(WHITE);
   const mapW = 945;
   if (map) {
-    doc.addImage(map, 'JPEG', 0, 0, mapW, H);
-    /* The pin, and the project's name beside it */
+    doc.addImage(map.data, 'JPEG', 0, 0, mapW, H);
     const px = mapW / 2;
     const py = H / 2;
+    /* Landmarks around it, in English, where they do not crowd the pin's label or each other */
+    const taken: [number, number, number, number][] = [[px - 40, py - 70, px + 420, py + 30]];
+    const clear = (b: [number, number, number, number]) =>
+      b[0] > 16 && b[2] < mapW - 16 && b[1] > 16 && b[3] < H - 30 &&
+      !taken.some((t) => b[0] < t[2] && b[2] > t[0] && b[1] < t[3] && b[3] > t[1]);
+    font('sans', 'medium', 11, DARK);
+    for (const [name, la, ln] of LANDMARKS) {
+      const [x, y] = map.at(la, ln);
+      const tw = doc.getTextWidth(name);
+      const box: [number, number, number, number] = [x - 6, y - 12, x + 14 + tw, y + 8];
+      if (!clear(box)) continue;
+      taken.push(box);
+      doc.setFillColor(...WHITE);
+      doc.roundedRect(box[0], box[1], box[2] - box[0], box[3] - box[1], 3, 3, 'F');
+      doc.setFillColor(...DARK);
+      doc.circle(x + 1, y - 2, 2.6, 'F');
+      font('sans', 'medium', 11, DARK);
+      text(name, x + 9, y + 2);
+    }
+    /* The pin, and the project's name beside it */
     doc.setFillColor(...ORANGE);
     doc.circle(px, py - 38, 24, 'F');
     doc.triangle(px - 21, py - 26, px + 21, py - 26, px, py + 4, 'F');
@@ -673,7 +748,7 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
     fit(project.name, lw - 40, 24, 14);
     text(project.name, px + 34, py + 8);
     font('sans', 'light', 7, [90, 90, 90]);
-    text('© OpenStreetMap contributors', 12, H - 10);
+    text('Base map: Esri, HERE, Garmin, © OpenStreetMap contributors', 12, H - 10);
   } else if (shots[0] ?? cover) {
     /* The middle of a full-page photo, in the left panel */
     doc.addImage((shots[0] ?? cover)!, 'JPEG', -(W - mapW) / 2, 0, W, H);
@@ -692,13 +767,24 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
   doc.rect(lx, ly, 56, 2, 'F');
   ly = body(project.locationText.slice(0, 2), lx, ly + 40, lwid, 560, 12.5);
   const features = project.highlights.map((h) => h.title).slice(0, 6);
-  if (features.length && ly < 640) {
+  /* Above the Google Maps code */
+  if (features.length && ly < 580) {
     caps('Highlights', lx, ly + 6, 9, MUTED);
     font('sans', 'light', 12.5, TEXT);
     lines(features.join('  ·  '), lwid)
-      .slice(0, 3)
+      .slice(0, 2)
       .forEach((l, i) => text(l, lx, ly + 32 + i * 24));
   }
+  /* The place on Google Maps: a link, and a code to scan from the printed page */
+  const google = project.coords
+    ? `https://www.google.com/maps/search/?api=1&query=${project.coords.join(',')}`
+    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${project.name}, ${project.area}, Dubai`)}`;
+  const googleQr = await QRCode.toDataURL(google, { margin: 0, width: 360, color: { dark: '#1a1a1a', light: '#ffffff' } }).catch(() => null);
+  if (googleQr) doc.addImage(googleQr, 'PNG', lx, 664, 74, 74);
+  caps('Open in Google Maps', lx + (googleQr ? 92 : 0), 694, 9, ORANGE);
+  font('sans', 'light', 10.5, MUTED);
+  text('Scan the code, or click here', lx + (googleQr ? 92 : 0), 716);
+  doc.link(lx, 664, lwid, 74, { url: google });
   footer('Location');
 
   /* ---------- 9. The agent: their own card, or one drawn from their details ---------- */
