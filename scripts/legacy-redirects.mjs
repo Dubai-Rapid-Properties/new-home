@@ -14,6 +14,33 @@ const slugify = (s) =>
 /* The Holiday Homes website, where the homes are listed and booked (data/external.ts) */
 const STAY = 'https://stay.dubairapidproperties.com';
 
+/*
+ * The holiday homes the old site listed under /accommodation/<slug>, each with
+ * its own page on the Holiday Homes website now (stay.../property/<slug>).
+ * Their photo pages (/accommodation/<slug>/<photo>) go there too: sending them
+ * all to one home page reads to search engines as a broken link.
+ */
+const STAY_HOMES = [
+  'azizi-riviera-near-downtown-cozy-studio',
+  'chic-brand-new-studio-with-resort-facilities',
+  'cloud-panoramic-residence-in-jvt',
+  'cloud-tower-cosy-1-bed-in-jvt',
+  'cloud-towers-jvt-quiet-well-connected-living',
+  'difc-penthouse-city-skyline-signature-living',
+  'elegant-1br-with-burj-khalifa-view-reva',
+  'luxury-new-1br-in-jvc-resort-pool-sauna-smart-check-in',
+  'luxury-palm-escape-st-regis-residences-1br',
+  'seven-palm-1br-west-beach-living-at-his-finest',
+  'seven-palm-studio-west-beach-living',
+  'shoreline-palm-jumeirah-garden-view-paradise',
+  'sparkle-towers-elegant-charming-bright-views',
+  'sparkle-towers-marina-stunning-views-jbr-beach',
+  'st-regis-luxury-residence-34th-floor-palm',
+  'st-regis-residences-30th-floor-palm-jumeirah',
+  'stylish-1br-with-balcony-heart-of-business-bay',
+  'vintage-charm-at-marina-and-jbr-beach',
+];
+
 /* Old project-location slugs → the new area guides (the rest open the project search) */
 const AREAS = {
   'palm-jumeirah': 'palm-jumeirah',
@@ -80,6 +107,11 @@ const PAGES = {
   '/test-form-to-bitrix': '/',
   '/interior-design-detail/signature-package': '/drp-furnishing#packages',
   '/interior-design-detail/essentials-package': '/drp-furnishing#packages',
+  '/new-projects': '/off-plan/projects',
+  '/project': '/off-plan/projects',
+  '/properties/feed': '/properties',
+  /* The Wave Crest villa's old address; its page is now the landing page */
+  '/properties/exclusive-5-bedroom-luxurious-frond-villa': '/properties/jebel-ali-villa',
 };
 
 /* Whole sections, after the exact matches above */
@@ -105,6 +137,7 @@ const SECTIONS = {
   '/product-category': '/holiday-homes',
   '/product-tag': '/holiday-homes',
   '/register': '/owner-portal',
+  '/yith_booking_service': STAY,
   '/category': '/news',
 };
 
@@ -149,6 +182,11 @@ export function legacyRedirects() {
   }
   /* Agent profiles were keyed by name */
   for (const s of teamSlugs) exact[`/agents-detail/${s}`] = `/about/team/${s}`;
+
+  for (const s of STAY_HOMES) {
+    exact[`/accommodation/${s}`] = `${STAY}/property/${s}`;
+    exact[`/accommodation/${s}/:photo*`] = `${STAY}/property/${s}`;
+  }
 
   return [
     ...Object.entries(exact).map(([source, destination]) => ({ source, destination, permanent: true })),
