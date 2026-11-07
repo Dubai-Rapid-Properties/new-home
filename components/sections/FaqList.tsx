@@ -1,4 +1,6 @@
 import { Plus } from 'lucide-react';
+import JsonLd from '../JsonLd';
+import { faqData } from '@/lib/structuredData';
 import Reveal from '../ui/Reveal';
 import SectionHeading from '../ui/SectionHeading';
 
@@ -23,6 +25,7 @@ export default function FaqList({
       aria-labelledby="faq-heading"
       className={`section-y ${tone === 'cream' ? 'bg-cream' : 'bg-white'}`}
     >
+      <JsonLd data={faqData(items)} />
       <div className="container-drp grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-4">
           <SectionHeading eyebrow={eyebrow} heading={heading} headingId="faq-heading" />

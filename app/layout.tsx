@@ -4,7 +4,7 @@ import { site } from '@/data/homepage';
 import TvMode from '@/components/TvMode';
 import { Analytics } from '@vercel/analytics/next';
 import JsonLd from '@/components/JsonLd';
-import { organisation } from '@/lib/structuredData';
+import { organisation, website } from '@/lib/structuredData';
 import { indexable, siteUrl } from '@/lib/siteUrl';
 import './globals.css';
 
@@ -59,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <TvMode />
         <JsonLd data={organisation()} />
+        <JsonLd data={website()} />
         {/* Vercel Web Analytics: cookieless page views, switched on in the Vercel project.
             Elsewhere (Cloudflare) its script does not exist, so it is left out. */}
         {process.env.VERCEL ? <Analytics /> : null}
