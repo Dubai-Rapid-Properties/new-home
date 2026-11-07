@@ -18,6 +18,8 @@ import { projects } from '@/data/offPlan';
 import { listings, toPropertyCard } from '@/data/properties';
 import { areaMarket } from '@/lib/dld';
 import { clip, pageMeta } from '@/lib/seo';
+import JsonLd from '@/components/JsonLd';
+import { breadcrumbData } from '@/lib/structuredData';
 import { toSlug } from '@/lib/slug';
 import { staticSlugs } from './slugs';
 
@@ -34,7 +36,7 @@ export async function generateMetadata({ params }: PageProps) {
   const area = getArea((await params).slug);
   if (!area) return { title: 'Area Guide | Dubai Rapid Properties' };
   return pageMeta({
-    title: `${area.name} Area Guide | Dubai Rapid Properties`,
+    title: `${area.name} Area Guide: Property, Prices & Living | Dubai Rapid Properties`,
     description: clip(`${area.name}: ${area.tagline} ${area.intro.join(' ')}`),
     path: `/areas/${area.slug}`,
     image: area.image,
@@ -56,6 +58,12 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <SiteShell>
+      <JsonLd
+        data={breadcrumbData([
+          { name: 'Area Guides', path: '/areas' },
+          { name: area.name, path: `/areas/${area.slug}` },
+        ])}
+      />
       <PageHero eyebrow="Area Guide" heading={area.name} intro={area.tagline} image={area.image} imageAlt={area.alt} />
 
       <StatStrip

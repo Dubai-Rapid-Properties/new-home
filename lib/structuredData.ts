@@ -70,3 +70,63 @@ export const listingData = (l: Listing) => {
     },
   };
 };
+
+/** The site itself, so search engines show "Dubai Rapid Properties" as the site name. */
+export const website = () => ({
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteUrl}/#website`,
+  name: site.name,
+  alternateName: [site.shortName, 'DRP'],
+  url: siteUrl,
+  publisher: { '@id': `${siteUrl}/#organisation` },
+  inLanguage: 'en-AE',
+});
+
+/** The trail from the home page to this page, as search results show it. */
+export const breadcrumbData = (trail: { name: string; path: string }[]) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [{ name: 'Home', path: '/' }, ...trail].map((t, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: t.name,
+    item: absolute(t.path),
+  })),
+});
+
+/** A page's questions and answers. */
+export const faqData = (faqs: { q: string; a: string }[]) => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+});
+
+/** An off-plan project as a place: the development, its photos and where it is (Place has no price or builder). */
+export const projectData = (p: {
+  name: string;
+  slug: string;
+  developer: string | null;
+  area: string;
+  description: string[];
+  image: string;
+  gallery: { src: string }[];
+  map: { near?: [number, number] };
+}) => {
+  const url = absolute(`/off-plan/${p.slug}`);
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ApartmentComplex',
+    '@id': url,
+    url,
+    name: p.name,
+    description: p.description.join(' ').slice(0, 500),
+    image: [p.image, ...p.gallery.map((g) => g.src)].slice(0, 6).map(absolute),
+    address: { '@type': 'PostalAddress', addressLocality: p.area, addressRegion: 'Dubai', addressCountry: 'AE' },
+    ...(p.map.near ? { geo: { '@type': 'GeoCoordinates', latitude: p.map.near[0], longitude: p.map.near[1] } } : {}),
+  };
+};

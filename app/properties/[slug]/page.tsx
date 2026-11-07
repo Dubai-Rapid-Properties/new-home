@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { CalendarDays } from 'lucide-react';
 import SiteShell from '@/components/layout/SiteShell';
 import JsonLd from '@/components/JsonLd';
+import { toSlug } from '@/lib/slug';
 import LeadForm from '@/components/LeadForm';
 import PropertyCard from '@/components/PropertyCard';
 import FavouriteButton from '@/components/properties/FavouriteButton';
@@ -43,7 +44,7 @@ import { areaHref, areas } from '@/data/areas';
 import { teamHref, teamMemberForAgent } from '@/data/company';
 import { brnFor } from '@/data/licences';
 import { clip, pageMeta } from '@/lib/seo';
-import { listingData } from '@/lib/structuredData';
+import { breadcrumbData, listingData } from '@/lib/structuredData';
 import { staticSlugs } from './slugs';
 
 /** Next 16: route params arrive as a Promise and must be awaited. */
@@ -55,12 +56,20 @@ export function generateStaticParams() {
   return staticSlugs.map((slug) => ({ slug }));
 }
 
+/** "3 Bedroom Apartment for Sale in Jumeirah Beach Residence | Dubai Rapid Properties", shortened to fit a search result. */
+function listingTitle(l: NonNullable<ReturnType<typeof getListing>>) {
+  const what = `${l.beds === 0 ? 'Studio' : `${bedsLong(l.beds).replace(/s$/, '')}`} ${l.type} for ${l.offering === 'rent' ? 'Rent' : 'Sale'}`;
+  const where = l.building && `${what} in ${l.building}, ${l.area}`.length <= 70 ? `${l.building}, ${l.area}` : l.area;
+  return `${what} in ${where} | Dubai Rapid Properties`;
+}
+
 export async function generateMetadata({ params }: PageProps) {
   const listing = getListing((await params).slug);
   if (!listing) return { title: 'Property | Dubai Rapid Properties' };
   const what = `${bedsLong(listing.beds)} ${listing.type.toLowerCase()} for ${listing.offering === 'rent' ? 'rent' : 'sale'} in ${listingPlace(listing)}`;
   return pageMeta({
-    title: `${listing.title} | Dubai Rapid Properties`,
+    // What people search for: "3 Bedroom Apartment for Sale in Dubai Marina", not the advert's own headline
+    title: listingTitle(listing),
     description: clip(
       `${what}: ${listing.size.toLocaleString('en-US')} sq ft, ${formatPrice(listing)}${listing.offering === 'rent' ? ' a year' : ''}. ${listing.description.join(' ')}`,
     ),
@@ -110,6 +119,13 @@ export default async function Page({ params }: PageProps) {
   return (
     <SiteShell>
       <JsonLd data={listingData(listing)} />
+      <JsonLd
+        data={breadcrumbData([
+          { name: listing.offering === 'rent' ? 'Properties for Rent' : 'Properties for Sale', path: `/properties?offering=${listing.offering}` },
+          { name: listing.area, path: `/properties?offering=${listing.offering}&q=${toSlug(listing.area)}` },
+          { name: listingTitle(listing).replace(/ \| Dubai Rapid Properties$/, ''), path: listingHref(listing.slug) },
+        ])}
+      />
       <TrackView slug={listing.slug} />
       <section className="bg-white pb-[var(--section-y)] pt-24 lg:pt-28">
         <div className="container-drp">

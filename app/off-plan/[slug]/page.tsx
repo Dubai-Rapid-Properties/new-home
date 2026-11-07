@@ -34,6 +34,8 @@ import {
   unitTypesLabel,
 } from '@/data/offPlan';
 import { clip, pageMeta } from '@/lib/seo';
+import JsonLd from '@/components/JsonLd';
+import { breadcrumbData, projectData } from '@/lib/structuredData';
 import { staticSlugs } from './slugs';
 
 /** Next 16: route params arrive as a Promise and must be awaited. */
@@ -50,7 +52,8 @@ export async function generateMetadata({ params }: PageProps) {
   if (!project) return { title: 'Off-Plan | Dubai Rapid Properties' };
   const by = project.developer ? ` by ${project.developer}` : '';
   return pageMeta({
-    title: `${project.name}${by} | Dubai Rapid Properties`,
+    // "Diamondz by Danube, Jumeirah Lake Towers | Off-Plan": the place and what it is, as people search
+    title: `${project.name}${by}${`${project.name}${by}, ${project.area}`.length <= 48 ? `, ${project.area}` : ''} | Off-Plan | Dubai Rapid Properties`,
     description: clip(
       `${project.name}${by}, an off-plan project in ${project.area}, Dubai. ${project.fromPrice == null ? 'Price on request' : `From ${priceLabel(project)}`}, handover ${handoverLabel(project)}. ${project.description.join(' ')}`,
     ),
@@ -224,6 +227,13 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <SiteShell>
+      <JsonLd data={projectData(project)} />
+      <JsonLd
+        data={breadcrumbData([
+          { name: 'Off-Plan Projects', path: '/off-plan/projects' },
+          { name: project.name, path: projectHref(project.slug) },
+        ])}
+      />
       <PageHero
         eyebrow={projectEyebrow(project)}
         heading={project.name}
