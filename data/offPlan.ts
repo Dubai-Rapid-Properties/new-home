@@ -608,6 +608,8 @@ export type ConstructionUpdate = {
   handoverYear: number | null;
   /** When DRP published the project; the newest lead the tracker */
   launchedAt: string | null;
+  /** The date of a figure too old to show (see STALE_MONTHS); the row shows the handover year instead */
+  staleSince?: string;
 };
 
 /** An update with a published figure, as project pages show it */
@@ -663,6 +665,20 @@ const latestInspection = (...figures: (Inspection | undefined)[]) =>
 /** When the figures were last checked against DLD and Property Finder (every Monday, and before builds) */
 export const trackerCheckedOn = [pfCatalog.synced, dldConstruction.updatedAt.slice(0, 10)].sort().reverse()[0];
 
+/**
+ * An inspection older than this reads as out of date ("Inspected 20 Oct 2025"):
+ * DLD and Property Finder inspect early-stage sites rarely, so such a row shows
+ * the handover year until a newer figure is published.
+ */
+const STALE_MONTHS = 6;
+const staleBefore = (() => {
+  const d = new Date(`${trackerCheckedOn}T00:00:00Z`);
+  d.setUTCMonth(d.getUTCMonth() - STALE_MONTHS);
+  return d.toISOString().slice(0, 10);
+})();
+const withoutStale = (c: ConstructionUpdate): ConstructionUpdate =>
+  c.updated && c.updated < staleBefore ? { ...c, progress: null, updated: null, staleSince: c.updated } : c;
+
 export const constructionUpdates: ConstructionUpdate[] = [
   ...reported.map((c) => {
     const match = projects.find((p) => matchName(p.name) === matchName(c.name) || sameDldProject(p.name, c.name));
@@ -710,7 +726,9 @@ export const constructionUpdates: ConstructionUpdate[] = [
         launchedAt: p.launchedAt,
       };
     }),
-].sort(
+]
+  .map(withoutStale)
+  .sort(
   (a, b) =>
     /* DRP's projects, newest launch first, then the rest; most advanced first within each */
     (b.launchedAt ?? '').localeCompare(a.launchedAt ?? '') ||

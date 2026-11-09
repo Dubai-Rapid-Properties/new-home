@@ -62,7 +62,9 @@ function Row({ c }: { c: ConstructionUpdate }) {
           </>
         ) : (
           <>
-            <p className="text-[12px] text-charcoal">Progress not yet reported</p>
+            <p className="text-[12px] text-charcoal">
+              {c.staleSince ? 'Awaiting a recent inspection' : 'Progress not yet reported'}
+            </p>
             <div aria-hidden="true" className="mt-2 h-1 w-full bg-line" />
           </>
         )}
