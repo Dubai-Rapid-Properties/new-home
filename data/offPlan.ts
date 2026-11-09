@@ -584,10 +584,17 @@ const PROJECT_CORRECTIONS: Record<string, (p: Project) => Project> = {
 };
 const corrected = (p: Project) => PROJECT_CORRECTIONS[p.slug]?.(p) ?? p;
 
+/**
+ * Developers whose projects D|R|P does not show at all. Aldar (Nov 2026) asks
+ * partners to publish only materials it has approved in writing, so none of
+ * its projects are on the site, from the DRP website or Property Finder.
+ */
+const HIDDEN_DEVELOPERS = new Set(['Aldar']);
+
 /** Every off-plan project on the site: D|R|P's own, then the rest of Dubai's. */
-export const projects: Project[] = [...drpProjects.map((p) => corrected(completed(pinned(p)))), ...pfProjects].sort((a, b) =>
-  b.launchedAt.localeCompare(a.launchedAt),
-);
+export const projects: Project[] = [...drpProjects.map((p) => corrected(completed(pinned(p)))), ...pfProjects]
+  .filter((p) => !p.developer || !HIDDEN_DEVELOPERS.has(p.developer))
+  .sort((a, b) => b.launchedAt.localeCompare(a.launchedAt));
 
 /* -------------------------------------------------------------------------- */
 /*  CONSTRUCTION UPDATES                                                      */

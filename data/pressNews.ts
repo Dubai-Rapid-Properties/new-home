@@ -62,8 +62,16 @@ function photoFor(item: Omit<PressItem, 'photo'>): string {
 // Read as a whole: webpack's JSON tree-shaking breaks destructuring with defaults here.
 const news = imported as { picks?: Omit<PressItem, 'photo'>[]; stories?: Omit<PressItem, 'photo'>[] };
 
+/**
+ * Stories about developers D|R|P keeps off the site (data/offPlan.ts): Aldar
+ * asks partners to show only materials it has approved, and the publishers'
+ * pictures of its projects are not.
+ */
+const LEFT_OUT = /\baldar\b/i;
+
 /** Newest first, the team's picks and the feed stories together. */
 export const pressNews: PressItem[] = [...(news.picks ?? []), ...(news.stories ?? [])]
+  .filter((item) => !LEFT_OUT.test(`${item.title} ${item.summary}`))
   .map((item) => ({ ...item, photo: photoFor(item) }))
   .sort((a, b) => b.date.localeCompare(a.date));
 

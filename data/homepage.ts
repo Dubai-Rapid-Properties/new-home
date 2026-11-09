@@ -253,7 +253,6 @@ export const partners: Partner[] = [
   { name: 'Omniyat' },
   { name: 'Binghatti' },
   { name: 'Select Group' },
-  { name: 'Aldar' },
 ];
 
 export const partnersLabel = 'Our Development Partners';
