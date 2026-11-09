@@ -198,7 +198,8 @@ export default async function Page({ params }: PageProps) {
     area: project.area,
     locationText: project.locationText,
     coords: project.map.exact ? project.map.near : undefined,
-    images: [...new Set([project.image, ...project.gallery.map((g) => g.src)])].slice(0, 17),
+    // The PDF takes the cover-sized copies, not the gallery's originals (megabytes each)
+    images: [...new Set([project.image, ...project.gallery.map((g) => g.src.replace(/\/original\.webp$/, '/big.webp'))])].slice(0, 17),
     masterPlan: project.masterPlan,
     pageUrl: `${siteUrl}${projectHref(project.slug)}`,
   };

@@ -69,7 +69,8 @@ export type Project = {
   locationText: string[];
   image: string;
   alt: string;
-  gallery: { src: string; alt: string }[];
+  /** `thumb`: a small copy for the gallery's thumbnails, when `src` is a large original */
+  gallery: { src: string; alt: string; thumb?: string }[];
   /** Google Maps search, checked at import; `exact` is false when it shows the community */
   map: { query: string; exact: boolean; near?: [number, number] };
   sourceUrl: string;
@@ -316,9 +317,21 @@ const PF_LISTED_BY_DRP = new Set([
 
 const yearOf = (iso: string | null) => (iso ? Number(iso.slice(0, 4)) : null);
 
-/** The data file keeps only each photo's key (scripts/sync-pf-projects.mjs) */
-const pfImage = (id: string, key: string) =>
-  key.startsWith('https://') ? key : `https://new-projects-media.propertyfinder.com/project/${id}/gallery/image/${key}/medium.webp`;
+/**
+ * The data file keeps only each photo's key (scripts/sync-pf-projects.mjs).
+ * Property Finder serves each photo as small (416 px), medium (668), big (856)
+ * and the developer's original (often 2,000-8,000 px): cards and the page's
+ * cover use big, the gallery's large photo the original (only the photo on
+ * view and its neighbours load), its thumbnails small.
+ */
+type PfSize = 'small' | 'medium' | 'big' | 'original';
+const pfImage = (id: string, key: string, size: PfSize = 'big') =>
+  key.startsWith('https://') ? key : `https://new-projects-media.propertyfinder.com/project/${id}/gallery/image/${key}/${size}.webp`;
+const pfPhoto = (id: string, key: string, alt: string) => ({
+  src: pfImage(id, key, 'original'),
+  thumb: pfImage(id, key, 'small'),
+  alt,
+});
 
 /** The fields scripts/sync-pf-projects.mjs adds beyond the listing's */
 type PfExtra = {
@@ -390,7 +403,7 @@ function fromPropertyFinder(r: PfProject, slug: string): Project | null {
     locationText: [`${r.name} is in ${where}, Dubai.`],
     image: images[0],
     alt: `${r.name}, ${area}`,
-    gallery: images.map((src, i) => ({ src, alt: `${r.name}, image ${i + 1}` })),
+    gallery: r.images.map((key, i) => pfPhoto(r.id, key, `${r.name}, image ${i + 1}`)),
     map:
       r.lat != null && r.lng != null
         ? { query: `${r.name}, ${area}, Dubai`, exact: true, near: [r.lat, r.lng] }
@@ -506,6 +519,12 @@ function alike(a: string, b: string) {
 
 /** Every project page shows at least this many photos where the developer has published them */
 const MIN_PHOTOS = 12;
+/**
+ * With at least this many of the developer's own photos on Property Finder, a
+ * D|R|P project shows those instead of the ones from the old website, which
+ * kept them small and compressed (blurry at gallery size).
+ */
+const SHARP_SET = 6;
 
 /**
  * D|R|P's own project, completed from the developer's published details on
@@ -517,16 +536,23 @@ function completed(p: Project): Project {
   if (!r) return p;
   /* D|R|P knows its own availability better than the listing does */
   const { availability: _listed, ...details } = pfDetails(r);
+  if (r.images.length >= SHARP_SET) {
+    p = {
+      ...p,
+      image: pfImage(r.id, r.images[0]),
+      gallery: r.images.map((key, i) => pfPhoto(r.id, key, `${p.name}, image ${i + 1}`)),
+    };
+  }
   /* Property Finder's photos that are not the same render as one already shown */
   const seen = [p.image, ...p.gallery.map((g) => g.src)].map((src) => HASHES[src]).filter(Boolean);
   const extra: string[] = [];
-  if (p.gallery.length < MIN_PHOTOS)
+  if (p.gallery.length < MIN_PHOTOS && r.images.length < SHARP_SET)
     for (const key of r.images) {
       if (p.gallery.length + extra.length >= MIN_PHOTOS + 4) break;
       const h = HASHES[key];
       if (h && seen.some((s) => alike(s, h))) continue;
       if (h) seen.push(h);
-      extra.push(pfImage(r.id, key));
+      extra.push(key);
     }
   /*
    * D|R|P's starting price is the confirmed one: a unit listed below it is a
@@ -542,7 +568,7 @@ function completed(p: Project): Project {
     bedrooms: p.bedrooms.length ? p.bedrooms : r.bedrooms,
     handoverYear: p.handoverYear ?? yearOf(r.deliveryDate),
     paymentPlan: p.paymentPlan ?? r.paymentPlan,
-    gallery: [...p.gallery, ...extra.map((src, i) => ({ src, alt: `${p.name}, image ${p.gallery.length + i + 1}` }))],
+    gallery: [...p.gallery, ...extra.map((key, i) => pfPhoto(r.id, key, `${p.name}, image ${p.gallery.length + i + 1}`))],
   };
 }
 
@@ -553,10 +579,8 @@ function completed(p: Project): Project {
  */
 const PROJECT_CORRECTIONS: Record<string, (p: Project) => Project> = {
   // Ms Tara, Nov 2026: no studios or 1-bedrooms left; 2-bedrooms from AED 2.8M;
-  // Danube advertises 40+ amenities; the cover was a bathroom render.
+  // Danube advertises 40+ amenities. (Its photos are now the developer's, tower first.)
   diamondz: (p) => {
-    const order = ['1-5', '2-1-3', '3-2', '6-1', '8', '12-3', '14-3', '13-4', '10-4', '16-3', '15-1'];
-    const photo = (name: string) => `/media/2026/08/${name}.webp`;
     return {
       ...p,
       bedrooms: [2, 3, 4],
@@ -577,8 +601,6 @@ const PROJECT_CORRECTIONS: Record<string, (p: Project) => Project> = {
         '24-hour security',
       ],
       amenityCount: '40+',
-      image: photo(order[0]),
-      gallery: order.map((name, i) => ({ src: photo(name), alt: `${p.name}, image ${i + 1}` })),
     };
   },
 };

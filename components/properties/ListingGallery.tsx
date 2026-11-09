@@ -6,7 +6,8 @@ import Image from 'next/image';
 import { ArrowLeft, ArrowRight, Expand, X } from 'lucide-react';
 
 type Props = {
-  images: { src: string; alt: string }[];
+  /** `thumb`: a small copy for the thumbnail strip, when `src` is a large original */
+  images: { src: string; alt: string; thumb?: string }[];
   title: string;
   /** Frame shape; defaults to 4:3 on phones and 16:9 from sm */
   aspectClass?: string;
@@ -129,7 +130,7 @@ export default function ListingGallery({
                   i === index ? 'opacity-100 ring-2 ring-orange ring-offset-2' : 'opacity-60 hover:opacity-100'
                 }`}
               >
-                <Image src={img.src} alt="" fill sizes="128px" className="object-cover" />
+                <Image src={img.thumb ?? img.src} alt="" fill sizes="128px" className="object-cover" />
               </button>
             </li>
           ))}
