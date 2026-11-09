@@ -32,6 +32,7 @@ const info: DeveloperInfo[] = [
   { name: 'OMNIYAT', logo: '/developers/omniyat.svg', website: 'https://omniyat.com' },
   { name: 'Sobha Realty', logo: '/developers/sobha.svg', website: 'https://sobharealty.com' },
   { name: 'Ellington', logo: '/developers/ellington.png', website: 'https://ellingtonproperties.ae' },
+  { name: 'Aldar', logo: '/developers/aldar.png', logoScale: 1.25, website: 'https://www.aldar.com' },
   { name: 'Samana', logo: '/developers/samana.png', website: 'https://www.samanadevelopers.com' },
   { name: 'Reportage', logo: '/developers/reportage.png', website: 'https://reportagegroup.com' },
   { name: 'Imtiaz', logo: '/developers/imtiaz.svg', website: 'https://imtiaz.ae' },
