@@ -1,6 +1,6 @@
 {
  "source": "Dubai Land Department open data — project register",
- "updatedAt": "2026-11-02T11:22:38.152Z",
+ "updatedAt": "2026-11-09T11:53:15.637Z",
  "projects": {
   "Address The Bay": {
    "progress": 70.1,
@@ -66,8 +66,8 @@
    ]
   },
   "Beach Walk 3": {
-   "progress": 97.3,
-   "inspected": "2026-10-09",
+   "progress": 100,
+   "inspected": "2026-10-30",
    "dld": [
     3285
    ]
@@ -164,8 +164,8 @@
    ]
   },
   "Breez": {
-   "progress": 0.1,
-   "inspected": "2026-07-10",
+   "progress": 0.7,
+   "inspected": "2026-10-26",
    "dld": [
     4081
    ]
@@ -185,8 +185,8 @@
    ]
   },
   "Enre Residence by Imtiaz": {
-   "progress": 14.6,
-   "inspected": "2026-07-27",
+   "progress": 24.2,
+   "inspected": "2026-10-20",
    "dld": [
     4336
    ]
@@ -228,8 +228,8 @@
    ]
   },
   "Maybach Ultimate Luxury": {
-   "progress": 0,
-   "inspected": "2025-12-25",
+   "progress": 17.7,
+   "inspected": "2026-10-28",
    "dld": [
     4320
    ]
