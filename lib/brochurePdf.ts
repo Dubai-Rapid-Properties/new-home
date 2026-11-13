@@ -41,6 +41,19 @@ export type BrochureProject = {
   images: string[];
   masterPlan?: string;
   pageUrl: string;
+  /** A listing's DLD advertising permit, printed on the cover as Dubai's rules ask */
+  permit?: string | null;
+  /** Wording for a property rather than a project (the property pages' brochure) */
+  labels?: {
+    /** "The Project" (default), "The Property" */
+    section?: string;
+    /** "Starting price" (default), "Price", "Annual rent" */
+    price?: string;
+    /** "Investment offer" (default), "Rental offer" */
+    offer?: string;
+    /** The features page: "Amenities" (default), "Features" */
+    amenities?: string;
+  };
 };
 
 export type BrochureAgent = {
@@ -503,7 +516,7 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
   fill([70, 70, 70]);
   if (team) doc.addImage(team, 'JPEG', 0, 0, W, H);
   font('serif', 'normal', 46, WHITE);
-  text('Investment offer', 115, 258);
+  text(project.labels?.offer ?? 'Investment offer', 115, 258);
   font('serif', 'normal', 30, ORANGE);
   text('by ', 395, 312);
   const byW = doc.getTextWidth('by ');
@@ -525,7 +538,7 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
   doc.setLineWidth(0.6);
   doc.line(90, cy + 110, 710, cy + 110);
   cy += 145;
-  caps(project.price ? 'Starting price' : 'Price', 90, cy, 10, PALE);
+  caps(project.price ? (project.labels?.price ?? 'Starting price') : 'Price', 90, cy, 10, PALE);
   font('serif', 'medium', 60, ORANGE);
   text(project.price ?? 'On request', 90, cy + 56);
   const factX = [90, 280, 470, 700];
@@ -535,14 +548,15 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
     text(value, factX[i], cy + 120);
     caps(label, factX[i], cy + 143, 9.5, PALE);
   });
-  caps(`RERA ORN ${office.orn}`, 80, 776, 8.5, PALE);
+  caps(project.permit ? `DLD permit ${project.permit}  ·  RERA ORN ${office.orn}` : `RERA ORN ${office.orn}`, 80, 776, 8.5, PALE);
   caps(`Presented by ${agent.name}  ·  ${agent.phone}`, W - 62, 776, 8.5, PALE, { align: 'right' });
 
   /* ---------- 3. The project: description and the fact grid ---------- */
   page();
   fill(WHITE);
   cornerLogo();
-  const ty = intro('The Project', project.name);
+  const section = project.labels?.section ?? 'The Project';
+  const ty = intro(section, project.name);
   body(project.description, M, ty + 10, 370, 740);
   const cells = project.grid.slice(0, 9);
   const cw = RW / 3;
@@ -566,7 +580,7 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
     font('sans', 'light', 10.5, first ? [235, 232, 228] : MUTED);
     text(lines(c.sub, cw - 50)[0] ?? '', x + 26, y + 94);
   });
-  footer('The Project');
+  footer(section);
 
   /* ---------- 4. Units, prices and the payment plan ---------- */
   const plan3 = project.schedule;
@@ -642,12 +656,15 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
     page();
     fill(WHITE);
     cornerLogo();
-    const y = intro('Amenities', `Life at ${project.name}`);
+    const amenitiesLabel = project.labels?.amenities ?? 'Amenities';
+    const y = intro(amenitiesLabel, amenitiesLabel === 'Amenities' ? `Life at ${project.name}` : 'What it comes with');
     font('sans', 'light', 13, TEXT);
     lines(
       project.amenityCount
         ? `${project.amenityCount} amenities for residents, among them:`
-        : `${project.amenities.length} amenities for residents, as the developer publishes them.`,
+        : amenitiesLabel === 'Amenities'
+          ? `${project.amenities.length} amenities for residents, as the developer publishes them.`
+          : `${project.amenities.length} features of this home and its building.`,
       360,
     )
       .slice(0, 2)
@@ -669,7 +686,7 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
       text(a, x + 18, y2 + rh / 2);
       doc.line(x, y2 + rh - 6, x + aw - 20, y2 + rh - 6);
     });
-    footer('Amenities');
+    footer(amenitiesLabel);
   }
 
   /* ---------- 6. The photos, one to a page ---------- */

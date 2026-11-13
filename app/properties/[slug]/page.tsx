@@ -11,6 +11,10 @@ import CompareButton from '@/components/properties/CompareButton';
 import RecentlyViewed, { TrackView } from '@/components/properties/RecentlyViewed';
 import ListingGallery from '@/components/properties/ListingGallery';
 import ShareLinks from '@/components/news/ShareLinks';
+import BrochureButton from '@/components/offplan/BrochureButton';
+import type { BrochureProject } from '@/lib/brochurePdf';
+import { brochureAgents, brochureOffice } from '@/lib/brochureAgents';
+import { siteUrl } from '@/lib/siteUrl';
 import PropertyMap from '@/components/properties/PropertyMap';
 import NearbyPlaces from '@/components/properties/NearbyPlaces';
 import { nearbyFor } from '@/data/nearby';
@@ -116,6 +120,55 @@ export default async function Page({ params }: PageProps) {
   const agent = teamMemberForAgent(listing.agent);
   const similar = similarListings(listing);
 
+  /* The agents' brochure (signed-in D|R|P agents only): this listing's details and photos */
+  const aed = (n: number) => `AED ${Math.round(n).toLocaleString('en-US')}`;
+  const shortAed = (n: number) =>
+    n >= 1_000_000 ? `AED ${(n / 1_000_000).toFixed(2).replace(/\.?0+$/, '')}M` : `AED ${Math.round(n / 1000)}K`;
+  const perYear = isRent ? ' / year' : '';
+  const beds = listing.beds === 0 ? 'Studio' : `${listing.beds} Bed`;
+  const sqft = listing.size > 0 ? `${listing.size.toLocaleString('en-US')} sq ft` : null;
+  const brochure: BrochureProject = {
+    slug: listing.slug,
+    name: listing.title,
+    eyebrow: `For ${isRent ? 'rent' : 'sale'} · ${listing.building ?? listing.area}`,
+    location: `${listing.building ? `${listing.building} · ` : ''}${listing.area} · Dubai`,
+    price: `${aed(listing.price)}${perYear}`,
+    keyFacts: [
+      [beds, listing.type],
+      ...(sqft ? ([[sqft.replace(' sq ft', ''), 'Sq ft']] as [string, string][]) : []),
+      [listing.completion === 'Off-Plan' ? 'Off-plan' : (listing.furnishing ?? listing.completion), listing.completion === 'Off-Plan' ? 'Status' : listing.furnishing ? 'Furnishing' : 'Status'],
+    ],
+    grid: [
+      { label: isRent ? 'Annual rent' : 'Price', value: `${shortAed(listing.price)}${perYear}`, sub: aed(listing.price) },
+      ...(listing.size > 0
+        ? [{ label: 'Price per sq ft', value: aed(listing.price / listing.size), sub: `On ${sqft}${perYear}` }]
+        : []),
+      { label: 'Type', value: listing.beds === 0 ? 'Studio' : listing.type, sub: isRent ? 'For rent' : 'For sale' },
+      ...(sqft ? [{ label: 'Size', value: sqft, sub: `${Math.round(listing.size / 10.7639).toLocaleString('en-US')} sq m` }] : []),
+      { label: 'Bedrooms', value: listing.beds === 0 ? 'Studio' : String(listing.beds), sub: bedsLong(listing.beds) },
+      { label: 'Bathrooms', value: String(listing.baths), sub: listing.baths === 1 ? 'Bathroom' : 'Bathrooms' },
+      { label: 'Status', value: listing.completion === 'Off-Plan' ? 'Off-plan' : listing.completion, sub: listing.completion === 'Off-Plan' ? 'Under construction' : 'Completed' },
+      ...(listing.furnishing ? [{ label: 'Furnishing', value: listing.furnishing, sub: 'As listed' }] : []),
+      { label: 'Building', value: listing.building ?? listing.area, sub: `${listing.area}, Dubai` },
+    ].slice(0, 9),
+    description: listing.description,
+    highlights: [],
+    units: [],
+    amenities: listing.features,
+    area: listing.area,
+    locationText: guide?.intro.slice(0, 2) ?? [`${listing.building ? `${listing.building} is in ` : 'In '}${listing.area}, Dubai.`],
+    coords: listing.map.exact ? listing.map.near : undefined,
+    images: [...new Set(listing.images.map((i) => i.src))].slice(0, 17),
+    pageUrl: `${siteUrl}${listingHref(listing.slug)}`,
+    permit: listing.permit,
+    labels: {
+      section: 'The Property',
+      price: isRent ? 'Annual rent' : 'Price',
+      offer: isRent ? 'Rental offer' : 'Investment offer',
+      amenities: 'Features',
+    },
+  };
+
   return (
     <SiteShell>
       <JsonLd data={listingData(listing)} />
@@ -199,6 +252,7 @@ export default async function Page({ params }: PageProps) {
                 <FavouriteButton slug={listing.slug} title={listing.title} variant="inline" />
                 <CompareButton slug={listing.slug} title={listing.title} variant="inline" />
                 <ShareLinks title={`${listing.title} — ${formatPrice(listing)}`} />
+                <BrochureButton project={brochure} agents={brochureAgents()} office={brochureOffice()} />
               </div>
 
               <dl className="mt-10 grid grid-cols-2 border-t border-line sm:grid-cols-3">

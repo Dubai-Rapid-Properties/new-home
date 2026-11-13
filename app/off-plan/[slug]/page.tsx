@@ -11,11 +11,8 @@ import Reveal from '@/components/ui/Reveal';
 import SectionHeading from '@/components/ui/SectionHeading';
 import SmartLink from '@/components/ui/SmartLink';
 import BrochureButton from '@/components/offplan/BrochureButton';
+import { brochureAgents, brochureOffice } from '@/lib/brochureAgents';
 import { DetailsAndAmenities, UnitsAndPlan } from '@/components/offplan/ProjectDetails';
-import { agentCards } from '@/data/agentCards';
-import { allTeam, memberContact } from '@/data/company';
-import { contact } from '@/data/homepage';
-import { licences } from '@/data/licences';
 import { siteUrl } from '@/lib/siteUrl';
 import { areaHref, areas } from '@/data/areas';
 import { contactStep, type LeadFormConfig } from '@/data/leadPages';
@@ -203,28 +200,8 @@ export default async function Page({ params }: PageProps) {
     masterPlan: project.masterPlan,
     pageUrl: `${siteUrl}${projectHref(project.slug)}`,
   };
-  const brochureAgents = allTeam.map((m) => {
-    const c = memberContact(m);
-    /* The agent's own contact card, and the details printed on it */
-    const card = agentCards[m.name];
-    return {
-      name: m.name,
-      role: card?.role ?? m.role,
-      phone: card?.phone ?? c.phone,
-      whatsapp: card?.whatsapp ?? m.whatsappNumber ?? contact.whatsapp,
-      email: card?.email ?? m.emailAddress ?? contact.email,
-      brn: m.brn ?? '',
-      photo: m.photo || undefined,
-      card: card?.card,
-    };
-  });
-  const brochureOffice = {
-    phone: contact.phone,
-    email: contact.email,
-    address: contact.addressFull,
-    orn: licences.orn,
-    website: siteUrl.replace(/^https?:\/\//, ''),
-  };
+  const agents = brochureAgents();
+  const office = brochureOffice();
 
   return (
     <SiteShell>
@@ -277,7 +254,7 @@ export default async function Page({ params }: PageProps) {
             <div className="mt-10 flex flex-wrap gap-x-10 gap-y-4">
               {guide ? <ArrowLink href={areaHref(guide.name)} label={`${guide.name} area guide`} /> : null}
               <ArrowLink href="/ecosystem/mortgage" label="Mortgage assistance" />
-              <BrochureButton project={brochure} agents={brochureAgents} office={brochureOffice} />
+              <BrochureButton project={brochure} agents={agents} office={office} />
             </div>
           </div>
           <div className="lg:col-span-5 lg:pt-16">
