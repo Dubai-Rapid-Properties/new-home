@@ -164,7 +164,8 @@ export default async function Page({ params }: PageProps) {
     labels: {
       section: 'The Property',
       price: isRent ? 'Annual rent' : 'Price',
-      offer: isRent ? 'Rental offer' : 'Investment offer',
+      // The team's "Investment offer" page opens a sale's brochure only
+      offer: isRent ? null : 'Investment offer',
       amenities: 'Features',
     },
   };
