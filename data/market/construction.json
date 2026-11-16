@@ -1,6 +1,6 @@
 {
  "source": "Dubai Land Department open data — project register",
- "updatedAt": "2026-11-09T11:53:15.637Z",
+ "updatedAt": "2026-11-16T11:34:52.576Z",
  "projects": {
   "Address The Bay": {
    "progress": 70.1,
@@ -73,8 +73,8 @@
    ]
   },
   "Beach Walk Grand": {
-   "progress": 53.2,
-   "inspected": "2026-08-05",
+   "progress": 68,
+   "inspected": "2026-11-04",
    "dld": [
     3367
    ]
@@ -305,8 +305,8 @@
    ]
   },
   "Serenz": {
-   "progress": 0.1,
-   "inspected": "2026-07-10",
+   "progress": 4,
+   "inspected": "2026-11-03",
    "dld": [
     4338
    ]
