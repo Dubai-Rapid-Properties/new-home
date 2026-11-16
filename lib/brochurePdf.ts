@@ -49,8 +49,8 @@ export type BrochureProject = {
     section?: string;
     /** "Starting price" (default), "Price", "Annual rent" */
     price?: string;
-    /** "Investment offer" (default), "Rental offer" */
-    offer?: string;
+    /** "Investment offer" (default); null leaves the opening team page out (a rental is not an investment) */
+    offer?: string | null;
     /** The features page: "Amenities" (default), "Features" */
     amenities?: string;
   };
@@ -432,7 +432,7 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
 
   const [fonts, team, cover, whiteLogo, blackLogo, face, qr, card, plan, map, gallery] = await Promise.all([
     addFonts(doc),
-    photo('/images/drpteam.jpeg', 1920, 1080, { shade: dim, crop: teamCrop }),
+    project.labels?.offer !== null ? photo('/images/drpteam.jpeg', 1920, 1080, { shade: dim, crop: teamCrop }) : Promise.resolve(null),
     project.images[0] ? photo(project.images[0], 1920, 1080, { quality: 0.85, shade: coverShade, big: true }) : Promise.resolve(null),
     logo('/brand/drp-white.svg'),
     logo('/brand/drp-black.svg'),
@@ -511,20 +511,23 @@ export async function makeBrochure(project: BrochureProject, agent: BrochureAgen
     return y;
   };
 
-  /* ---------- 1. Investment offer, by D|R|P ---------- */
-  page(true);
-  fill([70, 70, 70]);
-  if (team) doc.addImage(team, 'JPEG', 0, 0, W, H);
-  font('serif', 'normal', 46, WHITE);
-  text(project.labels?.offer ?? 'Investment offer', 115, 258);
-  font('serif', 'normal', 30, ORANGE);
-  text('by ', 395, 312);
-  const byW = doc.getTextWidth('by ');
-  font('serif', 'normal', 30, WHITE);
-  text('Dubai Rapid Properties', 395 + byW, 312);
+  /* ---------- 1. Investment offer, by D|R|P (not on a rental's brochure) ---------- */
+  const withOffer = project.labels?.offer !== null;
+  if (withOffer) {
+    page(true);
+    fill([70, 70, 70]);
+    if (team) doc.addImage(team, 'JPEG', 0, 0, W, H);
+    font('serif', 'normal', 46, WHITE);
+    text(project.labels?.offer ?? 'Investment offer', 115, 258);
+    font('serif', 'normal', 30, ORANGE);
+    text('by ', 395, 312);
+    const byW = doc.getTextWidth('by ');
+    font('serif', 'normal', 30, WHITE);
+    text('Dubai Rapid Properties', 395 + byW, 312);
+  }
 
   /* ---------- 2. Cover ---------- */
-  page();
+  page(!withOffer);
   fill(INK);
   if (cover) doc.addImage(cover, 'JPEG', 0, 0, W, H);
   if (whiteLogo) doc.addImage(whiteLogo.data, 'PNG', 90, 62, 60 * whiteLogo.ratio, 60);
