@@ -298,6 +298,7 @@ const PF_HIDDEN = new Set([
   'ays-property-development/ventone',
   'acube-developers/avior-by-acube',
   'acube-developers/gloas',
+  'ays-property-development-llc/tivano',
 ]);
 
 /** Property Finder pages for projects D|R|P lists under another name, by page path */
