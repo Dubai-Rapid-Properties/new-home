@@ -34,8 +34,12 @@ const sorts: SortOption<Listing>[] = [
   { id: 'size-desc', label: 'Largest first', compare: (a, b) => b.size - a.size },
 ];
 
-/* The first option is the default; hot deals stay first in every order */
-const sortOptions = sorts.map((o) => ({ ...o, compare: hotDealsFirst(o.compare) }));
+/*
+ * The first option is the default, and leads with hot deals. An order the
+ * visitor picks is followed strictly: a hot deal pinned on top made "Price: low
+ * to high" open on a AED 24.5M villa, so the sort looked like it did nothing.
+ */
+const sortOptions = sorts.map((o, i) => (i === 0 ? { ...o, compare: hotDealsFirst(o.compare) } : o));
 
 const tabs: { id: Offering; label: string }[] = [
   { id: 'buy', label: 'Buy' },
