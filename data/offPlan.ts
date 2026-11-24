@@ -723,12 +723,11 @@ export const constructionUpdates: ConstructionUpdate[] = [
     };
   }),
   /*
-   * Every other project on the site: DLD's figure, else Property Finder's. D|R|P's
-   * own projects show without one too (their handover year until it is published);
-   * the rest of Dubai's only once a figure is published.
+   * Every other project on the site, as on /off-plan/projects: DLD's figure, else
+   * Property Finder's. A project with no inspection published yet is listed too,
+   * under "Not yet reported", with its handover year.
    */
   ...projects
-    .filter((p) => !p.catalog || pfInspections.has(p.slug) || dldProgress[p.name]?.inspected)
     .filter((p) => !reported.some((c) => matchName(c.name) === matchName(p.name) || sameDldProject(p.name, c.name)))
     .map((p) => {
       const figure = latestInspection(
