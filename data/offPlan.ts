@@ -703,7 +703,10 @@ const withoutStale = (c: ConstructionUpdate): ConstructionUpdate =>
   c.updated && c.updated < staleBefore ? { ...c, progress: null, updated: null, staleSince: c.updated } : c;
 
 export const constructionUpdates: ConstructionUpdate[] = [
-  ...reported.map((c) => {
+  /* D|R|P's construction reports, for projects on the site only: the tracker lists the same projects as /off-plan/projects */
+  ...reported
+    .filter((c) => projects.some((p) => matchName(p.name) === matchName(c.name) || sameDldProject(p.name, c.name)))
+    .map((c) => {
     const match = projects.find((p) => matchName(p.name) === matchName(c.name) || sameDldProject(p.name, c.name));
     const figure = latestInspection(
       inspectionOf(dldProgress[c.siteName]),
