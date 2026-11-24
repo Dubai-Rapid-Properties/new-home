@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import Image from 'next/image';
+import { Search, X } from 'lucide-react';
 import type { ConstructionUpdate } from '@/data/offPlan';
 import { constructionStage } from '@/lib/offPlanCards';
 import SmartLink from '../ui/SmartLink';
@@ -88,22 +89,69 @@ function Row({ c }: { c: ConstructionUpdate }) {
   );
 }
 
+/** Lower case, accents and punctuation gone: "Sobha Hartland II" finds "sobha hartland ii", "hartland" */
+const fold = (s: string) =>
+  s
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+
 /**
- * Site progress for the off-plan projects on the site, filterable by stage.
+ * Site progress for the off-plan projects on the site, searchable by project or area, filterable by stage.
  * The page passes the rows in (data/offPlan.ts stays on the server).
  */
 export default function ConstructionTracker({ updates }: { updates: ConstructionUpdate[] }) {
   const [filterId, setFilterId] = useState('all');
   const [shown, setShown] = useState(PAGE_SIZE);
+  const [query, setQuery] = useState('');
+  const searchId = useId();
   const filter = filters.find((f) => f.id === filterId)!;
-  const rows = updates.filter(filter.test);
+  const words = fold(query).split(' ').filter(Boolean);
+  /* Every word typed in the project's name or area */
+  const found = words.length
+    ? updates.filter((c) => {
+        const text = fold(`${c.name} ${c.area}`);
+        return words.every((w) => text.includes(w));
+      })
+    : updates;
+  const rows = found.filter(filter.test);
 
   return (
     <div>
+      <form role="search" onSubmit={(e) => e.preventDefault()} className="relative mb-6">
+        <label htmlFor={searchId} className="sr-only">
+          Search projects
+        </label>
+        <Search aria-hidden="true" strokeWidth={1.6} className="pointer-events-none absolute left-5 top-1/2 h-4 w-4 -translate-y-1/2 text-charcoal-muted" />
+        <input
+          id={searchId}
+          type="search"
+          value={query}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            setShown(PAGE_SIZE);
+          }}
+          placeholder="Search a project or area, e.g. Sobha Hartland, JVC"
+          autoComplete="off"
+          className="h-12 w-full rounded-full border border-charcoal/20 bg-white pl-12 pr-12 text-[15px] font-light text-charcoal outline-none transition-colors placeholder:text-charcoal-muted focus:border-orange"
+        />
+        {query ? (
+          <button
+            type="button"
+            onClick={() => setQuery('')}
+            aria-label="Clear the search"
+            className="absolute right-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-charcoal-muted hover:text-charcoal"
+          >
+            <X aria-hidden="true" className="h-4 w-4" strokeWidth={1.6} />
+          </button>
+        ) : null}
+      </form>
       <div role="group" aria-label="Filter by stage" className="no-scrollbar -mx-1 flex gap-2 overflow-x-auto px-1">
         {filters.map((f) => {
           const active = f.id === filterId;
-          const count = updates.filter(f.test).length;
+          const count = found.filter(f.test).length;
           return (
             <button
               key={f.id}
@@ -128,6 +176,12 @@ export default function ConstructionTracker({ updates }: { updates: Construction
         {rows.length} projects shown
       </p>
 
+      {rows.length === 0 && query ? (
+        <p className="mt-10 border-t border-line pt-10 text-[15px] font-light text-charcoal-muted">
+          No project matches “{query}”{filterId === 'all' ? '' : ` in ${filter.label.toLowerCase()}`}. Try part of the
+          name or the area.
+        </p>
+      ) : null}
       <ul className="mt-10 border-t border-line">
         {rows.slice(0, shown).map((c) => (
           <li key={c.id} className="border-b border-line">
