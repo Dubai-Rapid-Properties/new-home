@@ -633,6 +633,8 @@ export type ConstructionUpdate = {
   launchedAt: string | null;
   /** The date of a figure too old to show (see STALE_MONTHS); the row shows the handover year instead */
   staleSince?: string;
+  /** Property Finder's stage for the project, shown while no figure is: "under_construction", "not_started" */
+  phase?: string | null;
 };
 
 /** An update with a published figure, as project pages show it */
@@ -733,6 +735,7 @@ export const constructionUpdates: ConstructionUpdate[] = [
   ...projects
     .filter((p) => !reported.some((c) => matchName(c.name) === matchName(p.name) || sameDldProject(p.name, c.name)))
     .map((p) => {
+      const pfPage = p.catalog ? pfByPath.get(p.sourceUrl.replace(/^.*\/new-projects\//, '')) : pfPageFor(p);
       const figure = latestInspection(
         inspectionOf(dldProgress[p.name]),
         pfProgress[p.slug],
@@ -749,6 +752,7 @@ export const constructionUpdates: ConstructionUpdate[] = [
         href: `/off-plan/${p.slug}`,
         handoverYear: p.handoverYear,
         launchedAt: p.launchedAt,
+        phase: pfPage?.phase ?? null,
       };
     }),
 ]

@@ -64,7 +64,13 @@ function Row({ c }: { c: ConstructionUpdate }) {
         ) : (
           <>
             <p className="text-[12px] text-charcoal">
-              {c.staleSince ? 'Awaiting a recent inspection' : 'Progress not yet reported'}
+              {c.staleSince
+                ? 'Awaiting a recent inspection'
+                : c.phase === 'not_started'
+                  ? 'Not started yet'
+                  : c.phase === 'under_construction'
+                    ? 'Under construction · progress not yet published'
+                    : 'Progress not yet reported'}
             </p>
             <div aria-hidden="true" className="mt-2 h-1 w-full bg-line" />
           </>
@@ -135,7 +141,7 @@ export default function ConstructionTracker({ updates }: { updates: Construction
           }}
           placeholder="Search a project or area, e.g. Sobha Hartland, JVC"
           autoComplete="off"
-          className="h-12 w-full rounded-full border border-charcoal/20 bg-white pl-12 pr-12 text-[15px] font-light text-charcoal outline-none transition-colors placeholder:text-charcoal-muted focus:border-orange"
+          className="h-12 w-full appearance-none rounded-full border border-charcoal/20 bg-white pl-12 pr-12 text-[15px] font-light text-charcoal outline-none transition-colors placeholder:text-charcoal-muted focus:border-orange [&::-webkit-search-cancel-button]:hidden"
         />
         {query ? (
           <button
