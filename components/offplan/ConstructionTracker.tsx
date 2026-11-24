@@ -58,15 +58,17 @@ function Row({ c }: { c: ConstructionUpdate }) {
               aria-valuenow={c.progress}
               className="mt-2 h-1 w-full bg-line"
             >
-              <div className="h-full bg-orange" style={{ width: `${c.progress}%` }} />
+              {/* An older inspection is shown, faded: the site has likely moved on since */}
+              <div className={`h-full ${c.staleSince ? 'bg-orange/40' : 'bg-orange'}`} style={{ width: `${c.progress}%` }} />
             </div>
+            {c.staleSince ? (
+              <p className="mt-1.5 text-[11px] text-charcoal-muted">Older inspection: the site has likely moved on since</p>
+            ) : null}
           </>
         ) : (
           <>
             <p className="text-[12px] text-charcoal">
-              {c.staleSince
-                ? 'Awaiting a recent inspection'
-                : c.phase === 'not_started'
+              {c.phase === 'not_started'
                   ? 'Not started yet'
                   : c.phase === 'under_construction'
                     ? 'Under construction · progress not yet published'
@@ -77,7 +79,7 @@ function Row({ c }: { c: ConstructionUpdate }) {
         )}
       </div>
       <p className="col-span-2 text-[11px] uppercase tracking-eyebrow text-charcoal-muted sm:col-span-1 sm:row-start-1 sm:col-start-3 sm:text-right lg:col-start-auto lg:row-start-auto">
-        {c.updated ? 'Inspected' : 'Handover'}
+        {c.updated ? (c.staleSince ? 'Last inspected' : 'Inspected') : 'Handover'}
         <span className="mt-1 block font-serif text-lg normal-case tracking-normal text-charcoal">
           {c.updated ? formatDate(c.updated) : (c.handoverYear ?? 'To be confirmed')}
         </span>

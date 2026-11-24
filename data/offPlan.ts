@@ -631,7 +631,7 @@ export type ConstructionUpdate = {
   handoverYear: number | null;
   /** When DRP published the project; the newest lead the tracker */
   launchedAt: string | null;
-  /** The date of a figure too old to show (see STALE_MONTHS); the row shows the handover year instead */
+  /** Set when the figure is over STALE_MONTHS old: it still shows, marked as an older inspection */
   staleSince?: string;
   /** Property Finder's stage for the project, shown while no figure is: "under_construction", "not_started" */
   phase?: string | null;
@@ -702,7 +702,7 @@ const staleBefore = (() => {
   return d.toISOString().slice(0, 10);
 })();
 const withoutStale = (c: ConstructionUpdate): ConstructionUpdate =>
-  c.updated && c.updated < staleBefore ? { ...c, progress: null, updated: null, staleSince: c.updated } : c;
+  c.updated && c.updated < staleBefore ? { ...c, staleSince: c.updated } : c;
 
 export const constructionUpdates: ConstructionUpdate[] = [
   /* D|R|P's construction reports, for projects on the site only: the tracker lists the same projects as /off-plan/projects */
