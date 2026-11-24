@@ -1,6 +1,6 @@
 {
  "source": "Dubai Land Department open data — project register",
- "updatedAt": "2026-11-23T13:08:50.620Z",
+ "updatedAt": "2026-11-24T08:51:56.799Z",
  "projects": {
   "Address The Bay": {
    "progress": 70.1,
@@ -397,6 +397,1726 @@
    "dld": [
     4448
    ]
+  },
+  "Havelock Residences": {
+   "progress": 30,
+   "inspected": "2026-10-30",
+   "dld": [
+    3213
+   ],
+   "matched": true
+  },
+  "Avior By Acube": {
+   "progress": 0,
+   "inspected": "2026-07-08",
+   "dld": [
+    4530
+   ],
+   "matched": true
+  },
+  "Rigel": {
+   "progress": 0,
+   "inspected": null,
+   "dld": [
+    4596
+   ],
+   "matched": true
+  },
+  "The Cape": {
+   "progress": 0.7,
+   "inspected": "2026-06-25",
+   "dld": [
+    4258
+   ],
+   "matched": true
+  },
+  "Havencia": {
+   "progress": 0,
+   "inspected": "2026-04-02",
+   "dld": [
+    4454
+   ],
+   "matched": true
+  },
+  "Elan Tower": {
+   "progress": 0,
+   "inspected": "2026-10-31",
+   "dld": [
+    4561
+   ],
+   "matched": true
+  },
+  "Parkgreen Residences": {
+   "progress": 4.3,
+   "inspected": "2026-10-12",
+   "dld": [
+    4197
+   ],
+   "matched": true
+  },
+  "Zura Residences": {
+   "progress": 0,
+   "inspected": "2026-01-19",
+   "dld": [
+    4357
+   ],
+   "matched": true
+  },
+  "The Tides By Amis": {
+   "progress": 0.4,
+   "inspected": "2026-10-28",
+   "dld": [
+    4224
+   ],
+   "matched": true
+  },
+  "Kyomi Residence": {
+   "progress": 0,
+   "inspected": "2026-10-07",
+   "dld": [
+    3575
+   ],
+   "matched": true
+  },
+  "Cresswell Views": {
+   "progress": 60.2,
+   "inspected": "2026-07-07",
+   "dld": [
+    3583
+   ],
+   "matched": true
+  },
+  "Vibe by Arsenal East": {
+   "progress": 1.5,
+   "inspected": "2026-03-27",
+   "dld": [
+    4083
+   ],
+   "matched": true
+  },
+  "Golf Terrace Residences": {
+   "progress": 5.1,
+   "inspected": "2026-04-09",
+   "dld": [
+    4304
+   ],
+   "matched": true
+  },
+  "Cheval Residences": {
+   "progress": 0,
+   "inspected": "2026-10-07",
+   "dld": [
+    4457
+   ],
+   "matched": true
+  },
+  "Ayami Residence": {
+   "progress": 0.1,
+   "inspected": "2026-06-16",
+   "dld": [
+    4273
+   ],
+   "matched": true
+  },
+  "Azizi Abraham": {
+   "progress": 2,
+   "inspected": "2026-03-17",
+   "dld": [
+    4024
+   ],
+   "matched": true
+  },
+  "Azizi Gabriel": {
+   "progress": 1.1,
+   "inspected": "2026-10-29",
+   "dld": [
+    4232
+   ],
+   "matched": true
+  },
+  "Azizi Leily": {
+   "progress": 2,
+   "inspected": "2026-10-09",
+   "dld": [
+    4233
+   ],
+   "matched": true
+  },
+  "Azizi Noura": {
+   "progress": 2.1,
+   "inspected": "2026-10-29",
+   "dld": [
+    4230
+   ],
+   "matched": true
+  },
+  "Azizi Riviera 56": {
+   "progress": 100,
+   "inspected": "2026-04-24",
+   "dld": [
+    3617
+   ],
+   "matched": true
+  },
+  "Azizi Riviera 58": {
+   "progress": 100,
+   "inspected": "2026-07-29",
+   "dld": [
+    3737
+   ],
+   "matched": true
+  },
+  "Azizi Wares": {
+   "progress": 2,
+   "inspected": "2026-10-09",
+   "dld": [
+    4076
+   ],
+   "matched": true
+  },
+  "Soulever": {
+   "progress": 1.6,
+   "inspected": "2026-11-16",
+   "dld": [
+    4084
+   ],
+   "matched": true
+  },
+  "Binghatti HillCrest": {
+   "progress": 60,
+   "inspected": "2026-09-11",
+   "dld": [
+    4105
+   ],
+   "matched": true
+  },
+  "Binghatti Skyflame  2": {
+   "progress": 12.2,
+   "inspected": "2026-10-28",
+   "dld": [
+    4399
+   ],
+   "matched": true
+  },
+  "Binghatti Wraith": {
+   "progress": 0,
+   "inspected": "2026-05-18",
+   "dld": [
+    4482
+   ],
+   "matched": true
+  },
+  "Tilal Binghatti": {
+   "progress": 0,
+   "inspected": "2026-10-19",
+   "dld": [
+    4471
+   ],
+   "matched": true
+  },
+  "Orvessa Residences": {
+   "progress": 1.5,
+   "inspected": "2026-09-05",
+   "dld": [
+    3434
+   ],
+   "matched": true
+  },
+  "Bhuvi Residence": {
+   "progress": 31.6,
+   "inspected": "2026-07-31",
+   "dld": [
+    3541
+   ],
+   "matched": true
+  },
+  "Cavara Circle": {
+   "progress": 51.5,
+   "inspected": "2026-09-15",
+   "dld": [
+    3624
+   ],
+   "matched": true
+  },
+  "Cavara 42": {
+   "progress": 75.8,
+   "inspected": "2026-06-03",
+   "dld": [
+    3588
+   ],
+   "matched": true
+  },
+  "Flora Bay": {
+   "progress": 3.8,
+   "inspected": "2026-06-12",
+   "dld": [
+    3848
+   ],
+   "matched": true
+  },
+  "Aveline Residences": {
+   "progress": 42.2,
+   "inspected": "2026-06-11",
+   "dld": [
+    2864
+   ],
+   "matched": true
+  },
+  "Damac District": {
+   "progress": 4.1,
+   "inspected": "2026-09-18",
+   "dld": [
+    4064
+   ],
+   "matched": true
+  },
+  "Damac Hills - Lilac": {
+   "progress": 0,
+   "inspected": "2026-04-22",
+   "dld": [
+    4468
+   ],
+   "matched": true
+  },
+  "Breez by Danube": {
+   "progress": 0.7,
+   "inspected": "2026-10-26",
+   "dld": [
+    4081
+   ],
+   "matched": true
+  },
+  "Greenz by Danube": {
+   "progress": 0.1,
+   "inspected": "2026-09-26",
+   "dld": [
+    4430
+   ],
+   "matched": true
+  },
+  "Dar Al Aiham One": {
+   "progress": 48.6,
+   "inspected": "2026-11-11",
+   "dld": [
+    4323
+   ],
+   "matched": true
+  },
+  "Sapphire 32 by Dar Alkarama": {
+   "progress": 73.9,
+   "inspected": "2026-11-05",
+   "dld": [
+    2757
+   ],
+   "matched": true
+  },
+  "Darah Residence": {
+   "progress": 0,
+   "inspected": null,
+   "dld": [
+    4363
+   ],
+   "matched": true
+  },
+  "06 Life Residences": {
+   "progress": 0,
+   "inspected": "2026-10-08",
+   "dld": [
+    4597
+   ],
+   "matched": true
+  },
+  "09 Life Residences": {
+   "progress": 6.8,
+   "inspected": "2026-08-20",
+   "dld": [
+    4250
+   ],
+   "matched": true
+  },
+  "Alder at Park Five": {
+   "progress": 6.1,
+   "inspected": "2026-09-22",
+   "dld": [
+    4052
+   ],
+   "matched": true
+  },
+  "Mar Casa": {
+   "progress": 66.8,
+   "inspected": "2026-10-20",
+   "dld": [
+    2589
+   ],
+   "matched": true
+  },
+  "Beachfront Gates Phase 2 By Dubai South": {
+   "progress": 61.4,
+   "inspected": "2026-11-10",
+   "dld": [
+    3379
+   ],
+   "matched": true
+  },
+  "Hayat Phase 6 By Dubai South": {
+   "progress": 0,
+   "inspected": "2026-10-12",
+   "dld": [
+    4423
+   ],
+   "matched": true
+  },
+  "Hayat Phase 7 By Dubai South": {
+   "progress": 0,
+   "inspected": "2026-10-12",
+   "dld": [
+    4424
+   ],
+   "matched": true
+  },
+  "Hayat 8 by Dubai South": {
+   "progress": 0,
+   "inspected": "2026-10-22",
+   "dld": [
+    4609
+   ],
+   "matched": true
+  },
+  "Hayat 9 by Dubai South": {
+   "progress": 0,
+   "inspected": "2026-11-04",
+   "dld": [
+    4612
+   ],
+   "matched": true
+  },
+  "Hayat Phase 2 by Dubai South": {
+   "progress": 2,
+   "inspected": "2026-09-21",
+   "dld": [
+    3809
+   ],
+   "matched": true
+  },
+  "Hayat Phase 3 By Dubai South": {
+   "progress": 3.9,
+   "inspected": "2026-09-21",
+   "dld": [
+    3810
+   ],
+   "matched": true
+  },
+  "Hayat Phase 4 By Dubai South": {
+   "progress": 4.5,
+   "inspected": "2026-09-21",
+   "dld": [
+    4038
+   ],
+   "matched": true
+  },
+  "Hayat Phase 5 By Dubai South": {
+   "progress": 3.2,
+   "inspected": "2026-11-02",
+   "dld": [
+    4053
+   ],
+   "matched": true
+  },
+  "Astra Residences": {
+   "progress": 15.3,
+   "inspected": "2026-07-13",
+   "dld": [
+    4040
+   ],
+   "matched": true
+  },
+  "Moonsa Residences Phase 2 By Dugasta": {
+   "progress": 1,
+   "inspected": "2026-07-09",
+   "dld": [
+    3280
+   ],
+   "matched": true
+  },
+  "Noore": {
+   "progress": 15.9,
+   "inspected": "2026-07-06",
+   "dld": [
+    4252
+   ],
+   "matched": true
+  },
+  "Eltiera Views": {
+   "progress": 0,
+   "inspected": "2025-12-03",
+   "dld": [
+    4116
+   ],
+   "matched": true
+  },
+  "Portside Square": {
+   "progress": 0,
+   "inspected": "2026-01-08",
+   "dld": [
+    4213
+   ],
+   "matched": true
+  },
+  "Windsor House II": {
+   "progress": 0.6,
+   "inspected": "2026-08-18",
+   "dld": [
+    4300
+   ],
+   "matched": true
+  },
+  "Golf Fields": {
+   "progress": 0,
+   "inspected": "2026-08-04",
+   "dld": [
+    4415
+   ],
+   "matched": true
+  },
+  "Golf Vale": {
+   "progress": 0,
+   "inspected": "2026-02-18",
+   "dld": [
+    4416
+   ],
+   "matched": true
+  },
+  "Grove Ridge": {
+   "progress": 0,
+   "inspected": "2025-11-03",
+   "dld": [
+    4200
+   ],
+   "matched": true
+  },
+  "Mareva 2 The Oasis": {
+   "progress": 1.3,
+   "inspected": "2026-07-01",
+   "dld": [
+    4270
+   ],
+   "matched": true
+  },
+  "Mareva The Oasis": {
+   "progress": 2.1,
+   "inspected": "2026-06-10",
+   "dld": [
+    4269
+   ],
+   "matched": true
+  },
+  "Marina Shores": {
+   "progress": 87.2,
+   "inspected": "2026-05-11",
+   "dld": [
+    2425
+   ],
+   "matched": true
+  },
+  "Palace By The Beach": {
+   "progress": 0,
+   "inspected": "2026-01-07",
+   "dld": [
+    4329
+   ],
+   "matched": true
+  },
+  "Salva The Heights": {
+   "progress": 0.5,
+   "inspected": "2026-06-05",
+   "dld": [
+    4240
+   ],
+   "matched": true
+  },
+  "Serro The Heights": {
+   "progress": 0.5,
+   "inspected": "2026-06-05",
+   "dld": [
+    4237
+   ],
+   "matched": true
+  },
+  "Terra Gardens": {
+   "progress": 3.6,
+   "inspected": "2026-11-03",
+   "dld": [
+    4160
+   ],
+   "matched": true
+  },
+  "Vista Ridge": {
+   "progress": 0,
+   "inspected": "2025-11-03",
+   "dld": [
+    4201
+   ],
+   "matched": true
+  },
+  "Empire Estates": {
+   "progress": 60,
+   "inspected": "2026-06-09",
+   "dld": [
+    2778
+   ],
+   "matched": true
+  },
+  "Empire Gardens": {
+   "progress": 0,
+   "inspected": "2026-06-20",
+   "dld": [
+    4246
+   ],
+   "matched": true
+  },
+  "Elyra Residences": {
+   "progress": 0,
+   "inspected": "2026-05-12",
+   "dld": [
+    4484
+   ],
+   "matched": true
+  },
+  "Enso Amber": {
+   "progress": 11.3,
+   "inspected": "2026-07-07",
+   "dld": [
+    3250
+   ],
+   "matched": true
+  },
+  "Maravea Residences": {
+   "progress": 0,
+   "inspected": "2026-07-01",
+   "dld": [
+    4189
+   ],
+   "matched": true
+  },
+  "Expo Valley Views": {
+   "progress": 0,
+   "inspected": "2026-07-01",
+   "dld": [
+    4007
+   ],
+   "matched": true
+  },
+  "Treppan Living Prive": {
+   "progress": 0,
+   "inspected": "2026-07-30",
+   "dld": [
+    4345
+   ],
+   "matched": true
+  },
+  "Treppan Vision": {
+   "progress": 0,
+   "inspected": "2026-07-16",
+   "dld": [
+    4539
+   ],
+   "matched": true
+  },
+  "Courtyard One": {
+   "progress": 8.2,
+   "inspected": "2026-04-23",
+   "dld": [
+    3857
+   ],
+   "matched": true
+  },
+  "Lateral One": {
+   "progress": 78.9,
+   "inspected": "2026-10-21",
+   "dld": [
+    4086
+   ],
+   "matched": true
+  },
+  "Greenfield Living": {
+   "progress": 33.3,
+   "inspected": "2026-04-14",
+   "dld": [
+    3821
+   ],
+   "matched": true
+  },
+  "Aris": {
+   "progress": 0,
+   "inspected": "2026-09-10",
+   "dld": [
+    4563
+   ],
+   "matched": true
+  },
+  "Enchante": {
+   "progress": 1.6,
+   "inspected": "2026-11-09",
+   "dld": [
+    4460
+   ],
+   "matched": true
+  },
+  "Eterna": {
+   "progress": 0,
+   "inspected": null,
+   "dld": [
+    4564
+   ],
+   "matched": true
+  },
+  "Sadaat Tower": {
+   "progress": 32.1,
+   "inspected": "2026-06-23",
+   "dld": [
+    4476
+   ],
+   "matched": true
+  },
+  "Tonino Lamborghini Residences": {
+   "progress": 60,
+   "inspected": "2026-09-18",
+   "dld": [
+    1941
+   ],
+   "matched": true
+  },
+  "Haus 99 Residences": {
+   "progress": 0,
+   "inspected": "2026-09-28",
+   "dld": [
+    4585
+   ],
+   "matched": true
+  },
+  "Linea": {
+   "progress": 18,
+   "inspected": "2026-10-19",
+   "dld": [
+    4331
+   ],
+   "matched": true
+  },
+  "Holm Central": {
+   "progress": 0,
+   "inspected": "2026-08-24",
+   "dld": [
+    4554
+   ],
+   "matched": true
+  },
+  "Sakura Gardens": {
+   "progress": 3.6,
+   "inspected": "2026-09-19",
+   "dld": [
+    4111
+   ],
+   "matched": true
+  },
+  "113 Residences": {
+   "progress": 0,
+   "inspected": "2026-06-11",
+   "dld": [
+    4503
+   ],
+   "matched": true
+  },
+  "Element": {
+   "progress": 0,
+   "inspected": "2026-09-19",
+   "dld": [
+    4574
+   ],
+   "matched": true
+  },
+  "Oxford Cove": {
+   "progress": 0,
+   "inspected": "2026-02-04",
+   "dld": [
+    4330
+   ],
+   "matched": true
+  },
+  "Chavelle by Imtiaz": {
+   "progress": 0,
+   "inspected": "2026-01-20",
+   "dld": [
+    4360
+   ],
+   "matched": true
+  },
+  "Enre Residence": {
+   "progress": 24.2,
+   "inspected": "2026-10-20",
+   "dld": [
+    4336
+   ],
+   "matched": true
+  },
+  "Kore by Imtiaz": {
+   "progress": 0,
+   "inspected": "2026-08-10",
+   "dld": [
+    4549
+   ],
+   "matched": true
+  },
+  "Raw District 2 by Imtiaz": {
+   "progress": 0,
+   "inspected": "2026-07-06",
+   "dld": [
+    4526
+   ],
+   "matched": true
+  },
+  "Seacliff": {
+   "progress": 7.7,
+   "inspected": "2026-10-02",
+   "dld": [
+    4306
+   ],
+   "matched": true
+  },
+  "The Vault": {
+   "progress": 0,
+   "inspected": "2026-09-15",
+   "dld": [
+    4576
+   ],
+   "matched": true
+  },
+  "171 Garden Heights": {
+   "progress": 33.7,
+   "inspected": "2026-05-21",
+   "dld": [
+    3127
+   ],
+   "matched": true
+  },
+  "J188": {
+   "progress": 0,
+   "inspected": "2025-11-07",
+   "dld": [
+    4145
+   ],
+   "matched": true
+  },
+  "Al Ghaf Janoub": {
+   "progress": 0,
+   "inspected": "2026-02-19",
+   "dld": [
+    4413
+   ],
+   "matched": true
+  },
+  "Tavora Grand": {
+   "progress": 0,
+   "inspected": "2026-11-09",
+   "dld": [
+    4368
+   ],
+   "matched": true
+  },
+  "Tavora Residences": {
+   "progress": 86.2,
+   "inspected": "2026-10-13",
+   "dld": [
+    3825
+   ],
+   "matched": true
+  },
+  "Olivia Residences": {
+   "progress": 38.2,
+   "inspected": "2026-09-12",
+   "dld": [
+    2752
+   ],
+   "matched": true
+  },
+  "Fala by Kasco": {
+   "progress": 0,
+   "inspected": "2026-07-28",
+   "dld": [
+    4434
+   ],
+   "matched": true
+  },
+  "Sea Mirror Residences": {
+   "progress": 10.4,
+   "inspected": "2026-08-21",
+   "dld": [
+    3273
+   ],
+   "matched": true
+  },
+  "Lazord by Lapis": {
+   "progress": 27.6,
+   "inspected": "2026-08-27",
+   "dld": [
+    3209
+   ],
+   "matched": true
+  },
+  "Zyra Hills": {
+   "progress": 0,
+   "inspected": "2025-11-22",
+   "dld": [
+    4236
+   ],
+   "matched": true
+  },
+  "Listone Residence": {
+   "progress": 0,
+   "inspected": "2026-01-21",
+   "dld": [
+    4365
+   ],
+   "matched": true
+  },
+  "La Boutique": {
+   "progress": 52.5,
+   "inspected": "2026-10-02",
+   "dld": [
+    3120
+   ],
+   "matched": true
+  },
+  "Grosvenor House": {
+   "progress": 22.4,
+   "inspected": "2026-08-07",
+   "dld": [
+    4411
+   ],
+   "matched": true
+  },
+  "MAAK Residence": {
+   "progress": 0,
+   "inspected": "2025-11-05",
+   "dld": [
+    4187
+   ],
+   "matched": true
+  },
+  "Mag 330": {
+   "progress": 100,
+   "inspected": "2026-05-01",
+   "dld": [
+    1854
+   ],
+   "matched": true
+  },
+  "Primero Residences": {
+   "progress": 21.1,
+   "inspected": "2026-09-29",
+   "dld": [
+    3005
+   ],
+   "matched": true
+  },
+  "Marquis Aura": {
+   "progress": 0,
+   "inspected": "2026-10-05",
+   "dld": [
+    4593
+   ],
+   "matched": true
+  },
+  "Marquis Horizon": {
+   "progress": 0,
+   "inspected": "2026-10-31",
+   "dld": [
+    4372
+   ],
+   "matched": true
+  },
+  "Floarea Breeze": {
+   "progress": 3.8,
+   "inspected": "2026-10-22",
+   "dld": [
+    4061
+   ],
+   "matched": true
+  },
+  "Vita Grande": {
+   "progress": 63.8,
+   "inspected": "2026-01-22",
+   "dld": [
+    2714
+   ],
+   "matched": true
+  },
+  "SVN Residences": {
+   "progress": 0,
+   "inspected": "2026-06-16",
+   "dld": [
+    4497
+   ],
+   "matched": true
+  },
+  "Stories": {
+   "progress": 0.5,
+   "inspected": "2026-09-22",
+   "dld": [
+    4353
+   ],
+   "matched": true
+  },
+  "Vio Residences": {
+   "progress": 6.4,
+   "inspected": "2026-07-30",
+   "dld": [
+    3673
+   ],
+   "matched": true
+  },
+  "Tura Residence": {
+   "progress": 0.7,
+   "inspected": "2026-07-08",
+   "dld": [
+    4318
+   ],
+   "matched": true
+  },
+  "Nanma Lotus": {
+   "progress": 3.6,
+   "inspected": "2026-10-12",
+   "dld": [
+    4447
+   ],
+   "matched": true
+  },
+  "Native Haus": {
+   "progress": 0,
+   "inspected": "2026-09-28",
+   "dld": [
+    4535
+   ],
+   "matched": true
+  },
+  "Chapter 02": {
+   "progress": 2.1,
+   "inspected": "2026-06-24",
+   "dld": [
+    3841
+   ],
+   "matched": true
+  },
+  "Estrella by Nexus": {
+   "progress": 45.5,
+   "inspected": "2026-05-18",
+   "dld": [
+    3284
+   ],
+   "matched": true
+  },
+  "Evelyn on the Park": {
+   "progress": 0,
+   "inspected": "2026-06-10",
+   "dld": [
+    4150
+   ],
+   "matched": true
+  },
+  "Olbia": {
+   "progress": 0,
+   "inspected": "2026-03-23",
+   "dld": [
+    3749
+   ],
+   "matched": true
+  },
+  "Rosewell": {
+   "progress": 0,
+   "inspected": "2026-06-10",
+   "dld": [
+    4149
+   ],
+   "matched": true
+  },
+  "Sukoon by Nuri": {
+   "progress": 46.8,
+   "inspected": "2026-06-25",
+   "dld": [
+    3753
+   ],
+   "matched": true
+  },
+  "1WOOD Residence Phase 2 By Object 1": {
+   "progress": 0,
+   "inspected": "2026-02-27",
+   "dld": [
+    4435
+   ],
+   "matched": true
+  },
+  "ELAR1S Axis": {
+   "progress": 4.2,
+   "inspected": "2026-10-29",
+   "dld": [
+    4212
+   ],
+   "matched": true
+  },
+  "Sky Level 1": {
+   "progress": 0,
+   "inspected": "2026-05-12",
+   "dld": [
+    4486
+   ],
+   "matched": true
+  },
+  "The Eighty Three": {
+   "progress": 60,
+   "inspected": "2026-08-06",
+   "dld": [
+    3270
+   ],
+   "matched": true
+  },
+  "Omya Residences": {
+   "progress": 0,
+   "inspected": "2026-10-07",
+   "dld": [
+    4248
+   ],
+   "matched": true
+  },
+  "Park Residency": {
+   "progress": 0,
+   "inspected": "2026-01-07",
+   "dld": [
+    4322
+   ],
+   "matched": true
+  },
+  "Peace Avenue": {
+   "progress": 3.5,
+   "inspected": "2026-08-26",
+   "dld": [
+    4146
+   ],
+   "matched": true
+  },
+  "Sky Harmony": {
+   "progress": 12.6,
+   "inspected": "2026-09-02",
+   "dld": [
+    4147
+   ],
+   "matched": true
+  },
+  "Sky Line": {
+   "progress": 0,
+   "inspected": "2025-09-25",
+   "dld": [
+    4125
+   ],
+   "matched": true
+  },
+  "Bond Living": {
+   "progress": 0,
+   "inspected": "2025-09-04",
+   "dld": [
+    4073
+   ],
+   "matched": true
+  },
+  "Melograno Yards": {
+   "progress": 0,
+   "inspected": "2026-10-01",
+   "dld": [
+    4591
+   ],
+   "matched": true
+  },
+  "Oceara Park View Residences": {
+   "progress": 0,
+   "inspected": "2026-07-29",
+   "dld": [
+    4542
+   ],
+   "matched": true
+  },
+  "Verano By Prescott": {
+   "progress": 41.1,
+   "inspected": "2026-09-25",
+   "dld": [
+    3339
+   ],
+   "matched": true
+  },
+  "Prestige One Residences": {
+   "progress": 0.1,
+   "inspected": "2026-09-18",
+   "dld": [
+    4190
+   ],
+   "matched": true
+  },
+  "Prestige Gardens": {
+   "progress": 0,
+   "inspected": "2026-09-14",
+   "dld": [
+    4398
+   ],
+   "matched": true
+  },
+  "Sanctuary by Prestige One": {
+   "progress": 0,
+   "inspected": "2026-10-09",
+   "dld": [
+    4332
+   ],
+   "matched": true
+  },
+  "Seaside By Prestige One": {
+   "progress": 53,
+   "inspected": "2026-10-29",
+   "dld": [
+    3119
+   ],
+   "matched": true
+  },
+  "Sunvale": {
+   "progress": 1.3,
+   "inspected": "2026-06-18",
+   "dld": [
+    4196
+   ],
+   "matched": true
+  },
+  "Bliss Tower": {
+   "progress": 92.5,
+   "inspected": "2026-09-15",
+   "dld": [
+    3545
+   ],
+   "matched": true
+  },
+  "Rabdan Avenue": {
+   "progress": 0,
+   "inspected": "2026-06-18",
+   "dld": [
+    4516
+   ],
+   "matched": true
+  },
+  "Rabdan Gardens": {
+   "progress": 1.1,
+   "inspected": "2026-11-11",
+   "dld": [
+    4314
+   ],
+   "matched": true
+  },
+  "RR Grand": {
+   "progress": 11,
+   "inspected": "2026-10-13",
+   "dld": [
+    4305
+   ],
+   "matched": true
+  },
+  "Verdana 16 by Reportage": {
+   "progress": 0,
+   "inspected": null,
+   "dld": [
+    4616
+   ],
+   "matched": true
+  },
+  "Verdana 17 by Reportage": {
+   "progress": 0,
+   "inspected": null,
+   "dld": [
+    4617
+   ],
+   "matched": true
+  },
+  "Verdana 18 by Reportage": {
+   "progress": 0,
+   "inspected": null,
+   "dld": [
+    4618
+   ],
+   "matched": true
+  },
+  "Verdana 19 by Reportage": {
+   "progress": 0,
+   "inspected": null,
+   "dld": [
+    4619
+   ],
+   "matched": true
+  },
+  "Verdana 20 by Reportage": {
+   "progress": 0,
+   "inspected": null,
+   "dld": [
+    4620
+   ],
+   "matched": true
+  },
+  "Verdana 21 by Reportage": {
+   "progress": 0,
+   "inspected": null,
+   "dld": [
+    4621
+   ],
+   "matched": true
+  },
+  "Verdana 22 by Reportage": {
+   "progress": 0,
+   "inspected": null,
+   "dld": [
+    4622
+   ],
+   "matched": true
+  },
+  "18 Marlow Row": {
+   "progress": 51.9,
+   "inspected": "2026-09-02",
+   "dld": [
+    4559
+   ],
+   "matched": true
+  },
+  "Maserati Island": {
+   "progress": 0,
+   "inspected": "2026-07-16",
+   "dld": [
+    4397
+   ],
+   "matched": true
+  },
+  "Samana Barari Resort": {
+   "progress": 0,
+   "inspected": "2026-09-15",
+   "dld": [
+    4572
+   ],
+   "matched": true
+  },
+  "Samana Downtown One": {
+   "progress": 0,
+   "inspected": "2026-07-13",
+   "dld": [
+    4507
+   ],
+   "matched": true
+  },
+  "Samana Eden Barari": {
+   "progress": 0,
+   "inspected": null,
+   "dld": [
+    4571
+   ],
+   "matched": true
+  },
+  "Samana South Haven": {
+   "progress": 0,
+   "inspected": "2026-05-02",
+   "dld": [
+    4472
+   ],
+   "matched": true
+  },
+  "Samana South Haven 2": {
+   "progress": 0,
+   "inspected": "2026-07-06",
+   "dld": [
+    4518
+   ],
+   "matched": true
+  },
+  "At 85 Residences": {
+   "progress": 0,
+   "inspected": "2025-12-30",
+   "dld": [
+    4325
+   ],
+   "matched": true
+  },
+  "Artistry One Residences": {
+   "progress": 0,
+   "inspected": "2025-12-29",
+   "dld": [
+    4259
+   ],
+   "matched": true
+  },
+  "The Edge By Select Group": {
+   "progress": 100,
+   "inspected": "2026-08-19",
+   "dld": [
+    2611
+   ],
+   "matched": true
+  },
+  "Avida Residences": {
+   "progress": 6.8,
+   "inspected": "2026-08-19",
+   "dld": [
+    4066
+   ],
+   "matched": true
+  },
+  "Aura Heights": {
+   "progress": 0,
+   "inspected": "2026-07-29",
+   "dld": [
+    4533
+   ],
+   "matched": true
+  },
+  "Avant Garde Residences": {
+   "progress": 100,
+   "inspected": "2026-08-17",
+   "dld": [
+    2798
+   ],
+   "matched": true
+  },
+  "Sobha Central": {
+   "progress": 2.4,
+   "inspected": "2026-09-22",
+   "dld": [
+    4328
+   ],
+   "matched": true
+  },
+  "Sobha Skyparks": {
+   "progress": 0,
+   "inspected": "2025-10-22",
+   "dld": [
+    4137
+   ],
+   "matched": true
+  },
+  "The Brooks at Sobha Sanctuary": {
+   "progress": 0,
+   "inspected": "2026-07-13",
+   "dld": [
+    4532
+   ],
+   "matched": true
+  },
+  "The Greens at Sobha Sanctuary": {
+   "progress": 0,
+   "inspected": "2026-07-13",
+   "dld": [
+    4531
+   ],
+   "matched": true
+  },
+  "The Grove at Sobha Sanctuary": {
+   "progress": 0,
+   "inspected": "2026-05-19",
+   "dld": [
+    4366
+   ],
+   "matched": true
+  },
+  "The Woods": {
+   "progress": 0,
+   "inspected": "2026-05-20",
+   "dld": [
+    4485
+   ],
+   "matched": true
+  },
+  "Sereno Residences": {
+   "progress": 32,
+   "inspected": "2026-10-21",
+   "dld": [
+    3078
+   ],
+   "matched": true
+  },
+  "368 Park Ln": {
+   "progress": 1.7,
+   "inspected": "2026-10-27",
+   "dld": [
+    4176
+   ],
+   "matched": true
+  },
+  "Divine Elements": {
+   "progress": 0,
+   "inspected": "2026-07-06",
+   "dld": [
+    4142
+   ],
+   "matched": true
+  },
+  "Celesto Tower 2": {
+   "progress": 0,
+   "inspected": "2026-10-21",
+   "dld": [
+    4440
+   ],
+   "matched": true
+  },
+  "Celesto Tower 3": {
+   "progress": 0,
+   "inspected": "2026-05-12",
+   "dld": [
+    4487
+   ],
+   "matched": true
+  },
+  "Lunara Tower": {
+   "progress": 0,
+   "inspected": "2026-11-10",
+   "dld": [
+    4623
+   ],
+   "matched": true
+  },
+  "SquareX One": {
+   "progress": 0,
+   "inspected": "2025-12-22",
+   "dld": [
+    3371
+   ],
+   "matched": true
+  },
+  "The Bay Interiors by Missoni": {
+   "progress": 0,
+   "inspected": "2026-07-16",
+   "dld": [
+    4522
+   ],
+   "matched": true
+  },
+  "Blossom 40": {
+   "progress": 0,
+   "inspected": "2026-09-04",
+   "dld": [
+    4205
+   ],
+   "matched": true
+  },
+  "Future Avenue Tower": {
+   "progress": 0,
+   "inspected": "2026-09-10",
+   "dld": [
+    4562
+   ],
+   "matched": true
+  },
+  "Livel Residenza": {
+   "progress": 20,
+   "inspected": "2026-06-24",
+   "dld": [
+    3072
+   ],
+   "matched": true
+  },
+  "Reem by Vision": {
+   "progress": 70.4,
+   "inspected": "2026-10-07",
+   "dld": [
+    3612
+   ],
+   "matched": true
+  },
+  "Sera Gardens": {
+   "progress": 0,
+   "inspected": "2026-04-03",
+   "dld": [
+    4455
+   ],
+   "matched": true
+  },
+  "Soul by Vision": {
+   "progress": 77,
+   "inspected": "2026-10-07",
+   "dld": [
+    3680
+   ],
+   "matched": true
+  },
+  "Vista by Vision": {
+   "progress": 12.2,
+   "inspected": "2026-10-07",
+   "dld": [
+    4175
+   ],
+   "matched": true
+  },
+  "Arthouse Private Residences": {
+   "progress": 0,
+   "inspected": "2026-06-16",
+   "dld": [
+    4275
+   ],
+   "matched": true
+  },
+  "Tresora by Wadan": {
+   "progress": 0,
+   "inspected": "2026-03-09",
+   "dld": [
+    4442
+   ],
+   "matched": true
+  },
+  "Weston": {
+   "progress": 0,
+   "inspected": "2026-06-23",
+   "dld": [
+    4519
+   ],
+   "matched": true
+  },
+  "South Park Residences": {
+   "progress": 100,
+   "inspected": "2026-11-05",
+   "dld": [
+    3453
+   ],
+   "matched": true
+  },
+  "South Park Residences 2 By Wellington": {
+   "progress": 100,
+   "inspected": "2026-11-05",
+   "dld": [
+    3672
+   ],
+   "matched": true
+  },
+  "Serra Residence": {
+   "progress": 28.8,
+   "inspected": "2026-09-17",
+   "dld": [
+    4272
+   ],
+   "matched": true
+  },
+  "Lunaya": {
+   "progress": 4.1,
+   "inspected": "2026-10-30",
+   "dld": [
+    4456
+   ],
+   "matched": true
+  },
+  "Ventana Residences": {
+   "progress": 6.7,
+   "inspected": "2026-10-07",
+   "dld": [
+    3861
+   ],
+   "matched": true
+  },
+  "Manarina": {
+   "progress": 0,
+   "inspected": "2026-07-25",
+   "dld": [
+    4545
+   ],
+   "matched": true
+  },
+  "Zen Lagoons": {
+   "progress": 0,
+   "inspected": "2026-02-02",
+   "dld": [
+    4340
+   ],
+   "matched": true
+  },
+  "Lawncrest": {
+   "progress": 0,
+   "inspected": "2026-06-03",
+   "dld": [
+    4491
+   ],
+   "matched": true
+  },
+  "Soyo by Zimaya": {
+   "progress": 0,
+   "inspected": "2026-08-05",
+   "dld": [
+    4547
+   ],
+   "matched": true
+  },
+  "Calisi": {
+   "progress": 0,
+   "inspected": "2026-06-30",
+   "dld": [
+    4512
+   ],
+   "matched": true
+  },
+  "Elanora": {
+   "progress": 0,
+   "inspected": "2026-04-13",
+   "dld": [
+    4459
+   ],
+   "matched": true
+  },
+  "Elvora": {
+   "progress": 0,
+   "inspected": "2026-10-15",
+   "dld": [
+    4583
+   ],
+   "matched": true
+  },
+  "Izel by Zoya": {
+   "progress": 0,
+   "inspected": "2026-03-09",
+   "dld": [
+    4386
+   ],
+   "matched": true
+  },
+  "Loriza by Zoya": {
+   "progress": 0,
+   "inspected": "2026-09-04",
+   "dld": [
+    4558
+   ],
+   "matched": true
+  },
+  "Miorah by Zoya": {
+   "progress": 16.1,
+   "inspected": "2026-07-13",
+   "dld": [
+    4228
+   ],
+   "matched": true
+  },
+  "Nuve by Zoya": {
+   "progress": 0.8,
+   "inspected": "2026-07-13",
+   "dld": [
+    4290
+   ],
+   "matched": true
+  },
+  "Siana": {
+   "progress": 0,
+   "inspected": "2026-06-26",
+   "dld": [
+    4509
+   ],
+   "matched": true
+  },
+  "Avior": {
+   "progress": 0,
+   "inspected": "2026-07-08",
+   "dld": [
+    4530
+   ],
+   "matched": true
   }
  }
 }
